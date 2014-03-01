@@ -914,7 +914,11 @@
               }),
              revenueResourceEdit: defineResource(apiVer + "/mediasettlements/revenueShare/edit/:id", {id:'@id'}, {
               get: {method: 'GET', params: {}}
-                })
+              }),
+              revenueDetails: defineResource(apiVer + "/mediasettlements/revenueShare/:clientId", {clientId: '@clientId'}, {
+                  get: {method: 'GET', params: {}, isArray: true},
+                  update: { method: 'PUT' }
+              })
 
         };
       }];

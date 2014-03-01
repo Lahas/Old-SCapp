@@ -231,7 +231,7 @@
       };
   	  
       scope.getRoyaltyType = function () {
-          resourceFactory.royaltyResource.get({clientId: routeParams.id} , function(data) {
+          resourceFactory.revenueDetails.get({clientId: routeParams.id} , function(data) {
              scope.royaltyTypes = data;                        
           });
       };
