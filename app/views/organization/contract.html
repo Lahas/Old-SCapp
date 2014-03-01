@@ -1,0 +1,29 @@
+<div>
+
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.contracts' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/createContract" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.contract' | translate }}</a>
+    </div>
+</div>
+<div class="row-fluid" ng-controller="ContractController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by ContractPeriod/ContractType/Units">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.contract.period' | translate }}</th>
+                <th>{{ 'table.contract.type' | translate }}</th>
+                <th>{{ 'table.contract.unit' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in employees | filter:filterText">
+                <td><a href="#/viewContract/{{employee.id}}">{{employee.subscription_period}}</a></td>            
+                <td>{{employee.subscription_type}}</td>        
+                <td>{{employee.units}}</td>         
+            </tr>
+        </tbody>
+    </table>
+</div>

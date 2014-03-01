@@ -1,0 +1,41 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.chargecode' | translate}}</li>
+    </ul>
+
+    <div class="pull-right">
+        <a href="#/createchargecode" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.create.new.chargecode' | translate}}</a>
+    </div>
+</div>
+<div class="row-fluid" ng-controller="ChargeCodeController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+              
+                <th>{{ 'table.heading.chargecode' | translate }}</th>
+                <th>{{ 'table.heading.chargedes' | translate }}</th>
+                <th>{{ 'table.heading.chargetype' | translate }}</th>
+                <th>{{ 'table.heading.chargeduration' | translate }}</th>
+                <th>{{ 'table.heading.duratintype' | translate }}</th>
+                <th>{{ 'table.heading.taxinclusive' | translate }}</th>
+                <th>{{ 'table.heading.billfrequencycode' | translate }}</th>
+                               
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="chargecode in chargecodes | filter:filterText">
+                        
+                <td><a href="#/viewchargecode/{{chargecode.id}}">{{chargecode.chargeCode}}</td>        
+                <td>{{chargecode.chargeDescription}}</td>        
+                <td>{{chargecode.chargeType}}</td>
+                <td>{{chargecode.chargeDuration}}</td> 
+                <td>{{chargecode.durationType}}</td> 
+                <td>{{chargecode.taxInclusive}}</td> 
+                <td>{{chargecode.billFrequencyCode}}</td> 
+                             
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,128 @@
+<div  ng-controller="ClientOneTimeSaleController">
+	<div><ul class="breadcrumb">
+		<img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+    	<img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+    	<li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified  {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+	</ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.add.onetimesale' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.add.client.onetimesale' | translate}}</legend>
+
+			<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+                        		<label class="control-label">{{ 'label.saleDate' | translate }}</label>
+                        		<div class="controls">
+                            	<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.saleDate" is-open="opened2" max="maxDate" 
+                            	date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        		</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="chargeCode">{{ 'label.chargeCode' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="chargeCode" ng-model="formData.chargeCode">
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="itemId">{{ 'label.itemCode' | translate }}</label>
+            					<div class="controls">
+             					 <select ng-model="formData.itemId" ng-change="itemData(formData.itemId)" ng-options="itemData.id as itemData.itemCode for itemData in itemDatas" value="{{itemData.id}}">
+             					 </select>
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="totalPrice">{{ 'label.totalPrice' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="totalPrice" ng-model="formData.totalPrice">
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="quantity" ng-change="itemDataQuantity(formData.quantity,formData.itemId)" ng-model="formData.quantity">
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="unitPrice">{{ 'label.unitPrice' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="unitPrice" ng-model="formData.unitPrice">
+            					</div>
+          						</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+            					<label class="control-label" for="discountId">{{ 'label.discountCode' | translate }}</label>
+            					<div class="controls">
+             					 <select ng-model="formData.discountId"  ng-options="discountMasterData.discountMasterId as discountMasterData.discountDescription for discountMasterData in discountMasterDatas" value="{{discountMasterData.id}}">
+             					 </select>
+            					</div>
+          						</div>
+          					</td>
+								
+							</tr>
+					</table>
+			
+				</td>
+			</tr>
+			</table>
+			
+
+
+		<div class="offset3">
+			<a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			<button type="submit" class="btn btn-primary">{{'button.save' | translate}}</button>
+		</div>
+	</fieldset>
+</form>
+</div>

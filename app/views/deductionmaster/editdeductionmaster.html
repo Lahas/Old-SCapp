@@ -1,0 +1,122 @@
+         <div ng-controller="EditDeductionMasterController">
+             <ul class="breadcrumb">
+              <li><a href="#/game">Deduction Code</a> <span class="divider">/</span></li>
+              <li class="active">Edit DeductionCode</li>
+          </ul>      
+          
+          <div>
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	      </div>
+          
+          
+           <div class="pull-right">
+	      <div class="btn-group">        
+	          <a ng-click="deleteDeduction()" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	  <script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.masterdeduction.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+	
+      <form class="form-horizontal well"   ng-submit="submit()">
+
+        <fieldset>
+         
+           <legend>Edit Deduction Code</legend>   
+          
+          
+          <table>
+          
+          <tr><td>
+	       
+       	 <tr><td>
+          <div class="control-group">
+			<label class="control-label" for="deductionCode">{{'label.master.deductioncode' | translate }}&nbsp;<span class="required">*</span></label>
+			 <div class="controls">
+               <input type="text" ng-model="formData.deductionCode">
+                 </div>
+			</div> 
+			</td></tr>
+		   			<tr><td>
+               	<div class="control-group">
+	            	<label class="control-label" for="deductionName">{{'label.master.deductionname' | translate }}&nbsp;<span class="required">*</span></label>
+	           		 <div class="controls">
+                    <input type="text" ng-model="formData.deductionName">
+                  </div>
+	      		 </div>
+          </td></tr>
+          <tr><td>
+	 	   <div class="control-group">
+	            <label class="control-label" for="deductionType">{{'label.master.deductiontype' | translate }}&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.deductionType"  ng-options="deductionTypeData.mCodeValue as deductionTypeData.mCodeValue for deductionTypeData in deductionTypeDatas" value="{{deductionTypeData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	       </td></tr>
+         <!-- <tr><td>
+                <div class="control-group">
+                  <label class="control-label" for="deductionValue">{{ 'label.master.deductionvalue' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" ng-model="formData.deductionValue">
+                  </div>
+                </div>
+              </td></tr> -->
+          <tr><td>
+             <div class="control-group">
+                  <label class="control-label" for="levelApplicable">{{ 'label.master.levelApplicable' | translate }}&nbsp;<span class="required">*</span></label>
+                 <div class="controls">
+                			<select ng-model="formData.levelApplicable"  ng-options="levelApplicables.mCodeValue as levelApplicables.mCodeValue for levelApplicables in categoryDatas" value="{{levelApplicables.id}}"></select>
+              				</div>
+             </div>
+                </td></tr>
+                <tr><td>
+                <div class="control-group">
+                  <label class="control-label" for="circle">{{ 'label.master.circle' | translate }}</label>
+                  <div class="controls">
+                    <select  ng-model="formData.circle" ng-change="getTableData(formData.circle)" ng-options="c.id as c.stateName for c in stateDatas" value="{{c.id}}"></select>
+                  </div>
+                </div></td>
+              </tr>
+               <tr><td>
+                <div class="control-group">
+                  <label class="control-label" for="customerType">{{ 'label.master.customertype' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <select  ng-model="formData.customerType" id="customerType" ng-options="customerTypes.id as customerTypes.mCodeValue for customerTypes in customerTypeDatas" value="{{customerTypes.mCodeValue}}">
+                    </select>
+                  </div>
+                </div>
+                </td>
+              </tr>
+		           <tr><td>
+                <div class="control-group">
+                  <label class="control-label" for="business">Business&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <select  ng-model="formData.business"ng-options="businessCategory.mCodeValue as businessCategory.mCodeValue for businessCategory in businessDatas" value="{{businessCategory.id}}">
+                    </select>
+                  </div>
+                </div>
+              </td>
+              </tr>
+		  
+</table>
+<div class="offset3">
+            <a href="#/game" ><button type="reset" class="btn" ng-click="cancel()">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.update'| translate}}</button>
+          </div>
+	 </fieldset>
+</form>
+</div>
+</div>

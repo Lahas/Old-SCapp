@@ -1,0 +1,38 @@
+   <div ng-controller="ViewServiceController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/services">{{'label.manageservices' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{service.serviceCode}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editservice/{{service.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	        <a ng-click="deleteservice()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{service.serviceType}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{ 'label.service.Service Code' | translate }}</td>
+				<td width="70%">{{service.serviceCode}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.service.Service Description' | translate }}</td>
+				<td>{{service.serviceDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.service.Status' | translate }}</td>
+				<td>{{service.serviceStatus}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.service.IsOptional' | translate }}</td>
+				<td>{{service.isOptional}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+           

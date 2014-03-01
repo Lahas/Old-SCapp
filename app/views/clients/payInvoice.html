@@ -1,0 +1,256 @@
+<div ng-controller="PayInvoiceController">
+ <div>
+ <ul class="breadcrumb">
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Mail him {{email}}</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Pay Invoice</li>
+		</ul>
+	</div>
+      <form name="payInvoiceForm" class="form-horizontal well" >
+	  
+	     <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div> 
+	    
+        <fieldset>
+          <legend>Pay Invoice</legend>
+          
+			<table>
+			<tr>
+				<td>
+					<table>
+					<tr>
+					<td>
+			 			 <div class="control-group">
+			 			  	<div class="controls">
+			  				<input  id = "" type="radio" name ="selectType"  ng-click = "selectedAccount()"/>&nbsp;&nbsp;Account&nbsp;&nbsp;
+						  	<input  id = "" type="radio" name ="selectType"  ng-click = "selectedInvoice()"/>&nbsp;&nbsp;Invoice
+						  	</div>
+						  	</div>
+			 			 </td>
+					</tr>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="paymentDate">{{ 'label.paymentdate' | translate }}</label>
+            					<div class="controls">
+             					  <input id="dateid" type="text" ng-change="test()" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="maxDate" 
+             					  date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly />
+           						</div>
+         						</div>	
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="paymentCode">{{ 'label.paymentType' | translate }}</label>
+            					<div class="controls">
+             					 <select id="paymenttypeval" ng-model="formData.paymentCode" ng-options="data.id as data.mCodeValue for data in data" value="{{data.id}}" ng-change="paymentTypeData(formData.paymentCode)">
+             					 </select>
+            					</div>
+          						</div>		
+          					</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="amountPaid">{{ 'label.amount' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="amountPaid" ng-model="formData.amountPaid"/>
+           						</div>
+         						</div>
+							</td>
+							
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="receiptNo">{{ 'label.receiptno' | translate }}<span class="required">*</span></label>
+            					<div class="controls">
+             					 <input type="text" id="receiptNo" name="receiptno" ng-model="formData.receiptNo">
+             					  <!-- <span  ng-show="paymentForm.receiptno.$invalid">
+                                  <small class="error" ng-show="paymentForm.receiptno.$error.req">
+                                    Required Field
+                                  </small>
+                                 </span> -->
+           						</div>
+         						</div>
+							</td>
+						</tr>
+
+						
+					</table>
+			
+				</td>
+				
+				<td>
+				<div ng-show="paymentType == 'Cheque'">
+				<table>
+				<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="chequeNo">{{ 'label.chequeno' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="chequeNo" ng-model="formData.chequeNo">
+           						</div>
+         						</div>
+							</td>
+				</tr>
+				<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="chequeDate">{{ 'label.chequedate' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="chequeDate" ng-model="formData.chequeDate">
+            					</div>
+          						</div>
+							</td>
+				
+				</tr>
+				<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="bankName">{{ 'label.bankname' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="bankName" ng-model="formData.bankName">
+           						</div>
+         						</div>
+							</td>
+				</tr>
+				<tr>
+							<td>
+							
+								<div class="control-group">
+           					 	<label class="control-label" for="branchName">{{ 'label.branchname' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="branchName" ng-model="formData.branchName">
+           						</div>
+         						</div>
+							</td>
+							
+				</tr>
+				</table>
+				</div>
+				</td>
+			</tr>
+			
+			</table>
+			<div class="offset3" ng-show = "selectAccount">
+            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+          <button id="submit" type="submit" class="btn btn-primary" ng-click = "submitAccount()">{{'button.save'| translate}}</button>
+          </div>
+			<br>
+			<div class="control-group" ng-show = "selectInvoice">
+          		<label class="control-label">Show Invoice Details</label>
+         		 <div class="controls">
+            		<a class="btn btn-primary" ng-click="showInvoiceDetails=!showInvoiceDetails">
+              			<i ng-show="showInvoiceDetails" class="icon-minus icon-white"></i>
+             			 <i ng-show="!showInvoiceDetails" class="icon-plus icon-white"></i>
+            		</a>
+          		</div>
+        	</div>
+			<br>
+<div collapse = "!showInvoiceDetails" ng-show = "selectInvoice">
+			<table class="table" >
+        <thead>
+            <tr class="graybg">
+            	<th>select</th>
+                <th>InvoiceId</th>
+                <th>Invoice Date</th>
+                <th>Invoice Amount</th>
+                <th>Due Amount</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+             <tr ng-repeat="invoiceData in invoiceDatas" >
+           
+            	<td> <input  id = "{{invoiceData.id}}" type="radio" name ="select"  ng-click = "seletedRecord(invoiceData.id)"/></td>
+            	<td>{{invoiceData.id}}</td>
+                <td>{{invoiceData.billDate | DateFormat}}</td>
+                 <td>{{invoiceData.amount}}</td>
+                <td>{{invoiceData.dueAmount}}</td>
+                <td>
+
+             		<span style = "color : green;" ng-show = "paidRow = (invoiceData.dueAmount == 0) && (value == invoiceData.id)">Paid</span>
+             		<input ng-show = "(value == invoiceData.id) && (invoiceData.dueAmount != 0)" class="input-small" type="text" ng-model ="formData.amount" ng-change="amountField(formData.amount,invoiceData.dueAmount)">
+           		</td>
+                 <td>
+                    <button ng-show = "(value == invoiceData.id) && (invoiceData.dueAmount != 0)" class="btn btn-primary"  ng-click="submitInvoice()">Pay</button>
+           		</td >
+
+            </tr>
+            
+        </tbody>
+    </table>
+ </div> 
+ 
+ 	
+			
+        </fieldset>
+      </form>
+      <script type="text/ng-template" id="alert.html">
+					<div class="modal-header silver">
+                        <h3 class="bolder">Warning</h3>
+                    </div>
+                    <div class="modal-body" modal-middle>
+                       <i class="icon-warning-sign error"></i>Amount cann't be greater than <span style='color:blue;font-size:15px;'>"Due Amount"</span>.
+                    </div>
+                    <div class="modal-footer">
+						<button class="btn btn-primary" ng-click="approve()">ok</button>
+                    </div>
+      </script>
+</div>

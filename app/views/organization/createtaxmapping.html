@@ -1,0 +1,72 @@
+      <div ng-controller="CreateTaxMappingController">
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/chargecode">{{formData.chargeCode}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.taxmapping' | translate}}</li>
+        </ul>
+  
+      <form class="form-horizontal well"  ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Tax Mapping</legend>
+          
+          
+          <div class="control-group">
+            <label class="control-label" for="chargeCode">{{'label.chargeCode' | translate }}</label>
+             <div class="controls">
+              <input type="text" id="taxCode" ng-model="formData.chargeCode" readonly>
+            </div>
+          </div>
+
+
+          <div class="control-group">
+            <label class="control-label" for="taxCode">{{'label.taxCode' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="taxCode" ng-model="formData.taxCode">
+            </div>
+          </div>
+          
+           <div class="control-group">
+            <label class="control-label" for="startDate">{{'label.startDate' | translate }}</label>
+            <div class="controls">
+              <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            </div>
+          </div>
+          
+           <div class="control-group">
+            <label class="control-label" for="type">{{'label.type' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.type"  ng-options="typetaxmapdata.type as typetaxmapdata.type for typetaxmapdata in typetaxmapdatas" value="{{type.id}}">
+              </select>
+            </div>
+          </div>
+          
+          
+           <div class="control-group">
+            <label class="control-label" for="rate">{{'label.rate' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="rate" ng-model="formData.rate">
+            </div>
+          </div>
+          
+         
+           <div class="control-group">
+            <label class="control-label" for="priceregion">{{'label.taxRegion' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.taxRegion"  ng-options="priceRegionData.id as priceRegionData.priceregion for priceRegionData in priceRegionDatas"	 value="{{priceregion.id}}">
+              </select>
+            </div>
+          </div>
+
+          <div class="offset3">
+            <a href="#/taxmapping"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+    </div>

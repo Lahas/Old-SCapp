@@ -1,0 +1,60 @@
+<div ng-controller="ViewPlanController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/plans">{{'label.plans' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{plan.planCode}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editplan/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	         <a ng-click="deleteplan()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	         <a href="#/prices/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> View Price</a>
+	         <a href="#/createprice/{{plan.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Add Price</a>
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{contractperiod.name}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{ 'label.plan.plandescription' | translate }}</td>
+				<td width="70%">{{plan.planDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.status' | translate }}</td>
+				<td>{{plan.status}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.startdate' | translate }}</td>
+				<td>{{plan.startDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.billingrule' | translate }}</td>
+				<td>{{plan.billRule}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.provisioningsystem' | translate }}</td>
+				<td>{{plan.provisionSystem}}</td>
+			</tr>
+			<tr>
+				<td valign="top">{{ 'label.plan.service' | translate }}</td>
+				<td>
+					<table>
+						<tr ng-repeat="selectedService in plan.selectedServices">
+							<td>
+								<span>{{selectedService.serviceCode}}</span>
+							</td>
+						</tr>
+					</table>		
+				</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.plan.isprepaid' | translate }}</td>
+				<td>{{plan.isPrepaid}}</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+          

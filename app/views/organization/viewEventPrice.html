@@ -1,0 +1,55 @@
+<div ng-controller="ViewEventPriceController">
+
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/event">{{'label.event' |
+					translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewEvent/{{eventId}}">{{'label.viewevent' | translate}}</a>
+				<span class="divider">/</span></li>
+			<li><a href="#/viewEventPrices/{{pricedata.eventId}}">{{'label.viewprice' | translate}}</a>
+				<span class="divider">/</span></li>
+			<li class="active">{{pricedata.eventName}}</li>
+		</ul>
+		 <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editEventPrice/{{pricedata.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
+	          <a ng-click="deleteEventPrice(eventId)" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>		     
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{'label.vieweventprice' | translate}}</h3>
+		<table width="100%">
+		    <tr>
+                <td>{{'label.event.id' | translate }}</td>
+                <td>{{pricedata.id}}</td>
+            </tr>
+			<tr>
+				<td>{{'label.eventprice.eventid' | translate }}</td>
+				<td>{{pricedata.eventId}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.eventprice.formattype' | translate }}</td>
+				<td>{{pricedata.formatType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.eventprice.opttype' | translate }}</td>
+				<td>{{pricedata.optType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.eventprice.clienttype' | translate }}</td>
+				<td>{{pricedata.clientType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.eventprice.discount' | translate }}</td>
+				<td>{{pricedata.discount}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.eventprice.price' | translate }}</td>
+				<td>{{pricedata.price}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

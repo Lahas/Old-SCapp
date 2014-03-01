@@ -1,0 +1,113 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/voucherpins">{{'label.ManageVoucherpins' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createvoucherpin' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="CreateVoucherPinController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Voucherpin</legend>
+			<table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<div class="control-group">
+           					 	<label class="control-label" for="batchName">{{ 'label.batchName' | translate }}</label>
+            					<div class="controls">
+             					 <input type="text" id="batchName" ng-model="formData.batchName">
+           						</div>
+         						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="batchDescription">{{ 'label.batchDescription' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="batchDescription" ng-model="formData.batchDescription">
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="length">{{ 'label.lengthOfPin' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="length" ng-model="formData.length">
+           						 </div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="beginWith">{{ 'label.beginWith' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="beginWith" ng-model="formData.beginWith">
+            					</div>
+          						</div>
+							</td>
+							</tr>
+							<tr>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="pinCategoryData">{{ 'label.pinCategory' | translate }}</label>
+            					<div class="controls">
+             					 <select ng-model="formData.pinCategory"  ng-options="pinCategoryData.value as pinCategoryData.value for pinCategoryData in pinCategoryDatas" value="{{voucher.id}}">
+             					 </select>
+            					</div>
+          						</div>
+							</td>
+							<td>
+								<div class="control-group">
+            					<label class="control-label" for="quantity">{{ 'label.quantity' | translate }}</label>
+            					<div class="controls">
+              					<input type="text" id="quantity" ng-model="formData.quantity">
+            					</div>
+          						</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="control-group">
+           					 		<label class="control-label" for="serialNo">{{ 'label.serialNo' | translate }}</label>
+            						<div class="controls">
+              						<input type="text" id="serialNo" ng-model="formData.serialNo">
+            						</div>
+          							</div>
+								</td>
+								<td>
+									<div class="control-group">
+            						<label class="control-label" for="pinTypeData">{{ 'label.pinType' | translate }}</label>
+            						<div class="controls">
+              						<select ng-model="formData.pinType"  ng-options="pinTypeData.value as pinTypeData.value for pinTypeData in pinTypeDatas" value="{{voucher.id}}">
+              						</select>
+              						<input type="text" id="pinValue" ng-model="formData.pinValue">
+              						<input type="text" id="pinExtention" ng-model="formData.pinExtention">
+            						</div>
+          							</div>
+								</td>
+							</tr>
+					</table>
+			
+				</td>
+			</tr>
+			</table>
+  			<div class="control-group">
+                        	<label class="control-label">{{ 'label.expiryDate' | translate }}</label>
+                        	<div class="controls">
+                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"  />
+                        	</div>
+          	</div>
+          <div class="offset3">
+            <a href="#/voucherpins"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>

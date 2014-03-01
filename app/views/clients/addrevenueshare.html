@@ -1,0 +1,121 @@
+ <form class="form-horizontal well" ng-controller="AddRevenueShareController">
+<div>
+        <ul class="breadcrumb">
+           <li><a href="#/viewclient/{{clientId}}">Client</a> <span class="divider">/</span></li>
+          <li class="active">createrevenueshare</li>
+        </ul>
+ </div>
+
+  <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+ <fieldset>
+<legend>Revenue Share</legend>
+<table> 
+      <tr> 
+         <td>
+             <table>
+                    <tr>
+                      <td>
+                      		<div class="control-group">
+								<label class="control-label" for="businessLine">Business Line&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+									<select ng-model="formData.businessLine" id="partnerName"  ng-options="pn.id as pn.mCodeValue for pn in businessLineDatas" value="{{pn.partnerName}}">
+										</select>
+									</div>
+							</div> 
+                      </td>
+                           
+                   </tr>
+                   <tr>
+                       <td>
+					    <div class="control-group">
+							 <label class="control-label" for="mediaCategory">Category&nbsp;<span class="required">*</span></label>
+								<div class="controls">
+									<select ng-model="formData.mediaCategory" id="gamePlaySource" ng-options="ps.id as ps.mCodeValue for ps in mediaCategoryDatas" value="{{ps.mCodeValue}}">
+									</select>
+								</div>
+								</div>
+						 </td>
+                   </tr>
+                   <tr>
+                   		<td>
+                   				<div class="control-group">
+                     			<label class="control-label" for="revenueShareType">{{ 'label.royaltytype' | translate }}&nbsp;<span class="required">*</span></label>
+                    			<div class="controls">
+                    			<select  ng-model="formData.revenueShareType" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+                    			</select>
+                  				</div>
+                 				</div>
+                   		</td>
+                   </tr>
+                   
+                   <tr ng-show='formData.revenueShareType==145'>
+                   		<td>
+                   				<div  class="control-group">
+                     			<label class="control-label" for="flat">Flat&nbsp;<span class="required">*</span></label>
+                    			<div class="controls">
+                    			<input type="text"  ng-model="formData.flat" value=""/>
+                    			</div>
+                 				</div>
+                   		</td>
+                   </tr>
+           </table>  
+		  </td>
+</tr>
+</table>
+      
+ <fieldset ng-show="formData.revenueShareType==144">
+           <legend>Percentage</legend>
+          <table id="gameTable">
+          <tr class="control-group">
+                <td>
+                    <form>
+                      <button type="button" ng-click="addPercentage()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                    </form>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+           </table>
+           <table class="table" width="100%" ng-show="revenueData.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      
+                      <th>StartValue</th>
+                      <th>EndValue</th>
+                      <th>Percentage</th>
+                     	
+                       <th></th>
+                    </tr>
+                    <tr ng-repeat="gd in revenueData" >
+                      
+                      <td><input type="text" class="input-small" ng-model="gd.startValue" id="startValue" placeholder=""></td>
+                      <td><input type="text" class="input-small" ng-model="gd.endValue" id="endValue" placeholder=""></td>                  
+                      <td><input type="text" ng-model="gd.percentage" id="percentage" class="input-small" /></td>
+        
+                      <td><a ng-click="removePercentage($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+           </fieldset>
+ 
+    
+             
+
+		  <div class="offset3" ng-show='formData.revenueShareType==145'>
+            <a href="#/viewclient/:clientId"><button type="reset" class="btn" >{{'button.cancel' | translate}}</button></a>
+            
+            <button type="submit" ng-click="submitFlatData()" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+          <div class="offset3" ng-show='formData.revenueShareType==144'>
+            <a href="#/viewclient/:clientId"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            
+            <button type="submit" ng-click="submitPercentageData()" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+
+
+
+</fieldset>
+</form>
+ 

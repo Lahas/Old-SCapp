@@ -1,0 +1,167 @@
+	<ul class="breadcrumb">
+              <li><a href="#/game">Partner Agreement</a> <span class="divider">/</span></li>
+              <li class="active">Add Partner Agreement</li>
+          </ul>
+
+
+<form class="form-horizontal well" ng-controller="CreatePartnerAgreementController"  ng-submit="submit()">
+  	
+
+	 <fieldset>
+	 <legend>Partner Agreement</legend>
+	 <table>
+	 <tr><td>
+          <div class="control-group">
+			<label class="control-label" for="partnerName">{{'label.partner.partnername' | translate }}&nbsp;<span class="required">*</span></label>
+				<div class="controls">
+				<select ng-model="formData.partnerAccountId" id="partnerName" ng-change="getCategory(formData.partnerAccountId)" ng-options="pn.id as pn.partnerName for pn in mediaSettlementPartnerNameDatas" value="{{pn.partnerName}}">
+					</select>
+				</div>
+			</div> 
+			</td>
+			<td>
+               	<div class="control-group">
+	            	<label class="control-label" for="mediaCategory">Media Category&nbsp;<span class="required">*</span></label>
+	            	<div class="controls">
+	              	<select ng-model="formData.mediaCategory"  ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" >
+	             	 </select>
+	           		 </div>
+	      		 </div>
+          </td>
+		</tr>
+	 
+	 	<tr>
+
+ 		<td>
+	 	   <div class="control-group">
+	            <label class="control-label" for="partnerType">Partner Type&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.partnerType"  ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}" >
+	              </select>
+	            </div>
+	       </div>
+	       </td>
+          </tr>
+	     
+		<tr><td>	
+          <div class="control-group">
+	            <label class="control-label" for="agreementType">Agreement Type&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.agreementType"  ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	   </td>
+	   <td>	
+          <div class="control-group">
+	            <label class="control-label" for="playSource">Play Source&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.playSource"  ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	   </td>
+	   </tr>	
+		<tr><td>
+	       
+	       <div class="control-group">
+	            <label class="control-label" for="agreementCategory">Agreement Category&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.agreementCategory"  ng-change="minimumValue(formData.agreementCategory)" ng-options="agreementCategoryData.id as agreementCategoryData.mCodeValue for agreementCategoryData in agreementCategoryDatas" value="{{agreementCategoryData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	     </td>
+	     <td>
+	     <div class="control-group">
+            <label class="control-label" for="royaltyShare">Royalty Share</label>
+            <div class="controls">
+              <input type="text" id="royaltyShare" ng-model="formData.royaltyShare">
+            </div>
+          </div>
+	     </td>
+	     </tr>
+	     <tr>
+	     <td>
+	     <div ng-show="mgAmount" class="control-group">
+            <label class="control-label"  for="requiredValue">MG Amount&nbsp;<span class="required">*</span></label>
+					<div class="controls">
+					<input type="text" class="requiredValue" ng-model="formData.mgAmount" >
+					</div>
+			</div>			              
+	     </td>
+	     </tr>	
+		<tr><td>
+	       
+	       <div class="control-group">
+	            <label class="control-label" for="royaltyType">Royalty Type&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	     </td>
+	     <td>
+	     <div class="control-group">
+            <label class="control-label" for="royaltySequence">Royalty Sequence</label>
+            <div class="controls">
+              <select  id="royaltySequence" ng-model="formData.royaltySequence" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" >
+            </select>
+            </div>
+          </div>
+	     </td>
+	     </tr>	
+	     
+	     <tr><td>
+	       
+	       <div class="control-group">
+	            <label class="control-label" for="settlementSource">Settlement Source&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.settlementSource"  ng-options="settlementSourceData.id as settlementSourceData.mCodeValue for settlementSourceData in settlementSourceDatas" value="{{settlementSourceData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	     </td></tr>
+	     
+		<tr><td>
+	       
+	       <div class="control-group">
+            <label class="control-label" for="startDate">Contr Effect Date&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="startDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.startDate" is-open="opened"  
+              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            </div>	
+          </div>
+      
+      </td></tr>	
+		<tr><td>
+      				  
+      		<div class="control-group">
+            <label class="control-label" for="endDate">Contr Termi Date&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" min="minDate"
+              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+            </div>	
+          </div>
+      
+      </td></tr>	
+		<tr><td>
+      				  
+      		<div class="control-group">
+              <label class="control-label" for="file">Agreement Doc</label>
+              <div class="controls">
+                <input type="file" ng-file-select="onFileSelect($files)">
+              </div>
+             </div> 
+             
+      </td></tr>	
+</table>
+               
+          
+           <div class="offset3">
+            <a href="#/game" ><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+	 </fieldset>
+</form>
+     		

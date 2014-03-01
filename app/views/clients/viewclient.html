@@ -1,0 +1,810 @@
+<div ng-controller="ViewClientController">
+  <ul class="breadcrumb">
+        <li>
+          <img ng-hide="client.imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="client.imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </li>
+        <li>
+          <h3>
+            &nbsp;
+            {{client.displayName}}
+            &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+       <!--    <i class="icon-barcode"></i> -->
+          <small>Uniquely identified  {{client.accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{client.officeName}}"</small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance&nbsp;{{client.balanceAmount}}&nbsp;{{client.currency}} </small>
+        </li>
+  </ul>
+    <div>
+      <tabset  style="margin-bottom: 0px;">
+      <tab heading="{{'tab.general' | translate}}">
+              <div class="row-fluid">
+                  <div class="row-fluid primarydiv">
+                      <div class="btn-group pull-right">
+                        <span ng-repeat="button in buttons">
+                          <a href="" class="btn btn-primary" ng-click="getMe(button.href,client.id,button.subhref)"><i class="{{button.icon}} icon-white" ></i>{{button.name | translate}}</a>
+                        </span>
+                          <button type="button" class="btn btn-primary" data-ng-click="deleteClient()" data-ng-show="client.status.value=='Pending'"><i class="icon-trash icon-white"></i>{{"label.delete" | translate}}</button>
+                          <button type="button" class="btn btn-primary" data-ng-click="unassignStaffCenter()" data-ng-show="client.staffId"><i class="icon-user icon-white"></i>{{"label.unassignstaff" | translate}}</button>
+                      </div>
+                  </div>
+                  <br/>
+                  <script type="text/ng-template" id="deleteClient.html">
+                      <div class="modal-header silver">
+                          <h3 class="bolder">{{'label.delete' | translate}}</h3>
+                      </div>
+                      <div class="modal-body modal-middle">
+                          <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+                          <button class="btn btn-primary" ng-click="delete()">{{'label.confirm' | translate}}</button>
+                      </div>
+                  </script>
+                  <script type="text/ng-template" id="clientunassignstaff.html">
+                      <div class="modal-header silver">
+                          <h3 class="bolder">{{'label.unassignstaff' | translate}}</h3>
+                      </div>
+                      <div class="modal-body modal-middle">
+                          <button class="btn btn-warning" ng-click="cancel()">{{'label.cancel' | translate}}</button>
+                          <button class="btn btn-primary" ng-click="unassign()">{{'label.confirm' | translate}}</button>
+                      </div>
+                  </script>
+                  <div class="row-fluid">
+                      <div class="span7">
+                        <table  width="100%" >
+                            <tr>
+                              <td width="35%">{{'label.firstname' | translate}}</td>
+                              <td width="65%">{{client.firstname}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.lastname' | translate}}</td>
+                              <td>{{client.lastname}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.activationdate' | translate }}</td>
+                              <td valign="top">{{client.activationDate | DateFormat}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.phone' | translate }}</td>
+                              <td>{{client.phone}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.email' | translate }}</td>
+                              <td>{{client.email}}</td>
+                            </tr>
+                          </table>
+                      </div>
+                      <div class="span5">
+                        <table  width="100%" >
+                            <tr>
+                              <td width="35%">{{'label.Address' | translate}}</td>
+                              <td width="65%"> {{client.addressNo}}<strong>,</strong>{{client.street}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.province' | translate}}</td>
+                              <td>{{client.city}}<strong>,</strong>{{client.state}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.country' | translate }}</td>
+                              <td valign="top">{{client.country}}<strong>,</strong>{{client.zip}}</td>
+                            </tr>
+                            <tr>
+                            <td colspan="2"><a href="#/editAddress/{{client.id}}">Edit Address</a><span class="divider">|</span>
+                             <a href="#/editAddress/{{client.id}}">Add Other Address</a></td>
+                            </tr>
+                          </table>
+                      </div>
+                     <!--  <div class="span5">
+                          <table class="table table-striped" width="100%" >
+                            <thead>
+                              <tr class="graybg">
+                                <th colspan="2">Performance History</th>
+                              </tr>
+                            </thead>
+                            <tr>
+                              <td width="60%">{{ 'label.numofloancycle' | translate }}</td>
+                              <td width="40%">{{client.ClientSummary.loanCycle}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.lastloanamount' | translate }}</td>
+                              <td valign="top">{{client.ClientSummary.lastLoanAmount}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.numofactiveloans' | translate }}</td>
+                              <td>{{client.ClientSummary.activeLoans}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.totalsavings' | translate }}</td>
+                              <td>{{client.ClientSummary.totalSavings}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.numofactivesavings' | translate }}</td>
+                              <td>{{client.ClientSummary.activeSavings}}</td>
+                            </tr>
+                          </table>
+                      </div> -->
+                     <!--  <div>              
+                         <b><h4>Address Details:</h4></b>
+                         {{client.addressNo}}<strong>,</strong>{{client.street}}<strong>,</strong><br>{{client.city}}<strong>,</strong>{{client.state}}<strong>,</strong><br>{{client.country}}<strong>,</strong>{{client.zip}}<strong>.</strong>
+			            <strong> </strong><a href="#/editAddress/{{client.id}}">Edit Address</a><strong> </strong>
+			         </div>	 -->
+                  </div>
+                <!--   <div class="row-fluid">
+                  <p>
+                     <b><h4>Orders Overview</h4></b>
+                   </p>
+                   
+                    <table class="table">
+                        <tr class="graybg">
+                              <th>ID</th>
+                            <th>Plan</th>
+                            <th>Contract Period</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr ng-repeat="order in orders | filter:filterText" >
+                          <td>{{order.id}}</td>
+                          <td>
+                            <a href="#/vieworder/{{order.id}}/{{client.id}}">{{order.planCode}}</a>
+                          </td>
+                          <td>{{order.contractPeriod}}</td>
+                          <td>{{order.startDate | DateFormat}}</td>
+                          <td>{{order.endDate | DateFormat}}</td> 
+                          <td>{{order.price}}</td>
+                            <td>{{order.status}}</td>
+                        </tr>
+                        <tr><td colspan="7">&nbsp;</td></tr>
+                       
+                    </table>
+                </div> -->
+          </div>
+      </tab>
+       <tab heading="{{'table.heading.royaltytype' | translate}}" select="getRoyaltyType()" active="royaltyTab">
+        <div class="pull-right btn-group">
+        <!-- ng-click="royaltytype()" -->
+          <a href="#/addrevenueshare/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>Id</th>
+                <th>BusinessLine</th>
+                <th>MediaCategory</th>
+                <th>RevenueShareType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="royal in royaltyTypes | filter:filterText">
+                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.id}}</a></td>
+                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.businessLineStr}}</a></td>
+                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.mediaCategoryStr}}</a></td>
+                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.revenueShareTypeStr}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+      
+   <tab heading="OperatorDeduction" select="getOperatorDeductionData()">
+	<div class="pull-right btn-group ng-scope">
+          <a class="btn btn-primary ng-binding" href="#/addoperatordeduction/{{client.id}}"><i class="icon-plus icon-white"></i>Add</a>
+    </div>
+    <br/>	
+	
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+				 	<th>{{'table.heading.operatordeduction.code' | translate}}</th>
+					<th>{{'table.heading.operatordeduction.value' | translate}}</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="od in operatorDeductionDatas  | filter:filterText">
+					<td>{{od.deductionCode}}</td>  
+					<td>{{od.deductionValue}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+	
+
+</tab>
+      
+      
+      <tab heading="{{'tab.identities' | translate}}" select="getClientIdentityDocuments()" active="identitiesTab">
+        <div class="pull-right btn-group">
+          <a href="#/addclientidentifier/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>
+        <table class="table" ng-show="identitydocuments.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.uniqueidentification' | translate}}</th>
+                <th>{{'table.heading.description' | translate}}</th>
+                <th>{{'table.heading.type' | translate}}</th>
+                <th>{{'table.heading.identitydocuments' | translate}}</th>
+                <th>{{'table.heading.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="document in identitydocuments">
+                <td>{{document.documentKey}}</td>
+                <td>{{document.description}}</td>
+                <td>{{document.documentType.name}}</td>
+                <td>
+                  <span ng-repeat="file in document.documents">
+                    <a ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp;
+                  </span>
+                </td>
+                <td>
+                  <a href="#/addclientidentifierdocument/{{client.id}}/{{document.id}}"><i class="icon-cloud-upload"></i></a>&nbsp;
+                  <a ng-click="deleteClientIdentifierDocument(client.id,document.id,$index)"><i class="icon-remove"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+    <!--   <tab heading="{{'tab.templates' | translate}}" select="getClientTemplateDocuments()">
+        <div class="span"></div>
+        <div class="span2">
+          <table class="table">
+            <tr ng-repeat="templateData in clientTemplateData" ng-class="{graybg: templateData.id == selectedTemplate}">
+              <td>
+                <a ng-click="getClientTemplate(templateData.id)">{{templateData.name}}</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="span9" ng-show="template">
+          <span ng-bind-html-unsafe="template"></span>
+          <span class="offset3 paddedtop10">
+            <a href="javascript:window.print()" class="btn btn-primary primary large no-print">{{'button.print'| translate}}</a>
+          </span>
+        </div>
+      </tab> -->
+      <tab heading="{{'tab.heading.client.documents' | translate}}" select="getClientDocuments()" active="documentsTab">
+        <div class="pull-right">
+          <a href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
+        </div>
+        <br>
+        <table class="table" ng-show="clientdocuments.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.name' | translate}}</th>
+                <th>{{'table.heading.description' | translate}}</th>
+                <th>{{'table.heading.filename' | translate}}</th>
+                <th>{{'table.heading.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="clientdocument in clientdocuments">
+                <td>{{clientdocument.name}}</td>
+                <td>{{clientdocument.description}}</td>
+                <td>{{clientdocument.fileName}}</td>
+                <td>
+                  <a ng-click="downloadDocument(clientdocument.id)"><i class="icon-cloud-download"></i></a>&nbsp;
+                  <a ng-click="deleteDocument(clientdocument.id,$index)"><i class="icon-remove"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+       <tab heading="Notes">
+        <br/>
+        <form>
+            <div class="control-group">
+              <div class="controls">
+                     <textarea rows="1" class="field span marginbottom0px" id="textarea" placeholder="Enter note" ng-model="formData.note"></textarea>
+                     <div class="notewrapper row-fluid">
+                        <span class="pull-right noteaddbuttonwrapper">
+                            <button class="btn btn-primary" type="submit" ng-click="saveNote()">Add Note</button>
+                        </span>
+                     </div>
+              </div>
+            </div>  
+        </form>
+        <div ng-repeat="clientNote in clientNotes | orderBy:predicate:reverse">
+          <div>
+            <blockquote>
+              <p>{{clientNote.note}}</p>
+              {{clientNote.id}}
+              <small>Created by :&nbsp;{{clientNote.createdByUsername}}</small>
+              <small>Created on :&nbsp;{{clientNote.createdOn  | DateFormat}}</small>
+            </blockquote>
+          </div>
+        </div>
+        </ul>
+      </tab>
+     <!--   <tab heading="Tickets" select="getAllTickets()" active="TicketsTab">
+     <div class="pull-right">
+		
+		<a href="#/newTicket/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add</a>
+	</div>
+   <div>
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/externalId">
+	<table class="table">
+         <thead>
+            <tr class="graybg">
+				<th>{{ 'label.ticket.id' | translate}}</th>
+		        <th>{{ 'label.ticket.priority' | translate}}</th>
+		        <th>{{ 'label.ticket.ticketdate' | translate }}</th>
+		        <th>{{ 'label.ticket.problemcode' | translate}}</th>
+		        <th>{{ 'label.ticket.status' | translate }}</th>
+		        <th>{{ 'label.ticket.assignto' | translate }}</th>
+		        <th>{{ 'label.ticket.lastcomment' | translate }}</th>
+	
+	      </tr>
+	      
+        </thead>
+        <tbody>
+            <tr ng-repeat="ticket in tickets  | filter:filterText">
+                <td><a href="#/viewTicket/{{clientId}}/{{ticket.id}}">{{ticket.id}}</a></td>
+                <td><a href="#/viewTicket/{{clientId}}/{{ticket.id}}">{{ticket.priority}}</a></td>  
+                <td>{{ticket.ticketDate | DateFormat}}</td>
+                <td>{{ticket.problemDescription}}</td>
+                <td>{{ticket.status}}</td>
+                <td>{{ticket.userName}}</td>  
+                <td>{{ticket.lastComment}}</td>          
+            </tr>
+        </tbody>
+    </table>
+</div> 
+ </tab>   --> 
+      <tab heading="{{clientdatatable.registeredTableName}}" ng-repeat="clientdatatable in clientdatatables" select="dataTableChange(clientdatatable)">
+        <div>
+          <a ng-show="datatabledetails.isData" class="btn btn-danger pull-right" ng-click="deleteAll(clientdatatable.registeredTableName, client.id)"><i class="icon-trash icon-white"></i>{{'button.deleteall' | translate}}</a>
+          <span ng-show="!datatabledetails.isData || datatabledetails.isMultirow" class="pull-right ">
+            <a href="#/makedatatableentry/{{clientdatatable.registeredTableName}}/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.add' | translate}}</a>
+          </span></br>
+          <table ng-show="datatabledetails.isData" class="table">
+            <thead>
+              <th ng-repeat="column in datatabledetails.columnHeaders">{{column.columnName}}</th>
+            </thead>
+              <tbody>
+                <tr ng-repeat="data in datatabledetails.data">
+                  <td ng-repeat="row in data.row">
+                    <span ng-show="$index == 0">
+                      <a href="#/viewdatatableentry/{{clientdatatable.registeredTableName}}/{{client.id}}/{{data.row[0]}}" ng-show="datatabledetails.isMultirow">{{row}}</a>
+                      <a href="#/viewdatatableentry/{{clientdatatable.registeredTableName}}/{{client.id}}/" ng-hide="datatabledetails.isMultirow">{{row}}</a>
+                    </span>
+                    <span ng-hide="$index == 0">{{row}}</span>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </tab>
+    <!--    <tab heading="My Device" select="getAllOwnHardware()" active="hardwareTab">
+      
+      <div class="pull-right">
+		
+		<a href="#/addownedhardware/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Owned Hardware</a>
+	</div>
+    
+    <div>
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+				 <th>{{'table.heading.id' | translate}}</th>
+					<th>{{'table.heading.serialnumber' | translate}}</th>
+					<th>{{'table.heading.provisioningserialnumber' | translate}}</th>
+					<th>{{'table.heading.allocationdate' | translate}}</th>
+					<th>{{'table.heading.status' | translate}}</th>
+					<th>{{'table.heading.itemtype' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="ownhardware in ownhardwares  | filter:filterText">
+					<td>{{ownhardware.id}}</td>
+					<td>{{ownhardware.serialNumber}}</td>  
+					<td>{{ownhardware.provisioningSerialNumber}}</td>
+					<td>{{ownhardware.allocationDate | DateFormat}}</td>
+					<td>{{ownhardware.status}}</td> 
+					<td>{{ownhardware.itemType}}</td> 
+				</tr>
+			</tbody>
+		</table>
+	</div>
+      </tab> -->
+      <!-- <tab heading="Sale" select="getOneTimeSale()" active="SaleTab">
+      
+      <div class="pull-right">
+		
+		<a href="#/addonetimesale/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Add Sale</a>
+	</div>
+    
+    <div>
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+				 	<th>{{'table.heading.id' | translate}}</th>
+					<th>{{'table.heading.saledate' | translate}}</th>
+					<th>{{'table.heading.itemcode' | translate}}</th>
+					<th>{{'table.heading.chargecode' | translate}}</th>
+					<th>{{'table.heading.quantity' | translate}}</th>
+					<th>{{'table.heading.totalprice' | translate}}</th>
+					<th>{{'table.heading.allocate' | translate}}</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="onetimesale in onetimesales  | filter:filterText">
+					<td>{{onetimesale.id}}</td>
+					<td><a href="#/viewonetimesale/{{onetimesale.id}}/{{client.id}}">{{onetimesale.saleDate | DateFormat}}</a></td>
+					<td><a href="#/viewonetimesale/{{onetimesale.id}}/{{client.id}}">{{onetimesale.itemCode}}</a></td>
+					<td>{{onetimesale.chargeCode}}</td>
+					<td>{{onetimesale.quantity}}</td> 
+					<td>{{onetimesale.totalPrice}}</td> 
+					<td>{{onetimesale.hardwareAllocated}}</td>
+				    <td><a href="#/allocatehardwareonetimesale/{{onetimesale.id}}/{{client.id}}" ng-show="onetimesale.hardwareAllocated == 'UNALLOCATED'" class="btn btn-primary"><i class="icon-move"></i></a></td>
+				    <td><a href="" ng-click="cancelSale(onetimesale.id,$index)" ng-show="onetimesale.hardwareAllocated == 'UNALLOCATED'" class="btn btn-primary" title="Cancel Sale"><i class="icon-remove"></i></a></td> 
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</tab> -->
+<tab heading="Financial Summary" select="getAllFineTransactions()">
+    <div>
+    <form ng-submit="searchFinancialTransactions(filterText)">
+     <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Id">
+	  </form>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>Transaction Id</th>
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Credit Amount</th>
+                <th>Debit Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText">
+                
+                <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionId}}</a></td>
+                <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transDate | DateFormat}}</a></td>
+                <td>{{financialtransaction.transactionType}}</td>
+                <td>{{financialtransaction.creditAmount}}</td>
+                <td>{{financialtransaction.amount}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="financialtransactions.previous()" href="" ng-disabled="!financialtransactions.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="financialtransactions.next()" href="" ng-disabled="!financialtransactions.hasNext()">Next &rarr;</a></li>
+    			</ul>
+</div>
+ </tab>  
+
+     
+     <!--  <tab heading="{{'tab.closedaccount' | translate}}">
+        <div> 
+          <p>
+            <b>Loan Accounts Overview</b>
+          </p>
+          <table class="table condensed-table">
+          <thead>
+              <tr>
+                  <th>Account No</th>
+                  <th>Product</th>
+                  <th>Loan Type</th>
+                  <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="loanaccount in clientAccounts.loanAccounts | filter:isClosed" >
+                <td><a href="#/viewloanaccount/{{loanaccount.id}}"><i class="icon-stop {{loanaccount.status.code | StatusLookup}}"></i>&nbsp;{{loanaccount.accountNo}}</a></td>
+                <td><a href="#/viewloanaccount/{{loanaccount.id}}">{{loanaccount.productName}}</a></td>
+                <td>{{loanaccount.loanType.value}}</td>
+                <td>{{loanaccount.status.value}}</td> 
+              </tr>
+          </tbody>
+          </table>
+        </div>
+      </tab> -->
+       
+         <tab heading="Statements" select="getClientStatements()" active="StatementsTab">
+             <div class="pull-right">
+		         <a href="#/statement/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add</a>
+	        </div>
+	<div class="paddedbottom10">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by id">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>Id</th>
+                <th>Bill Date</th>
+                <th>Due Date</th>
+                <th>amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="statement in states  | filter:filterText">                 
+                <td>{{statement.id}}</td>
+                <td><a href="#/viewstatement/{{statement.id}}">{{statement.billDate | DateFormat}}</a></td>
+                   <td>{{statement.dueDate | DateFormat}}</td>
+                      <td>{{statement.amount}}</td>
+                      <td><a ng-click="downloadFile(statement.id)" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</tab>
+ <!--  <tab heading="Associate" select="getClientAssociation()">
+             <div class="pull-right">
+		         <a href="#/association/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add</a>
+	        </div>
+	<div class="paddedbottom10">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by id">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>Order Id</th>
+                <th>Plan Code</th>
+                <th>Item Code</th>
+                <th>Serial Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="association in associations  | filter:filterText">                 
+                <td><a href="#/viewAssociation/{{client.id}}/{{association.id}}">{{association.orderId}}</a></td>
+                <td><a href="#/viewAssociation/{{client.id}}/{{association.id}}">{{association.planCode}}</a></td>
+                <td>{{association.itemCode}}</td>
+                <td>{{association.serialNum}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</tab> -->
+
+<tab heading="History" select="getTransactionHistory()">
+    <div>
+     <form ng-submit="searchTransactionHistory()">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name/Serial Number">
+	 </form>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+				 	<th>{{'table.heading.id' | translate}}</th>
+					<th>{{'table.heading.transactiontype' | translate}}</th>
+					<th>{{'table.heading.transactiondate' | translate}}</th>
+					<th>{{'table.heading.user' | translate}}</th>
+					<th>{{'table.heading.history' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="transactionhistory in transactionhistory.currentPageItems  | filter:filterText">
+					<td>{{transactionhistory.id}}</td>
+					<td>{{transactionhistory.transactionType}}</td>  
+					<td>{{transactionhistory.transactionDate | DateFormat}}</td>
+					<td>{{transactionhistory.user}}</td>
+				
+					<td>{{transactionhistory.history}}</td> 
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+	</div>
+</tab>
+
+
+
+
+<tab heading="EventOrders" select="getGameEventOrderData()">
+	
+	<div>
+		<table class="table">
+			<thead>
+				<tr class="graybg">
+				 	<th>{{'table.heading.event.name' | translate}}</th>
+					<th>{{'table.heading.booked.date' | translate}}</th>
+					<th>{{'table.heading.game.price' | translate}}</th>
+					<th>{{'table.heading.source' | translate}}</th>
+					<th>{{'table.heading.partner' | translate}}</th>
+					<th>{{'table.heading.event.valid.till.date' | translate}}</th>
+					<th>{{'table.heading.charge.code' | translate}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="ev in eventOrderData  | filter:filterText">
+					<td>{{ev.eventName}}</td>
+					<td>{{ev.bookedDate | DateFormat}}</td>  
+					<td>{{ev.price}}</td>
+					<td>{{ev.sourceS}}</td>
+					<td>{{ev.partnerS}}</td>
+					<td>{{ev.eventValidtillData | DateFormat}}</td>
+					<td>{{ev.chargeCode}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+	</div>
+
+</tab>
+
+   <!-- ************************ start of InVenture code ************************ -->
+    <!--      <tab class="inventureTabTitle" heading="InVenture Score" select="fetchInventureScore()">
+
+        chart1 - comparison chart
+        <div class="span6 paddedleft0 paddedtop">
+          <div class="inventureMainBorder">
+            <div class="inventureCategoryTitle">
+              <strong class="ng-binding">Score Comparison</strong>
+            </div>
+
+            <div class="inventureTooltip" style="margin: -47px 0px 0px 390px;">
+              <a tooltip="The graph below compares an individual's data to averages in his/her key peer groups such as locale and industry."><img src="http://smsinventure.org/mifos/img/question-mark.png" alt="Question" height="18px" width="18px"></img></a>
+            </div>
+
+            <div id="inventureBarChart" style="margin: 20px -15px -15px; height:417px;">
+              <svg></svg>
+            </div>
+          </div>
+        </div>
+
+        chart2 - inventure score chart
+        <div class="span5 paddedtop" style="width:440px;">
+          <div class="inventureMainBorder" style="height:175px;">
+            <div class="inventureCategoryTitle">
+              <strong class="ng-binding">InVenture Score</strong>
+            </div>
+
+            <div class="inventureTooltip" style="margin: -47px 0px 0px 390px;">
+              <a tooltip=" InVenture calculates a person's overall risk using a combination of demographic, financial, and credit data to calculate a score ranging from 300 - 850."><img src="http://smsinventure.org/mifos/img/question-mark.png" alt="Question" height="18px" width="18px"></img></a>
+            </div>
+
+            <div id="score" style="margin: 30px 0 -15px;">
+              <p style="text-align: center; font-size: 25px;">InVenture Score: <strong>{{inventureScore}}</strong></p>
+            </div>
+
+            <div id="inventureBulletChart" style="margin: 25px 0px -25px -90px; width:500px; height:35px;">
+              <svg></svg>
+            </div>
+
+            <div id="inventureBulletChartLegend" style="margin: 30px 0px 0px -10px;">
+              <table cellspacing="0" cellpadding="0" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+                <tbody>
+                  <tr>
+                    <td class="inventureBulletLegendCell">300-450<br><strong>Bad</strong></td>
+                    <td class="inventureBulletLegendCell">451-550<br><strong>Fair</strong></td>
+                    <td class="inventureBulletLegendCell">551-700<br><strong>Good</strong></td>
+                    <td class="inventureBulletLegendCell">701-850<br><strong>Excellent</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        chart3 - inventure loan recommendation
+        <div class="span5" style="padding-top:20px; width:440px;">
+          <div class="inventureMainBorder" style="height:210px;">
+            <div class="inventureCategoryTitle">
+              <strong class="ng-binding">InVenture   Recommendation</strong>
+            </div>
+
+            <div class="inventureTooltip" style="margin: -47px 0px 0px 390px;">
+              <a tooltip="InVenture uses all relevant data  to recommend a maximum credit amount & protect against over indebtedness."><img src="http://smsinventure.org/mifos/img/question-mark.png" alt="Question" height="18px" width="18px"></img></a>
+            </div>
+
+            <div id="inventureRecommendation" style="margin: 35px 0px 0px 0px;">
+              <table cellspacing="10" cellpadding="2" class="inventureRecommendationTable">
+                <tr>
+                  <td class="inventureRecommendationCellType inventureRecommendationCellTitle">Loan Type</td>
+                  <td class="inventureRecommendationCellLeftGap"></td>
+                  <td class="inventureRecommendationCellRightGap"></td>
+                  <td class="inventureRecommendationCellType inventureRecommendationCellTitle">Credit Limit &#8377; (Rs)</td>
+                </tr>
+                <tr class="inventureTableTopBorder">
+                  <td class="inventureRecommendationCellType">Agriculture</td>
+                  <td class="inventureRecommendationCellLeftGap"></td>
+                  <td class="inventureRecommendationCellRightGap"></td>
+                  <td class="inventureRecommendationCellAmount">{{inventureAgricultureLimit}}</td>
+                </tr>
+                <tr>
+                  <td class="inventureRecommendationCellType">Fishermen</td>
+                  <td class="inventureRecommendationCellLeftGap"></td>
+                  <td class="inventureRecommendationCellRightGap"></td>
+                  <td akakkjk="inventureRecommendationCellAmount">{{inventureFishermenLimit}}</td>
+                </tr>
+                <tr>
+                  <td class="inventureRecommendationCellType">Housing</td>
+                  <td class="inventureRecommendationCellLeftGap"></td>
+                  <td class="inventureRecommendationCellRightGap"></td>
+                  <td class="inventureRecommendationCellAmount">{{inventureHousingLimit}}</td>
+                </tr>
+                <tr>
+                  <td class="inventureRecommendationCellType">Business</td>
+                  <td class="inventureRecommendationCellLeftGap"></td>
+                  <td class="inventureRecommendationCellRightGap"></td>
+                  <td class="inventureRecommendationCellAmount">{{inventureBusinessLimit}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+  </div>
+        </div>
+      </tab> -->
+      <!-- ************************ end of InVenture code ************************ -->
+    </tabset>
+    </div>
+      <script type="text/ng-template" id="approve1.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.invoice.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-big" style="height:270px;">
+                       	<div class="control-group">
+							<div class="controls">
+						 	 <label class="control-label" style="color:red;" ng-show="error.length>0">{{error | translate}}</label>
+							</div>	
+						</div>
+						<div class="control-group">
+							<label class="control-label">{{ 'label.processingdate' | translate }}</label>
+							<div class="controls">
+						 		<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/> 
+							</div>	
+						</div>
+						
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="reject()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="accept(start.date)">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+      <script type="text/ng-template" id="StatementPop.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.statement.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body modal-big" style="height:270px;">
+            			<div class="control-group">
+       						<div class="controls">
+								<span class="control-label" style="color:red;" ng-show="stmError.length>0">{{stmError | translate}}</span>
+                    		</div>
+						</div>            	
+
+						<div class="control-group">
+       						<label class="control-label">{{ 'label.duedate' | translate }}</label>
+       						<div class="controls">
+             					<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened" min="minDate" max="maxDate" 
+             						date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                    		</div>
+						</div> 
+                		<div class="control-group">
+                  			<label class="control-label">{{ 'label.Promotionalmessage' | translate }}</label>
+                  			<div class="controls">
+                  				<textarea  ng-model="formData.message" style="width: 333px; height: 126px;"></textarea>
+                  			</div>
+                  		</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="rejectStatement()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="acceptStatement()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+      
+</div>

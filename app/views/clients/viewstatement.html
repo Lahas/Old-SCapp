@@ -1,0 +1,78 @@
+<div ng-controller="ViewStatementController"> 
+
+    <div class="paddedbottom10"><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{statementDatas[0].clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.viewstatement' | translate}}</li>
+		</ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	             <a ng-show="import.processStatus != 'NEW'" ng-click="downloadFile()" class="btn btn-primary"><i class=" icon-download-alt icon-white"></i> Download Statement</a>	        
+	            <a href="#/allocatehardwareonetimesale/{{id}}/{{clientId}}"  class="btn btn-primary"><i class="icon-edit icon-white"></i>Make Payment</a>
+	      </div>
+	    </div>
+	</div>
+
+	
+    <table width="100%">
+			<tr>
+				<td width="20%">{{ 'label.statement.duedate' | translate }}</td>
+				<td width="70%">{{statementDatas[0].dueDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.statement.dueamount' | translate }}</td>
+				<td>{{statementDatas[0].dueAmount}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.statement.billperiod' | translate }}</td>
+				<td>{{statementDatas[0].billPeriod}}</td>
+				<br>
+			</tr>
+			
+			<tr>
+				<td valign="top"  class="graybg">{{ 'label.statement.transactions' | translate }}</td>
+				</tr>
+				<tr>
+				<td>
+					<table width="100%">
+					  <thead>
+                           <tr>
+                               <td>{{ 'label.statement.transactiontype' | translate }}</td>
+                               <td>{{ 'table.statement.amount' | translate }}</td>
+                              </tr>
+                       </thead>
+						<tr ng-repeat="statementData in statementDatas">
+							 <td>{{statementData.transaction}}</td>        
+                              <td>{{statementData.amount}}</td>         
+						</tr>
+					</table>		
+				</td>
+			</tr>
+			
+		</table>
+    </div>

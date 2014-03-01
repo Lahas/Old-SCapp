@@ -1,0 +1,52 @@
+<div  ng-controller="ViewChargeCodeController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/chargecode">{{'label.managechargecode' | translate}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{chargecode.id}}&nbsp;&nbsp;</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editchargecode/{{chargeId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	   	    <a href="#/taxmapping/{{chargecode.chargeCode}}/{{chargeId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> View Tax</a>
+	         <a href="#/createtaxmapping/{{chargecode.chargeCode}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Add Tax</a>
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{chargecode.id}}</h3>
+		<table width="100%">
+			<tr>
+				<td width="20%">{{'label.chargecode' | translate }}</td>
+				<td width="80%">{{chargecode.chargeCode}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.chargedes' | translate }}</td>
+				<td>{{chargecode.chargeDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.chargetype' | translate }}</td>
+				<td>{{chargecode.chargeType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.chargeDuration' | translate }}</td>
+				<td>{{chargecode.chargeDuration}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.durationType' | translate }}</td>
+				<td>{{chargecode.durationType}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.taxInclusive' | translate }}</td>
+				<td>{{chargecode.taxInclusive}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.billFrequencyCode' | translate }}</td>
+				<td>{{chargecode.billFrequencyCode}}</td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+          

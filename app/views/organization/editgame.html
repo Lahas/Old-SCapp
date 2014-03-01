@@ -1,0 +1,59 @@
+      <div>
+        <ul class="breadcrumb">
+              <li><a href="#/media">{{'label.media' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.media.editgame' | translate}}</li>
+          </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="EditGameController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.game.editgame' | translate}}</legend>
+          <table width="100%">
+           <tr>
+                  <td width="50%">
+          <div class="control-group">
+            <label class="control-label" for="gameTitle">{{ 'label.game.title' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="gameTitle" ng-model="formData.mediaTitle">
+            </div>
+          </div>
+          </td>
+          </tr>
+          </table>
+           
+             <table>
+            <tr>
+              <td> 
+              
+        <div class="control-group">
+			<label class="control-label" for="overview">{{'label.game.overview' | translate}}</label>
+			<div class="controls">
+				<textarea rows="2" cols="2" ng-model="formData.overview"></textarea>
+			</div>
+		</div>     
+        
+        	<div class="control-group">
+	            <label class="control-label" for="partnerName">Partner Type&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.partnerName"  ng-options="cpn.id as cpn.partnerName for cpn in contentProviderNames" value="{{cpn.partnerName}}">
+	              </select>
+	            </div>
+	       </div>
+                </td>
+                <td>
+                
+           
+             </td>
+         </tr>
+         </table>
+   		
+          <div class="offset3">
+            <a href="#/media"><button type="reset" class="btn">Cancel</button></a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </fieldset>
+      </form>

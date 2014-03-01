@@ -1,0 +1,179 @@
+      <div>
+        <ul class="breadcrumb">
+              <li><a href="#/game">{{'label.partner' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.partner.account' | translate}}</li>
+          </ul>
+      </div>
+      <div ng-controller="CreateGameMapDetailsController">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    <div>
+	    <tabset  style="margin-bottom: 0px;">
+      	<!-- <tab heading="{{'tab.partner.account' | translate}}" select="setPartnerTypeScreen()" active="vodTab"> -->
+      			
+      		
+      		<form class="form-horizontal well" ng-submit="submitPartnerAccount()">
+      		<fieldset>
+      		<legend>Add Partner Account</legend>
+				<table>
+					<tr>
+						<td>
+							<table>
+								<!-- <tr>
+									<td>
+									<div class="control-group">
+										<label class="control-label" for="partnerType">{{'label.partner.type' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<select ng-model="formData.partnerType" id="partnerType"
+												ng-change="hideChannelPartner(formData.partnerType)" ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerType"
+												value="{{partnerType.mCodeValue}}">
+											</select>
+										</div>
+									</div>
+									</td>
+								</tr> -->
+								<!-- <tr>
+									<td>
+							          	<div class="control-group">
+											<label class="control-label" for="mediaCategory">{{'label.partner.media.category' | translate }}&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<select ng-model="formData.mediaCategory" id="mediaCategory"
+													ng-options="mediaCategory.id as mediaCategory.mCodeValue for mediaCategory in mediaCategory"
+													value="{{mediaCategory.mCodeValue}}">
+												</select>
+											</div>
+									    </div>
+									</td>
+								</tr> -->
+								<tr>
+									<td>
+							          	<div class="control-group">
+											<label class="control-label" for="partnerName">{{'label.partner.name' | translate }}&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" ng-model="formData.partnerName" id="partnerName"/>
+											</div>
+									    </div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+							          	<div class="control-group">
+											<label class="control-label" for="partnerAddress">{{'label.partner.address' | translate }}&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<textarea  id="partnerAddress" ng-model="formData.partnerAddress" ng-minlength="{200}" ng-maxlength="{20}"></textarea>
+											</div>
+									    </div>
+									</td>
+								</tr>
+								 <tr>
+									<td>	
+									<div class="control-group">
+									     <label class="control-label" for="contactNum">Contact Number</label>
+									     <div class="controls">
+									       <input type="text" id="contactNum" ng-model="formData.contactNum" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="phone"/>
+									     </div>
+									   </div>
+									</td>
+								</tr>	   
+								<tr>
+									<td>
+									<div class="control-group">
+								      <label class="control-label" for="emailId">Email ID</label>
+								      <div class="controls">
+								        <input type="text" id="emailId" ng-model="formData.emailId"/>
+								      </div>
+								    </div>
+									</td>
+								</tr>
+									
+								<tr>
+									<td>
+							          	<div class="control-group">
+											<label class="control-label" for="currencyId">Currency&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<select ng-model="formData.currencyId" id="currencyId"
+													ng-options="currencyCode.id as currencyCode.code for currencyCode in currencyCodes"
+													value="{{currencyCode.code}}">
+												</select>
+											</div>
+									    </div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<div class="control-group">
+										<label class="control-label" for="externalId">External Id :&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" ng-model="formData.externalId" id="externalId"/>
+											</div>
+									</div>
+									</td>
+								</tr>
+																							
+							</table>
+							
+						</td>
+					</tr>
+				</table>
+				
+		<!-- <fieldset ng-show="hideIfNotContentProvider">
+           <legend>Channel Partner mapping</legend>
+          <table id="gameTable">
+          <tr class="control-group">
+                <td>
+                    <form>
+                      <button type="button" ng-click="addChannelPartner()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                    </form>
+                </td>
+          </tr>
+              <tr class="span2"></tr>
+          </table>
+          <table class="table" width="100%" ng-show="true">
+          	<tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.partner.channelpartner.name' | translate}}</th>
+                      <th>{{'table.partner.channelpartner.address' | translate}}</th>
+                       <th></th>
+                    </tr>
+                    <tr ng-repeat="gd in gameData" >
+                      <td><select ng-model="gd.channelPartnerName" ng-change="getAddress()" id="channelPartnerName" class="input-medium" ng-options="cpn.channelPartnerId as cpn.channelPartnerName for cpn in channelPartnerDatas" value="{{cpn.channelPartnerName}}">
+					  </select></td>
+					  <td><input type="text" class="input-small" ng-model="gd.channelPartnerAddress" id="channelPartnerAddress" placeholder=""></td>
+                      <td><a ng-click="removeGamePartner($index)"><i class="icon-remove icon-white"></i></a></td>
+          	</tr>
+          </table>
+          </fieldset> -->
+ 
+				
+				
+				
+	          <div class="offset3">
+	            <a href="#/game"><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel' | translate}}</button></a>
+	            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+	          </div>
+	          </fieldset>
+	          </form>
+			
+      			
+      		<!-- </tab> -->
+      			<!-- <tab heading="{{'tab.partner.agreement' | translate}}" select="setPartnerAgreementScreen()">
+      			
+      			
+      			
+      			</tab>
+      			<tab heading="{{'tab.partner.addgame' | translate}}" select="setAddGameScreen()">
+      			
+      			
+      			
+      			</tab> -->
+      			<!-- <tab heading="{{'tab.partner.gameplaysource' | translate}}" select="setGameScreen()" active="gameTab"></tab>
+      			<tab heading="{{'tab.partner.agreement.type' | translate}}" active="celebbusinessTab1"></tab>
+      			<tab heading="{{'tab.partner.account' | translate}}" active="celebbusinessTab2"></tab>
+      			<tab heading="{{'tab.partner.agreement' | translate}}" active="celebbusinessTab3"></tab>
+      			<tab heading="{{'tab.sms' | translate}}" active="smsTab"></tab> -->
+      		</tabset>
+	    </div>
+      </div>

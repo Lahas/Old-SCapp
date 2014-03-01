@@ -1,0 +1,64 @@
+<div ng-controller="EditServiceController">
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/viewservice/{{serviceId}}">{{formData.serviceCode}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.editservice' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.editservice' | translate}}</legend>
+          
+          <div class="control-group">
+            <label class="control-label" for="serviceCode">Service Code</label>
+            <div class="controls">
+              <input type="text" id="serviceCode"ng-model="formData.serviceCode">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="serviceDescription">Service Description</label>
+            <div class="controls">
+              <input type="text" id="serviceDescription"ng-model="formData.serviceDescription">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="serviceType">Service Type</label>
+            <div class="controls">
+               <select ng-model="formData.serviceType"ng-options="serviceTypes.value as serviceTypes.value for serviceTypes in services" value="{{serviceTypes.value}}"></select>
+      		    </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="serviceStatus">Status</label>
+            <div class="controls">
+              <select ng-model="formData.status"ng-options="status.value as status.value for status in statuses" value="{{status.value}}"></select>
+      		    </select>
+            </div>
+          </div>
+          
+          
+          <div class="control-group">
+            <label class="control-label" for="isOptional">isOptional</label>
+            <div class="controls">
+             <label class="checkbox">
+              <input type="checkbox" id="isOptional" ng-model="formData.isOptional">
+                </label>
+            </div>
+          </div>
+
+          <div class="offset3">
+            <a href="#/viewservice/{{serviceId}}"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>

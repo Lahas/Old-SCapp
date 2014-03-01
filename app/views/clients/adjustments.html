@@ -1,0 +1,92 @@
+<div ng-controller="AdjustmentClientController">
+	<div><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.adjustments' | translate}}</li>
+		</ul>
+	</div>
+	<form class="form-horizontal well" ng-submit="submit()">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+		
+			<!-- <div class="control-group" ng-show="showDateField">
+       			 <label class="control-label">{{ 'label.adjustmentdate' | translate}}</label>
+        		<div class="controls">
+          			<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="formData[modelName]" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)" late-Validate />
+        		</div>
+      		</div> -->
+			
+			<div class="control-group">
+                        	<label class="control-label">{{ 'label.adjustmentdate' | translate }}</label>
+                        	<div class="controls">
+                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        	</div>
+          	</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.adjustmentcode' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.adjustment_code"  ng-options="data.id as data.adjustment_code for data in data" value="{{data.id}}"></select>
+	             </div>
+			</div>
+			
+									<div class="control-group">
+           					 		<label class="control-label" for="serialNo">{{ 'label.adjustmentamount' | translate }}</label>
+            						<div class="controls">
+              						<input type="text" id="serialNo" ng-model="formData.amount_paid" style="width:111px;">
+              						<select ng-model="formData.adjustment_type" ng-options="discountOption.discountType as discountOption.discountType for discountOption in discountOptions" class="input-small" value="{{discountOption.discountType}}">
+	               	 					<!-- <option ng-repeat="datas in datass" value="{{datas.discountOptions.discountType}}">{{datas.discountOptions.discountType}}</option> -->
+	               	 					</select>
+            						</div>
+          							</div>
+								
+									
+	               	 					
+	             					
+		
+			<div class="control-group">
+	          	<label class="control-label">{{'label.notes' | translate}}</label>
+		        <div class="controls">
+		          <textarea ng-model="formData.Remarks"></textarea>
+		        </div>
+	        </div>
+	         
+			<div class="offset3">
+				<a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+
+		</fieldset>
+	</form>
+</div>

@@ -1,0 +1,142 @@
+<div ng-controller="EditEventController">
+<div>
+		<ul class="breadcrumb">
+			<li><a href="#/event">{{'lable.event' | translate}}</a> <span
+				class="divider">/</span></li>
+			<li><a href="#/viewEvent/{{formData.id}}">{{'lable.viewevent' | translate}}</a> <span
+				class="divider">/</span></li>
+			<li class="active">{{'label.editevent' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well" ng-submit="submit()">
+	
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.editevent' | translate}}</legend>
+		<table width="100%">
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="eventName"> {{'label.event.eventcode' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="eventName" ng-model="formData.eventName">
+						</div>
+					</div>
+				</td>
+				 <td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.event.status' | translate }} </label>
+						<div class="controls">
+							<select ng-model="formData.statusId"
+								ng-options="status.id as status.value for status in eventStatus"
+								value="{{status.id}}"></select>
+						</div>
+					</div>
+				</td>
+
+			</tr>
+
+     		<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="eventDescription">{{'label.event.eventdescription' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="eventDescription"
+								ng-model="formData.eventDescription">
+						</div>
+					</div>
+				</td>								
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="allowCancellation"> {{'label.active' | translate}}</label>
+						<div class="controls">
+							<input type="checkbox" id="allowCancellation" ng-model="formData.allowCancellation">
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="eventStartDate"> {{'label.event.startdate' | translate }}</label>
+						<div class="controls">
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="eventEndDate"> {{'label.event.enddate' | translate }}</label>
+						<div class="controls">
+
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="chargeCode">{{'label.event.chargedata' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.chargeCode"
+								ng-options="chargeData.chargeCode as chargeData.chargeDescription for chargeData in chargeData"
+								value="{{chargeData.chargeCode}}"></select>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="eventValidity"> {{'label.event.eventvalidity' | translate }}</label>
+						<div class="controls">
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.eventValidity" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+						</div>
+					</div>
+				</td>
+
+			</tr>
+		</table>
+
+		<table>
+			<tr>
+				<td>
+
+					<div class="control-group">
+                        <div><label class="control-label"></label></div>
+						<div class="span3">
+							<label class="control-label">{{ 'label.availablemedia'| translate }}</label>
+							  <select multiple ng-model="allowed">
+								<option ng-repeat="availableService in availableServices" value="{{availableService.mediaId}}">{{availableService.mediaTitle}}</option>
+							  </select>
+						</div>
+						<div class="paddedtop10 span1 paddedleft0">
+							<button type="button" class="btn btn-primary" data-ng-click="restrict()"> <i class="icon-double-angle-right"></i> </button>
+							<br />
+							<button type="button" class="btn btn-primary" data-ng-click="allow()"> <i class="icon-double-angle-left"></i> </button>
+						</div>
+						<div class="span3">
+							<label class="control-label"> {{ 'label.selectedmedia' |translate }}</label> 
+							<select multiple ng-model="restricted">
+								<option ng-repeat="selectedService in selectedServices" value="{{selectedService.mediaId}}">{{selectedService.mediaTitle}}</option>
+							</select>
+						</div>
+					</div> 
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div class="offset3">
+			<a href="#/viewEvent/{{formData.id}}"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+</div>

@@ -1,0 +1,45 @@
+<div>
+
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.media' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+    <div>
+    	<!-- <tabset  style="margin-bottom: 0px;">
+      			<tab heading="{{'tab.vod' | translate}}" select="getMovieData()" active="vodTab"></tab>
+      			<tab heading="{{'tab.video' | translate}}" active="videoTab"></tab>
+      			<tab heading="{{'tab.audio' | translate}}" active="audioTab"></tab>
+      			<tab heading="{{'tab.game' | translate}}" select="setGameData()" active="gameTab"></tab>
+      			<tab heading="{{'tab.celebbusiness' | translate}}" active="celebbusinessTab"></tab>
+      			<tab heading="{{'tab.sms' | translate}}" active="smsTab"></tab>
+       </tabset> -->
+        <a href="#/createMedia" class="btn btn-primary pull-right"><i class="icon-plus icon-white"></i> {{ 'link.create.new.media' | translate }}</a>
+    </div>
+</div>
+<div class="row-fluid" ng-controller="MediaController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+            	<th>{{ 'table.media.id' | translate }}</th>
+                <th>{{ 'table.media.title' | translate }}</th>
+                <!-- <th>{{ 'table.media.rating' | translate }}</th> -->
+                <th>{{ 'table.partner.partner.type' | translate }}</th>
+                <th>{{ 'table.media.releasedate' | translate }}</th>
+                <th>{{ 'table.media.status' | translate }}</th>
+                <th>{{ 'table.media.mediatype' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="media in media | filter:filterText">
+            	<td><a href="#/viewmedia/{{media.mediaId}}">{{media.mediaId}}</a></td>
+                <td><a href="#/viewmedia/{{media.mediaId}}">{{media.mediaTitle}}</a></td>            
+                <!-- <td>{{media.mediaRating}}</td> -->
+                <td>{{media.partnerName}}</td>        
+                <td>{{media.releaseDate | DateFormat}}</td>         
+                <td>{{media.status}}</td>
+                <td>{{media.mediaCategoryG}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

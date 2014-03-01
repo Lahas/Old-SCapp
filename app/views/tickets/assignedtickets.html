@@ -1,0 +1,34 @@
+
+    <div class="row-fluid" ng-controller="AssignedTicketController">
+    <form ng-submit="searchTickets()">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by clientName">
+	</form>
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+               <th>Client Name</th>
+                <th>Created on</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Time Elapsed</th>
+            </tr>	
+        </thead>
+        <tbody>
+            <tr ng-repeat="ticket in tickets.currentPageItems  | filter:filterText">      
+               <td><a href="#/viewclient/{{ticket.clientId}}">{{ticket.clientName}}</a></td>  
+                 <td>{{ticket.ticketDate | DateFormat}}</td> 
+                 <td>{{ticket.problemDescription}}</td>       
+                <td>{{ticket.priority}}</td>
+                   <td>{{ticket.userName}}</td>
+                <td>{{ticket.status}}</td>
+                     <td>{{ticket.timeElapsed}}</td>     
+            </tr>
+        </tbody> 
+    </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="tickets.previous()" href="" ng-disabled="!tickets.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="tickets.next()" href="" ng-disabled="!tickets.hasNext()">Next &rarr;</a></li>
+	</ul>
+</div>

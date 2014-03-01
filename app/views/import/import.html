@@ -1,0 +1,33 @@
+<div>
+
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.imports' | translate}}&nbsp;&nbsp;</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/uploadFile" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.file' | translate }}</a>
+    </div>
+</div>
+<div class="row-fluid" ng-controller="ImportController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.import.uploadprocess' | translate }}</th>
+                <th>{{ 'table.import.uploadfilepath' | translate }}</th>
+                <th>{{ 'table.import.processdate' | translate }}</th>
+                <th>{{ 'table.import.process.totalrecords' | translate }}</th>
+                <th>{{ 'table.import.status' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="import in imports | filter:filterText">
+                <td><a href="#/viewimportfile/{{import.id}}">{{import.uploadProcess}}</a></td>            
+                <td>{{import.uploadFilePath}}</td>        
+                <td>{{import.processDate | DateFormat}}</td>         
+                <td>{{import.processRecords}}/{{import.totalRecords}}</td>
+                <td>{{import.processStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

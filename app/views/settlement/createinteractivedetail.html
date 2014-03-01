@@ -1,0 +1,115 @@
+<div ng-controller="CreateInteractiveDetailController">
+ <div><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}"</small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/gameevent/{{clientId}}'>{{'link.view.gameevent' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.interactivedetail' | translate}}</li>
+		</ul>
+	</div>
+      <form class="form-horizontal well" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Interactive Details</legend>
+          
+          <table class="table">
+           <thead>
+          	<tr class="graybg">
+          				 <th>{{ 'label.source' | translate }}</th>
+                         <th>{{ 'label.contentname' | translate }}</th>
+                         <th>{{ 'label.contentprovider' | translate }}</th>
+                         <th>{{ 'label.channelname' | translate }}</th>
+                         <th>{{ 'label.servicename' | translate }}</th>
+                         <th>{{ 'label.endUserPrice' | translate }}</th>
+                         <th>{{ 'label.grossRevenue' | translate }}</th>
+                         <th>{{'label.download' | translate}}</th>	
+          	</tr>
+          	</thead>
+          	<tbody>
+          		<tr ng-repeat="ed in eventDatas">
+          			<td>{{ed.playSource}}</td>
+          			<td>{{ed.contentName}}</td>
+          			<td>{{ed.contentProvider}}</td>
+          			<td>{{ed.channelName}}</td>
+          			<td>{{ed.serviceName}}</td>
+          			<td>{{ed.endUserPrice}}</td>
+          			<td>{{ed.grossRevenue}}</td>
+          			<td>{{ed.downloads}}</td>
+          		</tr>
+          	</tbody>
+          </table>
+          
+          <table id="interactiveTable">
+          <tr class="control-group">
+                <td>
+                    <form>
+                      <button type="button" ng-click="addInteractiveDetails()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                    </form>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+           </table>
+          
+					<table class ="table" width="100%" ng-show="interactiveData.length>0">
+						<tr class="graybg">
+                         <th>{{ 'label.source' | translate }}</th>
+                         <th>{{ 'label.contentname' | translate }}</th>
+                         <th>{{ 'label.contentprovider' | translate }}</th>
+                         <th>{{ 'label.channelname' | translate }}</th>
+                         <th>{{ 'label.servicename' | translate }}</th>
+                         <th>{{ 'label.endUserPrice' | translate }}</th>
+                         <th>{{ 'label.grossRevenue' | translate }}</th>
+                         <th>{{'label.download' | translate}}</th>
+                         </tr>  
+                         <tr ng-repeat= "ad in  interactiveData">
+		<!--   <td><select class="input-small" ng-model="formData.eventId" ng-options="data.id as data.mCodeValue for data in data"  value="{{data.id}}"></select></td> -->
+		  <td><select class="input-small" ng-model="ad.playSource" id="playSource" ng-options="playSource.id as playSource.mCodeValue for playSource in playSources" value="{{playSource.id}}"></select></td>
+		  <td><select class="input-small" ng-model="ad.contentName" id="contentName" ng-options="mediaData.mediaId as mediaData.mediaTitle for mediaData in mediaDatas"  value="{{mediaData.mediaId}}"></select></td>
+		  <td><select class="input-small"ng-model="ad.contentProvider" id="contentProvider" ng-options="contentData.id as contentData.partnerName for contentData in contentDatas"  value="{{contentDatas.id}}"></select></td>
+		<td><select  class="input-small" ng-model="ad.channelName" id="channelName" ng-options="channelData.id as channelData.partnerName for channelData in channelDatas"  value="{{channelDatas.id}}"></select></td>
+        <td><select  class="input-small"ng-model="ad.serviceName" id="serviceName" ng-options="serviceData.id as serviceData.partnerName for serviceData in serviceDatas"  value="{{serviceDatas.id}}"></select></td>
+		    <td><input class="input-small" type="text" id="endUserPrice" ng-model="ad.endUserPrice"></td>
+			<td><input  class="input-small" type="text" id="grossRevenue" ng-model="ad.grossRevenue"></td>
+			<td><input class="input-small" type="text" id="downloads" ng-model="ad.downloads"></td>
+			<td><a ng-click="removeInteractiveDetail($index)"><i class="icon-remove icon-white"></i></a></td>
+							</tr>
+						
+					</table>
+			
+		  		<br>	
+          <div class="offset3">
+            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+</div>

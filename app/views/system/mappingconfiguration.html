@@ -1,0 +1,80 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.managemappingconfigurations' | translate}}</li>
+    </ul>
+</div>
+
+<div ng-controller="MappingController">
+ 
+    <div>
+      <tabset  style="margin-bottom: 0px;">
+      
+      <tab heading="Service Mapping" select="getsupplierdetails()">
+       <div class="pull-right btn-group">
+          <a href="#/createServiceMapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <div class="row-fluid">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.servicemapping.id' | translate}}</th>
+                <th>{{'table.servicemapping.servicecode' | translate}}</th>
+                <th>{{'table.servicemapping.serviceidentification' | translate}}</th>
+                <th>{{'table.servicemapping.status' | translate}}</th>
+                <th>{{'table.servicemapping.image' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr ng-repeat="servicemappingdata in servicemappingdatas  | filter:filterText">
+                <td><a href="#/viewServiceMapping/{{servicemappingdata.id}}">{{servicemappingdata.id}}</a></td>
+                <td><a href="#/viewServiceMapping/{{servicemappingdata.id}}">{{servicemappingdata.serviceCode}}</a></td>
+                <td>{{servicemappingdata.serviceIdentification}}</td>
+                <td>{{servicemappingdata.status}}</td>
+                <td>{{servicemappingdata.image}}</td>
+   			</tr>
+     		 </tbody>
+          </table>
+        <!--   <ul class="pager">
+        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
+    			</ul> -->
+         </div>
+      </tab>	
+      
+  <tab heading="Hardware Mapping" select="getHardwareMappingData()" active="hardwarePlanMappingTab">
+        <div class="pull-right btn-group">
+          <a href="#/createhardwareplanmapping" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <div class="row-fluid">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.hardwaremapping.id' | translate}}</th>
+                <th>{{'table.hardwaremapping.plancode' | translate}}</th>
+                <th>{{'table.hardwaremapping.itemcode' | translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="hardwaremappingdata in hardwaremappingdatas  | filter:filterText">
+              <td><a href="#/viewhardwareplanmapping/{{hardwaremappingdata.id}}">{{hardwaremappingdata.id}}</a></td>        
+                <td><a href="#/viewhardwareplanmapping/{{hardwaremappingdata.id}}">{{hardwaremappingdata.planCode}}</a></td>
+                <td>{{hardwaremappingdata.itemCode}}</td>
+     		 </tbody>
+          </table>
+       		<!-- 	<ul class="pager">
+        			<li class="previous"><a ng-click="itemhistory.previous()" href="" ng-disabled="!itemhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="itemhistory.next()" href="" ng-disabled="!itemhistory.hasNext()">Next &rarr;</a></li>
+    			</ul> -->
+         </div>
+      </tab>
+      			
+      		
+
+
+    </tabset>
+    </div>
+  </div>

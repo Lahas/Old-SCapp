@@ -1,0 +1,431 @@
+
+ 	
+    <div ng-controller="CreateGameMediaController">
+      <tabset  style="margin-bottom: 0px;">
+     
+      <tab heading="{{'tab.partner.account' | translate}}" select="getPartnerAccount()" >
+        <div class="pull-right btn-group">
+          <a href="#/mapgamedetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>
+        <!-- <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.partnername' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.currencycode' | translate}}</th>
+                <th></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="pd in partnerAccountData">
+                <td><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerTypeStr}}</a></td>
+                <td><a href="#/editmapgamedetails/{{pd.id}}">{{pd.mediaCategoryStr}}</a></td>
+                <td>{{pd.partnerName}}</td>
+                <td>{{pd.partnerAddress}}</td>
+                <td>{{pd.currencyCode}}</td>
+              </tr>
+            </tbody>
+          </table> -->
+          <table class="table">
+            <thead>
+              <tr class="graybg">
+               <!--  <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
+                <th>{{'table.heading.gamemedia.partner.partnername' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.contactnum' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.emailid' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.currencyid' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.externalid' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.partnerName}}</a></td>
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.partnerAddress}}</a></td>
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.contactNum}}</a></td>
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.emailId}}</a></td>
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.currencyCode}}</a></td>
+                <td class="pointer"><a href="#editmapgamedetails/{{pd.id}}">{{pd.externalId}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+      <tab heading="{{'tab.partner.agreement' | translate}}" select="getPartnerAgreementScreen()" active="agreement123">
+        <div class="pull-right btn-group">
+          <a href="#/createpartneragreement" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>          
+          <table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>Id</th>
+                <th>{{'table.heading.partnername' | translate}}</th>
+                <th>{{'table.heading.agreementtype' | translate}}</th>
+                <th>{{'table.heading.agreement.category' | translate}}</th>
+                <th>{{'table.heading.royalty.type' | translate}}</th>
+                <th>{{'table.heading.settlement.source' | translate}}</th>
+                <th>{{'table.heading.startdate' | translate}}</th>
+                <th>{{'table.heading.enddate' | translate}}</th>
+                <!-- <th>{{'table.heading.uploaded.location' | translate}}</th> -->
+                <th>{{'table.heading.download' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.id}}</td>        
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>            
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementCategory}}</td>
+                <td>{{partnerAgreement.agreementType}}</td>
+                <td>{{partnerAgreement.royaltyType}}</td>      
+                <td>{{partnerAgreement.settlementSource}}</td>     	             
+                <td>{{partnerAgreement.startDate | DateFormat}}</td>
+                <td>{{partnerAgreement.endDate | DateFormat}}</td>         
+                <!-- <td>{{partnerAgreement.agmtLocation}}</td> -->
+                <td>
+              	<a ng-show="partnerAgreement.fileName"; ng-click="downloadFile(partnerAgreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
+              	</td>
+            </tr>
+        </tbody>
+    </table>
+      </tab>
+      <tab heading="{{'tab.partner.addgame' | translate}}" select="setGameScreen()" active="game">
+        <div class="pull-right btn-group">
+          <a href="#/partnergame" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.partner.name' | translate}}</th>
+                <th>{{'table.heading.play.source' | translate}}</th>
+                <th>{{'table.heading.royaltyvalue' | translate}}</th>
+                <th>{{'table.heading.royaltysequence' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="gdd in gameDetails">
+              	<td><a href="#/editpartnergame/{{gdd.id}}">{{gdd.partnerNameStr}}</a></td>
+              	<td><a href="#/editpartnergame/{{gdd.id}}">{{gdd.playSourceStr}}</a></td>
+              	<td><a href="#/editpartnergame/{{gdd.id}}">{{gdd.royaltyValue}}</a></td>
+              	<td>{{gdd.royaltySequence}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+      
+      <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
+      <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
+        
+        <br><br>
+        	<div class="control-group center">
+					<div class="controls">
+						<select ng-model="formData.mediaCategory"
+							ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas"
+							value="{{mc.mCodeValue}}" ng-change="getSettlementSeqRule(formData.mediaCategory)">
+						</select>
+					</div>
+			</div>
+			<div class="tab-content">
+		<fieldset>
+		
+		<div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+        <legend>Default Rule</legend>  
+				                     
+             <table >
+            	<tr>
+            		 <td>
+            		 <input type="text" class="input-medium" ng-model="formData.defaultData"   value="{{defaultDataName}}" readonly>
+            		 </td>
+                     
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType1"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType2"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType3"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+             		<td>
+             		<a ng-click="lockIt(formData.defaultData)" class="btn btn-primary"><i class="icon-lock icon-white"></i></a>
+             		</td>
+             		<td></td><td></td>
+             		<td>
+             		<a ng-click="unlockIt(formData.defaultData)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
+             		</td>         		
+    
+            	</tr>
+            </table>
+      </fieldset>		
+
+      <fieldset>
+           <legend>Specific Rule</legend>
+           
+           <table >
+            	<tr ng-repeat="ss in settlementSequenceDatas">
+            		 <td>
+            		 <input type="text" class="input-medium " ng-model="ss.partnerAccountId"  value="{{ss.partnerName}}" readonly>
+            		 </td>
+                     
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType4"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType5"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required  disabled></select>
+             		</td>
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType6"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required disabled></select>
+             		</td>
+             		<td>
+             		<a ng-click="lockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-lock icon-white"></i></a>
+             		</td>
+             		<td></td><td></td>
+             		<td>
+             		<a ng-click="unlockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
+             		</td>
+            	</tr>
+            </table>
+        </fieldset>		
+          
+           <div class="center">
+            <a href="#/game"><button type="reset" class="btn">Cancel</button></a>
+            <button type="submit" class="btn btn-primary" ng-click="submitRevenueSettlement()" ng-disabled="disableSubmit">Save</button>
+          </div>			
+			</div>
+			</form>		
+      </tab>
+      
+     <!--  
+      <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
+      <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
+        
+        <br><br>
+        	<div class="control-group center">
+					<div class="controls">
+						<select ng-model="formData.mediaCategory"
+							ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas"
+							value="{{mc.mCodeValue}}" ng-change="getSettlementSeqRule(formData.mediaCategory)">
+						</select>
+					</div>
+			</div>
+			<div class="tab-content">
+		<fieldset>
+		
+		<div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+		
+           <legend>Settlement Sequence Rule</legend>
+           <table class="table" width="100%">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.partner.name' | translate}}</th>
+                      <th>{{'table.partner.type' | translate}}</th>
+                      <th>{{'table.partner.game' | translate}}</th>
+                      <th>{{'table.partner.agreecat' | translate}}</th>
+                      <th>{{'table.partner.playsrc' | translate}}</th>
+                       <th>{{'table.partner.setsource' | translate}}</th>
+                       <th>{{'table.partner.rotype' | translate}}</th>
+                       <th>{{'table.partner.mainrotype' | translate}}</th>
+                       <th>{{'table.partner.rovalue' | translate}}</th>
+                       <th>{{'table.partner.rosequence' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="ssd in settlementSequenceDatas" ng-hide="ssd.partnerType == 'Original Equipment Manufacturer'" style="font-size:6px;">
+                      <td><input type="text" class="input-small" ng-model="ssd.partnerName" id="partnerName" readonly></td>
+                      <td><input type="text" class="input-small" ng-model="ssd.partnerType" id="partnerType" readonly></td>
+                      <td><input type="text" ng-model="ssd.game" id="game" class="input-small" readonly/></td>
+                      <td><select ng-model="ssd.agreementCategory" id="agreementCategory" class="input-small" ng-options="acd.id as acd.mCodeValue for acd in agreementCategoryDatas" value="{{acd.mCodeValue}}" readonly></select></td>
+                      <td><select ng-model="ssd.playSourceId" id="playSourceId" class="input-small" ng-options="psd.id as psd.mCodeValue for psd in playSourceDatas" value="{{psd.mCodeValue}}" readonly></select></td>
+                      <td><select ng-model="ssd.settlementSource" id="settlementSource" class="input-small" ng-options="ssds.id as ssds.mCodeValue for ssds in settlementSourceDatas" value="{{ssds.mCodeValue}}" readonly></select></td>
+                      <td><select ng-model="ssd.royaltyType" id="royaltyType" class="input-small" ng-options="rtd.id as rtd.mCodeValue for rtd in royaltyTypeDatas" value="{{ps.mCodeValue}}"></select></td>
+                      <td><input type="text" ng-model="ssd.royaltyValueForGame" id="royaltyValueForGame" class="input-mini" readonly/></td>
+                      <td><input type="text" ng-model="ssd.royalty" id="royaltyPercentage" class="input-mini" readonly/></td>   
+                      <td><input type="text" ng-model="ssd.royaltySequence" id="royaltySequence" class="input-mini" readonly/></td>                 
+                      <td><select ng-model="gd.royalty" id="playSource" class="input-small" ng-options="ps.id as ps.mCodeValue for ps in playSourceData" value="{{ps.mCodeValue}}">
+					  
+                      <td><a ng-click="removeGamePartner($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+           </fieldset>
+           <br><br>
+           
+           
+           <fieldset>
+           <legend>OEM Settlement</legend>
+           <table class="table" width="100%">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.partner.name' | translate}}</th>
+                      <th>{{'table.partner.type' | translate}}</th>
+                      <th>{{'table.partner.game' | translate}}</th>
+                      <th>{{'table.partner.agreecat' | translate}}</th>
+                      <th>{{'table.partner.playsrc' | translate}}</th>
+                       <th>{{'table.partner.setsource' | translate}}</th>
+                       <th>{{'table.partner.rotype' | translate}}</th>
+                       <th>{{'table.partner.mainrotype' | translate}}</th>
+                       <th>{{'table.partner.rovalue' | translate}}</th>
+                       <th>{{'table.partner.rosequence' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="ssd in settlementSequenceDatas" ng-show="ssd.partnerType == 'Original Equipment Manufacturer'">
+                      <td><input type="text" class="input-small" ng-model="ssd.partnerName" id="partnerName"></td>
+                      <td><input type="text" class="input-large" ng-model="ssd.partnerType" id="partnerType"></td>
+                      <td><input type="text" ng-model="ssd.game" id="game" class="input-small"/></td>
+                      <td><select ng-model="ssd.agreementCategory" id="agreementCategory" class="input-small" ng-options="acd.id as acd.mCodeValue for acd in agreementCategoryDatas" value="{{acd.mCodeValue}}"></select></td>
+                      <td><select ng-model="ssd.playSourceId" id="playSourceId" class="input-small" ng-options="psd.id as psd.mCodeValue for psd in playSourceDatas" value="{{psd.mCodeValue}}"></select></td>
+                      <td><select ng-model="ssd.settlementSource" id="settlementSource" class="input-small" ng-options="ssds.id as ssds.mCodeValue for ssds in settlementSourceDatas" value="{{ssds.mCodeValue}}"></select></td>
+                      <td><select ng-model="ssd.royaltyType" id="royaltyType" class="input-small" ng-options="rtd.id as rtd.mCodeValue for rtd in royaltyTypeDatas" value="{{ps.mCodeValue}}"></select></td>
+                      <td><input type="text" ng-model="ssd.royaltyValueForGame" id="royaltyValueForGame" class="input-mini" /></td>
+                      <td><input type="text" ng-model="ssd.royalty" id="royaltyPercentage" class="input-mini" /></td>   
+                      <td><input type="text" ng-model="ssd.royaltySequence" id="royaltySequence" class="input-mini" /></td>                 
+                      <td><select ng-model="gd.royalty" id="playSource" class="input-small" ng-options="ps.id as ps.mCodeValue for ps in playSourceData" value="{{ps.mCodeValue}}">
+					  
+                      <td><a ng-click="removeGamePartner($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+           </fieldset>		
+           
+           <div class="center">
+            <a href="#/game"><button type="reset" class="btn">Cancel</button></a>
+            <button type="submit" class="btn btn-primary" ng-click="submitRevenueSettlement()" ng-disabled="disableSubmit">Save</button>
+          </div>			
+			</div>
+			</form>		
+      </tab> -->
+      
+    <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
+      
+      
+      <body>
+	<legend>Disbursements to Partners</legend>
+		<button ng-click="refresh()" type="button" class="btn btn-primary">Refresh</button>
+            <table>
+            	<tr>
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.patnertype' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.patnername' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+              				
+                			<select ng-model="formData.partnerName" ng-change="getpartnerName(formData.partnerName)" ng-options="pn.partnerName as pn.partnerName for pn in partnerNames" value="{{pn.partnerName}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.month' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select ng-model="formData.invoiceDate" ng-change="getTableData(formData.invoiceDate)" ng-options="pn.id as pn.mon for pn in months" value="{{pn.id}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            	</tr>
+            </table>
+           
+            <table border="2">
+	    
+			<thead>
+				<tr>
+				<th>{{ 'table.heading.branch' | translate }}</th>
+				<th>{{ 'table.heading.city' | translate }}</th>
+				<th>{{ 'table.heading.state' | translate }}</th>
+				<th>{{ 'table.heading.client' | translate }}</th>
+				<th>{{ 'table.heading.InvoiceId' | translate }}</th>
+				<th>{{ 'table.heading.Invoiceamt' | translate }}</th>
+				<th>{{ 'table.heading.date' | translate }}</th>
+				<th>{{ 'table.heading.video/game' | translate }}</th>
+				<th>{{ 'table.heading.partnertype' | translate }}</th>
+				<th>{{ 'table.heading.amounthareable' | translate }}</th>
+				<th>{{ 'table.heading.sequence' | translate }}</th>
+				<th>{{ 'table.heading.playsource' | translate }}</th>
+				<th>{{ 'table.heading.partnername' | translate }}</th>
+				<th>{{ 'table.heading.royalitytype' | translate }}</th>
+				<th>{{ 'table.heading.royalityvalue' | translate }}</th>
+				<th>{{ 'table.heading.rayolityamt' | translate }}</th>
+				<th>{{ 'table.heading.netamount' | translate }}</th>			
+				</tr>
+			</thead>
+				<tbody>
+						<tr ng-repeat="distributionData in distributionDatas">
+			              	<td>{{distributionData.branch}}</td>
+			              	<td>{{distributionData.city}}</td>
+			              	<td>{{distributionData.state}}</td>
+			              	<td>{{distributionData.client}}</td>
+			              	<td>{{distributionData.invoiceId}}</td>
+			              	<td>{{distributionData.invoiceAmount}}</td>
+			              	<td>{{distributionData.invoiceDate  | DateFormat}}</td>
+			              	<td>{{distributionData.videoGame}}</td>
+			              	<td>{{distributionData.partnerType}}</td>
+			              	<td>{{distributionData.amountSharable}}</td>
+			              	<td>{{distributionData.sequence}}</td>
+			              	<td>{{distributionData.playSource}}</td>
+			              	<td>{{distributionData.partnerName}}</td>
+			              	<td>{{distributionData.royaltyType}}</td>
+			              	<td>{{distributionData.commPercent}}</td>
+			              	<td>{{distributionData.royaltyAmount}}</td>
+			              	<td>{{distributionData.netAmount}}</td>
+			              </tr>
+			
+			
+				</tbody>
+		</table>
+	</body>
+
+      </tab>
+      <tab heading="{{'tab.master.master' | translate}}" select="getMasterScreen()" active="master">
+        <div class="pull-right btn-group">
+          <a href="#/createdeductionmaster" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>          
+          <table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{'table.heading.deductioncode' | translate}}</th>
+                <th>{{'table.heading.deductionName' | translate}}</th>
+                <th>{{'table.heading.deductioncategory' | translate}}</th>
+                <th>{{'table.heading.deductiontype' | translate}}</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="master in masterData | filter:filterText">
+                <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionCode}}</a></td>
+                <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionName}}</a></td>      
+                <td>{{master.business}}</td> 
+                <td>{{master.deductionType}}</td>   	             
+            </tr> 
+        </tbody>
+    </table>
+      </tab>
+    
+    </tabset>
+    </div>
+    
+  

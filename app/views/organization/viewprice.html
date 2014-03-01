@@ -1,0 +1,162 @@
+<div ng-controller="ViewPriceController">
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+	        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+	          <li><a href="#/plans">{{'label.plans' | translate}}</a> <span class="divider">/</span></li>
+	        <li><a href="#/prices/{{formData.planId}}">{{formData.planCode}}</a> <span class="divider">/</span></li>
+	        <li class="active">{{plan.planCode}}</li>
+	    </ul>
+	    <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editprice/{{formData.priceId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	         <a ng-click="deleteuser()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>
+	         
+	      </div>
+	    </div>
+	</div>
+	<div class="row paddedleft">
+		<h3>{{contractperiod.name}}</h3>
+		
+		 <table>
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td>{{ 'label.price.serviceCode' | translate }}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.price.chargeCode' | translate }}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.price.chargevaraint' | translate }}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.price.price' | translate }}</td>
+						</tr>
+						<tr>
+							<td>{{ 'label.price.priceregion' | translate }}</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr ng-repeat="serviceData in serviceDatas">
+							<td ng-show="serviceData.serviceCode == formData.serviceCode">
+							{{serviceData.serviceDescription}}
+							</td>
+						</tr>
+						<tr ng-repeat="chargeData in chargeDatas">
+							<td ng-show="chargeData.chargeCode == formData.chargeCode">
+							{{chargeData.chargeDescription}} 
+							</td>
+						</tr>
+						<tr ng-repeat="chargevariant in chargevariants">
+							<td ng-show="chargevariant.id == formData.chargeVariantId">
+							{{chargevariant.value}}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								{{formData.price}}
+							</td>
+						</tr>
+						<tr ng-repeat="priceRegionData in priceRegionDatas">
+							<td ng-show="priceRegionData.id == formData.priceregion">
+							{{priceRegionData.priceregionCode}}
+							</td>
+						</tr>
+						
+					</table>
+				</td>
+			</tr>
+		</table> 
+		
+		 <!-- <table width="100%">
+			<tr>
+				<td width="20%">{{ 'label.price.serviceCode' | translate }}</td>
+				<td width="70%">
+				<table>
+				<tr ng-repeat="serviceData in serviceDatas">
+							
+							<td >
+                                      <div ng-show="serviceData.serviceCode == formData.serviceCode">
+                                      {{serviceData.serviceDescription}}
+                                      </div>
+                            </td>
+						</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.price.chargeCode' | translate }}</td>
+				<td><table>
+				<tr ng-repeat="chargeData in chargeDatas">
+							<td>
+							<div ng-show="chargeData.chargeCode == formData.chargeCode">
+                                      
+                                    {{chargeData.chargeDescription}} 
+                            </div>
+                            <td>
+						</tr>
+				</table></td>
+			</tr>
+			<tr>
+				<td>{{ 'label.price.chargevaraint' | translate }}</td>
+				<td>
+				<table>
+				<tr ng-repeat="chargevariant in chargevariants">
+							
+							<td >
+							<div ng-show="chargevariant.id == formData.chargeVariantId">
+							 
+                                 {{chargevariant.value}}</div>
+                            </td>
+                          
+						</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.price.price' | translate }}</td>
+				<td>{{formData.price}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.price.priceregion' | translate }}</td>
+				<td><table>
+				<tr ng-repeat="priceRegionData in priceRegionDatas">
+							
+							<td >
+							<div ng-show="priceRegionData.id == formData.priceregion">
+							 
+                                 {{priceRegionData.priceregionCode}}</div>
+                            </td>
+                          
+						</tr>
+				</table></td>
+			</tr>
+						
+					</table>	 -->	 
+			
+						
+	</div>
+</div>
+          

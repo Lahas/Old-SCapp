@@ -1,0 +1,43 @@
+<div>
+    <ul class="breadcrumb">
+        
+        <li class="active">{{'label.prospects' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/createprospects" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.prospect' | translate }}</a>
+    </div>
+</div>
+
+<div class="row-fluid" ng-controller="ProspectsController">
+<form ng-submit="search(filterText)">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+</form>	
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.prospectId' | translate }}</th>
+                <th>{{ 'table.heading.name' | translate }}</th>
+                <th>{{ 'table.heading.emailId' | translate }}</th>
+                <th>{{ 'table.heading.phonenumber' | translate }}</th>
+                <th>{{ 'table.heading.address' | translate }}</th>
+               
+                <th>{{ 'table.heading.status' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="prospect in prospects.currentPageItems | filter:filterText">
+                        
+                <td>{{prospect.id}}</td>
+                <td><a href="#/viewprospects/{{prospect.id}}">{{prospect.firstName}}&nbsp{{prospect.lastName}}</a></td>
+                <td><a href="#/viewprospects/{{prospect.id}}">{{prospect.email}}</a></td>         
+                <td>{{prospect.mobileNumber}}</td>  
+                <td>{{prospect.address}},{{prospect.streetArea}},{{prospect.cityDistrict}}</td>        
+                <td>{{prospect.status}}</td>                      
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="prospects.previous()" href="" ng-disabled="!prospects.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="prospects.next()" href="" ng-disabled="!prospects.hasNext()">Next &rarr;</a></li>
+	</ul>
+</div>

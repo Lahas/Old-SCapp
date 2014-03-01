@@ -1,0 +1,32 @@
+<div>
+
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li><a href="#/plans">{{'label.plans' | translate}}</a><span class="divider">/</span></li>
+        <li class="active">{{'label.viewprice' | translate}}</li>
+    </ul>
+  
+</div>
+<div class="row-fluid" ng-controller="PriceController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.price.servcecode' | translate }}</th>
+                <th>{{ 'table.price.chargecode' | translate }}</th>
+                <th>{{ 'table.price.chargevaraint' | translate }}</th>
+                <th>{{ 'table.price.price' | translate }}</th>
+                <th>{{ 'table.price.region' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="price in prices | filter:filterText">
+                <td><a href="#/viewprice/{{price.id}}/{{planId}}">{{price.serviceCode}}</a></td>            
+                <td>{{price.chargeCode}}</td>        
+                <td>{{price.chargeVariant}}</td>
+                <td>{{price.price}}</td>      
+                <td>{{price.priceregion}}</td>               
+            </tr>
+        </tbody>
+    </table>
+</div>

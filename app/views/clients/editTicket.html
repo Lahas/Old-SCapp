@@ -1,0 +1,76 @@
+
+<div ng-controller="EditTicketController">
+<div>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewTicket/{{clientId}}/{{ticketId}}">{{'label.viewticket' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.editticket' | translate}}</li>
+		</ul>
+	</div>
+<form class="form-horizontal well" ng-submit="submit()">
+
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.editticket' | translate}}</legend>
+		<table width="100%">
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="status"> {{'label.ticket.status' | translate }} </label>
+						<div class="controls">
+							<select ng-model="formData.status"
+								ng-options="statusData.statusCode as statusData.statusDescription for statusData in statusTypes"
+								value="{{statusData.statusCode}}"></select>
+						</div>
+					</div>
+				</td>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="assignedTo">{{'label.tickethistory.assignto' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.userId"
+								ng-options="users.id as users.userName for users in usersData"
+								value="{{users.id}}"></select>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+     		<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="description"> {{
+							'label.ticket.comments' | translate }}</label>
+						<div class="controls">
+							    <textarea ng-model="formData.comments" style="width:245%; height:9em;"></textarea>
+						</div>
+					</div>
+				</td>
+				
+			</tr>
+
+			<tr>
+				<td>
+					<div class="control-group">
+						<label class="control-label" for="Attachments"> {{'label.ticket.file' | translate }}</label>
+						<div class="controls">
+							<input type= "file" ng-file-select="onFileSelect($files)">
+						</div>
+					</div>
+				</td>
+
+			</tr>
+		</table>
+		
+		<div class="offset3">
+			<a href="#/viewTicket/{{clientId}}/{{ticketId}}"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+</div>

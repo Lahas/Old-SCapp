@@ -1,0 +1,32 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.currencydetails' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/createcurrencydetails" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.add.new.currencydetails' | translate }}</a>
+    </div>
+</div>
+
+<div class="row-fluid" ng-controller="CurrencyDetailsController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.id' | translate }}</th>
+                <th>{{ 'table.heading.country' | translate }}</th>
+                <th>{{ 'table.heading.currency' | translate }}</th>
+                <th>{{ 'table.heading.status' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="currencydetail in currencydetails | filter:filterText">
+            
+                <td><a href="#/viewcurrencydetails/{{currencydetail.id}}">{{currencydetail.id}}</a></td>  
+                <td><a href="#/viewcurrencydetails/{{currencydetail.id}}">{{currencydetail.country}}</a></td>            
+                <td>{{currencydetail.currency}}</td> 
+                <td>{{currencydetail.status}}</td>                   
+            </tr>
+        </tbody>
+    </table>
+</div>

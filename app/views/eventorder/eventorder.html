@@ -1,0 +1,233 @@
+<div ng-controller="EventOrderController">
+	<div><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40"/>
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40"/>
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.eventorder' | translate}}</li>
+		</ul>
+	</div>
+	<div>
+			<tabset  style="margin-bottom: 5px;">
+		      	<tab heading="{{'tab.event.order.vod' | translate}}" active="vodTab">
+		      	
+					<form class="form-horizontal well" ng-submit="submit()">
+						<br>
+						 <div class="error" ng-show="errorStatus || errorDetails">
+						<label>{{'label.contract.error' | translate}}</label>
+						<label ng-show="errorStatus">{{errorStatus}}</label>
+						<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+					    </div>
+						<fieldset>
+									
+							<div class="control-group">
+				                        	<label class="control-label">{{ 'label.eventdate' | translate }}</label>
+				                        	<div class="controls">
+				                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+				                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+				                        	</div>
+				          	</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.deviceid' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.deviceId"  ng-options="device.serialNumber as device.serialNumber for device in devices" value="{{device.serialNumber}}"></select>
+					             </div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ 'label.events' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.eventId"  ng-options="event.id as event.eventName for event in events" value="{{event.id}}"></select>
+					             </div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.formattype' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.formatType" ng-options="code.mCodeValue as code.mCodeValue for code in codes" value="{{code.mCodeValue}}"></select>
+					             </div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.opttype' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.optType" ng-options="optType.value as optType.value for optType in optTypes" value="{{optType.value}}"></select>
+					             </div>
+							</div>
+							
+							<!-- <div class="control-group">
+								<label class="control-label">{{ 'label.clienttype' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.clientType"  ng-change="getEventPrice()" ng-options="clientType.id as clientType.type for clientType in clientTypes" value="{{clientType.id}}"></select>
+					            </div>	             
+							</div> -->
+							<!-- 
+							<div class="control-group" ng-show="showPrice">
+									<label class="control-label">{{ 'label.eventprice' | translate }}</label>
+								<div class="controls">
+					                <input type="text" ng-model="formData.updatedPrice" value="price"/> <span class="btn btn-primary" ng-click="updatePrice()">Update Price</span>
+					            </div>            
+							</div> -->
+							
+					
+								         
+							<div class="offset3">
+								<a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+								<button type="submit" class="btn btn-primary">Save</button>
+							</div>
+				
+						</fieldset>
+					</form>			
+		      	      			
+		      	</tab>
+	      		<tab heading="{{'tab.event.order.game' | translate}}" select="getGamesData()" active="gameTab">
+				   <form class="form-horizontal well" ng-submit="submitGameData()">
+						<br>
+						 <div class="error" ng-show="errorStatus || errorDetails">
+						<label>{{'label.contract.error' | translate}}</label>
+						<label ng-show="errorStatus">{{errorStatus}}</label>
+						<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+					    </div>
+						<fieldset>
+									
+							<div class="control-group">
+				                        	<label class="control-label">{{ 'label.eventdate' | translate }}</label>
+				                        	<div class="controls">
+				                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+				                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+				                        	</div>
+				          	</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.events' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.eventId"  ng-change="getEventPrice()" ng-options="event.id as event.eventName for event in events" value="{{event.id}}"></select>
+					             </div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.partner' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.contentProvider" ng-options="pa.id as pa.partnerName for pa in partners" value="{{pa.partnerName}}"></select>
+					             </div>
+							</div>
+							
+							<div class="control-group">
+								<label class="control-label">{{ 'label.source' | translate }}</label>
+								<div class="controls">
+					                <select ng-model="formData.source"  ng-change="changeOptType(formData.source)" ng-options="src.mCodeValue as src.mCodeValue for src in sources" value="{{src.mCodeVlaue}}"></select>
+					             </div>
+							</div>
+							
+							
+							<div class="control-group" ng-show="showPrice">
+									<label class="control-label">{{ 'label.eventprice' | translate }}</label>
+								<div class="controls">
+					                <input type="text" ng-model="formData.updatedPrice" value="price"/> <!-- <span class="btn btn-primary" ng-click="updatePrice()">Update Price</span> -->
+					            </div>            
+							</div>
+							
+					
+								         
+							<div class="offset3">
+								<a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+								<button type="submit" class="btn btn-primary">Save</button>
+							</div>
+				
+						</fieldset>
+					</form>
+	      			
+	      			</tab>
+      	 </tabset>
+	</div>
+	<!-- <form class="form-horizontal well" ng-submit="submit()">
+		<br>
+		 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+					
+			<div class="control-group">
+                        	<label class="control-label">{{ 'label.eventdate' | translate }}</label>
+                        	<div class="controls">
+                            <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
+                            date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"  readonly/>
+                        	</div>
+          	</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.deviceid' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.deviceId"  ng-options="device.serialNumber as device.serialNumber for device in devices" value="{{device.serialNumber}}"></select>
+	             </div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">{{ 'label.events' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.eventId"  ng-options="event.id as event.eventName for event in events" value="{{event.id}}"></select>
+	             </div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.formattype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.formatType" ng-options="code.mCodeValue as code.mCodeValue for code in codes" value="{{code.mCodeValue}}"></select>
+	             </div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.opttype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.optType"  ng-change="getEventPrice()" ng-options="optType.value as optType.value for optType in optTypes" value="{{optType.value}}"></select>
+	             </div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">{{ 'label.clienttype' | translate }}</label>
+				<div class="controls">
+	                <select ng-model="formData.clientType"  ng-change="getEventPrice()" ng-options="clientType.id as clientType.type for clientType in clientTypes" value="{{clientType.id}}"></select>
+	            </div>	             
+			</div>
+			
+			<div class="control-group" ng-show="showPrice">
+					<label class="control-label">{{ 'label.eventprice' | translate }}</label>
+				<div class="controls">
+	                <input type="text" ng-model="formData.updatedPrice" value="price"/> <span class="btn btn-primary" ng-click="updatePrice()">Update Price</span>
+	            </div>            
+			</div>
+			
+	
+				         
+			<div class="offset3">
+				<a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+
+		</fieldset>
+	</form> -->
+</div>

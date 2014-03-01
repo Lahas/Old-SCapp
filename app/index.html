@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="./images/favicon.ico" />
+    <title>{{ 'label.product.title' | translate }}</title>
+    <style>[data-ng-cloak] { display: none !important; }</style>
+</head>
+<body  class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" data-ng-cloak data-ng-controller="MainController">
+<!-- Login Form  -->
+<div class="container well" data-ng-hide="currentSession.user != null" >
+
+    <div class="row form-search ng-pristine ng-valid paddedbottom" data-ng-form="loginForm" data-ng-controller="LoginFormController">
+        <div class="pull-right ">
+            <span class="dropdown" >
+              {{ 'label.change.language' | translate }}
+              <a class="dropdown-toggle btn btn-primary">
+                {{optlang.name}}
+                <i class="icon-sort-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="lang in langs">
+                  <a ng-click="changeLang(lang)">{{lang.name}}</a>
+                </li>
+              </ul>
+            </span>
+        </div>
+        <br/><br/>
+        <div class="pull-right">
+            <input type="text" ng-init="loginCredentials.username='billing'" data-ng-model="loginCredentials.username"   placeholder="{{ 'label.username' | translate }}" value="billing" class="input-small" required>
+            <input type="password" ng-init="loginCredentials.password='password'" data-ng-model="loginCredentials.password"   placeholder="{{ 'label.password' | translate }}" value="password" class="input-small"  required>
+            <button class="btn btn-success" type="submit" data-ng-click="login()">{{ 'label.signin' | translate }}</button>
+        </div>
+        <div class="pull-right" data-ng-show="authenticationFailed">
+            <p>{{ 'error.login.failed' | translate }}</p>
+        </div>
+    </div>
+    <div class="row span8 offset2 paddedbottom">
+    <table width="%100">
+        <tr>
+            <td width="30%">
+                <img src="./images/BillingX_logo.png" alt="BillingX" width="150">
+            </td>    
+            <td width="70%">
+                <h1>{{ 'label.product.name' | translate }}</h1>
+                <span>{{ 'label.product.version' | translate }}</span><br/>
+                <span>{{ 'label.product.status' | translate }}</span><br/>
+                <span>{{ 'label.product.aboutus1' | translate }}<a target="http://www.openbillingsystem.com/" href="http://www.openbillingsystem.com/">{{ 'label.community.name' | translate }}</a>.
+            </td>
+        </tr>
+    </table>        
+    </div>
+    <div class="row">
+  </div>  
+</div>
+<!-- Navbar -->
+<div class="fullscreen" data-ng-hide="currentSession.user == null">
+    <nav>
+        <ul class="margin-nav nav-list ext-sidenav">
+            <li><a href="#/nav/offices"><i class="icon-compass icon-large"></i> Navigation</a></li>
+           <!--  <li class="divider"></li>
+            <li><a href="#/tasks"><i class="icon-bell-alt icon-large"></i> Tasks</a></li> -->
+          <!--   <li class="divider"></li>
+            <li><a href="#/entercollectionsheet"><i class="icon-tasks icon-large"></i> Collection Sheet</a></li> -->
+            <li class="divider"></li>
+            <li><a href="#/createclient"><i class="icon-user icon-large"></i> + Client </a></li>
+            <!-- <li class="divider"></li>
+            <li><a href="#/creategroup"><i class="icon-group icon-large"></i> + Group </a></li>
+            <li class="divider"></li>
+            <li><a href="#/createcenter"><i class="icon-group icon-large"></i> + Center </a></li> -->
+        </ul>
+    </nav>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#/home"><img src="./images/BillingX_logoSmall.png" alt="BillingX" height="20"></a>
+                
+                <div class="nav-collapse collapse" id="main-menu">
+                    <ul class="nav" id="main-menu-left">
+                    
+                        <li><a href="#/home" ng-class="{ activate: isActive('/home') }"><i class="icon-home icon-white"></i>{{ 'link.home' | translate }}</a></li>
+                        <!-- <li><a href="#/prospects" ng-class="{ activate: isActive('/prospects') }"><i class="icon-user"></i>{{ 'link.prospects' | translate }}</a></li> -->
+                         <li><a href="#/clients"  ng-class="{ activate: isActive('/clients') }"><i class="icon-group"></i>{{ 'link.clients.clients' | translate }}</a></li>
+                        <!-- <li><a href="#/inventory" ng-class="{ activate: isActive('/inventory') }"><i class="icon-th icon-white"></i>{{ 'link.inventory' | translate }}</a></li> -->
+                         <!-- <li><a ng-class="{ activate: isActive('tickets') }" href="#/assignedtickets"><i class="icon-money"></i>{{ 'link.tickets' | translate }}</a></li> -->
+                          <li class="dropdown" id="preview-menu">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('rep') }" href="#"><i class="icon-bar-chart"></i>{{ 'link.reports' | translate }}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/reports/all">{{ 'link.reports.all' | translate }}</a></li>
+                                <li><a href="#/reports/clients">{{ 'link.reports.clients' | translate }}</a></li>
+                                <li><a href="#/reports/Orders">{{ 'link.reports.orders' | translate }}</a></li>
+                                <!-- <li><a href="#/reports/tickets">{{ 'link.reports.tickets' | translate }}</a></li> -->
+                                <li><a href="#/reports/accounting">{{ 'link.reports.accounting' | translate }}</a></li>
+                            </ul>
+                        </li>
+                         
+                        <li class="dropdown" id="preview-menu">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ng-class="{ activate: isActive('admin') }" href="#"><i class="icon-wrench"></i>{{ 'link.admin' | translate }}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/users">{{ 'link.admin.users' | translate }}</a></li>
+                                <li><a href="#/organization">{{ 'link.admin.organisation' | translate }}</a></li>
+                                <li><a href="#/system">{{ 'link.admin.system' | translate }}</a></li>
+                               <!--  <li><a href="#/products">{{ 'link.admin.products' | translate }}</a></li> -->
+                                <li><a href="#/templates">{{ 'link.admin.templates' | translate }}</a></li>
+                                <li><a href="#/accounting">{{ 'link.accounting' | translate }}</a></li>
+                                <li><a href="#/game">{{ 'link.game' | translate }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right" id="main-menu-right">
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li class="dropdown" id="preview-menu">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{currentSession.user.name}}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="icon-user"></i>{{ 'link.profile' | translate }}</a></li>
+                                <li><a href="#/usersetting"><i class="icon-cog"></i>{{ 'link.settings' | translate }}</a></li>
+                                <li><a data-ng-click="logout()"><i class="icon-off"></i>{{ 'link.logout' | translate }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form ng-submit="search()" class="navbar-search pull-right ng-pristine ng-valid">
+                    <input data-ng-model="search.query" type="text" placeholder="Search" class="search-query span2">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container whitebg fullscreen">
+        <div class="row-fluid whitebg">
+            <div class="span12 pull-right whitebg">
+                <div class="whitebg" ng-view></div>
+            </div>
+            <!-- Footer -->
+            <hr>
+        </div> <!-- /row-fluid -->
+    </div><!-- /container -->
+</div>
+
+<!-- Le javascript -->
+<script type='text/javascript' data-main="scripts/loader.js" src='bower_components/requirejs/require.js'></script>
+</body>
+</html>

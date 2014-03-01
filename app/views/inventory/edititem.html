@@ -1,0 +1,77 @@
+    <div ng-controller="EditItemController">
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/inventory">{{'link.inventory' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/viewitem/{{formData.id}}">&nbsp;{{formData.id}}&nbsp;</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.item.edit' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}&nbsp;<span class="required">*</span></label>
+	    </div>
+        <fieldset>
+          <legend>Edit Item</legend>   
+          
+           <div class="control-group">
+            <label class="control-label" for="itemCode">{{'label.item.itemcode' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="itemCode" ng-model="formData.itemCode">
+            </div>
+          </div>
+
+		  <div class="control-group">
+            <label class="control-label" for="itemDescription">{{'label.item.itemdescription' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="itemDescription" ng-model="formData.itemDescription">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="chargeCode">{{'label.item.chargecode' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <select ng-model="formData.chargeCode"  ng-options="chargeCode.chargeCode as chargeCode.chargeDescription for chargeCode in chargesDatas" value="{{chargesData.chargeCode}}">
+              </select>
+            </div>
+          </div>
+
+
+          <div class="control-group">
+            <label class="control-label" for="warranty">{{'label.item.warranty' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text" id="warranty" ng-model="formData.warranty">
+            </div>
+          </div>
+          
+           <div class="control-group">
+            <label class="control-label" for="itemClass">{{'label.item.itemclass' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <select ng-model="formData.itemClass"  ng-options="itemClassData.value as itemClassData.value for itemClassData in itemClassDatas" value="{{itemClassData.value}}">
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="units">{{'label.item.units' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <select ng-model="formData.units"  ng-options="unitsData.value as unitsData.value for unitsData in unitDatas" value="{{unitsData.value}}">
+              </select>
+            </div>
+          </div>
+                  
+          <div class="control-group">
+           <label class="control-label" for="unitPrice ">{{'label.item.unitprice' | translate }}&nbsp;<span class="required">*</span></label>
+           <div class="controls">
+             <input type="text" id="unitPrice" ng-model="formData.unitPrice">
+           </div>
+          </div>
+          
+          <div class="offset3">
+            <a href="#/viewitem/{{formData.id}}"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>

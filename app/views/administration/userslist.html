@@ -1,0 +1,30 @@
+<div>
+    <ul class="breadcrumb">
+        <li class="active">{{'link.admin.users' | translate}}</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/createuser" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create User</a>
+    </div>
+</div>
+
+<div class="row-fluid" ng-controller="UserListController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Office name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users | filter:filterText">
+                <td><a href="#/viewuser/{{user.id}}">{{user.firstname}}</a></td>            
+                <td><a href="#/viewuser/{{user.id}}">{{user.lastname}}</a></td>            
+                <td>{{user.email}}</td>        
+                <td>{{user.officeName}}</td>         
+            </tr>
+        </tbody>
+    </table>
+</div>

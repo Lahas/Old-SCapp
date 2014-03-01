@@ -1,0 +1,60 @@
+<div ng-controller="ViewEventController">
+
+	<div class="paddedbottom10">
+		<ul class="breadcrumb">
+			<li><a href="#/event">{{'label.event' | translate}}</a>
+				<span class="divider">/</span></li>
+			<li class="active">{{'label.viewevent' | translate}}</li>
+		</ul>
+		 <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editEvent/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>	        
+	          <a ng-click="deleteEvent()" class="btn btn-primary"><i class="icon-trash icon-white"></i> Delete</a>	
+	          <a href="#/addEventPrice/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> AddPrice</a>
+	          <a href="#/viewEventPrices/{{event.id}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> ViewPrice</a>  
+	      </div>
+	    </div>
+	</div>
+
+	<div class="row paddedleft">
+		<h3>{{'label.viewevent' | translate}}</h3>
+		<table width="100%">
+		    <tr>
+                <td>{{'label.event.id' | translate}}</td>
+                <td>{{event.id}}</td>
+            </tr>
+			<tr>
+				<td>{{'label.event.eventname' | translate}}</td>
+				<td>{{event.eventName}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.eventdescription' | translate}}</td>
+				<td>{{event.eventDescription}}</td>
+			</tr>
+			<tr>
+				<td>{{ 'label.event.status' | translate }}</td>
+				<td>	<table>
+						<tr ng-repeat="selectedStatus in status">
+							<td>
+								<span ng-show="selectedStatus.id == event.statusId ">{{selectedStatus.value}}</span>
+							</td>
+						</tr>
+					</table></td>
+			</tr>
+			<tr>
+				<td>{{'label.event.startdate' | translate }}</td>
+				<td>{{event.eventStartDate | DateFormat}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.chargedata' | translate }}</td>
+				<td>{{event.chargeCode}}</td>
+			</tr>
+			<tr>
+				<td>{{'label.event.enddate' | translate }}</td>
+				<td>{{event.eventEndDate | DateFormat}}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+

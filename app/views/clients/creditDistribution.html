@@ -1,0 +1,155 @@
+<div ng-controller="CreditDistributionController">
+ <div>
+ <ul class="breadcrumb">
+        <table>
+        <tr>
+        <td>
+        	 <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+          <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+        </td>
+        <td>
+            <small style="color:black;">{{displayName}}</small>
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Uniquely identified  {{accountNo}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><i class="icon-building"></i><small>Office "{{officeName}}"</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Cell Phone {{phone}}</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Mail him {{email}}</small></td>
+        	</tr>
+        </table>
+        </td>
+        <td><small style="font-size:30px;">|</small></td>
+        <td>
+        <table>
+        	<tr>
+        		<td><small>Client Type "{{categoryType}}"</small></td>
+        	</tr>
+        	<tr>
+        		<td><small>Balance&nbsp;{{balanceAmount}}&nbsp;{{currency}} </small></td>
+        	</tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Credit Distribution</li>
+		</ul>
+	</div>
+	 <form name="creditDistributionForm" class="form-horizontal well" ng-submit = "submit()">
+	  
+	    <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>  
+	    
+        <fieldset>
+          <legend>Credit Distribution</legend>
+          <br>
+          <div class="control-group">
+          		<label class="control-label">Show Payments Details</label>
+         		 <div class="controls">
+            		<a class="btn btn-primary" ng-click="showPayments()">
+              			<i ng-show="showPaymentsDetails" class="icon-minus icon-white"></i>
+             			 <i ng-show="!showPaymentsDetails" class="icon-plus icon-white"></i>
+            		</a>
+          		</div>
+        	</div>
+       <div collapse = "!showPaymentsDetails"> 
+		 <table class="table">
+			  <thead>
+            	<tr class="graybg">
+            		<th>select</th>
+               		<th>Payment Id</th>
+              	    <th>Payment Date</th>
+                    <th>Receipt No</th>
+                	<th>Payment Amount</th>
+                	<th>Available Amount</th>
+            	</tr>
+       		</thead>
+        	<tbody>
+            	 <tr ng-repeat="paymentData in paymentDatas">
+            		<td> <input  type="radio" name ="select" ng-click = "seletedPayment(paymentData.id,paymentData.amountPaid,paymentData.availAmount,$index)"/></td>
+            		<td>{{paymentData.id}}</td>
+                	<td>{{paymentData.paymentDate | DateFormat}}</td>
+                	<td>{{paymentData.receiptNo}}</td>
+                	<td>{{paymentData.amountPaid}}</td>
+                    <td>{{paymentData.availAmount}}</td>
+             	</tr>
+        	</tbody>
+		</table>
+			
+	</div>
+	 <br>
+          <div class="control-group" ng-show = "showInvoices && showPaymentsDetails">
+          		<label class="control-label">Show Invoice Details</label>
+         		 <div class="controls">
+            		<a class="btn btn-primary" ng-click="showInvoiceDetails=!showInvoiceDetails">
+              			<i ng-show="showInvoiceDetails" class="icon-minus icon-white"></i>
+             			 <i ng-show="!showInvoiceDetails" class="icon-plus icon-white"></i>
+            		</a>
+          		</div>
+        	</div>
+       <div collapse = "!showInvoiceDetails"> 
+		 <table class="table">
+			  <thead>
+            	<tr class="graybg">
+            		<th>select</th>
+               		<th>InvoiceId</th>
+              	    <th>Invoice Date</th>
+                    <th>Invoice Amount</th>
+                	<th>Due Amount</th>
+                	<th></th>
+            	</tr>
+       		</thead>
+        	<tbody>
+            	 <tr ng-repeat="invoiceData in invoiceDatas" >
+           
+            		<td> <input id="{{invoiceData.id}}" class="unCheck" type="checkbox" ng-model="active" ng-click="selectedInvoices(invoiceData.id,invoiceData.dueAmount,active,$index)"></td>
+            		<td>{{invoiceData.id}}</td>
+                	<td>{{invoiceData.billDate | DateFormat}}</td>
+                	<td>{{invoiceData.amount}}</td>
+                	<td>{{invoiceData.dueAmount}}</td>
+               		<td></td>
+             	</tr>
+        	</tbody>
+		</table>
+		<br>
+		<div class="offset3">
+            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+          <button id="submit" type="submit" class="btn btn-primary">Distribute</button>
+          </div>	
+	</div>
+		</fieldset>
+	</form>
+	<script type="text/ng-template" id="alert.html">
+					<div class="modal-header silver">
+                        <h3 class="bolder">Warning</h3>
+                    </div>
+                    <div class="modal-body" modal-middle>
+                       <i class="icon-warning-sign error"></i>Available amount is zero.
+                    </div>
+                    <div class="modal-footer">
+						<button class="btn btn-primary" ng-click="approve()">ok</button>
+                    </div>
+      </script>
+</div>

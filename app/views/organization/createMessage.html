@@ -1,0 +1,237 @@
+ <div>
+        <ul class="breadcrumb">
+              <li><a href="#/message">{{'label.managemessage' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.createmessage' | translate}}</li>
+          </ul>
+      </div>
+<form class="form-horizontal well" ng-controller="CreateMessageController" ng-submit="submit()">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.createmessage' | translate}}</legend>
+		<table width="100%">
+		
+		    <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="messageType">{{ 'label.message.messageType' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.messageType"
+								ng-options="message.id as message.value for message in messageTypee"
+								value="{{message.id}}" ng-click="clickmessage()">
+							</select>
+						</div>
+					</div>
+				</td>
+			</tr>
+		    
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="templateDescription">{{'label.message.templateDescription' | translate}}
+							</label>
+						<div class="controls">
+							<input type="text" id="templateDescription"
+								ng-model="formData.templateDescription">
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="subject"> {{ 'label.message.subject' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="subject" ng-model="formData.subject">
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group" ng-show="formData.messageType !='M'">
+						<label class="control-label" for="header">{{'label.message.header' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="header" ng-model="formData.header" ng-show="formData.messageType !='M'">
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="body">{{ 'label.message.body' | translate }}</label>
+						<div class="controls">
+							 <textarea ng-model="formData.body"></textarea>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group" ng-show="formData.messageType !='M'">
+						<label class="control-label" for="footer">{{ 'label.message.footer' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="footer" ng-model="formData.footer">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		 <table>
+			<tr class="control-group">
+				<td><label class="control-label"><h4>{{ 'label.message.addMessageParams' | translate }}</h4></label></td>
+				<td class="blockquoteresult">
+					<form>
+					<input class="input-small" type="text"
+							ng-model="messageFormData.parameter"> &nbsp;&nbsp;
+							<a ng-click="addMessage()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+					</form> <br> <br>
+					<table class="table" width="100%"
+						ng-show="formData.messageParams.length>0">
+						<tr></tr>
+						 <tr class="graybg">
+							<th>{{ 'label.message.Parametervalue' | translate }}</th>
+						</tr>
+						<tr ng-repeat="messageFormDatas in formData.messageParams">
+							<td><input type="text" class="input-small"
+								ng-model="messageFormDatas.parameter"></td>
+							<td><a ng-click="deleteMessageParam($index)"><i
+									class="icon-remove icon-white"></i></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table> 
+		<div class="offset3">
+			<a href="#/message"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+
+
+
+
+
+
+<!--  <div>
+        <ul class="breadcrumb">
+              <li><a href="#/message">{{'label.managemessage' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.createmessage' | translate}}</li>
+          </ul>
+      </div>
+<form class="form-horizontal well" ng-controller="CreateMessageController" ng-submit="submit()">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>message</legend>
+		<table width="100%">
+		<tr>
+				<td width="50%">
+					<div class="control-group" ng-show="formData.messageType !='M'">
+						<label class="control-label" for="header">{{'label.message.header' | translate}}</label>
+						<div class="controls">
+							<input type="text" id="header" ng-model="formData.header" ng-show="formData.messageType !='M'">
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="templateDescription">{{'label.message.templateDescription' | translate}}
+							</label>
+						<div class="controls">
+							<input type="text" id="templateDescription"
+								ng-model="formData.templateDescription">
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="subject"> {{ 'label.message.subject' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="subject" ng-model="formData.subject">
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="body">{{ 'label.message.body' | translate }}</label>
+						<div class="controls">
+							 <textarea ng-model="formData.body"></textarea>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="messageType">{{ 'label.message.messageType' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.messageType"
+								ng-options="message.id as message.value for message in messageTypee"
+								value="{{message.id}}" ng-click="clickmessage()">
+							</select>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group" ng-show="formData.messageType !='M'">
+						<label class="control-label" for="footer">{{ 'label.message.footer' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="footer" ng-model="formData.footer">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+		 <table>
+			<tr class="control-group">
+				<td><label class="control-label"><h4>{{ 'label.message.addMessageParams' | translate }}</h4></label></td>
+				<td class="blockquoteresult">
+					<form>
+					<input class="input-small" type="text"
+							ng-model="messageFormData.parameter"> &nbsp;&nbsp;
+							<a ng-click="addMessage()">&nbsp;<i class="icon-plus icon-white"></i></a>&nbsp;&nbsp;
+					</form> <br> <br>
+					<table class="table" width="100%"
+						ng-show="formData.messageParams.length>0">
+						<tr></tr>
+						 <tr class="graybg">
+							<th>{{ 'label.message.Parametervalue' | translate }}</th>
+						</tr>
+						<tr ng-repeat="messageFormDatas in formData.messageParams">
+							<td><input type="text" class="input-small"
+								ng-model="messageFormDatas.parameter"></td>
+							<td><a ng-click="deleteMessageParam($index)"><i
+									class="icon-remove icon-white"></i></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table> 
+		<div class="offset3">
+			<a href="#/message"><button type="reset" class="btn">Cancel</button></a>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</fieldset>
+</form> -->

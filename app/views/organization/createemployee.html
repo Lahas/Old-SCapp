@@ -1,0 +1,54 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/employees">{{'label.manageemployees' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createemployee' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="CreateEmployeeController" ng-submit="submit()">
+          <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Employee</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="office">{{ 'label.office' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}">
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="firstname">{{ 'label.firstname' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="firstname" ng-model="formData.firstname">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="lastname">{{ 'label.lastname' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="lastname" ng-model="formData.lastname">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="isLoanOfficer">{{ 'label.employee.isLoanOfficer' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="isLoanOfficer" ng-model="formData.isLoanOfficer">
+              </label>
+            </div>
+          </div>
+
+          <div class="offset3">
+            <a href="#/employees"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>

@@ -1,0 +1,86 @@
+<div ng-controller="CreateChargeController">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+<form class="form-horizontal well"  ng-submit="submit()">
+
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label">{{'label.chargesappliesto' | translate}}</label>
+            <div class="controls">
+                <select ng-model="formData.chargeAppliesTo"  ng-options="chargesapply.id as chargesapply.value for chargesapply in template.chargeAppliesToOptions" value="{{chargesapply.id}}" ng-change="chargeAppliesToSelected(formData.chargeAppliesTo)">
+                  <option value="">{{'label.select.one' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <div>
+            <div class="control-group">
+            <label class="control-label" for="name">{{'label.name' | translate}}</label>
+            <div class="controls">
+                <input type="text" id="name" ng-model="formData.name">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{'label.currency' | translate}}</label>
+            <div class="controls">
+                <select ng-model="formData.currencyCode"  ng-options="currency.code as currency.name for currency in template.currencyOptions" value="{{currency.code}}">
+                  <option value="">{{'label.select.currency' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{'label.chargetimetype' | translate}}</label>
+            <div class="controls">
+                <select ng-model="formData.chargeTimeType"  ng-options="timetype.id as timetype.value for timetype in chargeTimeTypeOptions" value="{{timetype.id}}">
+                  <option value="">{{'label.select.one' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{'label.chargecalculation' | translate}}</label>
+            <div class="controls">
+                <select ng-model="formData.chargeCalculationType"  ng-options="chargecalculation.id as chargecalculation.value for chargecalculation in chargeCalculationTypeOptions" value="{{chargecalculation.id}}">
+                  <option value="">{{'label.select.one' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group" ng-show="showChargePaymentByField">
+            <label class="control-label">{{'label.chargepaymentby' | translate}}</label>
+            <div class="controls">
+                <select ng-model="formData.chargePaymentMode"  ng-options="chargepayment.id as chargepayment.value for chargepayment in template.chargePaymetModeOptions" value="{{chargepayment.id}}">
+                  <option value="">{{'label.select.one' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="amount">{{'label.amount' | translate}}</label>
+            <div class="controls">
+                <input type="text" id="amount" ng-model="formData.amount">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="active">{{'label.active' | translate}}</label>
+            <div class="controls">
+                <label class="checkbox">
+                    <input id="active" type="checkbox" ng-model="formData.taxActive" data-ng-click="setChoice()">
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="ispenalty">{{'label.ispenalty' | translate}}</label>
+            <div class="controls">
+                <label class="checkbox">
+                    <input id="ispenalty" type="checkbox" ng-model="formData.penalty" ng-true-value="true" ng-false-value="false">
+                </label>
+            </div>
+        </div>
+        <div class="offset2 paddedleft80">
+            <a href="#/charges"><button type="reset" class="btn">{{'label.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+        </div>
+    </fieldset>
+</form>
+</div> 

@@ -1,0 +1,49 @@
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/contract">{{'label.contracts' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createcontract' | translate}}</li>
+        </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="CreateContractController" ng-submit="submit()">
+         <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+       
+       
+        <fieldset>
+          <legend>Create New Contract</legend>
+             
+             <div class="control-group">
+            <label class="control-label" for="subscriptionPeriod">{{ 'label.contract.contractperiod' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="subscriptionPeriod" ng-model="formData.subscriptionPeriod">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="subscriptionType">{{ 'label.contract.contractype' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.subscriptionType"  ng-options="subscriptions.subscriptionType as subscriptions.subscriptionType for subscriptions in subscriptions" value="{{subscriptions.subscriptionType}}">
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="units">{{ 'label.contract.units' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="units" ng-model="formData.units">
+            </div>
+          </div>
+          
+          
+
+          <div class="offset3">
+            <a href="#/contract"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>

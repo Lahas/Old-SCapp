@@ -1,0 +1,33 @@
+<div>
+
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">{{'label.event' | translate}}</li>
+	</ul>
+	<div class="pull-right">
+		<a href="#/createEvent" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'lable.createevent' | translate }}</a>
+	</div>
+</div>
+<div class="row-fluid" ng-controller="EventController">
+	<input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+		<thead>
+			<tr class="graybg">
+			    <th>{{'label.event.id' | translate}}</th>
+				<th>{{'label.event.eventname' | translate}}</th>
+				<th>{{'label.event.eventdescription' | translate}}</th>				
+				<th>{{ 'label.event.status' | translate }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="event in events | filter:filterText">
+			    <td><a href="#/viewEvent/{{event.id}}">{{event.id}}</a></td>
+				<td><a href="#/viewEvent/{{event.id}}">{{event.eventName}}</a></td>
+				<td>{{event.eventDescription}}</td>				
+				<td>{{event.status}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	
+	

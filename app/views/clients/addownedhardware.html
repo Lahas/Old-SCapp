@@ -1,0 +1,93 @@
+     <div ng-controller="AddOwnHardwareController" >
+      <div><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified  {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.add.ownhardware' | translate}}</li>
+		</ul>
+	</div>
+     
+      <form class="form-horizontal well" ng-submit="submit()">
+     
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>{{'label.ownedhardware' | translate}}</legend>
+          <table>
+           <tr>
+              <td>
+                  <div class="control-group">
+                      <label class="control-label">{{ 'label.form.allocationdate' | translate }}&nbsp;<span class="required">*</span></label>
+                      <div class="controls">
+                          <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="first.date" is-open="opened" min="minDate" max="'2020-06-22'" 
+                          date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+                      </div>
+                  </div>
+              </td>
+            </tr>
+           <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'label.itemtype' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <select ng-model="formData.itemType"  ng-options="itemtypes.id as itemtypes.itemDescription for itemtypes in itemtypes" value="{{itemtypes.id}}"></select>
+                  </div>
+                </div>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.serialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="serialnumber" ng-model="formData.serialNumber">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label">{{ 'lable.provisioningserialnumber' | translate }}&nbsp;<span class="required">*</span></label>
+                  <div class="controls">
+                    <input type="text" name="provisioningserialnumber" ng-model="formData.provisioningSerialNumber">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="offset3">
+            <a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">Cancel</button></a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </fieldset>
+      </form>
+ </div>                      
+                       

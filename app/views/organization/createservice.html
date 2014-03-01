@@ -1,0 +1,76 @@
+     <div>
+        <ul class="breadcrumb">
+          <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+          <li><a href="#/services">{{'label.manageservices' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.createservice' | translate}}</li>
+         </ul>
+      </div>
+      <form class="form-horizontal well" ng-controller="CreateServiceController" ng-submit="submit()">
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+        <fieldset>
+          <legend>Create Service</legend>
+          <table>
+            <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label" for="serviceCode">{{ 'label.service.Service Code' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" ng-model="formData.serviceCode">
+                  </div>
+                </div>
+              </td>
+            </tr>
+             <tr>
+              <td>
+                <div class="control-group">
+                  <label class="control-label" for="serviceDescription">{{ 'label.service.Service Description' | translate }}</label>
+                  <div class="controls">
+                    <input type="text" ng-model="formData.serviceDescription">
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <td>
+             <div class="control-group">
+                  <label class="control-label" for="serviceType">{{ 'label.service.Service Type' | translate }}</label>
+                  <div class="controls">
+                    <select ng-model="formData.serviceType"  ng-options="serviceTypes.value as serviceTypes.value for serviceTypes in services" value="{{serviceTypes.value}}"></select>
+                  </div>
+                </div>
+                </td>
+                </tr>
+            <tr>
+            <td>
+             <div class="control-group">
+                  <label class="control-label" for="status">{{ 'label.service.Status' | translate }}</label>
+                  <div class="controls">
+                    <select ng-model="formData.status"  ng-options="status.value as status.value for status in statuses" value="{{status.value}}"></select>
+                  </div>
+                </div>
+                </td>
+                </tr>
+            <tr>
+            <td>
+            <div class="control-group">
+            <label class="control-label" for="isOptional">{{ 'label.service.IsOptional' | translate }}</label>
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="isOptional" ng-model="formData.isOptional">
+              </label>
+            </div>
+          </div>
+          </td>
+            </tr>
+          </table>
+          <div class="offset3">
+            <a href="#/services"><button type="reset" class="btn">Cancel</button></a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </fieldset>
+      </form>
+ 

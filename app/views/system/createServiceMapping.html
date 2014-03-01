@@ -1,0 +1,60 @@
+ <div  ng-controller="CreateServiceMappingController" >
+      <div>
+        <ul class="breadcrumb">
+          <li><a href="#/system">{{'link.admin.system' | translate}}</a> <span class="divider">/</span></li>
+         <li><a href="#/mappingconfig">{{'label.serviceMapping' | translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.create.new.serviceMapping' | translate}}</li>
+        </ul>
+      </div>
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+      <form class="form-horizontal well" ng-submit="submit()">
+        <fieldset>
+          <legend>Create Service Mapping</legend>
+          
+           <div class="control-group">
+            <label class="control-label" for="serviceCode">{{'label.serviceCode' | translate }}</label>
+            <div class="controls">
+              <select ng-model="formData.serviceId"  ng-options="sc.id as sc.serviceCode for sc in serviceCodes" value="{{serviceCode.id}}">
+              <option value="">{{'label.select.one' | translate}}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="serviceIdentification">{{'label.serviceIdentification' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="serviceIdentification" ng-model="formData.serviceIdentification">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="status">{{'label.status' | translate }}</label>
+            <div class="controls">
+                <select ng-model="formData.status"  ng-options="sc.value as sc.value for sc in statusDatas" value="{{serviceCode.id}}">
+              <option value="">{{'label.select.one' | translate}}</option>
+              </select>
+            </div>
+          </div>
+   
+
+          <div class="control-group">
+            <label class="control-label" for="image">{{'label.image' | translate }}</label>
+            <div class="controls">
+              <input type="text" id="image" ng-model="formData.image">
+            </div>
+          </div>
+          
+     
+         
+          <div class="offset3">
+            <a href="#/mappingconfig"><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+          
+        </fieldset>
+      </form>
+</div>

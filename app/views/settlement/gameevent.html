@@ -1,0 +1,82 @@
+<div ng-controller="GameEventController">
+<!-- <div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.gameevent' | translate}}</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/creategameevent" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create </a>
+    </div>
+</div>
+ -->
+ <div>
+ <ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40"/>
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40"/>
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Office "{{officeName}}" </small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance {{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/viewclient/{{clientId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.interactive.header' | translate}}</li>
+		</ul>
+		<div class="pull-right">
+        	<a href="#/creategameevent/{{clientId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i> Create </a>
+    	</div>
+	</div>
+<div class="row-fluid">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="">
+	<table class="table">
+            <thead>
+              <tr class="graybg">
+                
+                <th>{{'table.heading.gamemedia.gameHeader.clientId' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.clientExternalId' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.activityMonth' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.dataUploadDate' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.businessLine' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.category' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.charegecode' | translate}}</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer-main" ng-repeat="fd in formData">
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.clientId}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.externalId}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{getMonth(fd.activityMonth)}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.dataUploadedDate | DateFormat}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.businessLine}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.mediaCategory}}</a></td>
+                <td class="pointer"><a href="#/createinteractivedetail/{{fd.id}}">{{fd.chargeCode}}</a></td>
+                
+              </tr>
+            </tbody>
+          </table>
+</div> 
+</div>
+      
+      
+      
+        
+     

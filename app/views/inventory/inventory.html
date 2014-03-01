@@ -1,0 +1,288 @@
+<div ng-controller="InventoryController">
+ 
+    <div>
+      <tabset  style="margin-bottom: 0px;">
+      
+      <tab heading="Supplier" select="getsupplierdetails()">
+        <div class="pull-right btn-group">
+          <a href="#/createsupplier" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchSupplier(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+       </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.supplier.id' | translate}}</th>
+                <th>{{'table.supplier.supplierCode' | translate}}</th>
+                <th>{{'table.supplier.supplierDescription' | translate}}</th>
+                <th>{{'table.supplier.supplierAddress' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr ng-repeat="su in supplier.currentPageItems  | filter:filterText">
+                <td>{{su.id}}</td>
+                <td>{{su.supplierCode}}</td>
+                <td>{{su.supplierDescription}}</td>
+                <td>{{su.supplierAddress}}</td>
+   			</tr>
+     		 </tbody>
+          </table>
+          <ul class="pager">
+        			<li class="previous"><a ng-click="supplier.previous()" href="" ng-disabled="!supplier.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="supplier.next()" href="" ng-disabled="!supplier.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>	
+      
+      <tab heading="{{'tab.item' | translate}}" select="getItems()" active="itemsTab">
+ 
+              <div class="row-fluid">
+                      <div class="btn-group pull-right"> 
+                      <div class="pull-right">
+        				<a href="#/createitem" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'label.create.new.item' | translate}}</a>
+
+                        <!-- <span ng-repeat="button in buttons">
+                        <a  href="{{button.href}}/{{client.id}}/{{button.subhref}}" ng-click="clientActionButton('button.subhref')" class="btn btn-primary" ><i class="{{button.icon}} icon-white" ></i>{{button.name | translate}}</a>
+                        </span> -->
+                      </div>
+                  </div>
+                  <br/>
+                  <div class="row-fluid">
+                 <form ng-submit="searchItems(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+                   </form>
+	               <table class="table">
+					<thead>	
+						<tr class="graybg">
+                          <th>{{ 'label.item.id' | translate }}</th>
+                          <th>{{ 'label.item.itemcode' | translate }}</th>
+                          <th>{{ 'label.item.itemdescription' | translate }}</th>
+                          <th>{{ 'label.item.units' | translate }}</th>
+                          <th>{{ 'label.item.unitprice' | translate }}</th>
+                          <th>{{ 'label.item.warranty' | translate }}</th>
+						</tr>
+					</thead>
+             	 <tbody>
+             		 <tr ng-repeat="item in items.currentPageItems | filter:filterText">    
+              	  		<td><a href="#/viewitem/{{item.id}}">{{item.id}}</a></td>        
+               			<td><a href="#/viewitem/{{item.id}}">{{item.itemCode}}</a></td>        
+                		<td><a href="#/viewitem/{{item.id}}">{{item.itemDescription}}</a></td> 
+                		<td>{{item.units}}</td>
+                		<td>{{item.unitPrice}}</td> 
+                		<td>{{item.warranty}}</td> 
+             		</tr>
+            	</tbody>
+       			</table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="items.previous()" href="" ng-disabled="!items.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="items.next()" href="" ng-disabled="!items.hasNext()">Next &rarr;</a></li>
+    			</ul>
+    		</div>
+          </div>
+    </tab>
+                             
+                
+                
+      <tab heading="GRN" select="getGRNdetails()" active="grnTab">
+        <div class="pull-right btn-group">
+          <a href="#/addgrndetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchGRN(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+       </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.grn.id' | translate}}</th>
+                <th>{{'table.grn.officeName' | translate}}</th>
+                <th>{{'table.grn.purchaseDate' | translate}}</th>
+                <th>{{'table.grn.supplierName' | translate}}</th>
+                <th>{{'table.grn.itemDescription' | translate}}</th>
+                <th>{{'table.grn.orderedQuantity' | translate}}</th>
+                <th>{{'table.grn.receivedQuantity' | translate}}</th>
+                <th>{{'table.grn.balanceQuantity' | translate}}</th>
+                <th>{{'table.grn.status' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="g in grn.currentPageItems | filter:filterText">
+                <td><a href="#/viewgrn/{{g.id}}">{{g.id}}</a></td>
+                <td><a href="#/viewgrn/{{g.id}}">{{g.officeName}}</a></td>
+                <td><a href="#/viewgrn/{{g.id}}">{{g.purchaseDate | DateFormat}}</a></td>
+                <td>{{g.supplierName}}</td>
+                <td>{{g.itemDescription}}</td>
+                <td style="text-align: center">{{g.orderdQuantity}}</td>
+                <td style="text-align: center">{{g.receivedQuantity}}</td>
+                <td style="text-align: center">{{g.balanceQuantity}}</td>
+                <td style="text-align: center" ng-show="g.orderdQuantity != g.receivedQuantity">Pending</td>
+                <td style="text-align: center" ng-show="g.orderdQuantity == g.receivedQuantity">Completed</td>
+           
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="grn.previous()" href="" ng-disabled="!grn.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="grn.next()" href="" ng-disabled="!grn.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      
+      
+      
+      
+      <tab heading="Item Details" select="getItemdetails()" active="itemDetailsTab">
+        <div class="pull-right btn-group">
+          <a href="#/createitemdetails/{{itemdetails.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchItemDetails(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.itemdetails.id' | translate}}</th>
+                <th>{{'table.itemdetails.officeName' | translate}}</th>
+                <th>{{'table.itemdetails.itemDescription' | translate}}</th>
+                <th>{{'table.itemdetails.serialNumber' | translate}}</th>
+                <th>{{'table.itemdetails.grnId' | translate}}</th>
+                <th>{{'table.itemdetails.supplier' | translate}}</th>
+                <th>{{'table.itemdetails.quality' | translate}}</th>
+                <th>{{'table.itemdetails.status' | translate}}</th>
+                 <th>{{'table.itemdetails.allocated' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="itemdetail in itemdetails.currentPageItems  | filter:filterText">
+                <td>{{itemdetail.id}}</td><!-- <a href="#/viewitemdetails/{{itemdetails.id}}"></a> -->
+                <td>{{itemdetail.officeName}}</td>
+                <td>{{itemdetail.itemDescription}}</td>
+                <td>{{itemdetail.serialNumber}}</td>
+                <td style="text-align: center">{{itemdetail.grnId}}</td>
+                <td>{{itemdetail.supplier}}</td>
+                <td>{{itemdetail.quality}}</td>
+                <td>{{itemdetail.status}}</td>
+                <td ng-show="itemdetail.clientId"><a href="#/viewclient/{{itemdetail.clientId}}">{{itemdetail.accountNumber}}</a></td>
+                <td ng-show="!itemdetail.clientId">Unallocated</td>
+                <!-- <td>
+                	<span ng-if="itemdetails.clientId > '0'">
+                	Yes
+					</span>
+					<span ng-if="itemdetails.clientId <= '0'">
+                	No
+					</span>
+                </td> -->
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="itemdetails.previous()" href="" ng-disabled="!itemdetails.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="itemdetails.next()" href="" ng-disabled="!itemdetails.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      
+      
+      
+      <tab heading="MRN" select="getMRNdetails()" active="mrnTab">
+        <div class="pull-right btn-group">
+          <a href="#/createmrn" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a href="#/movemrn" class="btn btn-primary"><i class="icon-move icon-white"></i>{{ 'button.mrn.move' | translate }}</a>
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchMRN(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.mrn.id' | translate}}</th>
+                <th>{{'table.mrn.requestedDate' | translate}}</th>
+                <th>{{'table.mrn.itemDescription' | translate}}</th>
+                <th>{{'table.mrn.fromOffice' | translate}}</th>
+                <th>{{'table.mrn.toOffice' | translate}}</th>
+                <th>{{'label.mrn.orderedquantity' | translate}}</th>
+                <th>{{'table.mrn.receivedQuantity' | translate}}</th>
+                <th>{{'table.mrn.status' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="m in mrn.currentPageItems  | filter:filterText">
+                <td><a href="#/viewmrn/{{m.id}}">{{m.id}}</a></td>
+                <td><a href="#/viewmrn/{{m.id}}">{{m.requestedDate | DateFormat}}</a></td>
+                <td><a href="#/viewmrn/{{m.id}}">{{m.itemDescription}}</a></td>
+                <td>{{m.fromOffice}}</td>
+                <td>{{m.toOffice}}</td>
+                <td style="text-align: center">{{m.orderdQuantity}}</td>
+                <td style="text-align: center">{{m.receivedQuantity}}</td>
+                <td>{{m.status}}</td>
+                
+            
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="mrn.previous()" href="" ng-disabled="!mrn.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="mrn.next()" href="" ng-disabled="!mrn.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      
+      
+      
+       <tab heading="Item History" select="getitemhistorydetails()">
+        <div class="pull-right btn-group">
+         
+        </div>
+       
+        <div class="row-fluid">
+        <form ng-submit="searchHistory(filterText)">
+                   <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+        </form>
+        <table class="table">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.itemhistory.id' | translate}}</th>
+                <th>{{'table.itemhistory.mrnId' | translate}}</th>
+                <th>{{'table.itemhistory.refType' | translate}}</th>
+                <th>{{'table.itemhistory.itemDescription' | translate}}</th>
+                <th>{{'table.itemhistory.serialNumber' | translate}}</th>
+                <th>{{'table.itemhistory.transactionDate' | translate}}</th>
+                <th>{{'table.itemhistory.movement' | translate}}</th>
+                <th>{{'table.itemhistory.fromOffice' | translate}}</th>
+                <th>{{'table.itemhistory.toOffice' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ih in itemhistory.currentPageItems  | filter:filterText">
+                <td>{{ih.id}}</td>
+                <td>{{ih.mrnId}}</td>
+                <td>{{ih.refType}}</td>
+                <td>{{ih.itemDescription}}</td>
+                <td>{{ih.serialNumber}}</td>
+                <td>{{ih.transactionDate | DateFormat}}</td>
+                <td>{{ih.movement}}</td>
+                <td>{{ih.fromOffice}}</td>
+                <td>{{ih.toOffice}}</td>
+                
+            
+     		 </tbody>
+          </table>
+       			<ul class="pager">
+        			<li class="previous"><a ng-click="itemhistory.previous()" href="" ng-disabled="!itemhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="itemhistory.next()" href="" ng-disabled="!itemhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+         </div>
+      </tab>
+      			
+      		
+
+
+    </tabset>
+    </div>
+  </div>
+

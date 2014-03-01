@@ -1,0 +1,46 @@
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+        <li class="active">{{'label.ManageVoucherpins' | translate}}&nbsp;&nbsp;{{employee.lastname}}</li>
+    </ul>
+    <div class="pull-right">
+        <a href="#/createvoucherpin" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'link.create.new.voucherpin' | translate }}</a>
+    </div>
+</div>
+
+<div class="row-fluid" ng-controller="VoucherpinController">
+    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by name">
+	<table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{ 'table.heading.id' | translate }}</th>
+                <th>{{ 'table.heading.batchName' | translate }}</th>
+                <th>{{ 'table.heading.batchDescription' | translate }}</th>
+                <th>{{ 'table.heading.length' | translate }}</th>
+                <th>{{ 'table.heading.beginWith' | translate }}</th>
+                <th>{{ 'table.heading.pinCategory' | translate }}</th>
+                <th>{{ 'table.heading.quantity' | translate }}</th>
+                <th>{{ 'table.heading.serialNo' | translate }}</th>
+                <th>{{ 'table.heading.pinType' | translate }}</th>
+                <th>{{ 'table.heading.pinValue' | translate }}</th>
+                <th>{{ 'table.heading.expiryDate' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="voucherpin in voucherpins | filter:filterText">
+                       
+                <td>{{voucherpin.id}}</td>        
+                <td>{{voucherpin.batchName}}</td>  
+                <td>{{voucherpin.batchDescription}}</td>        
+                <td>{{voucherpin.length}}</td>  
+                <td>{{voucherpin.beginWith}}</td>        
+                <td>{{voucherpin.pinCategory}}</td>  
+                <td>{{voucherpin.quantity}}</td>        
+                <td>{{voucherpin.serialNo}}</td>  
+                <td>{{voucherpin.pinType}}</td>        
+                <td>{{voucherpin.pinValue}}</td>  
+                <td>{{voucherpin.expiryDate|DateFormat}}</td>                
+            </tr>
+        </tbody>
+    </table>
+</div>

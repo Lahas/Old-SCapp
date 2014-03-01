@@ -1,0 +1,162 @@
+      <form name="createclientform" novalidate="" class="form-horizontal well" ng-controller="CreateClientController" ng-submit="submit()">
+       
+        <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+     
+        <fieldset>
+          <legend>Create client</legend>
+          <legend>{{configs.enabled}}</legend>
+        <table>
+           <tr>
+             <td>
+          
+            <div class="control-group">
+              <label class="control-label">{{'label.office' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <select ng-model="formData.officeId"  ng-options="office.id as office.name for office in offices" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <select ng-model="formData.clientCategory"  ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" value="{{clientCategoryDatas.id}}"></select>
+              </div>
+            </div>
+  		      <div class="control-group">
+              <label class="control-label" for="firstname">{{'label.firstname' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" required ng-minlength=3 late-Validate/>
+                <span  ng-show="createclientform.firstname.$invalid">
+                    <small class="error" ng-show="createclientform.firstname.$error.req">
+                        Required Field
+                    </small>
+                    <small class="error" ng-show="createclientform.firstname.$error.minlength && !createclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="middlename">{{'label.middlename' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="middlename" ng-model="formData.middlename"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="lastname">{{'label.lastname' | translate}}<span class="required">*</span></label></label>
+              <div class="controls">
+                <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/>
+                <span  ng-show="createclientform.lastname.$invalid">
+                    <small class="error" ng-show="createclientform.lastname.$error.req">
+                        Required Field
+                    </small>
+                    <small class="error" ng-show="createclientform.lastname.$error.minlength && !createclientform.lastname.$error.req">Your name is required to be at least 3 characters</small>
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="phone">{{'label.phone' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="phone" ng-model="formData.phone" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="phone"/>
+                
+           <div ng-show="createclientform.phone.$dirty && createclientform.phone.$invalid">
+              
+               <span class="error" ng-show="createclientform.phone.$error.pattern">digits only !</span>
+               <span class="error" ng-show="createclientform.phone.$error.maxlength">Exceeded max limit!</span>
+           </div>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="email">{{'label.email' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="email" ng-model="formData.email"/>
+              </div>
+            </div>
+            
+            <div class="control-group" ng-hide="configurationProperty==false">
+              <label class="control-label">Login<span class="required">*</span></label>
+              <div class="controls">
+                <input type="text" id="login" name="login" ng-model="formData.login"/>
+              </div>
+            </div>
+            
+            <!-- <div class="control-group">
+              <label class="control-label" for="licenseFree">{{'label.client.license.fee' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="licenseFree" ng-model="formData.licenseFree"/>
+              </div>
+            </div> -->
+            
+            <div class="control-group">
+              <label class="control-label" for="file">{{'label.client.select.image' | translate}}</label>
+              <div class="controls">
+                <input type="file" ng-file-select="onFileSelect($files)">
+              </div>
+            </div>
+           </td>
+           <td>
+            <div class="control-group">
+              <label class="control-label">{{'label.address1' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <input type="text" id="addressNo" ng-model="formData.addressNo"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">{{'label.street' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="street" ng-model="formData.street"/>
+              </div>
+            </div>
+  		      <div class="control-group">
+              <label class="control-label" for="city">{{'label.city' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" ng-change="getStateAndCountry(formData.city)" required />
+               
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="state">{{'label.state' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="state" ng-model="formData.state"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="country">{{'label.country' | translate}}<span class="required">*</span></label></label>
+              <div class="controls">
+                <input type="text" id="country" name="country" ng-model="formData.country" required/>
+              
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">{{'label.zipcode' | translate}}</label>
+              <div class="controls">
+                <input type="text" id="zipCode" ng-model="formData.zipCode"/>
+              </div>
+              
+            </div>
+             <datalist id="citylist">
+                   <option  data-ng-repeat="city in cities" value="{{city}}">
+             </datalist>
+             
+             <div class="control-group" ng-hide="configurationProperty==false">
+              <label class="control-label">Password<span class="required">*</span></label>
+              <div class="controls">
+                <input type="password"  ng-model="formData.password"/>
+              </div>
+            </div>
+            <!-- <div class="control-group">
+              <label class="control-label">{{'label.client.royaltytype' | translate}}<span class="required">*</span></label>
+              <div class="controls">
+                <select ng-model="formData.royaltyValue"  ng-options="rt.id as rt.mCodeValue for rt in royaltyTypes" value="{{rt.id}}"></select>
+              </div>
+            </div> -->
+           </td>
+           </tr>
+           </table> 
+            <div class="offset3">
+              <a href="#/clients"><button type="reset" class="btn">Cancel</button></a>
+              <button type="submit" ng-disabled="!createclientform.$valid" class="btn btn-primary">Save</button>
+            </div>
+        </fieldset>
+      </form>

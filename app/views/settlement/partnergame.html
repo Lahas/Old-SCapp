@@ -1,0 +1,132 @@
+<div>
+        <ul class="breadcrumb">
+          <li><a href="#/game">Game</a> <span class="divider">/</span></li>
+          <li class="active">Games Supported by Partner</li>
+        </ul>
+ </div>
+ <form class="form-horizontal well" ng-controller="CreatePartenerGameController" ng-submit="submitPartnerAgreement()">
+  <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+ <fieldset>
+<legend>Add Games Supported by Partner</legend>
+<table> 
+      <tr> 
+         <td>
+             <table>
+                    <tr>
+                      <td>
+                      		<div class="control-group">
+								<label class="control-label" for="partnerName">{{'label.partner.partnername' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+									<select ng-model="formData.partnerName" id="partnerName" ng-change="getCategory(formData.partnerName)" ng-options="pn.id as pn.partnerName for pn in partnerNames" value="{{pn.partnerName}}">
+										</select>
+									</div>
+							</div> 
+                      </td>
+                           <td>
+						       <div class="control-group">
+								 <label class="control-label" for="mediaCategory">{{'label.partner.media.category' | translate }}</label>
+									<div class="controls">
+										<input type="text" ng-model="formData.mediaCategory" id="mediaCategory" readonly/>
+										
+									</div>
+								</div>
+						 </td>
+                   </tr>
+                   <tr>
+                    <td>
+						<div class="control-group">
+							<label class="control-label" for="partnerType">{{'label.partner.type' | translate }}</label>
+							<div class="controls">
+										<input type="text" ng-model="formData.partnerType" id="partnerType" readonly/>
+										
+							</div>
+					   </div>
+					</td>
+                    <td>
+					    <div class="control-group">
+							 <label class="control-label" for="gamePlaySource">{{'label.partner.playsource' | translate }}&nbsp;<span class="required">*</span></label>
+								<div class="controls">
+									<select ng-model="formData.gamePlaySource" id="gamePlaySource" ng-options="ps.id as ps.mCodeValue for ps in gamePlaySources" value="{{ps.mCodeValue}}">
+									</select>
+								</div>
+								</div>
+						 </td>
+                   </tr>
+                   <tr>
+                   <td>
+							<div class="control-group">
+								<label class="control-label" for="royaltyValue">{{'label.partner.royalty.value' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+									<input type="text" ng-model="formData.royaltyValue" id="royaltyValue"/>										
+									</div>
+							</div>
+					</td>
+					<td>
+							<div class="control-group">
+								<label class="control-label" for="royaltyValue">{{'label.partner.royalty.sequence' | translate }}&nbsp;<span class="required">*</span></label>
+									<div class="controls">
+									<input type="text" ng-model="formData.royaltySequence" id="royaltySequence"/>										
+									</div>
+							</div>
+					</td>
+					</tr>
+			 </table>  
+		  </td>
+</tr>
+</table>
+      
+ <fieldset ng-show="hideIfChannelPartner">
+           <legend>Settlement's</legend>
+          <table id="gameTable">
+          <tr class="control-group">
+                <td>
+                    <form>
+                      <button type="button" ng-click="addGamePartner()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
+                    </form>
+                </td>
+              </tr>
+              <tr class="span2"></tr>
+           </table>
+           <table class="table" width="100%" ng-show="gameData.length>0">
+                    <tr></tr>
+                    <tr class="graybg">
+                      <th>{{'table.partner.sequence' | translate}}</th>
+                      <th>{{'table.partner.game' | translate}}</th>
+                      <th>{{'table.partner.gDate' | translate}}</th>
+                      <th>{{'table.partner.playSource' | translate}}</th>
+                       <th>{{'table.partner.price' | translate}}</th>
+                       <th>{{'table.partner.overwriteroyaltyvalue' | translate}}</th>
+                       <th></th>
+                    </tr>
+                    <tr ng-repeat="gd in gameData" >
+                      <td><input type="text" class="input-small" ng-model="gd.sequence" id="sequence" placeholder=""></td>
+                      <td><select ng-model="gd.game" id="game" class="input-medium" ng-options="cpg.id as cpg.partnerName for cpg in contentProviderGames" value="{{cpg.partnerName}}">
+					  </select></td>
+                      <td><input type="text" datepicker-pop="dd MMMM yyyy"  ng-model="gd.gDate" id="gDate" class="input-medium" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate readonly/></td>
+                      <td><select ng-model="gd.playSource" id="playSource" class="input-medium" ng-options="ps.id as ps.mCodeValue for ps in playSourceData" value="{{ps.mCodeValue}}">
+					  </select></td>
+                      <td><input type="text" ng-model="gd.price" id="price" class="input-small" /></td>
+                      <td><input type="text" class="input-small" ng-model="gd.overwriteRoyaltyValue" id="overwriteRoyaltyValue" placeholder=""></td>
+                      <td><a ng-click="removeGamePartner($index)"><i class="icon-remove icon-white"></i></a></td>
+                    </tr>
+                  </table>
+           </fieldset>
+ 
+    
+             
+
+<div class="offset3">
+            <a href="#/game"><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel' | translate}}</button></a>
+            
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
+          </div>
+
+
+
+</fieldset>
+</form>
+ 
