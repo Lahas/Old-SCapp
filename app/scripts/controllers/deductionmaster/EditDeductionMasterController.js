@@ -6,14 +6,9 @@
 		  scope.customerTypeDatas=[];
 		  scope.deductionTypeDatas=[];
 		  scope.businessDatas=[];
-		  
-		  scope.circles=[{id:1,circle:"ANDHRA PRADESH"},{id:2,circle:"DELHI"},{id:3,circle:"KARNATAKA"},{id:4,circle:"MAHARASHTRA"},
-	            		  {id:5,circle:"MADHYA PRADESH"},{id:6,circle:"REST OF INDIA"}];      		  
-		
-		  
-		  
-		  
-		  resourceFactory.mastersResource.get({id: routeParams.id,template : 'true'},function(data) {
+		  scope.stateData = [];
+	    
+		  resourceFactory.mastersResource.get({id: routeParams.id},function(data) {
 			 // scope.masterData = data;
 			 scope.formData = data;
 			 scope.formData.circle = parseInt(data.circle);
@@ -21,7 +16,7 @@
 			 scope.customerTypeDatas = data.customerTypes;
 			 scope.deductionTypeDatas = data.deductionTypeData;
 			 scope.businessDatas = data.businessCategory;
-			 scope.stateDatas = data.stateDatas;
+			 scope.stateData = data.stateDatas;
 		  });
 		  	  
 		  
