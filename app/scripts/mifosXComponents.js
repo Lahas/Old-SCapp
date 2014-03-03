@@ -228,7 +228,10 @@ define(['underscore', 'mifosX'], function() {
       'settlement/CreateInteractiveDetailController',
       'client/CreditDistributionController',
       'client/AddRevenueShareController',
-      'client/EditRevenueShareController'
+      'client/EditRevenueShareController',
+      'settlement/CurrencyRateController',
+      'settlement/CreateCurrencyRateController',
+      'settlement/EditCurrencyRateController'
       
     ],
     filters: [

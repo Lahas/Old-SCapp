@@ -2346,5 +2346,26 @@
     "validation.msg.media.settlement.interactiveDataArray.not.greater.than.zero":"please add Interactive Details",
     "validation.msg.media.settlement.contactNum.cannot.be.blank":"Contact Number cannot be blank",
     "validation.msg.media.settlement.emailId.cannot.be.blank":"Email Id cannot be blank",
-    "button.distribution" : "Distribute"					     
+    "button.distribution" : "Distribute",
+    
+    "#CurrencyRateDetails":"..........",	
+    "link.currencyrate":"CurrencyRate",
+    "label.currencyrate":"Currency Rate",
+    "link.admin.currencyrate":"CurrencyRate",
+    "label.createcurrencyrate":"Create CurrencyRate",
+    "label.editcurrencyrate":"Edit CurrencyRate",
+    "label.sourcecurrency":"Source Currency",
+    "label.targetcurrency":"Target Currency",
+    "label.exchangerate":"Exchange Rate",
+    "label.startdate":"Start Date",
+    "label.enddate":"End Date",
+    "table.heading.sourcecurrency":"Source Currency",
+    "table.heading.targetcurrency":"Target Currency",
+    "table.heading.exchangerate":"Exchange Rate",
+    "dialog.currencyrate.title.message":"Currrency Rate",
+    
+    "#CurrencyRateErrors":".....", 
+    "validation.msg.currency.sourceCurrency.cannot.be.blank":"Source Currency cannot be balank",
+    "validation.msg.currency.targetCurrency.cannot.be.blank":"Target Currency cannot be balank",
+    "validation.msg.currency.exchangeRate.cannot.be.blank":"Exchange Rate cannot be balank"						     
 }

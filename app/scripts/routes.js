@@ -900,7 +900,16 @@
          })
          .when('/editrevenushare/:id', {
              templateUrl : 'views/clients/editrevenushare.html'
-         });
+         })
+          .when('/currencyrate', {
+              templateUrl: 'views/settlement/currencyrate.html'
+        })
+         .when('/createcurrencyrate', {
+              templateUrl: 'views/settlement/createcurrencyrate.html'
+        }) 
+        .when('/editcurrencyrate/:id', {
+              templateUrl: 'views/settlement/editcurrencyrate.html'
+        });
     $locationProvider.html5Mode(false);
   };
   mifosX.ng.application.config(defineRoutes).run(function($log) {

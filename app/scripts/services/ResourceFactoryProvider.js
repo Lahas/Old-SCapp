@@ -918,8 +918,15 @@
               revenueDetails: defineResource(apiVer + "/mediasettlements/revenueShare/:clientId", {clientId: '@clientId'}, {
                   get: {method: 'GET', params: {}, isArray: true},
                   update: { method: 'PUT' }
-              })
-
+              }),
+              currencyRateResource: defineResource(apiVer + "/mediasettlements/currency/:id", {id:'@id'}, {
+                  getAllcurrency: {method: 'GET', params: {}},
+                  update: { method: 'PUT' }
+               }),
+               currencyTemplateResource: defineResource(apiVer + "/mediasettlements/currency/template", {}, {
+                    get: {method: 'GET', params: {}},
+                    update: { method: 'PUT' }
+               })
         };
       }];
     }
