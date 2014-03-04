@@ -6,6 +6,7 @@
 			  scope.customerTypeDatas = [];
 			  scope.deductionTypeDatas = [];
 			  scope.businessDatas = [];
+			  scope.stateData =[];
 			  
 			  scope.formData = {};
 			 
@@ -21,7 +22,7 @@
 		            scope.customerTypeDatas = data.customerTypes;
 		            scope.deductionTypeDatas = data.deductionTypeData;
 		            scope.businessDatas =data.businessCategory;
-		            scope.stateDatas = data.stateDatas;
+		            scope.stateData = data.stateDatas;
 		           //scope.partnerName=data.mediaSettlementPartnerName.partnerName;
 		          
 		        });

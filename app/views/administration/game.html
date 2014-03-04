@@ -418,8 +418,8 @@
            <tr ng-repeat="master in masterData | filter:filterText">
                 <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionCode}}</a></td>
                 <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionName}}</a></td>      
-                <td>{{master.business}}</td> 
-                <td>{{master.deductionType}}</td>   	             
+                <td>{{master.businessStr}}</td> 
+                <td>{{master.deductionTypeStr}}</td>   	             
             </tr> 
         </tbody>
     </table>

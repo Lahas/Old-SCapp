@@ -1,0 +1,85 @@
+      <div ng-controller="EditCurrencyRateController">
+      <div>
+        <ul class="breadcrumb">
+              <li><a href="#/currencyrate">{{'link.admin.currencyrate' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.editcurrencyrate' | translate}}</li>
+          </ul>
+      </div>
+       <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	         <div class="pull-right">
+	      <div class="btn-group">        
+	          <a ng-click="deleteCurrency()" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	  <script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.currencyrate.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+      <form class="form-horizontal well"  ng-submit="submit()">
+        <fieldset>
+          <legend>Edit CurrencyRate</legend>
+          <table>
+          <tr>
+          <td>
+          <div class="control-group">
+         <label class="control-label" for="sourceCurrency">{{ 'label.sourcecurrency' | translate }}&nbsp;<span class="required">*</span></label>
+          <div class="controls">
+         <select ng-model="formData.sourceCurrency" id="sourceCurrency" ng-options="sourceCurrency.id as sourceCurrency.code for sourceCurrency in currencyCodesData" value="{{sourceCurrency.code}}">
+           </select>
+           </div>
+        	</div></td></tr>
+        	<tr>
+          <td>
+          <div class="control-group">
+         <label class="control-label" for="targetCurrency">{{ 'label.targetcurrency' | translate }}&nbsp;<span class="required">*</span></label>
+          <div class="controls">
+         <select ng-model="formData.targetCurrency" id="targetCurrency"  ng-options="currencyCodes.id as currencyCodes.code for currencyCodes in currencyCodesData" value="{{currencyCodes.code}}">>
+         </select>
+           </div>
+        	</div></td></tr>
+        	<tr>
+        	<td>
+			<div class="control-group">
+            <label class="control-label" for="exchangeRate">{{ 'label.exchangerate' | translate }}&nbsp;<span class="required">*</span></label>
+            <div class="controls">
+              <input type="text"  ng-model="formData.exchangeRate">
+            	</div>
+          		</div>
+				</td></tr>
+			<tr><td>
+			<div class="control-group">
+		   <label class="control-label">{{ 'label.startdate' | translate }}&nbsp;<span class="required">*</span></label>
+		   <div class="controls">
+	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.startDate" is-open="opened2" min="minDate" max="'2020-06-22'" 
+		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"/>
+		  </div></div>	
+		</td></tr>	
+			<tr><td>
+			<div class="control-group">
+		   <label class="control-label">{{ 'label.enddate' | translate }}&nbsp;<span class="required">*</span></label>
+		   <div class="controls">
+	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="end.endDate" is-open="opened2" min="minDate" max="'2020-06-22'" 
+		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"/>
+		  </div></div>	
+		</td></tr>
+          </table>
+          
+          <div class="offset3">
+            <a href="#/currencyrate"><button type="reset" class="btn">Cancel</button></a>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </fieldset>
+      </form>
+</div>
