@@ -1,7 +1,7 @@
-<div ng-controller="CreateGameEventController">
+<div ng-controller="EditInteractiveDetailController">
  <div>
         <ul class="breadcrumb">
-              <li><a href="#/gameevent/{{formData.cId}}">{{'label.gameevent' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href="#/gameevent/{{cId}}">{{'label.gameevent' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.creategameevent' | translate}}</li>
           </ul>
  </div>
@@ -107,7 +107,7 @@
 						<label class="control-label" for="chargeCode">{{ 'label.eventgame.chargecode' | translate }}</label>
 						<div class="controls">
 							<select ng-model="formData.chargeCode"
-								ng-options="Cc.id as Cc.chargeDescription for Cc in chargeCodesDatas"
+								ng-options="Cc.id as Cc.chargeDescription for Cc in chargeCodeDatas"
 								value="{{Cc.chargeDescription}}" id="chargeCode">
 							</select>	
 						</div>
@@ -144,12 +144,12 @@
                          </tr>  
                          <tr ng-repeat= "ad in  interactiveData">
 		<!--   <td><select class="input-small" ng-model="formData.eventId" ng-options="data.id as data.mCodeValue for data in data"  value="{{data.id}}"></select></td> -->
-		  	<td><select class="input-small" ng-model="ad.playSource" id="playSource" ng-options="playSource.id as playSource.mCodeValue for playSource in playSources" value="{{playSource.id}}"></select></td>
-		 	 <td><input class="input-small" type="text" id="contentName" ng-model="ad.contentName"></td>
-		 	<!-- <td><select class="input-small" ng-model="ad.contentName" id="contentName" ng-options="mediaData.mediaId as mediaData.mediaTitle for mediaData in mediaDatas"  value="{{mediaData.mediaId}}"></select></td> -->
+			<td><select class="input-small" ng-model="ad.playSource" id="playSource" ng-options="playSource.id as playSource.mCodeValue for playSource in playSources" value="{{playSource.id}}"></select></td>
+			<td><input  class="input-small" type="text" id="contentName" ng-model="ad.contentName"></td>
+			<!-- <td><select class="input-small" ng-model="ad.contentName" id="contentName" ng-options="mediaData.mediaId as mediaData.mediaTitle for mediaData in mediaDatas"  value="{{mediaData.mediaId}}"></select></td> -->
 			<td><select class="input-small"ng-model="ad.contentProvider" id="contentProvider" ng-options="contentData.id as contentData.partnerName for contentData in contentDatas"  value="{{contentDatas.id}}"></select></td>
 			<td><select  class="input-small" ng-model="ad.channelName" id="channelName" ng-options="channelData.id as channelData.partnerName for channelData in channelDatas"  value="{{channelDatas.id}}"></select></td>
-        	<td><select  class="input-small"ng-model="ad.serviceName" id="serviceName" ng-options="serviceData.id as serviceData.partnerName for serviceData in serviceDatas"  value="{{serviceDatas.id}}"></select></td>
+	        <td><select  class="input-small"ng-model="ad.serviceName" id="serviceName" ng-options="serviceData.id as serviceData.partnerName for serviceData in serviceDatas"  value="{{serviceDatas.id}}"></select></td>
 		    <td><input class="input-mini" type="text" id="endUserPrice" ng-model="ad.endUserPrice"></td>
 			<td><input  class="input-mini" type="text" id="grossRevenue" ng-model="ad.grossRevenue"></td>
 			<td><input class="input-mini" type="text" id="downloads" ng-model="ad.downloads"></td>
@@ -159,7 +159,7 @@
 					</table>
 					</fieldset>
 		<div class="offset3">
-			<a href="#/gameevent/{{formData.cId}}"><button type="reset" class="btn">Cancel</button></a>
+			<a href="#/gameevent/{{cId}}"><button type="reset" class="btn">Cancel</button></a>
 			<button type="submit" class="btn btn-primary">Save</button>
 		</div>
 	</fieldset>

@@ -1,8 +1,8 @@
- <form class="form-horizontal well" ng-controller="EditRevenueShareController">
+ <form class="form-horizontal well" ng-controller="EditRevenueShareController" ng-submit="submit()">
 <div>
         <ul class="breadcrumb">
-           <li><a href="#/viewclient/{{clientId}}">Client</a> <span class="divider">/</span></li>
-          <li class="active">editrevenueshare</li>
+           <li><a href="#/viewclient/{{formData.clientId}}">Client</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.revenueshare.edit' | translate}}</li>
         </ul>
  </div>
 
@@ -20,9 +20,9 @@
                     <tr>
                       <td>
                       		<div class="control-group">
-								<label class="control-label" for="businessLine">Business Line&nbsp;<span class="required">*</span></label>
+								<label class="control-label" for="businessLine">{{'settlement.label.business.line' | translate}}&nbsp;<span class="required">*</span></label>
 									<div class="controls">
-									<select ng-model="formData.businessLine" id="partnerName"  ng-options="pn.id as pn.mCodeValue for pn in businessLineDatas" value="{{pn.partnerName}}">
+									<select ng-model="formData.businessLine" id="businessLine"  ng-options="pn.id as pn.mCodeValue for pn in businessLineDatas" value="{{pn.id}}">
 										</select>
 									</div>
 							</div> 
@@ -32,9 +32,9 @@
                    <tr>
                        <td>
 					    <div class="control-group">
-							 <label class="control-label" for="mediaCategory">Category&nbsp;<span class="required">*</span></label>
+							 <label class="control-label" for="mediaCategory">{{'settlement.label.media.category' | translate}}&nbsp;<span class="required">*</span></label>
 								<div class="controls">
-									<select ng-model="formData.mediaCategory" id="gamePlaySource" ng-options="ps.id as ps.mCodeValue for ps in mediaCategoryDatas" value="{{ps.mCodeValue}}">
+									<select ng-model="formData.mediaCategory" id="mediaCategory" ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas" value="{{mc.mCodeValue}}">
 									</select>
 								</div>
 								</div>
@@ -45,19 +45,19 @@
                    				<div class="control-group">
                      			<label class="control-label" for="revenueShareType">{{ 'label.royaltytype' | translate }}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
-                    			<select  ng-model="formData.revenueShareType" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+                    			<select  ng-model="formData.revenueShareType" id="revenueShareType" ng-change="setView(formData.revenueShareType)" ng-options="rtd.id as rtd.mCodeValue for rtd in royaltyTypeDatas" value="{{rtd.id}}">
                     			</select>
                   				</div>
                  				</div>
                    		</td>
                    </tr>
                    
-                   <tr ng-show='formData.revenueShareType==145'>
+                   <tr ng-show='showFlat'>
                    		<td>
                    				<div  class="control-group">
-                     			<label class="control-label" for="flat">Flat&nbsp;<span class="required">*</span></label>
+                     			<label class="control-label" for="flat">{{'settlement.label.flat' | translate}}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
-                    			<input type="text"  ng-model="formData.flat" value=""/>
+                    			<input type="text"  ng-model="formData.flat" ng-change="clearPercentageData()"/>
                     			</div>
                  				</div>
                    		</td>
@@ -67,7 +67,7 @@
 </tr>
 </table>
       
- <fieldset ng-show="formData.revenueShareType==144">
+ <fieldset ng-show="showPercentage">
            <legend>Percentage</legend>
           <table id="gameTable">
           <tr class="control-group">
@@ -91,9 +91,9 @@
                     </tr>
                     <tr ng-repeat="gd in revenueData" >
                       
-                      <td><input type="text" class="input-small" ng-model="gd.startValue" id="startValue" placeholder=""></td>
-                      <td><input type="text" class="input-small" ng-model="gd.endValue" id="endValue" placeholder=""></td>                  
-                      <td><input type="text" ng-model="gd.percentage" id="percentage" class="input-small" /></td>
+                      <td><input type="text" class="input-small" ng-change="clearFlatData()" ng-model="gd.startValue" id="startValue" placeholder=""></td>
+                      <td><input type="text" class="input-small" ng-change="clearFlatData()" ng-model="gd.endValue" id="endValue" placeholder=""></td>                  
+                      <td><input type="text" ng-model="gd.percentage" ng-change="clearFlatData()" id="percentage" class="input-small" /></td>
         
                       <td><a ng-click="removePercentage($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
@@ -103,15 +103,9 @@
     
              
 
-		  <div class="offset3" ng-show='formData.revenueShareType==145'>
-            <a href="#/viewclient/:clientId"><button type="reset" class="btn" >{{'button.cancel' | translate}}</button></a>
-            
-            <button type="submit" ng-click="submitFlatData()" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-          <div class="offset3" ng-show='formData.revenueShareType==144'>
-            <a href="#/viewclient/:clientId"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
-            
-            <button type="submit" ng-click="submitPercentageData()" class="btn btn-primary">{{'label.save' | translate}}</button>
+		  <div class="offset3">
+            <a href="#/viewclient/{{formData.clientId}}"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'label.update' | translate}}</button>
           </div>
 
 

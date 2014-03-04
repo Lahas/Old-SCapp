@@ -226,6 +226,7 @@ define(['underscore', 'mifosX'], function() {
       'settlement/GameEventController',
       'settlement/CreateGameEventController',
       'settlement/CreateInteractiveDetailController',
+      'settlement/EditInteractiveDetailController',
       'client/CreditDistributionController',
       'client/AddRevenueShareController',
       'client/EditRevenueShareController'

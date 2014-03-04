@@ -20,11 +20,16 @@
 	            
 	            scope.businessLineDatas = data.businessLineData;
 	            scope.mediaCategoryDatas = data.mediaCategoryData;
-	            scope.playSourceDatas = data.playSourceData;
-	            scope.chargeCodesDatas = data.chargeCodesData;
+	            scope.playSources = data.playSourceData;
+	            scope.chargeCodesDatas = data.chargeCodeData;
+	            scope.contentDatas = data.contentData;
+	            scope.channelDatas = data.channelData;
+	            scope.serviceDatas = data.serviceData;
+	            
+	            
 	        });
 	        
-	        resourceFactory.interactivedetailTemplateResource.getTemplate({id : routeParams.id},function(data) {
+	       /* resourceFactory.interactivedetailTemplateResource.getTemplate({id : routeParams.id},function(data) {
 		        
 	        	scope.mediaDatas = data.mediaData;
 	        	scope.playSources=data.playSourceData;
@@ -33,7 +38,7 @@
 	            scope.channelDatas = data.channelData;
 	            scope.eventDatas = data.eventData;
 	          
-	        });
+	        });*/
 	        
 	        
 	        scope.addInteractiveDetails = function(){

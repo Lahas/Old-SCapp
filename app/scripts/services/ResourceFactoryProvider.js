@@ -910,7 +910,8 @@
               get: {method: 'GET', params: {}}
                }),
              revenueResource: defineResource(apiVer + "/mediasettlements/revenue/:clientId", {clientId: '@clientId'}, {
-              get: {method: 'GET', params: {}}
+              get: {method: 'GET', params: {}},
+              update: {method: 'PUT', params: {}}
               }),
              revenueResourceEdit: defineResource(apiVer + "/mediasettlements/revenueShare/edit/:id", {id:'@id'}, {
               get: {method: 'GET', params: {}}

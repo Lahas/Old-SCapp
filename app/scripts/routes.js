@@ -886,8 +886,8 @@
          .when('/creategameevent/:id',{
         	 templateUrl: 'views/settlement/creategameevent.html'
          })
-         .when('/createinteractivedetail/:id',{
-        	 templateUrl: 'views/settlement/createinteractivedetail.html'
+         .when('/editinteractivedetail/:id',{
+        	 templateUrl: 'views/settlement/editinteractivedetail.html'
          })
          .when('/creditDistribution/:id', {
 	        templateUrl : 'views/clients/creditDistribution.html'
