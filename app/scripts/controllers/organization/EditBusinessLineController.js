@@ -86,8 +86,7 @@
 								this.formData.categoryData = temp;
 								resourceFactory.businessLineEditResource.update({eventId: routeParams.id},
 										this.formData, function(data) {
-											location.path('/viewbusinessline/'
-													+ data.resourceId);
+											location.path('/businessline');
 										});
 							};
 						}
