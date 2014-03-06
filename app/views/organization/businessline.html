@@ -1,0 +1,35 @@
+<div>
+
+	<ul class="breadcrumb">
+		<li><a href="#/organization">{{'link.admin.organisation' | translate}}</a> <span class="divider">/</span></li>
+		<li class="active">BusinessLine</li>
+	</ul>
+	<div class="pull-right">
+		<a href="#/createBusinessLine" class="btn btn-primary"><i class="icon-plus icon-white"></i> {{ 'lable.createbusinessline' | translate }}</a>
+	</div>
+</div>
+<div class="row-fluid" ng-controller="BusinessLineController">
+	<input ng-model="filterText" type="text" class="span marginbottom0px">
+	<table class="table">
+		<thead>
+			<tr class="graybg">
+			    <th>{{'label.event.id' | translate}}</th>
+				<th>{{'label.event.eventcode' | translate}}</th>
+				<th>{{'label.event.eventdescription' | translate}}</th>
+				<th>{{'label.event.chargecode' | translate}}</th>					
+				<th>{{ 'label.event.status' | translate }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="pointer-main" ng-repeat="event in events | filter:filterText">
+			    <td class="pointer" data-ng-click="routeTo(event.id)">{{event.id}}</td>
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventName}}</td>
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.eventDescription}}</td>
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.chargeCode}}</td>				
+				<td class="pointer" data-ng-click="routeTo(event.id)">{{event.status}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	
+	

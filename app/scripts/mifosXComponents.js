@@ -232,7 +232,11 @@ define(['underscore', 'mifosX'], function() {
       'client/EditRevenueShareController',
       'settlement/CurrencyRateController',
       'settlement/CreateCurrencyRateController',
-      'settlement/EditCurrencyRateController'
+      'settlement/EditCurrencyRateController',
+      'organization/BusinessLineController',
+      'organization/ViewBusinessLineController',
+      'organization/CreateBusinessLineController',
+      'organization/EditBusinessLineController'
       
     ],
     filters: [

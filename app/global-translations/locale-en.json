@@ -1725,7 +1725,7 @@
   "label.active":"Active",
   "label.event.startdate":"Start Date",
   "label.event.enddate":"End Date",
-  "label.event.chargedata":"ChargeData",
+  "label.event.chargedata":"Charge Code",
   "label.event.eventvalidity":"Event Validity",
   "label.availablemedia":"Available Media",
   "label.selectedmedia":"Selected Media Services",
@@ -2358,7 +2358,7 @@
     "validation.msg.media.settlement.dataUploadedDate.cannot.be.blank":"Data Upload Date cannot be blank",
 	"validation.msg.revenueShare.startValue.cannot.be.blank":"Start Value cannot be blank",
 	"validation.msg.revenueShare.endValue.cannot.be.blank":"End Value cannot be blank",
-	"validation.msg.revenueShare.percentage.cannot.be.blank":"Percentage cannot be blank"    					     
+	"validation.msg.revenueShare.percentage.cannot.be.blank":"Percentage cannot be blank",    					     
     "button.distribution" : "Distribute",
     
     "#CurrencyRateDetails":"..........",	
@@ -2380,5 +2380,21 @@
     "#CurrencyRateErrors":".....", 
     "validation.msg.currency.sourceCurrency.cannot.be.blank":"Source Currency cannot be balank",
     "validation.msg.currency.targetCurrency.cannot.be.blank":"Target Currency cannot be balank",
-    "validation.msg.currency.exchangeRate.cannot.be.blank":"Exchange Rate cannot be balank"						     
+    "validation.msg.currency.exchangeRate.cannot.be.blank":"Exchange Rate cannot be balank",
+    
+    "#Business Line datas":"",
+	"label.event.chargecode":"ChargeCode",
+	"lable.createbusinessline":"Create BusinessLine",
+	"label.availablecategory":"Available Categories",
+	"label.selectedcategory":"Selected Categories",
+	"label.createbusinessline":"createbusinessline",
+	"label.businessline":"businessline",
+	"label.editbusinessline":"Edit BusinessLine",
+	"lable.viewbusinessline":"viewbusinessline",
+	
+	
+	"validation.msg.businessline.eventName.cannot.be.blank":"Event code cannot be blank",
+	"validation.msg.businessline.chargeCode.cannot.be.blank":"Charge code cannot be blank",
+	"validation.msg.businessline.status.cannot.be.blank":"Please select status",
+	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category"						     
 }
