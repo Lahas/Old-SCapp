@@ -19,7 +19,7 @@
 		  scope.submit = function(){
 			  			  
 			  scope.formData.locale = 'en';
-			  
+			   
 			  resourceFactory.editOperatorDeductionResource.update({id:routeParams.id},scope.formData,function(data){
 				  location.path("/viewclient/"+scope.formData.clientId);
 			  });

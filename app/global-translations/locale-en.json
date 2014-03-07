@@ -2396,5 +2396,9 @@
 	"validation.msg.businessline.eventName.cannot.be.blank":"Event Code cannot be blank",
 	"validation.msg.businessline.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
 	"validation.msg.businessline.status.cannot.be.blank":"Please select status",
-	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category"						     
+	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category",
+	"validation.msg.revenueShare.businessLine.cannot.be.blank":"Business Line cannot be blank",
+	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
+	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
+	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank"						     
 }
