@@ -914,8 +914,17 @@
                 update: {method: 'PUT', params: {}}
              }),
              revenueResourceEdit: defineResource(apiVer + "/mediasettlements/revenueShare/edit/:id", {id:'@id'}, {
-                get: {method: 'GET', params: {}}
-             }),
+              get: {method: 'GET', params: {}}
+              }),
+             editpartnerAgreementDatasDetails: defineResource(apiVer+ "/mediasettlements/parrtnerAgreementMediaC/:clientId",{clientId : '@clientId'},{
+             	 get: {method: 'GET', params: {}},
+             	 update: {method: 'PUT', params: {}}
+              }),
+              getmediaDetailsData: defineResource(apiVer+ "/mediasettlements/parrtnerAgreementMediaC",{agmtId:'@agmtId', mediaCategory:'@mediaCategory' ,partnerType: '@partnerType'},{
+             	 get: {method: 'GET', params: {}  }
+             	
+              }),
+
              revenueDetails: defineResource(apiVer + "/mediasettlements/revenueShare/:clientId", {clientId: '@clientId'}, {
                 get: {method: 'GET', params: {}, isArray: true},
                 update: { method: 'PUT' }

@@ -14,6 +14,7 @@
 			  scope.minDate=new Date();
 			  
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
+			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];
 			  
 			  scope.onFileSelect = function($files) {
 			        scope.file = $files[0];
@@ -58,7 +59,8 @@
 				  			
 				      });
 				  };*/
-		        
+		       
+			  
 				  scope.tabStatus = function(){
 			        	
 			    	   webStorage.add("currentTab", {tab: "agreement" });
@@ -75,7 +77,8 @@
 		            this.formData.endDate = reqDate2;
 		            
 		            http.uploadFile({
-		              url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
+		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
+		            //	url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
 		              data: scope.formData,
 		              file: scope.file
 		            }).then(function(data) {

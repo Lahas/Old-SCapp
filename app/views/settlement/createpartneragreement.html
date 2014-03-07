@@ -9,6 +9,7 @@
 
 	 <fieldset>
 	 <legend>Partner Agreement</legend>
+	 <div>
 	 <table>
 	 <tr><td>
           <div class="control-group">
@@ -20,19 +21,6 @@
 			</div> 
 			</td>
 			<td>
-               	<div class="control-group">
-	            	<label class="control-label" for="mediaCategory">Media Category&nbsp;<span class="required">*</span></label>
-	            	<div class="controls">
-	              	<select ng-model="formData.mediaCategory"  ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" >
-	             	 </select>
-	           		 </div>
-	      		 </div>
-          </td>
-		</tr>
-	 
-	 	<tr>
-
- 		<td>
 	 	   <div class="control-group">
 	            <label class="control-label" for="partnerType">Partner Type&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
@@ -41,8 +29,8 @@
 	            </div>
 	       </div>
 	       </td>
-          </tr>
-	     
+		</tr>
+	 	     
 		<tr><td>	
           <div class="control-group">
 	            <label class="control-label" for="agreementType">Agreement Type&nbsp;<span class="required">*</span></label>
@@ -52,17 +40,7 @@
 	            </div>
 	       </div>
 	   </td>
-	   <td>	
-          <div class="control-group">
-	            <label class="control-label" for="playSource">Play Source&nbsp;<span class="required">*</span></label>
-	            <div class="controls">
-	              <select ng-model="formData.playSource"  ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}">
-	              </select>
-	            </div>
-	       </div>
-	   </td>
-	   </tr>	
-		<tr><td>
+	   <td>
 	       
 	       <div class="control-group">
 	            <label class="control-label" for="agreementCategory">Agreement Category&nbsp;<span class="required">*</span></label>
@@ -72,16 +50,10 @@
 	            </div>
 	       </div>
 	     </td>
-	     <td>
-	     <div class="control-group">
-            <label class="control-label" for="royaltyShare">Royalty Share</label>
-            <div class="controls">
-              <input type="text" id="royaltyShare" ng-model="formData.royaltyShare">
-            </div>
-          </div>
-	     </td>
-	     </tr>
-	     <tr>
+	   
+	   </tr>	
+		
+	     <tr><td></td>
 	     <td>
 	     <div ng-show="mgAmount" class="control-group">
             <label class="control-label"  for="requiredValue">MG Amount&nbsp;<span class="required">*</span></label>
@@ -101,18 +73,7 @@
 	            </div>
 	       </div>
 	     </td>
-	     <td>
-	     <div class="control-group">
-            <label class="control-label" for="royaltySequence">Royalty Sequence</label>
-            <div class="controls">
-              <select  id="royaltySequence" ng-model="formData.royaltySequence" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" >
-            </select>
-            </div>
-          </div>
-	     </td>
-	     </tr>	
-	     
-	     <tr><td>
+	    <td>
 	       
 	       <div class="control-group">
 	            <label class="control-label" for="settlementSource">Settlement Source&nbsp;<span class="required">*</span></label>
@@ -133,8 +94,7 @@
             </div>	
           </div>
       
-      </td></tr>	
-		<tr><td>
+      </td><td>
       				  
       		<div class="control-group">
             <label class="control-label" for="endDate">Contr Termi Date&nbsp;<span class="required">*</span></label>
@@ -145,7 +105,7 @@
           </div>
       
       </td></tr>	
-		<tr><td>
+		<tr><td></td><td>
       				  
       		<div class="control-group">
               <label class="control-label" for="file">Agreement Doc</label>
@@ -155,8 +115,70 @@
              </div> 
              
       </td></tr>	
-</table>
-               
+     </table>
+     </div> 
+      
+               	<div class="control-group">
+	            	<label class="control-label" for="mediaCategory">Media Category&nbsp;<span class="required">*</span></label>
+	            	<div class="controls">
+	              	<select ng-model="formData.mediaCategory"  ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" >
+	             	 </select>
+	           		 </div>
+	      		 </div>
+         
+        <div>
+        <table>
+        
+        		<tr class="graybg">
+                      <th>Play Source</th>
+                      <th>Royalty Share</th>
+                      <th>Royalty Sequence</th>
+                      <th>Status</th>
+                    </tr>
+        		 
+        		 <tr  >
+        		 <td><select ng-model="formData.playSource" id="game" class="input-medium" ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}">
+					  </select></td>
+        		 <td><input type="text" id="royaltyShare" ng-model="formData.royaltyShare"></td>
+				 <td><select  id="royaltySequence" ng-model="formData.royaltySequence" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" >
+            	</select></td>	  
+        		 <td><select  id="status" ng-model="formData.status" ng-options="s.id as s.value for s in statusDatas" value="{{s.id}}" >
+            	</select></td>
+        		 </tr>
+        		 
+			</table>
+    	</div>           
+        
+        
+        <!-- <tr>  
+          <td>	
+          <div class="control-group">
+	            <label class="control-label" for="playSource">Play Source&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.playSource"  ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	   </td>
+	   
+	   	<td>
+	     <div class="control-group">
+            <label class="control-label" for="royaltyShare">Royalty Share</label>
+            <div class="controls">
+              <input type="text" id="royaltyShare" ng-model="formData.royaltyShare">
+            </div>
+          </div>
+	     </td>
+	     
+	     <td>
+	     <div class="control-group">
+            <label class="control-label" for="royaltySequence">Royalty Sequence</label>
+            <div class="controls">
+              <select  id="royaltySequence" ng-model="formData.royaltySequence" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" >
+            </select>
+            </div>
+          </div>
+	    </td> -->
           
            <div class="offset3">
             <a href="#/game" ><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel'| translate}}</button></a>
