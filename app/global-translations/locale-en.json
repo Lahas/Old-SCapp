@@ -2393,8 +2393,8 @@
 	"lable.viewbusinessline":"viewbusinessline",
 	
 	
-	"validation.msg.businessline.eventName.cannot.be.blank":"Event code cannot be blank",
-	"validation.msg.businessline.chargeCode.cannot.be.blank":"Charge code cannot be blank",
+	"validation.msg.businessline.eventName.cannot.be.blank":"Event Code cannot be blank",
+	"validation.msg.businessline.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
 	"validation.msg.businessline.status.cannot.be.blank":"Please select status",
 	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category"						     
 }
