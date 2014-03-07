@@ -24,7 +24,7 @@
 		  }); 
 		  
 		  scope.getCategory=function(pName){
-			  console.log(pName);
+			  
 			  resourceFactory.getCategoryAndPartner.get({partnerName: pName},function(data) {
 		  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategory;
 		  			scope.formData.partnerType = data.partnerTypeData.partnerType;
@@ -52,7 +52,7 @@
 												overwriteRoyaltyValue : scope.partnerGameAttributes.overwriteRoyaltyValue == undefined ? scope.formData.royaltyValue:scope.partnerGameAttributes.overwriteRoyaltyValue,
 												sequence : scope.partnerGameAttributes.sequence=scope.counter 
 											});
-	        	console.log("now : "+scope.partnerGameAttributes.overwriteRoyaltyValue);
+	        	
 	        	scope.partnerGameAttributes.game = undefined;
 				scope.partnerGameAttributes.gDate = undefined;
 				scope.partnerGameAttributes.playSource = undefined;
@@ -66,16 +66,16 @@
 	        		scope.counter = scope.counter-1;
 	        	}
 	        	scope.gameData.splice(index,1);
-	        	//console.log("Remove Game Media: "+scope.counter);	
+	        		
 	        };
 		  
 		  scope.submitPartnerAgreement = function(){
-			  console.log("submiting form");
-			  console.log(scope.gameData.length);
+			  
+			  
 			  scope.formData.gameMediaPartnerData = new Array();
 			  if(scope.gameData.length>0){
 	        		for(var i in scope.gameData){
-	        			//console.log("i: "+i);
+	        			
 	        			scope.formData.gameMediaPartnerData.push({
 							game : scope.gameData[i].game,
 							gDate : dateFilter(scope.gameData[i].gDate,"dd MMMM yyyy"),
@@ -88,8 +88,8 @@
 	        			});
 	        		}
 	        	}
-			  console.log(JSON.stringify(scope.formData));
-			  console.log("this is submit function ..!");
+			  
+			  
 			  delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;
 			  webStorage.add("currentTab", {tab: "game" });

@@ -1,8 +1,8 @@
- <form class="form-horizontal well" ng-controller="AddRevenueShareController">
+ <form class="form-horizontal well" ng-controller="AddRevenueShareController" ng-submit="submit()">
 <div>
         <ul class="breadcrumb">
-           <li><a href="#/viewclient/{{clientId}}">Client</a> <span class="divider">/</span></li>
-          <li class="active">createrevenueshare</li>
+           <li><a href="#/viewclient/{{clientId}}">{{'link.view.client' |  translate}}</a> <span class="divider">/</span></li>
+          <li class="active">{{'label.revenueshare.create' | translate}}</li>
         </ul>
  </div>
 
@@ -20,7 +20,7 @@
                     <tr>
                       <td>
                       		<div class="control-group">
-								<label class="control-label" for="businessLine">Business Line&nbsp;<span class="required">*</span></label>
+								<label class="control-label" for="businessLine">{{'settlement.label.business.line' | translate}} &nbsp;<span class="required">*</span></label>
 									<div class="controls">
 									<select ng-model="formData.businessLine" id="partnerName"  ng-options="pn.id as pn.mCodeValue for pn in businessLineDatas" value="{{pn.partnerName}}">
 										</select>
@@ -32,7 +32,7 @@
                    <tr>
                        <td>
 					    <div class="control-group">
-							 <label class="control-label" for="mediaCategory">Category&nbsp;<span class="required">*</span></label>
+							 <label class="control-label" for="mediaCategory">{{'settlement.label.media.category' | translate}}&nbsp;<span class="required">*</span></label>
 								<div class="controls">
 									<select ng-model="formData.mediaCategory" id="gamePlaySource" ng-options="ps.id as ps.mCodeValue for ps in mediaCategoryDatas" value="{{ps.mCodeValue}}">
 									</select>
@@ -43,19 +43,19 @@
                    <tr>
                    		<td>
                    				<div class="control-group">
-                     			<label class="control-label" for="revenueShareType">{{ 'label.royaltytype' | translate }}&nbsp;<span class="required">*</span></label>
+                     			<label class="control-label" for="revenueShareType">{{ 'settlement.label.royaltytype' | translate }}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
-                    			<select  ng-model="formData.revenueShareType" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+                    			<select  ng-model="formData.revenueShareType" ng-change="setView(formData.revenueShareType)" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
                     			</select>
                   				</div>
                  				</div>
                    		</td>
                    </tr>
                    
-                   <tr ng-show='formData.revenueShareType==145'>
+                   <tr ng-show="showFlat">
                    		<td>
                    				<div  class="control-group">
-                     			<label class="control-label" for="flat">Flat&nbsp;<span class="required">*</span></label>
+                     			<label class="control-label" for="flat">{{'settlement.label.flat' | translate}}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
                     			<input type="text"  ng-model="formData.flat" value=""/>
                     			</div>
@@ -67,7 +67,7 @@
 </tr>
 </table>
       
- <fieldset ng-show="formData.revenueShareType==144">
+ 		<fieldset ng-show="showPercentage">
            <legend>Percentage</legend>
           <table id="gameTable">
           <tr class="control-group">
@@ -83,18 +83,16 @@
                     <tr></tr>
                     <tr class="graybg">
                       
-                      <th>StartValue</th>
-                      <th>EndValue</th>
-                      <th>Percentage</th>
+                      <th>{{'table.heading.revenueshare.startvalue' | translate}}</th>
+                      <th>{{'table.heading.revenueshare.endvalue' | translate}}</th>
+                      <th>{{'table.heading.revenueshare.percentage' | translate}}</th>
                      	
                        <th></th>
                     </tr>
                     <tr ng-repeat="gd in revenueData" >
-                      
-                      <td><input type="text" class="input-small" ng-model="gd.startValue" id="startValue" placeholder=""></td>
-                      <td><input type="text" class="input-small" ng-model="gd.endValue" id="endValue" placeholder=""></td>                  
-                      <td><input type="text" ng-model="gd.percentage" id="percentage" class="input-small" /></td>
-        
+                      <td><input type="text" class="input-mini" ng-model="gd.startValue" id="startValue" placeholder=""></td>
+                      <td><input type="text" class="input-mini" ng-model="gd.endValue" id="endValue" placeholder=""></td>                  
+                      <td><input type="text" class="input-mini" ng-model="gd.percentage" id="percentage" /></td>
                       <td><a ng-click="removePercentage($index)"><i class="icon-remove icon-white"></i></a></td>
                     </tr>
                   </table>
@@ -102,16 +100,9 @@
  
     
              
-
-		  <div class="offset3" ng-show='formData.revenueShareType==145'>
-            <a href="#/viewclient/:clientId"><button type="reset" class="btn" >{{'button.cancel' | translate}}</button></a>
-            
-            <button type="submit" ng-click="submitFlatData()" class="btn btn-primary">{{'label.save' | translate}}</button>
-          </div>
-          <div class="offset3" ng-show='formData.revenueShareType==144'>
+          <div class="offset3">
             <a href="#/viewclient/:clientId"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
-            
-            <button type="submit" ng-click="submitPercentageData()" class="btn btn-primary">{{'label.save' | translate}}</button>
+            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
 
 

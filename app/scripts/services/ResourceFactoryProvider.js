@@ -849,85 +849,100 @@
                 update: {method: 'PUT', params: {}}
              }),
              partnerAgreementResource: defineResource(apiVer + "/mediasettlements/partneragreement", {}, {
-           	  getAllfiles: {method: 'GET', params: {}},
-           	  update: {method: 'PUT', params: {}}
+           	    getAllfiles: {method: 'GET', params: {}},
+           	    update: {method: 'PUT', params: {}}
              }),
              editpartnerAgreementResource: defineResource(apiVer+"/mediasettlements/:documentId/attachment", {documentId:'@documentId'}, {
-           	  getAllfiles: {method: 'GET', params: {documentId:'@documentId'}},
-           	  update: {method: 'PUT', params: {}}
+           	    getAllfiles: {method: 'GET', params: {documentId:'@documentId'}},
+           	    update: {method: 'PUT', params: {}}
              }),
              getPartnerName: defineResource(apiVer+ "/mediasettlements/partnername",{partnertype: '@partnertype',mediaCategory:'@mediaCategory'},{
-            	 get: {method: 'GET', params: {}, isArray: true }
-            	
+            	get: {method: 'GET', params: {}, isArray: true }
              }),
              getDisbursementsData: defineResource(apiVer+ "/mediasettlements/disbursements",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId'},{
-            	 get: {method: 'GET', params: {}  }
-            	
+            	get: {method: 'GET', params: {}  }
              }),
              getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall",{},{
-            	 get: {method: 'GET', params: {}  }
-            	
+            	get: {method: 'GET', params: {}  }
              }),
              mastersTemplateResource: defineResource(apiVer + "/deductionmaster/template", {}, {
-                 getTemplate: {method: 'GET', params: {}},
-                 update: {method: 'PUT', params: {}}
+                getTemplate: {method: 'GET', params: {}},
+                update: {method: 'PUT', params: {}}
              }),
              payInvoiceTemplateResource: defineResource(apiVer + "/invoice/:invoiceId",{invoiceId: '@invoiceId'},  {
-           	  getPayInvoices: { method: 'GET', params: {},isArray: true }
-            	  
+           	    getPayInvoices: { method: 'GET', params: {},isArray: true }  
              }),
              mastersResource: defineResource(apiVer + "/deductionmaster/:id", {id: '@id'}, {
-            	 getAllmaster: {method: 'GET', params: {}},
-                 update: { method: 'PUT' }
+            	getAllmaster: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
              }),
              editsettlementSequenceDataDetails: defineResource(apiVer+ "/mediasettlements/settlementSequenceData",{},{
-            	 get: {method: 'GET', params: {}},
-            	 update: {method: 'PUT', params: {}}
+            	get: {method: 'GET', params: {}},
+            	update: {method: 'PUT', params: {}}
              }),
              royaltyResource: defineResource(apiVer + "/mediasettlements/client/:clientId", {clientId: '@clientId'}, {
-                 get: {method: 'GET', params: {}, isArray: true},
-                 update: { method: 'PUT' }
+                get: {method: 'GET', params: {}, isArray: true},
+                update: { method: 'PUT' }
              }),
              createGameEventResource: defineResource(apiVer +"/mediasettlements/creategameevent/:cId",{cId: '@cId'},{
-            	 getGameHeaderData: {method: 'GET', params:{},isArray: false},
-            	 get: {method: 'GET', params:{},isArray: true}
+            	getGameHeaderData: {method: 'GET', params:{},isArray: false},
+            	get: {method: 'GET', params:{},isArray: true}
              }),
              interactivedetailTemplateResource: defineResource(apiVer + "/mediasettlements/interactive/:id",{id: '@id'}, {
-                 getTemplate: {method: 'GET', params: {}},
-                 update: { method: 'PUT' }
+                getTemplate: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
              }),
              interactiveResource: defineResource(apiVer + "/mediasettlements/interactive/:eventId", {eventId: '@eventId'}, {
-               get: {method: 'GET', params: {}},
-               update: { method: 'PUT' }
+                get: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
              }),
              creditDistributionTemplateResource: defineResource(apiVer + "/creditdistributions/template/:clientId",{clientId:'@clientId'},  {
-           	  get: { method: 'GET', params: {}}
+           	    get: { method: 'GET', params: {}}
              }),
              creditDistributionResource: defineResource(apiVer + "/creditdistributions/:clientId",{clientId:'@clientId'}, {
-           	  get: { method: 'POST', params: {}}  
+           	    get: { method: 'POST', params: {}}  
              }),
              revenueResourceTemplate: defineResource(apiVer + "/mediasettlements/revenuesettlement/template?rvData=1", {}, {
-              get: {method: 'GET', params: {}}
-               }),
+                get: {method: 'GET', params: {}}
+             }),
              revenueResource: defineResource(apiVer + "/mediasettlements/revenue/:clientId", {clientId: '@clientId'}, {
-              get: {method: 'GET', params: {}}
-              }),
+                get: {method: 'GET', params: {}},
+                update: {method: 'PUT', params: {}}
+             }),
              revenueResourceEdit: defineResource(apiVer + "/mediasettlements/revenueShare/edit/:id", {id:'@id'}, {
               get: {method: 'GET', params: {}}
               }),
-              revenueDetails: defineResource(apiVer + "/mediasettlements/revenueShare/:clientId", {clientId: '@clientId'}, {
-                  get: {method: 'GET', params: {}, isArray: true},
-                  update: { method: 'PUT' }
-              }),
-              editpartnerAgreementDatasDetails: defineResource(apiVer+ "/mediasettlements/parrtnerAgreementMediaC/:clientId",{clientId : '@clientId'},{
+             editpartnerAgreementDatasDetails: defineResource(apiVer+ "/mediasettlements/parrtnerAgreementMediaC/:clientId",{clientId : '@clientId'},{
              	 get: {method: 'GET', params: {}},
              	 update: {method: 'PUT', params: {}}
               }),
               getmediaDetailsData: defineResource(apiVer+ "/mediasettlements/parrtnerAgreementMediaC",{agmtId:'@agmtId', mediaCategory:'@mediaCategory' ,partnerType: '@partnerType'},{
              	 get: {method: 'GET', params: {}  }
              	
-              })
+              }),
 
+             revenueDetails: defineResource(apiVer + "/mediasettlements/revenueShare/:clientId", {clientId: '@clientId'}, {
+                get: {method: 'GET', params: {}, isArray: true},
+                update: { method: 'PUT' }
+             }),
+             currencyRateResource: defineResource(apiVer + "/mediasettlements/currency/:id", {id:'@id'}, {
+                getAllcurrency: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
+             }),
+             currencyTemplateResource: defineResource(apiVer + "/mediasettlements/currency/template", {}, {
+                get: {method: 'GET', params: {}},
+                update: { method: 'PUT' }
+             }),
+             businessLineResource: defineResource(apiVer + "/businessline",{},  {
+             	get: {method: 'GET', params: {}, isArray:true }
+             }),
+             businessLineEditResource: defineResource(apiVer + "/businessline/:eventId",{eventId:'@eventId'},  {
+           	    get: {method: 'GET', params: {} },
+                update: {method: 'PUT'}
+             }),
+             businessLineTemplateResource: defineResource(apiVer + "/businessline/template",{},  {
+                get: {method: 'GET', params: {}}
+             })
         };
       }];
     }

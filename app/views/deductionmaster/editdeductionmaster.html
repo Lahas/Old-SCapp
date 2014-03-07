@@ -61,7 +61,7 @@
 	 	   <div class="control-group">
 	            <label class="control-label" for="deductionType">{{'label.master.deductiontype' | translate }}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.deductionType"  ng-options="deductionTypeData.mCodeValue as deductionTypeData.mCodeValue for deductionTypeData in deductionTypeDatas" value="{{deductionTypeData.id}}">
+	              <select ng-model="formData.deductionType" id="deductionType" ng-options="deductionTypeData.id as deductionTypeData.mCodeValue for deductionTypeData in deductionTypeDatas" value="{{deductionTypeData.mCodeValue}}">
 	              </select>
 	            </div>
 	       </div>
@@ -78,7 +78,7 @@
              <div class="control-group">
                   <label class="control-label" for="levelApplicable">{{ 'label.master.levelApplicable' | translate }}&nbsp;<span class="required">*</span></label>
                  <div class="controls">
-                			<select ng-model="formData.levelApplicable"  ng-options="levelApplicables.mCodeValue as levelApplicables.mCodeValue for levelApplicables in categoryDatas" value="{{levelApplicables.id}}"></select>
+                			<select ng-model="formData.levelApplicable" id="levelApplicable" ng-options="levelApplicables.id as levelApplicables.mCodeValue for levelApplicables in categoryDatas" value="{{levelApplicables.mCodeValue}}"></select>
               				</div>
              </div>
                 </td></tr>
@@ -86,11 +86,11 @@
                 <div class="control-group">
                   <label class="control-label" for="circle">{{ 'label.master.circle' | translate }}</label>
                   <div class="controls">
-                    <select  ng-model="formData.circle" ng-change="getTableData(formData.circle)" ng-options="c.id as c.stateName for c in stateDatas" value="{{c.id}}"></select>
+                    <select  ng-model="formData.circle" id="circle" ng-options="stateDatas.id as stateDatas.stateName for stateDatas in stateData" value="{{stateDatas.stateName}}"></select>
                   </div>
                 </div></td>
               </tr>
-               <tr><td>
+              <!--  <tr><td>
                 <div class="control-group">
                   <label class="control-label" for="customerType">{{ 'label.master.customertype' | translate }}&nbsp;<span class="required">*</span></label>
                   <div class="controls">
@@ -99,12 +99,12 @@
                   </div>
                 </div>
                 </td>
-              </tr>
+              </tr> -->
 		           <tr><td>
                 <div class="control-group">
                   <label class="control-label" for="business">Business&nbsp;<span class="required">*</span></label>
                   <div class="controls">
-                    <select  ng-model="formData.business"ng-options="businessCategory.mCodeValue as businessCategory.mCodeValue for businessCategory in businessDatas" value="{{businessCategory.id}}">
+                    <select  ng-model="formData.business" id="business" ng-options="businessCategory.id as businessCategory.mCodeValue for businessCategory in businessDatas" value="{{businessCategory.mCodeValue}}">
                     </select>
                   </div>
                 </div>

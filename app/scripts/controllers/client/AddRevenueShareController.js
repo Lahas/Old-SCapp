@@ -3,17 +3,20 @@
 		  AddRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams) {
 	        scope.discountTypeDatas = [];
 	        scope.statuses = [];
-	        scope.start={};
-	        scope.partnerGameAttributes = {};
-			  scope.revenueData=[];
-			  scope.clientId=routeParams.id;
-			  scope.formData={};
+	        scope.start = {};
+	        scope.percentageData = {};
+			scope.revenueData = [];
+			scope.clientId = routeParams.id;
+			scope.formData = {};
 	        scope.start.date = new Date();
+	        scope.showPercentage = false;
+	        scope.showFlat = false;
+	        
 	        
 	        resourceFactory.revenueResourceTemplate.get(function(data) {
 				
-				  scope.businessLineDatas=data.businessLineData;
-				  scope.mediaCategoryDatas=data.mediaCategoryData;
+				  scope.businessLineDatas = data.businessLineData;
+				  scope.mediaCategoryDatas = data.mediaCategoryData;
 				  scope.royaltyTypeDatas = data.royatyTypeData;
 			  });
 	        
@@ -21,20 +24,33 @@
 	        scope.addPercentage = function(){
 	        	scope.counter = scope.counter+1;
 	        	scope.revenueData.push({
-												game : scope.partnerGameAttributes.game,
-												gDate : scope.partnerGameAttributes.gDate,
-												playSource : scope.partnerGameAttributes.playSource,
-												price : scope.partnerGameAttributes.price,
-												overwriteRoyaltyValue : scope.partnerGameAttributes.overwriteRoyaltyValue == undefined ? scope.formData.royaltyValue:scope.partnerGameAttributes.overwriteRoyaltyValue,
-												sequence : scope.partnerGameAttributes.sequence=scope.counter 
+												startValue : scope.percentageData.startValue,
+												endValue : scope.percentageData.endValue,
+												percentage : scope.percentageData.percentage,
+												locale : 'en' 
 											});
-	        	console.log("now : "+scope.partnerGameAttributes.overwriteRoyaltyValue);
-	        	scope.partnerGameAttributes.game = undefined;
-				scope.partnerGameAttributes.gDate = undefined;
-				scope.partnerGameAttributes.playSource = undefined;
-				scope.partnerGameAttributes.price = undefined;
-				scope.partnerGameAttributes.overwriteRoyaltyValue = undefined;
-	            scope.partnerGameAttributes.sequence  = undefined;
+	        	console.log("now : "+scope.percentageData.overwriteRoyaltyValue);
+	        	scope.percentageData.startValue = undefined;
+				scope.percentageData.endValue = undefined;
+				scope.percentageData.percentage = undefined;
+				scope.percentageData.locale = undefined;
+
+	        };
+	        
+	        scope.setView = function(data){
+	        	for(i in scope.royaltyTypeDatas){
+	        		if(scope.royaltyTypeDatas[i].id == data && 'Percentage' == scope.royaltyTypeDatas[i].mCodeValue){
+	        			scope.showPercentage = true;
+	        			scope.showFlat = false;
+	        			scope.revenueData = [];
+	        			delete scope.formData.flat;
+	        		}else if(scope.royaltyTypeDatas[i].id == data && 'Flat Rate' == scope.royaltyTypeDatas[i].mCodeValue){
+	        			scope.showPercentage = false;
+	        			scope.showFlat = true;
+	        			scope.revenueData=[];
+	        			scope.formData.flat = undefined;
+	        		}
+	        	}
 	        };
 	        
 	        scope.removePercentage = function(index){	
@@ -45,7 +61,7 @@
 	        	//console.log("Remove Game Media: "+scope.counter);	
 	        };
 	        
-	        scope.submitPercentageData = function(){
+	        scope.submit = function(){
 				  scope.formData.percentageParams = new Array();
 				  if(scope.revenueData.length>0){
 		        		for(var i in scope.revenueData){
@@ -59,13 +75,12 @@
 		        		}
 		        	}
 				  scope.formData.locale = 'en';
-				  delete this.flat;
 				  resourceFactory.revenueResource.save({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+routeParams.id);
 		            });
 	        };
 	        
-	        scope.submitFlatData = function(){
+	        /*scope.submitFlatData = function(){
 				  scope.formData.percentageParams = new Array();
 				  scope.formData.locale = 'en';
 				  delete this.startValue;
@@ -74,7 +89,7 @@
 				  resourceFactory.revenueResource.save({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+routeParams.id);
 		            });
-	        };
+	        };*/
 	      
 	    }
 	  });
