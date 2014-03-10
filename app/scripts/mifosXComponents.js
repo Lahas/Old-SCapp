@@ -233,6 +233,7 @@ define(['underscore', 'mifosX'], function() {
       'settlement/CurrencyRateController',
       'settlement/CreateCurrencyRateController',
       'settlement/EditCurrencyRateController',
+      'settlement/EditOperatorDeductionController',
       'organization/BusinessLineController',
       'organization/ViewBusinessLineController',
       'organization/CreateBusinessLineController',

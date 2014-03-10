@@ -94,7 +94,7 @@
 	        scope.submit = function(){
 	        	
 	        	delete scope.formData.id;
-	        	delete scope.formData.clientId;
+	        	/*delete scope.formData.clientId;*/
 	        	delete scope.formData.mediaCategoryData;
 	        	delete scope.formData.businessLineData;
 	        	delete scope.formData.royaltyTypeData;
@@ -114,7 +114,7 @@
 		        	}
 				  scope.formData.locale = 'en';
 				  resourceFactory.revenueResource.update({clientId : routeParams.id}, this.formData, function(data){
-					  location.path('/viewclient/'+routeParams.id);
+					  location.path('/viewclient/'+scope.formData.clientId);
 		            });
 	        }; 
 	        /*scope.submitPercentageData = function(){

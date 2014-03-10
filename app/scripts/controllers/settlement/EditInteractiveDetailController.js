@@ -35,12 +35,12 @@
 		            scope.upload.date = dateFilter(new Date(data.dataUploadedDate),"dd MMMM yyyy");
 		            scope.formData.businessLine = data.businessLine;
 		            scope.formData.mediaCategory = data.mediaCategory;
-		            scope.formData.chargeCode = data.chargeCode;
+		            /*scope.formData.chargeCode = data.chargeCode;*/
 		            
 		            
 		            scope.businessLineDatas = data.businessLineData;
 		            scope.mediaCategoryDatas = data.mediaCategoryData;
-		            scope.chargeCodeDatas = data.chargeCodeData;
+		            /*scope.chargeCodeDatas = data.chargeCodeData;*/
 			    	
 		            
 			    	scope.playSources=data.playSourceData;

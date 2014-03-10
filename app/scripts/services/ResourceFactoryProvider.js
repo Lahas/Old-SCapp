@@ -655,8 +655,12 @@
             	   get: {method: 'GET', params: {clientId:'@clientId'}, isArray:true}
                }),
                createOperatorDeductionResource: defineResource(apiVer+ "/mediasettlements/deductionoperator/template",{},{
-            	  get: {method: 'GET', params: {}, isArray:true} 
+            	  get: {method: 'GET', params: {}, isArray:true}
                }),
+               editOperatorDeductionResource: defineResource(apiVer+ "/mediasettlements/deductionoperator/edit/:id",{id: '@id'},{
+             	  get: {method: 'GET', params: {}, isArray:false},
+             	  update: {method: 'PUT', params: {}}
+                }),
                saveOperatorDeductionData: defineResource(apiVer+ "/mediasettlements/deductionoperator/template",{},{
             	  get: {method: 'GET', params: {}} 
                }),
