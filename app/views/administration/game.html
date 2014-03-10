@@ -138,7 +138,7 @@
 		<label ng-show="errorStatus">{{errorStatus}}</label>
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
-        <legend>Default Rule</legend>  
+        <legend>{{'label.defaultrule' | translate}}</legend>  
 				                     
              <table >
             	<tr>
@@ -168,7 +168,7 @@
       </fieldset>		
 
       <fieldset>
-           <legend>Specific Rule</legend>
+           <legend>{{'label.specificrule' | translate}}</legend>
            
            <table >
             	<tr ng-repeat="ss in settlementSequenceDatas">
@@ -307,7 +307,7 @@
       
       
       <body>
-	<legend>Disbursements to Partners</legend>
+	<legend>{{'label.disbursementstopartners' | translate}}</legend>
 		<button ng-click="refresh()" type="button" class="btn btn-primary">Refresh</button>
             <table>
             	<tr>
