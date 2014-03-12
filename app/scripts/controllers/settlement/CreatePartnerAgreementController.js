@@ -78,7 +78,7 @@
 		            
 		            http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
-		            //	url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
+		            	//url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
 		              data: scope.formData,
 		              file: scope.file
 		            }).then(function(data) {
