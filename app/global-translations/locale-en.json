@@ -2384,21 +2384,44 @@
     
     "#Business Line datas":"",
 	"label.event.chargecode":"ChargeCode",
-	"lable.createbusinessline":"Create BusinessLine",
+	"lable.createbusinessline":"Create Business Line",
 	"label.availablecategory":"Available Categories",
 	"label.selectedcategory":"Selected Categories",
-	"label.createbusinessline":"createbusinessline",
-	"label.businessline":"businessline",
+	"label.createbusinessline":"Create Business Line",
+	"label.businessline":"Businessline",
 	"label.editbusinessline":"Edit BusinessLine",
-	"lable.viewbusinessline":"viewbusinessline",
+	"lable.viewbusinessline":"View Business Line",
 	
 	
 	"validation.msg.businessline.eventName.cannot.be.blank":"Event Code cannot be blank",
 	"validation.msg.businessline.chargeCode.cannot.be.blank":"Charge Code cannot be blank",
 	"validation.msg.businessline.status.cannot.be.blank":"Please select status",
+
+	"label.defaultrule" : "Default Rule",
+	"label.specificrule" : "Specific Rule",
+	"label.disbursementstopartners" : "Disbursements to Partners",
+	"label.partneragreement": "Partner Agreement",
+	"label.addpartneragreement" : "Add Partner Agreement", 
+	"label.editpartneragreement" : "Edit Partner Agreement",
+	"label.partnertype" : "Partner Type",
+	"label.agreementtype" : "Agreement Type",
+	"label.agreementcategory" : "Agreement Category",
+	"label.mgamount" : "MG Amount",
+	"label.royaltytype" : "Royalty Type",
+	"label.settlementsource" : "Settlement Source",
+	"label.contreffectdate" : "Contr Effect Date",
+	"label.contrenddate" : "Contr End Date",
+	"label.agreementdoc" : "Agreement Doc",
+	"label.mediacategory" : "Media Category",
+	"table.heading.playsource":"Play Source",
+	"table.heading.royaltyshare":"Royalty Share",
+	"table.heading.royaltysequence":"Royalty Sequence",
+	"table.heading.status":"Status",
+
 	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category",
 	"validation.msg.revenueShare.businessLine.cannot.be.blank":"Business Line cannot be blank",
 	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
 	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
 	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank"						     
+
 }

@@ -1,7 +1,7 @@
  <div ng-controller="EditPartnerAgreementController">
 <ul class="breadcrumb">
-              <li><a href="#/game">Partner Agreement</a> <span class="divider">/</span></li>
-              <li class="active">Edit Partner Agreement</li>
+              <li><a href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.editpartneragreement'| translate}}</li>
           </ul>
           <div class="pull-right">
 	      <div class="btn-group">        
@@ -24,7 +24,7 @@
 
         <fieldset>
          
-           <legend>Edit Partner Agreement</legend>   
+           <legend>{{'label.editpartneragreement'| translate}}</legend>   
           
           
           <!-- <table>
@@ -190,7 +190,7 @@
 			</td>
 			<td>
 	 	   <div class="control-group">
-	            <label class="control-label" for="partnerType">Partner Type&nbsp;<span class="required">*</span></label>
+	            <label class="control-label" for="partnerType">{{'label.partnertype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
 	              <select ng-model="formData.partnerType"  ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}" >
 	              </select>
@@ -201,7 +201,7 @@
 	 	     
 		<tr><td>	
           <div class="control-group">
-	            <label class="control-label" for="agreementType">Agreement Type&nbsp;<span class="required">*</span></label>
+	            <label class="control-label" for="agreementType">{{'label.agreementtype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
 	              <select ng-model="formData.agreementType"  ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
 	              </select>
@@ -211,7 +211,7 @@
 	   <td>
 	       
 	       <div class="control-group">
-	            <label class="control-label" for="agreementCategory">Agreement Category&nbsp;<span class="required">*</span></label>
+	            <label class="control-label" for="agreementCategory">{{'label.agreementcategory' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
 	              <select ng-model="formData.agreementCategory"  ng-change="minimumValue(formData.agreementCategory)" ng-options="agreementCategoryData.id as agreementCategoryData.mCodeValue for agreementCategoryData in agreementCategoryDatas" value="{{agreementCategoryData.id}}">
 	              </select>
@@ -224,7 +224,7 @@
 	     <tr><td></td>
 	     <td>
 	     <div ng-show="mgAmount" class="control-group">
-            <label class="control-label"  for="requiredValue">MG Amount&nbsp;<span class="required">*</span></label>
+            <label class="control-label"  for="requiredValue">{{'label.mgamount' | translate}}&nbsp;<span class="required">*</span></label>
 					<div class="controls">
 					<input type="text" class="requiredValue" ng-model="formData.mgAmount" >
 					</div>
@@ -234,7 +234,7 @@
 		<tr><td>
 	       
 	       <div class="control-group">
-	            <label class="control-label" for="royaltyType">Royalty Type&nbsp;<span class="required">*</span></label>
+	            <label class="control-label" for="royaltyType">{{'label.royaltytype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
 	              <select ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
 	              </select>
@@ -244,7 +244,7 @@
 	    <td>
 	       
 	       <div class="control-group">
-	            <label class="control-label" for="settlementSource">Settlement Source&nbsp;<span class="required">*</span></label>
+	            <label class="control-label" for="settlementSource">{{'label.settlementsource' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
 	              <select ng-model="formData.settlementSource"  ng-options="settlementSourceData.id as settlementSourceData.mCodeValue for settlementSourceData in settlementSourceDatas" value="{{settlementSourceData.id}}">
 	              </select>
@@ -255,7 +255,7 @@
 		<tr><td>
 	       
 	       <div class="control-group">
-            <label class="control-label" for="startDate">Contr Effect Date&nbsp;<span class="required">*</span></label>
+            <label class="control-label" for="startDate">{{'label.contreffectdate' | translate}}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="startDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.startDate" is-open="opened"  
               date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
@@ -265,7 +265,7 @@
       </td><td>
       				  
       		<div class="control-group">
-            <label class="control-label" for="endDate">Contr Termi Date&nbsp;<span class="required">*</span></label>
+            <label class="control-label" for="endDate">{{'label.contrenddate' | translate}}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" min="minDate"
               date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
@@ -276,7 +276,7 @@
 		<tr><td></td><td>
       				  
       		<div class="control-group">
-              <label class="control-label" for="file">Agreement Doc</label>
+              <label class="control-label" for="file">{{'label.agreementdoc' | translate}}</label>
               <div class="controls">
                 <input type="file" ng-file-select="onFileSelect($files)">
               </div>
@@ -287,7 +287,7 @@
      </div> 
       
                	<div class="control-group">
-	            	<label class="control-label" for="mediaCategory">Media Category&nbsp;<span class="required">*</span></label>
+	            	<label class="control-label" for="mediaCategory">{{'label.mediacategory' | translate}}&nbsp;<span class="required">*</span></label>
 	            	<div class="controls">
 	              	<select ng-model="formData.mediaCategory" ng-change="getMediaDetails(formData.mediaCategory)" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" >
 	             	 </select>
@@ -298,10 +298,10 @@
         <table>
         
         		<tr class="graybg">
-                      <th>Play Source</th>
-                      <th>Royalty Share</th>
-                      <th>Royalty Sequence</th>
-                      <th>Status</th>
+                      <th>{{'table.heading.playsource' | translate}}</th>
+                      <th>{{'table.heading.royaltyshare' | translate}}</th>
+                      <th>{{'table.heading.royaltysequence' | translate}}</th>
+                      <th>{{'table.heading.status' | translate}}</th>
                     </tr>
         		 
         		 <tr  ng-repeat=" pa in partnerAgreementDatas">
