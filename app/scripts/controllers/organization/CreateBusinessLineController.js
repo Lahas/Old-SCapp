@@ -22,9 +22,9 @@
 								scope.eventStatus = data.statusData;
 								scope.chargeData = data.chargeDatas;
 
-								scope.availableServices = data.mediaAsset;
+								scope.availableServices = data.categoryData;
 								scope.productmix = data;
-								scope.allowedProducts = data.mediaAsset;
+								scope.allowedProducts = data.categoryData;
 
 								scope.formData = {
 
@@ -34,10 +34,10 @@
 							scope.restrict = function() {								
 								for ( var i in this.allowed) {																	
 									for ( var j in scope.availableServices) {																			
-										if (scope.availableServices[j].mediaId == this.allowed[i]) {											
+										if (scope.availableServices[j].id == this.allowed[i]) {											
 											var temp = {};
 											temp.id = this.allowed[i];
-											temp.name = scope.availableServices[j].mediaTitle;
+											temp.mCodeValue = scope.availableServices[j].mCodeValue;
 											// temp.includeInBorrowerCycle =
 											// scope.allowedProducts[j].includeInBorrowerCycle;
 											scope.selectedServices.push(temp);
@@ -51,8 +51,8 @@
 									for ( var j in scope.selectedServices) {
 										if (scope.selectedServices[j].id == this.restricted[i]) {
 											var temp = {};
-											temp.mediaId = this.restricted[i];
-											temp.mediaTitle = scope.selectedServices[j].name;
+											temp.id = this.restricted[i];
+											temp.mCodeValue = scope.selectedServices[j].mCodeValue;
 											// temp.includeInBorrowerCycle =
 											// scope.restrictedProducts[j].includeInBorrowerCycle;
 											scope.availableServices.push(temp);
