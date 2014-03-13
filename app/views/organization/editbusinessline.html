@@ -72,7 +72,7 @@
 						<div class="span3">
 							<label class="control-label">{{ 'label.availablecategory'| translate }}</label>
 							  <select multiple ng-model="allowed">
-								<option ng-repeat="availableService in availableServices" value="{{availableService.mediaId}}">{{availableService.mediaTitle}}</option>
+								<option ng-repeat="availableService in availableServices" value="{{availableService.id}}">{{availableService.mCodeValue}}</option>
 							  </select>
 						</div>
 						<div class="paddedtop10 span1 paddedleft0">
@@ -83,7 +83,7 @@
 						<div class="span3">
 							<label class="control-label"> {{ 'label.selectedcategory' |translate }}</label> 
 							<select multiple ng-model="restricted">
-								<option ng-repeat="selectedService in selectedServices" value="{{selectedService.categoryId}}">{{selectedService.mediaTitle}}</option>
+								<option ng-repeat="selectedService in selectedServices" value="{{selectedService.categoryId}}">{{selectedService.mCodeValue}}</option>
 							</select>
 						</div>
 					</div> 

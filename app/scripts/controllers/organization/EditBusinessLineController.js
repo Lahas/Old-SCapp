@@ -12,20 +12,21 @@
 							resourceFactory.businessLineEditResource.get({eventId: routeParams.id} , function(data) {								
                                 scope.formData=data;                            
 								scope.eventStatus = data.statusData;
-								scope.availableServices = data.mediaAsset;
+								scope.availableServices = data.categoryData;
 								scope.chargeData = data.chargeDatas;
-								scope.selectedServices=data.selectedMedia;
+								scope.selectedServices=data.selectedCategoryData;
 								
-								for ( var i in data.selectedMedia) {	
-									 //alert('var i in data.selectedMedia'+data.selectedMedia[i].mediaId);
-									for ( var j in data.mediaAsset) {	
-										 //alert('var j in data.mediaAsset'+data.mediaAsset[j].mediaId);
-										if (data.mediaAsset[j].mediaId == data.selectedMedia[i].categoryId) {																		
+								for ( var i in data.selectedCategoryData) {	
+									 //alert('var i in data.selectedCategoryData'+data.selectedCategoryData[i].mediaId);
+									for ( var j in data.categoryData) {	
+										 //alert('var j in data.categoryData'+data.categoryData[j].mediaId);
+										if (data.categoryData[j].id == data.selectedCategoryData[i].categoryId) {																		
 											scope.availableServices.splice(j, 1);
+												
 										}
 									}
 								}
-								scope.restricted=data.selectedMedia;		
+								scope.restricted=data.selectedCategoryData;
 								
 							});
 							
@@ -37,11 +38,11 @@
 									 //alert('var i in this.allowed in restrick'+this.allowed[i]));
 									for ( var j in scope.availableServices) {	
 										// alert('var j scope.availableServices'+scope.availableServices[j].mediaId);
-										if (scope.availableServices[j].mediaId == this.allowed[i]) {	
+										if (scope.availableServices[j].id == this.allowed[i]) {	
 											
 											var temp = {};
 											temp.categoryId = this.allowed[i];
-											temp.mediaTitle = scope.availableServices[j].mediaTitle;								
+											temp.mCodeValue = scope.availableServices[j].mCodeValue;								
 											scope.selectedServices.push(temp);
 											scope.availableServices.splice(j, 1);
 										}
@@ -49,15 +50,17 @@
 								}
 							};
 							scope.allow = function() {
+								 
 								for ( var i in this.restricted) {
 									 
 									for ( var j in scope.selectedServices) {
-										 
+										
 										if (scope.selectedServices[j].categoryId == this.restricted[i]) {
 											
+											
 											var temp = {};
-											temp.mediaId = this.restricted[i];
-											temp.mediaTitle = scope.selectedServices[j].mediaTitle;									
+											temp.id = this.restricted[i];
+											temp.mCodeValue = scope.selectedServices[j].mCodeValue;									
 											scope.availableServices.push(temp);
 											scope.selectedServices.splice(j, 1);
 										}
@@ -75,9 +78,9 @@
 								delete this.formData.id;
 								delete this.formData.statusData;
 								delete this.formData.chargeDatas;
-								delete this.formData.mediaAsset;
+								delete this.formData.categoryData;
 								//delete this.formData.optType;
-								delete this.formData.selectedMedia;
+								delete this.formData.selectedCategoryData;
 								delete this.formData.statusId;
 								var temp = [];
 								for ( var i in scope.selectedServices) {

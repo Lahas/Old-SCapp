@@ -2325,7 +2325,7 @@
   "dialog.masterdeduction.title.message":"Delete Master Deduction",
   "settlement.label.business.line":"Business Line",
   "settlement.label.media.category":"Media Category",
-  "settlement.label.royaltytype":"Royalty Type",
+  "settlement.label.revenueshare":"Revenue Share",
   "table.heading.revenueshare.startvalue":"Start Value",
   "table.heading.revenueshare.endvalue":"End Value",
   "table.heading.revenueshare.percentage":"Percentage",
