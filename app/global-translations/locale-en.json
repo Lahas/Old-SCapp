@@ -1203,7 +1203,7 @@
   "label.client.select.file":"Browse file to Upload",
   "label.addimportfile":"Add New File",
   "error.msg.document.file.too.big":"File is too big",
-  "error.msg.file.duplicate.name":"File is already exist with this name",
+  "error.msg.file.duplicate.name":"File already exist with this name",
   "validation.msg.UploadStatus.description.cannot.be.blank":"Description Cannot be blank",
   
   "#Order":".....",
@@ -2127,7 +2127,7 @@
 "tab.partner.addgame":"Add Games Supported by Partner",
 "tab.partner.agreement":"Partner Agreement",
 "tab.partner.account":"Partner Account",
-"tab.partner.revenue":"Revenue Settlement",
+"tab.partner.revenue":"Royalty Settlement",
 "label.partner.type":"Partner Type",
 "label.partner.partnername":"Partner Name",
 "label.partner.media.category":"Media Category",
@@ -2422,6 +2422,7 @@
 	"validation.msg.revenueShare.businessLine.cannot.be.blank":"Business Line cannot be blank",
 	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
 	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
-	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank"						     
+	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",
+	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist"						     
 
 }
