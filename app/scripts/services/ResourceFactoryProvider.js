@@ -946,7 +946,25 @@
              }),
              businessLineTemplateResource: defineResource(apiVer + "/businessline/template",{},  {
                 get: {method: 'GET', params: {}}
-             })
+             }),
+             getPartnerType: defineResource(apiVer+ "/mediasettlements/partnerAgreementType/:prtnerName",{prtnerName: '@prtnerName'},{
+            	 get: {method: 'GET', params: {}}
+             }),
+             viewpartnerAgreementResource: defineResource(apiVer+"/mediasettlements/:documentId/attachment", {documentId:'@documentId'}, {
+            	    getAll: {method: 'GET', params: {}},
+            	    update: {method: 'PUT', params: {}}
+              }),
+             viewpartnerAgreementMediaCategoryResource: defineResource(apiVer+"/mediasettlements/viewpartnerAgreement", {partnerId:'@partnerId'}, {
+          	    get: {method: 'GET', params: {} },
+          	 }),
+          	 pamediaCategoryDataResource: defineResource(apiVer+"/mediasettlements/documentData", {}, {
+           	    get: {method: 'GET', params: {}, isArray:true },
+           	    update: { method: 'PUT' }
+           	 }),
+           	deleteMediaCategoryDataResource: defineResource(apiVer+"/mediasettlements/deleteMediaCategory/:detailId", {detailId:'@detailId'}, {
+        	    getAll: {method: 'GET', params: {}},
+        	    update: {method: 'PUT', params: {}}
+            })
         };
       }];
     }

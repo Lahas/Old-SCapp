@@ -584,6 +584,8 @@
 			templateUrl : 'views/settlement/editpartnergame.html'
 		}).when('/createpartneragreement', {
 			templateUrl : 'views/settlement/createpartneragreement.html'
+		}).when('/viewpartneragreement/:id', {
+			templateUrl : 'views/settlement/viewpartneragreement.html'
 		}).when('/editPartnerAgreement/:id', {
 			templateUrl : 'views/settlement/editpartneragreement.html'
 		}).when('/addoperatordeduction/:id', {

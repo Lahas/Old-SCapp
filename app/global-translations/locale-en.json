@@ -2139,7 +2139,7 @@
 "table.heading.gamemedia.partner.mediacategory":"Media Category",
 "table.heading.gamemedia.partner.partnername":"Partner Name",
 "table.heading.gamemedia.partner.partneraddress":"Partner Address",
-"table.heading.agreementtype":"Agreement",
+"table.heading.agreementtype":"Agreement Type",
 "table.heading.partnername":"Partner Name",
 "table.heading.agreement.category":"Agreement Category", 
 "table.heading.royalty.type":"Royalty Type",
@@ -2405,7 +2405,7 @@
 	"label.addpartneragreement" : "Add Partner Agreement", 
 	"label.editpartneragreement" : "Edit Partner Agreement",
 	"label.partnertype" : "Partner Type",
-	"label.agreementtype" : "Agreement Type",
+	"label.agreementtype" : "Agreement Status",
 	"label.agreementcategory" : "Agreement Category",
 	"label.mgamount" : "MG Amount",
 	"label.royaltytype" : "Royalty Type",
@@ -2418,11 +2418,23 @@
 	"table.heading.royaltyshare":"Royalty Share",
 	"table.heading.royaltysequence":"Royalty Sequence",
 	"table.heading.status":"Status",
+	"table.heading.mediacategory":"Media Category",
+	"label.viewpartneragreement":"View Partner Agreement",
+
 
 	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category",
 	"validation.msg.revenueShare.businessLine.cannot.be.blank":"Business Line cannot be blank",
 	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
 	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
+
+	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",						     
+	"validation.msg.media.settlement.agreementType.cannot.be.blank":"Agreement Type cannot be blank",
+	"validation.msg.media.settlement.agreementCategory.cannot.be.blank":"Agreement Category cannot be blank",
+	"validation.msg.media.settlement.agreementType.cannot.be.blank":"Agreement Type cannot be blank",
+	"validation.msg.media.settlement.settlementSource.cannot.be.blank":"Settlement Source cannot be blank",
+	"validation.msg.media.settlement.royaltyType.cannot.be.blank":"Royalty Type cannot be blank",
+	"validation.msg.media.settlement.status.cannot.be.blank":"Status cannot be blank",
+
 	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",
 	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist"						     
 

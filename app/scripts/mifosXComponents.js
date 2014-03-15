@@ -217,6 +217,7 @@ define(['underscore', 'mifosX'], function() {
       'settlement/EditGameMapDetailsController',
       'settlement/CreateGameMediaController',
       'settlement/CreatePartnerAgreementController',
+      'settlement/ViewPartnerAgreementController',
       'settlement/CreatePartenerGameController',
       'settlement/EditPartenerGameController',
       'settlement/EditPartnerAgreementController',
