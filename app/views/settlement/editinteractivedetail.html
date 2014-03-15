@@ -57,7 +57,9 @@
 						<label class="control-label" for="activityMonth">{{ 'label.eventgame.activitymonth' | translate }}</label>
 						<div class="controls">
 							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/> -->
-							<select ng-model="formData.activityMonth" ng-options="pn.id as pn.mon for pn in months" value="{{pn.id}}" id="activityMonth"></select>
+							<!-- <select ng-model="formData.activityMonth" ng-options="pn.id as pn.mon for pn in months" value="{{pn.id}}" id="activityMonth"></select> -->
+							<input type="text" datepicker-pop="MMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/>
+							
 						</div>
 					</div>
 				</td>
@@ -139,8 +141,9 @@
                          <th>{{ 'label.channelname' | translate }}</th>
                          <th>{{ 'label.servicename' | translate }}</th>
                          <th>{{ 'label.endUserPrice' | translate }}</th>
-                         <th>{{ 'label.grossRevenue' | translate }}</th>
                          <th>{{'label.download' | translate}}</th>
+                         <th>{{ 'label.grossRevenue' | translate }}</th>
+                         
                          </tr>  
                          <tr ng-repeat= "ad in  interactiveData">
 		<!--   <td><select class="input-small" ng-model="formData.eventId" ng-options="data.id as data.mCodeValue for data in data"  value="{{data.id}}"></select></td> -->
@@ -151,8 +154,9 @@
 			<td><select  class="input-small" ng-model="ad.channelName" id="channelName" ng-options="channelData.id as channelData.partnerName for channelData in channelDatas"  value="{{channelDatas.id}}"></select></td>
 	        <td><select  class="input-small"ng-model="ad.serviceName" id="serviceName" ng-options="serviceData.id as serviceData.partnerName for serviceData in serviceDatas"  value="{{serviceDatas.id}}"></select></td>
 		    <td><input class="input-mini" type="text" id="endUserPrice" ng-model="ad.endUserPrice"></td>
-			<td><input  class="input-mini" type="text" id="grossRevenue" ng-model="ad.grossRevenue"></td>
 			<td><input class="input-mini" type="text" id="downloads" ng-model="ad.downloads"></td>
+			<td><input  class="input-mini" type="text" id="grossRevenue" ng-model="ad.grossRevenue"></td>
+			
 			<td><a ng-click="removeInteractiveDetail($index)"><i class="icon-remove icon-white"></i></a></td>
 							</tr>
 						
