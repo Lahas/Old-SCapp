@@ -13,8 +13,8 @@
 		  
 		  resourceFactory.mediaSettlementTemplateResource.get(function(data) {
 			  scope.formData = data;
-			  /*scope.partnerType = data.partnerTypeData;
-			  scope.mediaCategory = data.mediaCategoryData;*/
+			  scope.partnerTypeData = data.partnerTypeData;
+			  scope.mediaCategoryData = data.mediaCategoryData;
 			  scope.currencyCodes = data.currencyCodes;
 			  
 		  });
@@ -79,6 +79,8 @@
 			  delete scope.formData.mediaCategoryData;*/
 			  scope.formData.locale = "en";
 			  delete scope.formData.currencyCodes;
+			  delete scope.formData.partnerTypeData;
+			  delete scope.formData.mediaCategoryData;
 			  webStorage.add("currentTab", {tab: "partner" });
 			  /*if(scope.hideIfNotContentProvider == true){
 				scope.formData.chData = scope.gameData;  

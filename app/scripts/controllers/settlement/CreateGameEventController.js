@@ -21,7 +21,7 @@
 	            scope.businessLineDatas = data.businessLineData;
 	            scope.mediaCategoryDatas = data.mediaCategoryData;
 	            scope.playSources = data.playSourceData;
-	            scope.chargeCodesDatas = data.chargeCodeData;
+	            /*scope.chargeCodesDatas = data.chargeCodeData;*/
 	            scope.contentDatas = data.contentData;
 	            scope.channelDatas = data.channelData;
 	            scope.serviceDatas = data.serviceData;

@@ -196,7 +196,7 @@
           </table>
       </tab>
       
-   <tab heading="OperatorDeduction" select="getOperatorDeductionData()">
+   <tab heading="Operator Deduction" select="getOperatorDeductionData()">
 	<div class="pull-right btn-group ng-scope">
           <a class="btn btn-primary ng-binding" href="#/addoperatordeduction/{{client.id}}"><i class="icon-plus icon-white"></i>Add</a>
     </div>
@@ -212,8 +212,8 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="od in operatorDeductionDatas  | filter:filterText">
-					<td>{{od.deductionCode}}</td>  
-					<td>{{od.deductionValue}}</td>
+					<td><a href="#/editoperatordeduction/{{od.id}}">{{od.deductionCode}}</a></td>  
+					<td><a href="#/editoperatordeduction/{{od.id}}">{{od.deductionValue}}</a></td>
 				</tr>
 			</tbody>
 		</table>

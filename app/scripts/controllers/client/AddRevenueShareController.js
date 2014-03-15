@@ -6,9 +6,10 @@
 	        scope.start = {};
 	        scope.percentageData = {};
 			scope.revenueData = [];
-			scope.clientId = routeParams.id;
+			
 			scope.formData = {};
-	        scope.start.date = new Date();
+			scope.clientId = routeParams.id;
+			scope.start.date = new Date();
 	        scope.showPercentage = false;
 	        scope.showFlat = false;
 	        
@@ -74,6 +75,7 @@
 		        			});
 		        		}
 		        	}
+				  scope.formData.clientId = scope.clientId;
 				  scope.formData.locale = 'en';
 				  resourceFactory.revenueResource.save({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+routeParams.id);
