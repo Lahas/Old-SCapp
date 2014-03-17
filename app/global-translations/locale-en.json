@@ -2436,6 +2436,13 @@
 	"validation.msg.media.settlement.status.cannot.be.blank":"Status cannot be blank",
 
 	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",
-	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist"						     
+	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist",
+	
+	"label.partneraccount":"Partner account",
+	"label.viewpartneraccount":"View Partner Account",
+	"label.contactnum":"Contact Number",
+	"label.currencyname":"Currency",
+	"label.royaltysequence":"Royalty Sequence"
+							     
 
 }

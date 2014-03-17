@@ -626,6 +626,8 @@
 			templateUrl : 'views/organization/editbusinessline.html'
 		}).when('/editoperatordeduction/:id',{
 			templateUrl : 'views/settlement/editoperatordeduction.html'
+		}).when('/viewpartneraccount/:id',{
+			templateUrl : 'views/settlement/viewpartneraccount.html'
 		});
 		$locationProvider.html5Mode(false);
 	};

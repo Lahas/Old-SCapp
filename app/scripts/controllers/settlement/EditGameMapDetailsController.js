@@ -5,6 +5,7 @@
 		  scope.hideIfNotContentProvider = false;
 		  scope.gameData = [];
 		  scope.partnerGameAttributes = {};
+		  scope.resouresId=routeParams.id;
 		  
 		  resourceFactory.mediaSettlement.get({mediaSettlementId:routeParams.id},function(data) {
 			  scope.formData = data;
