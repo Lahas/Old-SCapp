@@ -49,6 +49,7 @@
 	        	scope.interactiveData.push({
 	                               	contentName:scope.interactiveDetailDatas.contentName, 
 	        	                 	playSource : scope.interactiveDetailDatas.playSource,
+	        	                 	mediaCategory: scope.interactiveDetailDatas.mediaCategory,
 	        	                 	contentProvider:scope.interactiveDetailDatas.contentProvider,
 	        	                 	channelName: scope.interactiveDetailDatas.channelName,
 	        	                 	serviceName:scope.interactiveDetailDatas.serviceName,
@@ -58,6 +59,7 @@
 	        	});
 	        	                 scope.interactiveDetailDatas.contentName = undefined; 
 	        	                 scope.interactiveDetailDatas.playSource = undefined;
+	        	                 scope.interactiveDetailDatas.mediaCategory = undefined;
 	        	                 scope.interactiveDetailDatas.contentProvider =  undefined;
 	        	                 scope.interactiveDetailDatas.channelName = undefined;
 	        	                 scope.interactiveDetailDatas.serviceName = undefined;
@@ -82,14 +84,15 @@
 		        			//console.log("i: "+i);
 		        			scope.formData.activeData.push({
 								playSource : scope.interactiveData[i].playSource,
-								contentName:scope.interactiveData[i].contentName, 
+								contentName:scope.interactiveData[i].contentName,
+								mediaCategory:scope.interactiveData[i].mediaCategory,
 								contentProvider:scope.interactiveData[i].contentProvider,
-      	                 	channelName: scope.interactiveData[i].channelName,
-      	                 	serviceName:scope.interactiveData[i].serviceName,
-      	                 	endUserPrice:scope.interactiveData[i].endUserPrice,
-      	                 	grossRevenue:scope.interactiveData[i].grossRevenue,
-      	                 	downloads:scope.interactiveData[i].downloads,
-      	                 	locale: 'en'
+	      	                 	channelName: scope.interactiveData[i].channelName,
+	      	                 	serviceName:scope.interactiveData[i].serviceName,
+	      	                 	endUserPrice:scope.interactiveData[i].endUserPrice,
+	      	                 	grossRevenue:scope.interactiveData[i].grossRevenue,
+	      	                 	downloads:scope.interactiveData[i].downloads,
+	      	                 	locale: 'en'
 		        			});
 	        	
 		        		}

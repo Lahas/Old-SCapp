@@ -50,7 +50,7 @@
             <thead>
               <tr class="graybg">
                 
-                <th>{{'table.heading.gamemedia.gameHeader.clientId' | translate}}</th>
+                <th>{{'table.heading.gamemedia.gameHeader.headerid' | translate}}</th>
                 <th>{{'table.heading.gamemedia.gameHeader.clientExternalId' | translate}}</th>
                 <th>{{'table.heading.gamemedia.gameHeader.activityMonth' | translate}}</th>
                 <th>{{'table.heading.gamemedia.gameHeader.dataUploadDate' | translate}}</th>
@@ -62,7 +62,7 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="fd in formData">
-                <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.clientId}}</a></td>
+                <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.id}}</a></td>
                 <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.externalId}}</a></td>
                 <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.activityMonth}}</a></td>
                 <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.dataUploadedDate | DateFormat}}</a></td>
