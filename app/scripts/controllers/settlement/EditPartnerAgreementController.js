@@ -13,9 +13,11 @@
 			  scope.categoryData=[];
 			  scope.mediaPartnerAttributes = {};
 			  scope.mediaPartnerData= [];
-				
+			  scope.resouresId=routeParams.id;
+			  
+			  
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
-			  scope.statusDatas=[{id:0, value:"Active"},{id:1, value:"Deactive"} ];
+			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];
 			  
 			  scope.onFileSelect = function($files) {
 			        scope.file = $files[0];
@@ -83,6 +85,7 @@
 		        		}
 		        		else{
 		        			scope.mgAmount=false;
+//		        			scope.formData.mgAmount="";
 		        			$(".requiredValue").removeAttr("required");
 		        		}
 		        	}
@@ -165,21 +168,11 @@
 			                  $modalInstance.dismiss('cancel');
 			              };
 			          };
-							  
-		        
-		        /*scope.getCategory=function(pName){
-					  console.log(pName);
-					  resourceFactory.getCategoryAndPartner.get({partnerName: pName},function(data) {
-				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
-				  			scope.formData.partnerType = data.partnerTypeData.partnerTypeId;
-				  			
-				      });
-				  };*/
-		        
-		        scope.tabStatus = function(){
-		        	
-			    	   webStorage.add("currentTab", {tab: "agreement" });
-			      };
+
+			          scope.tabStatus = function(){
+				        	
+				    	   webStorage.add("currentTab", {tab: "agreement" });
+				      };
 		  
 		        scope.submit = function () {
 		        	
@@ -229,10 +222,15 @@
 		            var reqDate2 = dateFilter(scope.formData.endDate,'dd MMMM yyyy');
 		            this.formData.endDate = reqDate2;
 		            
-		            
+		            for( var i in scope.agreementCategoryDatas){
+		        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+		        		delete scope.formData.mgAmount; 
+		        		}
+				  	} 
 		            
 		            http.uploadFile({
-		              url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
+		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
+		            //	url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/'+routeParams.id+'/document',		             
 		              data: scope.formData,
 		              file: scope.file
 		            }).then(function(data) {
@@ -242,10 +240,7 @@
 		              }
 		              location.path('/game');
 		            });
-		            
-		            
-		            
-		            
+		       
 		          
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
@@ -259,7 +254,8 @@
 			              	resolve:{}
 			          	});
 				  };
-				   var Approve= function($scope, $modalInstance){
+				
+				  var Approve= function($scope, $modalInstance){
 				   $scope.approve = function () {
 					   //$modalInstance.close('delete');
 		                  resourceFactory.deletepartnerAgreementResource.delete({documentId: routeParams.id} , {} , function(data) {

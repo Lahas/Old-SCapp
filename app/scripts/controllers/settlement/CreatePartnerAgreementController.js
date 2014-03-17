@@ -99,7 +99,6 @@
 			        };  
 			
 				  scope.tabStatus = function(){
-			        	
 			    	   webStorage.add("currentTab", {tab: "agreement" });
 			      };
 		  
@@ -143,6 +142,12 @@
 						delete scope.formData.royaltySequence; 
 						delete scope.formData.status; 
 						delete scope.formData.partnerAgreementData; 
+						
+						  for( var i in scope.agreementCategoryDatas){
+				        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+				        		delete scope.formData.mgAmount; 
+				        		}
+						  	} 
 					 
 		            http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
