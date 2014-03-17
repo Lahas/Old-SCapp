@@ -1,6 +1,7 @@
  <div ng-controller="EditPartnerAgreementController">
 <ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li><a  href="#/viewpartneragreement/{{resouresId}}" >{{'label.viewpartneragreement'| translate}}</a><span class="divider">/</span></li>
               <li class="active">{{'label.editpartneragreement'| translate}}</li>
           </ul>
           <div class="pull-right">
@@ -381,7 +382,7 @@
     	</div>  
 
 <div class="offset3">
-            <a href="#/game" ><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel'| translate}}</button></a>
+            <a href="#/viewpartneragreement/{{resouresId}}" ><button type="reset" class="btn" >{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.update'| translate}}</button>
           </div>
 	 </fieldset>
