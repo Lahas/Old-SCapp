@@ -120,6 +120,7 @@
 				}
 
 				for( var i in scope.partnerAgreementDatas){
+					
 					for( var j in scope.mediaCategoryDatas){
 						if(scope.partnerAgreementDatas[i].mediaCategory == scope.mediaCategoryDatas[j].id){
 							scope.mc=scope.mediaCategoryDatas[j].mCodeValue;

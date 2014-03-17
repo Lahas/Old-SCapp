@@ -150,7 +150,6 @@
 						        	}
 						        	scope.mediaPartnerData.splice(index,1);
 			        		  }else{
-			        			  alert(scope.mid);
 			        		 resourceFactory.deleteMediaCategoryDataResource.delete({ detailId: scope.mid },{},function(data){
 //			        			  route.reload();
 			        	        },function(errData){
