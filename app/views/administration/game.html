@@ -33,9 +33,9 @@
           <table class="table">
             <thead>
               <tr class="graybg">
-               <!--  <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
-                <th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
+               <!-- <th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
                 <th>{{'table.heading.gamemedia.partner.partnername' | translate}}</th>
+                 <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.contactnum' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.emailid' | translate}}</th>
@@ -46,6 +46,7 @@
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
                 <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
                 <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
                 <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
                 <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
@@ -63,8 +64,8 @@
           <table class="table">
         <thead>
             <tr class="graybg">
-                <th>Id</th>
                 <th>{{'table.heading.partnername' | translate}}</th>
+                <th>{{'table.heading.partnertype' | translate}}</th>
                 <th>{{'table.heading.agreement.category' | translate}}</th>
                 <th>{{'table.heading.agreementtype' | translate}}</th>
                 <th>{{'table.heading.royalty.type' | translate}}</th>
@@ -77,8 +78,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">
-                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.id}}</td>        
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>            
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerType}}</td>        
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementCategory}}</td>
                 <td>{{partnerAgreement.agreementType}}</td>
                 <td>{{partnerAgreement.royaltyType}}</td>      
