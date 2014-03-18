@@ -131,7 +131,7 @@
 					  } 
 					  
 					  resourceFactory.pamediaCategoryDataResource.save(this.formData,function(data){
-						 
+		 
 						  delete scope.formData.agreementType;
 						  delete scope.formData.agreementCategory;
 						  delete scope.formData.settlementSource;
@@ -158,8 +158,8 @@
 //							  location.path('/game');
 						  });
 						  location.path('/viewpartneragreement/'+data.resourceId);
-					 
-			       });
+					  });
+
 		            
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
