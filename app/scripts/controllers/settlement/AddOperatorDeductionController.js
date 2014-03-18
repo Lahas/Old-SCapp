@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  AddOperatorDeductionController: function(scope, resourceFactory, location,dateFilter,routeParams) {
+	  AddOperatorDeductionController: function(scope, webStorage,resourceFactory, location,dateFilter,routeParams) {
 		  
 		  scope.clientId = routeParams.id; 
 		  scope.dataFor2 = new Array();
@@ -70,6 +70,12 @@
 	        	scope.deductionData.splice(index,1);	
 	        };
 		  
+	        scope.tabStatus=function(){
+				  webStorage.add("callingTab", {someString: "operator" });
+			  };
+			  
+	        
+	        
 		  scope.submit = function(){
 			  
 			  scope.formData.deductionData = new Array();
@@ -88,6 +94,7 @@
 			  console.log(scope.formData.deductionData);
 			  resourceFactory.saveOperatorDeductionData.save(scope.formData,function(data){
 				  location.path("/viewclient/"+data.resourceId);
+				  webStorage.add("callingTab", {someString: "operator" });
 			  });
 		  };
 		  
@@ -96,7 +103,7 @@
 		 
 	  }
   });
-  mifosX.ng.application.controller('AddOperatorDeductionController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams', mifosX.controllers.AddOperatorDeductionController]).run(function($log) {
+  mifosX.ng.application.controller('AddOperatorDeductionController', ['$scope', 'webStorage','ResourceFactory', '$location','dateFilter','$routeParams', mifosX.controllers.AddOperatorDeductionController]).run(function($log) {
     $log.info("AddOperatorDeductionController initialized");
   });
 }(mifosX.controllers || {}));

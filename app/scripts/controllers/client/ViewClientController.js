@@ -42,8 +42,13 @@
  		  }else if(scope.displayTab == "Statements"){
  			  scope.StatementsTab =  true;
  			  webStorage.remove('callingTab');
- 		  }else
- 		  {
+ 		  }else if(scope.displayTab == "operator"){
+ 			  scope.OperatorTab =  true;
+ 			  webStorage.remove('callingTab'); 
+ 		  }else if(scope.displayTab == "revenueShare"){
+ 			  scope.royaltyTab =  true;
+ 			  webStorage.remove('callingTab'); 
+ 		  }else{
  			  webStorage.remove('callingTab');
  		  };
  		 

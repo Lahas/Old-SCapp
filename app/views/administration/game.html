@@ -33,9 +33,9 @@
           <table class="table">
             <thead>
               <tr class="graybg">
-               <!--  <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
-                <th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
+               <!--<th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
                 <th>{{'table.heading.gamemedia.partner.partnername' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.contactnum' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.emailid' | translate}}</th>
@@ -45,12 +45,13 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerName}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerTypeStr}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerAddress}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.contactNum}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.emailId}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.currencyCode}}</a></td>
+                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.externalId}}</a></td>
               </tr>
             </tbody>
           </table>
@@ -63,10 +64,15 @@
           <table class="table">
         <thead>
             <tr class="graybg">
-                <th>Id</th>
                 <th>{{'table.heading.partnername' | translate}}</th>
+<<<<<<< HEAD
                 <th>{{'table.heading.agreement.category' | translate}}</th>
                 <th>{{'table.heading.agreementtype' | translate}}</th>
+=======
+                 <th>{{'table.heading.partnertype' | translate}}</th>
+                <th>{{'table.heading.agreementtype' | translate}}</th>
+                <th>{{'table.heading.agreement.status' | translate}}</th>
+>>>>>>> ec9a69a8b2384d4de8de5d2b8d48ea5b1f7a92cb
                 <th>{{'table.heading.royalty.type' | translate}}</th>
                 <th>{{'table.heading.settlement.source' | translate}}</th>
                 <th>{{'table.heading.startdate' | translate}}</th>
@@ -76,9 +82,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">
-                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.id}}</td>        
-                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>            
+            <tr ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">       
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>   
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerType}}</td>         
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementCategory}}</td>
                 <td>{{partnerAgreement.agreementType}}</td>
                 <td>{{partnerAgreement.royaltyType}}</td>      

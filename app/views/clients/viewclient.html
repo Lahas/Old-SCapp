@@ -196,7 +196,7 @@
           </table>
       </tab>
       
-   <tab heading="Operator Deduction" select="getOperatorDeductionData()">
+   <tab heading="Operator Deduction" select="getOperatorDeductionData()" active="OperatorTab">
 	<div class="pull-right btn-group ng-scope">
           <a class="btn btn-primary ng-binding" href="#/addoperatordeduction/{{client.id}}"><i class="icon-plus icon-white"></i>Add</a>
     </div>
@@ -476,7 +476,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText">
+            <tr ng-show="financialtransaction.transactionType=='INVOICE'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
                 
                 <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionId}}</a></td>
                 <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transDate | DateFormat}}</a></td>
@@ -485,6 +485,17 @@
                 <td>{{financialtransaction.amount}}</td>
 
             </tr>
+              <tr ng-show="financialtransaction.transactionType=='PAYMENT'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
+                
+                <td>{{financialtransaction.transactionId}}</td>
+                <td>{{financialtransaction.transDate | DateFormat}}</a></td>
+                <td>{{financialtransaction.transactionType}}</td>
+                <td>{{financialtransaction.creditAmount}}</td>
+                <td>{{financialtransaction.amount}}</td>
+
+            </tr>
+            
+            
         </tbody>
     </table>
     <ul class="pager">
