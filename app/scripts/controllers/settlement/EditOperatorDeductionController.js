@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditOperatorDeductionController: function(scope, resourceFactory, location,dateFilter,routeParams) {
+	  EditOperatorDeductionController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage) {
 		  
 		  scope.id = routeParams.id; 
 		  
@@ -14,23 +14,25 @@
 			  scope.formData.clientId = data.deductionCodeValues.clientId;
 		  });
 		  
+		  scope.tabStatus=function(){
+			  webStorage.add("callingTab", {someString: "operator" });
+		  };
+		  
 
 		  
 		  scope.submit = function(){
 			  			  
 			  scope.formData.locale = 'en';
-			   
 			  resourceFactory.editOperatorDeductionResource.update({id:routeParams.id},scope.formData,function(data){
-				  location.path("/viewclient/"+scope.formData.clientId);
+				  location.path('/viewclient/'+scope.formData.clientId);
+				  webStorage.add("callingTab", {someString: "operator" });
 			  });
-		  };
-		  
-		  
-		  
+			   
+		  }; 
 		 
 	  }
   });
-  mifosX.ng.application.controller('EditOperatorDeductionController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams', mifosX.controllers.EditOperatorDeductionController]).run(function($log) {
+  mifosX.ng.application.controller('EditOperatorDeductionController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage', mifosX.controllers.EditOperatorDeductionController]).run(function($log) {
     $log.info("EditOperatorDeductionController initialized");
   });
 }(mifosX.controllers || {}));

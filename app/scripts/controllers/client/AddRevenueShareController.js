@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  AddRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams) {
+		  AddRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage) {
 	        scope.discountTypeDatas = [];
 	        scope.statuses = [];
 	        scope.start = {};
@@ -62,6 +62,9 @@
 	        	//console.log("Remove Game Media: "+scope.counter);	
 	        };
 	        
+	        scope.tabStatus=function(){
+				  webStorage.add("callingTab", {someString: "revenueShare" });
+			  };
 	        scope.submit = function(){
 				  scope.formData.percentageParams = new Array();
 				  if(scope.revenueData.length>0){
@@ -79,6 +82,7 @@
 				  scope.formData.locale = 'en';
 				  resourceFactory.revenueResource.save({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+routeParams.id);
+					  webStorage.add("callingTab", {someString: "revenueShare" });
 		            });
 	        };
 	        
@@ -95,7 +99,7 @@
 	      
 	    }
 	  });
-	  mifosX.ng.application.controller('AddRevenueShareController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams', mifosX.controllers.AddRevenueShareController]).run(function($log) {
+	  mifosX.ng.application.controller('AddRevenueShareController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage', mifosX.controllers.AddRevenueShareController]).run(function($log) {
 	    $log.info("AddRevenueShareController initialized");
 	  });
 	}(mifosX.controllers || {}));
