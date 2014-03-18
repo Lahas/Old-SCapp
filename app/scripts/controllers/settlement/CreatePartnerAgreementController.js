@@ -58,13 +58,13 @@
 					  console.log(pName);
 					  resourceFactory.getPartnerType.get({partnerName: pName},function(data) {
 //				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
-				  			scope.formData.partnerType = data.partnerTypeId;
-				  			
+				  			scope.formData.partnerType = data.partnerType;
+				  			/*
 				  			for( var i in scope.partnerTypeDatas){
 				        		if(scope.formData.partnerType == scope.partnerTypeDatas[i].id){
 				        			scope.partnerTypeName=scope.partnerTypeDatas[i].mCodeValue;
 				        		}
-						  		}
+						  		}*/
 				  			
 				      });
 				  };
@@ -72,7 +72,6 @@
 		
 				  
 				  scope.addmediaCategories = function(){
-			        	scope.counter = scope.counter+1;
 			        	scope.mediaPartnerData.push({
 														mediaCategory : scope.mediaPartnerAttributes.mediaCategory,
 														playSource : scope.mediaPartnerAttributes.playSource,
@@ -91,15 +90,12 @@
 				  
 				  
 			        scope.removemediaCategories = function(index){	
-			        	if(scope.counter>=1){
-			        		scope.counter = scope.counter-1;
-			        	}
+			        	
 			        	scope.mediaPartnerData.splice(index,1);
 			        		
 			        };  
 			
 				  scope.tabStatus = function(){
-			        	
 			    	   webStorage.add("currentTab", {tab: "agreement" });
 			      };
 		  
@@ -127,35 +123,43 @@
 			        		}
 			        	}
 		            
+					  
+					  for( var i in scope.agreementCategoryDatas){
+						  if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+							  delete scope.formData.mgAmount; 
+						  }
+					  } 
+					  
 					  resourceFactory.pamediaCategoryDataResource.save(this.formData,function(data){
-					  });
-					  console.log(JSON.stringify(scope.formData.partnerAgreementData)); 
-		            
-					    delete scope.formData.agreementType;
-			        	delete scope.formData.agreementCategory;
-			        	delete scope.formData.settlementSource;
-			        	delete scope.formData.startDate;
-			        	delete scope.formData.endDate;
-			        	delete scope.formData.mgAmount;
-			        	delete scope.formData.dateFormat;
-					  	delete scope.formData.royaltyShare; 
-						delete scope.formData.playSource; 
-						delete scope.formData.royaltySequence; 
-						delete scope.formData.status; 
-						delete scope.formData.partnerAgreementData; 
+						 
+						  delete scope.formData.agreementType;
+						  delete scope.formData.agreementCategory;
+						  delete scope.formData.settlementSource;
+						  delete scope.formData.startDate;
+						  delete scope.formData.endDate;
+						  delete scope.formData.mgAmount;
+						  delete scope.formData.dateFormat;
+						  delete scope.formData.royaltyShare; 
+						  delete scope.formData.playSource; 
+						  delete scope.formData.royaltySequence; 
+						  delete scope.formData.status; 
+						  delete scope.formData.partnerAgreementData; 
+						  
+						  http.uploadFile({
+							  url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
+							  //url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
+							  data: scope.formData,
+							  file: scope.file
+						  }).then(function(data) {
+							  // to fix IE not refreshing the model
+							  if (!scope.$$phase) {
+								  scope.$apply();
+							  }
+//							  location.path('/game');
+						  });
+						  location.path('/viewpartneragreement/'+data.resourceId);
 					 
-		            http.uploadFile({
-		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
-		            	//url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
-		              data: scope.formData,
-		              file: scope.file
-		            }).then(function(data) {
-		              // to fix IE not refreshing the model
-		              if (!scope.$$phase) {
-		                scope.$apply();
-		              }
-		              location.path('/game');
-		            });
+			       });
 		            
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };

@@ -950,7 +950,7 @@
              getPartnerType: defineResource(apiVer+ "/mediasettlements/partnerAgreementType/:prtnerName",{prtnerName: '@prtnerName'},{
             	 get: {method: 'GET', params: {}}
              }),
-             viewpartnerAgreementResource: defineResource(apiVer+"/mediasettlements/:documentId/attachment", {documentId:'@documentId'}, {
+             viewpartnerAgreementResource: defineResource(apiVer+"/mediasettlements/:documentId/attachmentData", {documentId:'@documentId'}, {
             	    getAll: {method: 'GET', params: {}},
             	    update: {method: 'PUT', params: {}}
               }),
@@ -962,6 +962,10 @@
            	    update: { method: 'PUT' }
            	 }),
            	deleteMediaCategoryDataResource: defineResource(apiVer+"/mediasettlements/deleteMediaCategory/:detailId", {detailId:'@detailId'}, {
+        	    getAll: {method: 'GET', params: {}},
+        	    update: {method: 'PUT', params: {}}
+            }),
+            viewpartnerAccountResource: defineResource(apiVer+"/mediasettlements/:id/partnerAccountView", {id:'@id'}, {
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
             })

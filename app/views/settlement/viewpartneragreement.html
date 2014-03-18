@@ -1,7 +1,7 @@
  <div ng-controller="ViewPartnerAgreementController">
 	<div class="paddedbottom10">
 	<ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneragreement' | translate}}</a> <span class="divider">/</span></li>
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.viewpartneragreement' | translate}}</li>
           </ul>
           
@@ -61,7 +61,9 @@
                             </tr>
                             <tr>
                               <td>{{ 'label.agreementdoc' | translate }}</td>
-                              <td>{{agreementDoc}}</td>
+                              <td>{{fileName}}{{" " }}
+                              <a ng-show="fileName"; ng-click="downloadFile()" popover="Download File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
+                              </td>
                             </tr>
                             <tr></tr>
                             <tr></tr>
@@ -81,9 +83,9 @@
 				              </tr>
 				            </thead>
 				            <tbody>
-				              <tr ng-repeat="pad in partnerAgreementDatas">
-				                <td>{{pad.mediaCategorys}}</td>
-				                <td>{{pad.playSources}}</td>
+				              <tr ng-repeat="pad in mediaCategoryDatas">
+				                <td>{{pad.mediaCategory}}</td>
+				                <td>{{pad.playSource}}</td>
 				                <td>{{pad.royaltyShare}}</td>
 				                <td>{{pad.royaltySequences}}</td>
 				                <td>{{pad.statuss}}</td>

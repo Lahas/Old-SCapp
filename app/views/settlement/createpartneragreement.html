@@ -1,10 +1,11 @@
+<div ng-controller="CreatePartnerAgreementController">
 	<ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.addpartneragreement' | translate}}</li>
           </ul>
 
 
-<form class="form-horizontal well" ng-controller="CreatePartnerAgreementController"  ng-submit="submit()">
+<form name="partneragreement"  class="form-horizontal well"   ng-submit="submit()">
   	<div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -160,7 +161,7 @@
                       <td><select ng-model="gd.mediaCategory"  class="input-medium" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" required >
 					  </select></td>
 					  <td><select ng-model="gd.playSource"  class="input-medium" ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}" required >
-					  <td><input type="text"  class="input-medium" ng-model="gd.royaltyShare" required ></td>
+					  <td><input type="text" name="royaltyShare" class="input-medium"  ng-model="gd.royaltyShare" required ></td>
 					  </select></td>
                       <td><select ng-model="gd.royaltySequence"  class="input-medium" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" required >
 					  </select></td>
@@ -235,3 +236,4 @@
 	 </fieldset>
 </form>
      		
+</div>

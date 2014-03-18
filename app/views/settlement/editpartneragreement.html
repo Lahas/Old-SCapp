@@ -1,6 +1,7 @@
  <div ng-controller="EditPartnerAgreementController">
 <ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+              <li><a  href="#/viewpartneragreement/{{resouresId}}" >{{'label.viewpartneragreement'| translate}}</a><span class="divider">/</span></li>
               <li class="active">{{'label.editpartneragreement'| translate}}</li>
           </ul>
           <div class="pull-right">
@@ -20,7 +21,12 @@
                         <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
                     </div>
       </script>      
-      <form class="form-horizontal well"  ng-submit="submit()">
+      <form name= "partneragreement"  class="form-horizontal well"  ng-submit="submit()">
+      <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
 
         <fieldset>
          
@@ -312,9 +318,7 @@
               </tr>
               <tr class="span2"></tr>
            </table>
-           
-           
-            
+         
            <table class="table" width="100%" ng-show="mediaPartnerData.length>0">
                     <tr></tr>
                     <tr class="graybg">
@@ -329,7 +333,7 @@
                       <td><select ng-model="gd.mediaCategory"  class="input-medium" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" required >
 					  </select></td>
 					  <td><select ng-model="gd.playSource"  class="input-medium" ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}" required >
-					  <td><input type="text"  class="input-medium" ng-model="gd.royaltyShare" required ></td>
+					  <td><input type="text" class="input-medium" ng-model="gd.royaltyShare" required > </td>
 					  </select></td>
                       <td><select ng-model="gd.royaltySequence"  class="input-medium" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" required >
 					  </select></td>
@@ -381,7 +385,7 @@
     	</div>  
 
 <div class="offset3">
-            <a href="#/game" ><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel'| translate}}</button></a>
+            <a href="#/viewpartneragreement/{{resouresId}}" ><button type="reset" class="btn" >{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.update'| translate}}</button>
           </div>
 	 </fieldset>

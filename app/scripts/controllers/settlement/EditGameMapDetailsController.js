@@ -5,6 +5,7 @@
 		  scope.hideIfNotContentProvider = false;
 		  scope.gameData = [];
 		  scope.partnerGameAttributes = {};
+		  scope.resouresId=routeParams.id;
 		  
 		  resourceFactory.mediaSettlement.get({mediaSettlementId:routeParams.id},function(data) {
 			  scope.formData = data;
@@ -56,6 +57,7 @@
 			  /*delete scope.formData.channelPartners;
 			  delete scope.formData.channelPartnerData;*/
 			  delete scope.formData.currencyCodes;
+			  delete scope.formData.partnerTypeName;
 			  scope.formData.locale="en";
 			  
 			 /* scope.formData.chData = new Array();
@@ -70,7 +72,7 @@
 	        		}
 	        	}*/
 			  resourceFactory.mediaSettlement.update({mediaSettlementId:routeParams.id},scope.formData,function(data){
-	            	location.path('/game');
+	            	location.path('/viewpartneraccount/'+routeParams.id);
 	          });
 			  
 		  };

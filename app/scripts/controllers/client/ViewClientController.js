@@ -42,7 +42,11 @@
  		  }else if(scope.displayTab == "Statements"){
  			  scope.StatementsTab =  true;
  			  webStorage.remove('callingTab');
- 		  }else
+ 		  }else if(scope.displayTab == "operator"){
+ 			  scope.operatorTab =  true;
+ 			  webStorage.remove('callingTab');
+ 		  }
+ 		  else
  		  {
  			  webStorage.remove('callingTab');
  		  };
