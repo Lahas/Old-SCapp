@@ -215,6 +215,7 @@
 						delete scope.formData.royaltySequence; 
 						delete scope.formData.status; 
 						delete scope.formData.partnerAgreementData; 
+
 		            
 		            http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
@@ -229,7 +230,9 @@
 		              location.path('/viewpartneragreement/'+routeParams.id);
 		            });
 		       
+
 			  });
+
 		          
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
