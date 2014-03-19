@@ -2141,6 +2141,7 @@
 "table.heading.agreementtype":"Agreement Category",
 "table.heading.partnername":"Partner Name",
 "table.heading.partnertype":"Partner Type",
+"table.heading.partneragreement.category":"Agreement Category",
 "table.heading.agreement.status":"Agreement Status", 
 "table.heading.royalty.type":"Royalty Type",
 "table.heading.startdate":"Start Date",
