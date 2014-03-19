@@ -1,4 +1,4 @@
-(function(module) 
+(function(module) {
   mifosX.controllers = _.extend(module, {
     ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter) {
     	 scope.client = [];
