@@ -45,14 +45,14 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
-                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>
-                </tr>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>
+              </tr>
             </tbody>
           </table>
       </tab>
@@ -65,8 +65,9 @@
         <thead>
             <tr class="graybg">
                 <th>{{'table.heading.partnername' | translate}}</th>
-                <th>{{'table.heading.agreement.category' | translate}}</th>
+                <th>{{'table.heading.partnertype' | translate}}</th>
                 <th>{{'table.heading.agreementtype' | translate}}</th>
+                <th>{{'table.heading.agreement.status' | translate}}</th>
                 <th>{{'table.heading.royalty.type' | translate}}</th>
                 <th>{{'table.heading.settlement.source' | translate}}</th>
                 <th>{{'table.heading.startdate' | translate}}</th>

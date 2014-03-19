@@ -101,7 +101,7 @@
 	        	}*/
 			  
 			  resourceFactory.mediaSettlement.save(scope.formData,function(data){
-	            	location.path('/game');
+	            	location.path('/viewpartneraccount/'+data.resourceId);
 				  
 	          });
 			  
