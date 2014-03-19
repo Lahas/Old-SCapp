@@ -2120,7 +2120,6 @@
 "dialog.statement.title.message":"Prepare Statement",  
 "dialog.reconnect.title.message":"Reconnect",
 "dialog.partneragreement.title.message":"Delete Partner Agreement",  
-
 "##Partner.Management.Locales":"",
 "label.partner":"Partner",
 "label.partner.account":"Partner Account",
@@ -2141,6 +2140,7 @@
 "table.heading.gamemedia.partner.partneraddress":"Partner Address",
 "table.heading.agreementtype":"Agreement Type",
 "table.heading.agreementtype":"Agreement Category",
+"table.heading.agreementtype":"Agreement Status",
 "table.heading.partnername":"Partner Name",
 "table.heading.partnertype":"Partner Type",
 "table.heading.agreement.status":"Agreement Status", 
@@ -2444,7 +2444,19 @@
 	"label.viewpartneraccount":"View Partner Account",
 	"label.contactnum":"Contact Number",
 	"label.currencyname":"Currency",
-	"label.royaltysequence":"Royalty Sequence"
-							     
+	"label.royaltysequence":"Royalty Sequence",
+	
+	"validation.msg.partnerAgreement.agreementType.cannot.be.blank":"Agreement Status cannot be blank",
+	"validation.msg.partnerAgreement.agreementCategory.cannot.be.blank":"Agreement Category cannot be blank",
+	"validation.msg.partnerAgreement.royaltyType.cannot.be.blank":"Royalty Type cannot be blank",
+	"validation.msg.partnerAgreement.settlementSource.cannot.be.blank":"Settlement Source cannot be blank",
+	"validation.msg.partnerAgreement.startDate.cannot.be.blank":"Contr Effect Date cannot be blank",
+	"validation.msg.partnerAgreement.endDate.cannot.be.blank":"Contr End Date",
+	"validation.msg.partnerAgreement.playSource.cannot.be.blank":"Play Source cannot be blank",
+	"validation.msg.partnerAgreement.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
+	"validation.msg.partnerAgreement.royaltySequence.cannot.be.blank":"Royalty Sequence cannot be blank",
+	"validation.msg.partnerAgreement.status.cannot.be.blank":"Status cannot be blank",	
+	"validation.msg.partnerAgreement.royaltyShare.cannot.be.blank":"Royalty Share cannot be blank",
+	"error.msg.settlement.create.unknown.data.integrity.issue":"Duplicate entry"						     
 
 }

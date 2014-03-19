@@ -99,7 +99,6 @@
 				  };       
 		        
 				  scope.addmediaCategories = function(){
-			        	scope.counter = scope.counter+1;
 			        	scope.mediaPartnerData.push({
 														mediaCategory : scope.mediaPartnerAttributes.mediaCategory,
 														playSource : scope.mediaPartnerAttributes.playSource,
@@ -119,11 +118,6 @@
 				  
 			        scope.removemediaCategories = function(index){	
 			        	
-			        	
-			        	
-			        	if(scope.counter>=1){
-			        		scope.counter = scope.counter-1;
-			        	}
 			        	scope.mediaPartnerData.splice(index,1);
 			        		
 			        }; 
@@ -148,21 +142,16 @@
 			        		  
 			        		  
 			        		  if(scope.mid == undefined || scope.mid == "undefined"){
-			        			  if(scope.counter>=1){
-						        		scope.counter = scope.counter-1;
-						        	}
-						        	scope.mediaPartnerData.splice(index,1);
+						        	scope.mediaPartnerData.splice(scope.index,1);
 			        		  }else{
 			        		 resourceFactory.deleteMediaCategoryDataResource.delete({ detailId: scope.mid },{},function(data){
 //			        			  route.reload();
 			        	        },function(errData){
 					          });
-			        			  $modalInstance.close('delete');
-			        		  if(scope.counter>=1){
-					        		scope.counter = scope.counter-1;
-					        	}
+			        		  
 					        	scope.mediaPartnerData.splice(scope.index,1);
 			        		  }
+			        		  $modalInstance.close('delete');
 			              };
 			              $scope.cancel = function () {
 			                  $modalInstance.dismiss('cancel');
@@ -185,6 +174,20 @@
 		        	delete scope.formData.mgAmount;
 //		        	delete scope.formData.partnerAgreementData;
 		        	delete scope.formData.dateFormat;*/
+		        	
+		        	this.formData.locale = 'en';
+		        	var reqDate1 = dateFilter(scope.formData.startDate,'dd MMMM yyyy');
+		            this.formData.dateFormat = 'dd MMMM yyyy';
+		            this.formData.startDate = reqDate1;
+		            
+		            var reqDate2 = dateFilter(scope.formData.endDate,'dd MMMM yyyy');
+		            this.formData.endDate = reqDate2;
+		            
+		            for( var i in scope.agreementCategoryDatas){
+		        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+		        		delete scope.formData.mgAmount; 
+		        		}
+				  	}
 		        
 					  console.log(scope.mediaPartnerData.length);
 					  scope.formData.partnerAgreementData = new Array();
@@ -205,28 +208,14 @@
 			        	}
 					  
 					  console.log(JSON.stringify(scope.formData.partnerAgreementData));
-					  resourceFactory.editpartnerAgreementDatasDetails.update({clientId: routeParams.id},this.formData,function(data){
-					  });
+		  	resourceFactory.editpartnerAgreementDatasDetails.update({clientId: routeParams.id},this.formData,function(data){
 						delete scope.formData.royaltyShare; 
 						delete scope.formData.mediaCategory; 
 						delete scope.formData.playSource; 
 						delete scope.formData.royaltySequence; 
 						delete scope.formData.status; 
 						delete scope.formData.partnerAgreementData; 
-			
-		        	this.formData.locale = 'en';
-		        	var reqDate1 = dateFilter(scope.formData.startDate,'dd MMMM yyyy');
-		            this.formData.dateFormat = 'dd MMMM yyyy';
-		            this.formData.startDate = reqDate1;
-		            
-		            var reqDate2 = dateFilter(scope.formData.endDate,'dd MMMM yyyy');
-		            this.formData.endDate = reqDate2;
-		            
-		            for( var i in scope.agreementCategoryDatas){
-		        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
-		        		delete scope.formData.mgAmount; 
-		        		}
-				  	} 
+
 		            
 		            http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
@@ -238,9 +227,12 @@
 		              if (!scope.$$phase) {
 		                scope.$apply();
 		              }
-		              location.path('/game');
+		              location.path('/viewpartneragreement/'+routeParams.id);
 		            });
 		       
+
+			  });
+
 		          
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
@@ -259,7 +251,7 @@
 				   $scope.approve = function () {
 					   //$modalInstance.close('delete');
 		                  resourceFactory.deletepartnerAgreementResource.delete({documentId: routeParams.id} , {} , function(data) {
-		                       location.path('/game');
+		                       location.path('/viewpartneragreement/'+routeParams.id);
 		                       
 		                  });
 		                  $modalInstance.close('delete');
