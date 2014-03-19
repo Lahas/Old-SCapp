@@ -13,6 +13,9 @@
 			  scope.formData.endDate = new Date();
 			  scope.minDate=new Date();
 			  
+			  scope.mediaPartnerAttributes = {};
+			  scope.mediaPartnerData= [];
+			  
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
 			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];
 			  
@@ -51,18 +54,51 @@
 		       	}
 			  };
 		        
-		       /* scope.getCategory=function(pName){
+		       scope.getCategory=function(pName){
 					  console.log(pName);
-					  resourceFactory.getCategoryAndPartner.get({partnerName: pName},function(data) {
-				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
-				  			scope.formData.partnerType = data.partnerTypeData.partnerTypeId;
+					  resourceFactory.getPartnerType.get({partnerName: pName},function(data) {
+//				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
+				  			scope.formData.partnerType = data.partnerTypeId;
+				  			
+				  			for( var i in scope.partnerTypeDatas){
+				        		if(scope.formData.partnerType == scope.partnerTypeDatas[i].id){
+				        			scope.partnerTypeName=scope.partnerTypeDatas[i].mCodeValue;
+				        		}
+						  		}
 				  			
 				      });
-				  };*/
+				  };
 		       
-			  
-				  scope.tabStatus = function(){
+		
+				  
+				  scope.addmediaCategories = function(){
+			        	scope.counter = scope.counter+1;
+			        	scope.mediaPartnerData.push({
+														mediaCategory : scope.mediaPartnerAttributes.mediaCategory,
+														playSource : scope.mediaPartnerAttributes.playSource,
+														royaltyShare : scope.mediaPartnerAttributes.royaltyShare,
+														royaltySequence : scope.mediaPartnerAttributes.royaltySequence,
+														status : scope.mediaPartnerAttributes.status
+														
+													});
 			        	
+			        	scope.mediaPartnerAttributes.mediaCategory = undefined;
+						scope.mediaPartnerAttributes.playSource = undefined;
+						scope.mediaPartnerAttributes.royaltyShare = undefined;
+						scope.mediaPartnerAttributes.royaltySequence = undefined;
+						scope.mediaPartnerAttributes.status = undefined;
+			        };	  
+				  
+				  
+			        scope.removemediaCategories = function(index){	
+			        	if(scope.counter>=1){
+			        		scope.counter = scope.counter-1;
+			        	}
+			        	scope.mediaPartnerData.splice(index,1);
+			        		
+			        };  
+			
+				  scope.tabStatus = function(){
 			    	   webStorage.add("currentTab", {tab: "agreement" });
 			      };
 		  
@@ -76,6 +112,43 @@
 		            var reqDate2 = dateFilter(scope.formData.endDate,'dd MMMM yyyy');
 		            this.formData.endDate = reqDate2;
 		            
+		            scope.formData.partnerAgreementData = new Array();
+					  if(scope.mediaPartnerData.length>0){
+			        		for(var i in scope.mediaPartnerData){
+			        			scope.formData.partnerAgreementData.push({
+			        				mediaCategory : scope.mediaPartnerData[i].mediaCategory,
+			        				playSource : scope.mediaPartnerData[i].playSource,
+			        				royaltyShare : scope.mediaPartnerData[i].royaltyShare,
+									royaltySequence : scope.mediaPartnerData[i].royaltySequence,
+									status : scope.mediaPartnerData[i].status,
+									locale : "en",
+			        			});
+			        		}
+			        	}
+		            
+					  resourceFactory.pamediaCategoryDataResource.save(this.formData,function(data){
+					  });
+					  console.log(JSON.stringify(scope.formData.partnerAgreementData)); 
+		            
+					    delete scope.formData.agreementType;
+			        	delete scope.formData.agreementCategory;
+			        	delete scope.formData.settlementSource;
+			        	delete scope.formData.startDate;
+			        	delete scope.formData.endDate;
+			        	delete scope.formData.mgAmount;
+			        	delete scope.formData.dateFormat;
+					  	delete scope.formData.royaltyShare; 
+						delete scope.formData.playSource; 
+						delete scope.formData.royaltySequence; 
+						delete scope.formData.status; 
+						delete scope.formData.partnerAgreementData; 
+						
+						  for( var i in scope.agreementCategoryDatas){
+				        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+				        		delete scope.formData.mgAmount; 
+				        		}
+						  	} 
+					 
 		            http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
 		            	//url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
@@ -88,6 +161,7 @@
 		              }
 		              location.path('/game');
 		            });
+		            
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
 		        

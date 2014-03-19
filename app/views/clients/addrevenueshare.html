@@ -43,7 +43,7 @@
                    <tr>
                    		<td>
                    				<div class="control-group">
-                     			<label class="control-label" for="revenueShareType">{{ 'settlement.label.royaltytype' | translate }}&nbsp;<span class="required">*</span></label>
+                     			<label class="control-label" for="revenueShareType">{{ 'settlement.label.revenueshare' | translate }}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
                     			<select  ng-model="formData.revenueShareType" ng-change="setView(formData.revenueShareType)" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
                     			</select>

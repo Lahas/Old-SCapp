@@ -1203,7 +1203,7 @@
   "label.client.select.file":"Browse file to Upload",
   "label.addimportfile":"Add New File",
   "error.msg.document.file.too.big":"File is too big",
-  "error.msg.file.duplicate.name":"File is already exist with this name",
+  "error.msg.file.duplicate.name":"File already exist with this name",
   "validation.msg.UploadStatus.description.cannot.be.blank":"Description Cannot be blank",
   
   "#Order":".....",
@@ -2127,7 +2127,7 @@
 "tab.partner.addgame":"Add Games Supported by Partner",
 "tab.partner.agreement":"Partner Agreement",
 "tab.partner.account":"Partner Account",
-"tab.partner.revenue":"Revenue Settlement",
+"tab.partner.revenue":"Royalty Settlement",
 "label.partner.type":"Partner Type",
 "label.partner.partnername":"Partner Name",
 "label.partner.media.category":"Media Category",
@@ -2139,7 +2139,7 @@
 "table.heading.gamemedia.partner.mediacategory":"Media Category",
 "table.heading.gamemedia.partner.partnername":"Partner Name",
 "table.heading.gamemedia.partner.partneraddress":"Partner Address",
-"table.heading.agreementtype":"Agreement Category",
+"table.heading.agreementtype":"Agreement Type",
 "table.heading.partnername":"Partner Name",
 "table.heading.partnertype":"Partner Type",
 "table.heading.agreement.status":"Agreement Status", 
@@ -2269,7 +2269,8 @@
   "table.heading.gamemedia.gameHeader.clientId":"ClientId",
   "table.heading.gamemedia.gameHeader.clientExternalId":"Client Ex.. Id",
   "table.heading.gamemedia.gameHeader.clientName":"Client Name",
-  "table.heading.gamemedia.gameHeader.circle":"circle",
+  "table.heading.gamemedia.gameHeader.circle":"Circle",
+  "table.heading.gamemedia.gameHeader.headerid":"Header Id",
   "table.heading.gamemedia.gameHeader.activityMonth":"Activity Month",
   "table.heading.gamemedia.gameHeader.dataUploadDate":"Data Upload Date",
   "table.heading.gamemedia.gameHeader.businessLine":"Business Line",
@@ -2326,7 +2327,7 @@
   "dialog.masterdeduction.title.message":"Delete Master Deduction",
   "settlement.label.business.line":"Business Line",
   "settlement.label.media.category":"Media Category",
-  "settlement.label.royaltytype":"Royalty Type",
+  "settlement.label.revenueshare":"Revenue Share",
   "table.heading.revenueshare.startvalue":"Start Value",
   "table.heading.revenueshare.endvalue":"End Value",
   "table.heading.revenueshare.percentage":"Percentage",
@@ -2418,11 +2419,31 @@
 	"table.heading.royaltyshare":"Royalty Share",
 	"table.heading.royaltysequence":"Royalty Sequence",
 	"table.heading.status":"Status",
+	"table.heading.mediacategory":"Media Category",
+	"label.viewpartneragreement":"View Partner Agreement",
+
 
 	"validation.msg.businessline.category.cannot.be.empty":"Please select atleast one category",
 	"validation.msg.revenueShare.businessLine.cannot.be.blank":"Business Line cannot be blank",
 	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
 	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
-	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank"						     
+
+	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",						     
+	"validation.msg.media.settlement.agreementType.cannot.be.blank":"Agreement Type cannot be blank",
+	"validation.msg.media.settlement.agreementCategory.cannot.be.blank":"Agreement Category cannot be blank",
+	"validation.msg.media.settlement.agreementType.cannot.be.blank":"Agreement Type cannot be blank",
+	"validation.msg.media.settlement.settlementSource.cannot.be.blank":"Settlement Source cannot be blank",
+	"validation.msg.media.settlement.royaltyType.cannot.be.blank":"Royalty Type cannot be blank",
+	"validation.msg.media.settlement.status.cannot.be.blank":"Status cannot be blank",
+
+	"validation.msg.revenueShare.flat.cannot.be.blank":"Flat cannot be blank",
+	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist",
+	
+	"label.partneraccount":"Partner account",
+	"label.viewpartneraccount":"View Partner Account",
+	"label.contactnum":"Contact Number",
+	"label.currencyname":"Currency",
+	"label.royaltysequence":"Royalty Sequence"
+							     
 
 }

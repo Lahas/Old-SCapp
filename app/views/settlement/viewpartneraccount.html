@@ -1,0 +1,59 @@
+ <div ng-controller="ViewPartnerAccountController">
+	<div class="paddedbottom10">
+	<ul class="breadcrumb">
+              <li><a href="#/game">{{'label.partneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.viewpartneraccount' | translate}}</li>
+          </ul>
+          
+       <div class="pull-right">
+	      <div class="btn-group">
+	          <a href="#/editmapgamedetails/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	   	    
+	      </div>
+	    </div>    
+   </div>       
+          
+<form class="form-horizontal well"  >
+<fieldset>
+	 <legend>{{'label.viewpartneraccount' | translate}}</legend>
+	 	 
+	  				 <div>
+            
+                        <table  width="100%" >
+                            <tr>
+                              <td width="35%">{{'label.partner.partnername' | translate}}</td>
+                              <td width="65%">{{partnerName}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.partnertype' | translate}}</td>
+                              <td>{{partnerTypeName}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.contactnum' | translate }}</td>
+                              <td>{{contactNum}}</td>
+                            </tr>
+                             <tr>
+                              <td>{{ 'label.emailid' | translate }}</td>
+                              <td>{{emailId}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.externalId' | translate }}</td>
+                              <td>{{externalId}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.currencyname' | translate }}</td>
+                              <td>{{currencyName}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.royaltysequence' | translate }}</td>
+                              <td>{{royaltySequence}}</td>
+                            </tr>
+                           
+                          </table>
+                     </div>
+                     
+                     
+	 </fieldset>
+	 
+</form>	
+  </div>   	          

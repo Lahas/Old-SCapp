@@ -5,13 +5,14 @@
 		  scope.hideIfNotContentProvider = false;
 		  scope.gameData = [];
 		  scope.partnerGameAttributes = {};
+		  scope.resouresId=routeParams.id;
 		  
 		  resourceFactory.mediaSettlement.get({mediaSettlementId:routeParams.id},function(data) {
 			  scope.formData = data;
 //			  scope.formData.currencyCode = parseInt(data.currencyCode);
 			  scope.currencyCodes = data.currencyCodes;
-			 /* scope.partnerType = data.partnerTypeData;
-			  scope.mediaCategory = data.mediaCategoryData;
+			  scope.partnerTypeData = data.partnerTypeData;
+			  /* scope.mediaCategory = data.mediaCategoryData;
 			  scope.channelPartner = data.channelPartners;
 			  scope.channelPartnerDatas = data.channelPartnerData;*/
 //			  scope.gameData = data.channelPartners;
@@ -50,8 +51,8 @@
 		  	  
 		  scope.submitPartnerAccount = function(){
 			 
-			 /* delete scope.formData.partnerTypeData;
-			  delete scope.formData.mediaCategoryData;*/
+			  delete scope.formData.partnerTypeData;
+			 /*  delete scope.formData.mediaCategoryData;*/
 			  delete scope.formData.id;
 			  /*delete scope.formData.channelPartners;
 			  delete scope.formData.channelPartnerData;*/

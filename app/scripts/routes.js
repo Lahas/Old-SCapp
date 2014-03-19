@@ -584,6 +584,8 @@
 			templateUrl : 'views/settlement/editpartnergame.html'
 		}).when('/createpartneragreement', {
 			templateUrl : 'views/settlement/createpartneragreement.html'
+		}).when('/viewpartneragreement/:id', {
+			templateUrl : 'views/settlement/viewpartneragreement.html'
 		}).when('/editPartnerAgreement/:id', {
 			templateUrl : 'views/settlement/editpartneragreement.html'
 		}).when('/addoperatordeduction/:id', {
@@ -624,6 +626,8 @@
 			templateUrl : 'views/organization/editbusinessline.html'
 		}).when('/editoperatordeduction/:id',{
 			templateUrl : 'views/settlement/editoperatordeduction.html'
+		}).when('/viewpartneraccount/:id',{
+			templateUrl : 'views/settlement/viewpartneraccount.html'
 		});
 		$locationProvider.html5Mode(false);
 	};

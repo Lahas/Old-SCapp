@@ -11,15 +11,19 @@
 			  scope.formData = {};
 			  scope.minDate=new Date();
 			  scope.categoryData=[];
-				
+			  scope.mediaPartnerAttributes = {};
+			  scope.mediaPartnerData= [];
+			  scope.resouresId=routeParams.id;
+			  
+			  
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
-			  scope.statusDatas=[{id:0, value:"Active"},{id:1, value:"Deactive"} ];
+			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];
 			  
 			  scope.onFileSelect = function($files) {
 			        scope.file = $files[0];
 			      };
 
-		        resourceFactory.editpartnerAgreementResource.getAllfiles({documentId: routeParams.id} ,function(data) {
+		  resourceFactory.editpartnerAgreementResource.getAllfiles({documentId: routeParams.id} ,function(data) {
 		            
 		        	scope.partnerTypeDatas = data.partnerAccountData.partnerTypeData;
 		            scope.mediaCategoryDatas = data.partnerAccountData.mediaCategoryData;
@@ -29,7 +33,7 @@
 			        scope.settlementSourceDatas=data.partnerAccountData.settlementSourceData;
 			        scope.mediaSettlementPartnerNameDatas = data.partnerAccountData.mediaSettlementPartnerName;
 			        scope.playSourceDatas=data.partnerAccountData.playSourceData;
-//			        scope.partnerAgreementDatas=data.partnerAgreementDatas;
+			        scope.mediaPartnerData=data.partnerAgreementDatas;
 			        
 			          scope.formData.agreementType=data.mediaSettlementCommand.agreementType;
 					  scope.formData.agreementCategory=data.mediaSettlementCommand.agreementCategory;
@@ -51,7 +55,18 @@
 					 scope.formData.mediaCategory=data.partnerAgreementDatas[i].mediaCategory;
 				}
 			}	*/	  
+				
+			  for( var i in scope.mediaSettlementPartnerNameDatas){
+	        		if(scope.formData.partnerAccountId == scope.mediaSettlementPartnerNameDatas[i].id){
+	        			scope.partnerAccountName=scope.mediaSettlementPartnerNameDatas[i].partnerName;
+	        		}
+			  		}	  
 					  
+			  for( var i in scope.partnerTypeDatas){
+	        		if(scope.formData.partnerType == scope.partnerTypeDatas[i].id){
+	        			scope.partnerTypeName=scope.partnerTypeDatas[i].mCodeValue;
+	        		}
+			  		}		  
 					  
 			  for( var i in scope.agreementCategoryDatas){
 	        		if(scope.formData.mgAmount != null && scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Minimum Guarantee"){
@@ -70,6 +85,7 @@
 		        		}
 		        		else{
 		        			scope.mgAmount=false;
+//		        			scope.formData.mgAmount="";
 		        			$(".requiredValue").removeAttr("required");
 		        		}
 		        	}
@@ -82,24 +98,81 @@
 					  });
 				  };       
 		        
+				  scope.addmediaCategories = function(){
+			        	scope.counter = scope.counter+1;
+			        	scope.mediaPartnerData.push({
+														mediaCategory : scope.mediaPartnerAttributes.mediaCategory,
+														playSource : scope.mediaPartnerAttributes.playSource,
+														royaltyShare : scope.mediaPartnerAttributes.royaltyShare,
+														royaltySequence : scope.mediaPartnerAttributes.royaltySequence,
+														status : scope.mediaPartnerAttributes.status
+														
+													});
+			        	
+			        	scope.mediaPartnerAttributes.mediaCategory = undefined;
+						scope.mediaPartnerAttributes.playSource = undefined;
+						scope.mediaPartnerAttributes.royaltyShare = undefined;
+						scope.mediaPartnerAttributes.royaltySequence = undefined;
+						scope.mediaPartnerAttributes.status = undefined;
+			        };	  
+				  
+				  
+			        scope.removemediaCategories = function(index){	
+			        	
+			        	
+			        	
+			        	if(scope.counter>=1){
+			        		scope.counter = scope.counter-1;
+			        	}
+			        	scope.mediaPartnerData.splice(index,1);
+			        		
+			        }; 
 		        
-		        
-							  
-							  
-		        
-		        /*scope.getCategory=function(pName){
-					  console.log(pName);
-					  resourceFactory.getCategoryAndPartner.get({partnerName: pName},function(data) {
-				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
-				  			scope.formData.partnerType = data.partnerTypeData.partnerTypeId;
-				  			
-				      });
-				  };*/
-		        
-		        scope.tabStatus = function(){
-		        	
-			    	   webStorage.add("currentTab", {tab: "agreement" });
-			      };
+					
+			        
+			        scope.deleteCategory = function(index,id){
+			        	
+			        	scope.index=index;
+			        	scope.mid=id;
+			        			 $modal.open({
+			        				 templateUrl: 'deleteCategory.html',
+			        				 controller: deleteCategoryController,
+			        				 resolve:{}
+			        			 });
+			        	
+			          };
+			          
+			          var deleteCategoryController = function ($scope, $modalInstance) {
+			        	  	
+			        	  $scope.approveDeleteCategory = function () {
+			        		  
+			        		  
+			        		  if(scope.mid == undefined || scope.mid == "undefined"){
+			        			  if(scope.counter>=1){
+						        		scope.counter = scope.counter-1;
+						        	}
+						        	scope.mediaPartnerData.splice(index,1);
+			        		  }else{
+			        		 resourceFactory.deleteMediaCategoryDataResource.delete({ detailId: scope.mid },{},function(data){
+//			        			  route.reload();
+			        	        },function(errData){
+					          });
+			        			  $modalInstance.close('delete');
+			        		  if(scope.counter>=1){
+					        		scope.counter = scope.counter-1;
+					        	}
+					        	scope.mediaPartnerData.splice(scope.index,1);
+			        		  }
+			              };
+			              $scope.cancel = function () {
+			                  $modalInstance.dismiss('cancel');
+			              };
+			          };
+
+			          scope.tabStatus = function(){
+				        	
+				    	   webStorage.add("currentTab", {tab: "agreement" });
+				      };
 		  
 		        scope.submit = function () {
 		        	
@@ -113,19 +186,20 @@
 //		        	delete scope.formData.partnerAgreementData;
 		        	delete scope.formData.dateFormat;*/
 		        
-					  console.log(scope.partnerAgreementDatas.length);
+					  console.log(scope.mediaPartnerData.length);
 					  scope.formData.partnerAgreementData = new Array();
-					  if(scope.partnerAgreementDatas.length>0){
-			        		for(var i in scope.partnerAgreementDatas){
+					  if(scope.mediaPartnerData.length>0){
+			        		for(var i in scope.mediaPartnerData){
 			        			scope.formData.partnerAgreementData.push({
-			        				id : scope.partnerAgreementDatas[i].id,
-			        				royaltyShare : scope.partnerAgreementDatas[i].royaltyShare,
-									playSource : scope.partnerAgreementDatas[i].playSource,
-									royaltySequence : scope.partnerAgreementDatas[i].royaltySequence,
-									status : scope.partnerAgreementDatas[i].status,
-									mediaCategory : scope.formData.mediaCategory,
-									partnerType : scope.formData.partnerType,
+			        				id : scope.mediaPartnerData[i].id,
+			        				mediaCategory : scope.mediaPartnerData[i].mediaCategory,
+			        				playSource : scope.mediaPartnerData[i].playSource,
+			        				royaltyShare : scope.mediaPartnerData[i].royaltyShare,
+									royaltySequence : scope.mediaPartnerData[i].royaltySequence,
+									status : scope.mediaPartnerData[i].status,
 									locale : "en",
+									partnerAccountId : scope.formData.partnerAccountId,
+									
 			        			});
 			        		}
 			        	}
@@ -134,6 +208,7 @@
 					  resourceFactory.editpartnerAgreementDatasDetails.update({clientId: routeParams.id},this.formData,function(data){
 					  });
 						delete scope.formData.royaltyShare; 
+						delete scope.formData.mediaCategory; 
 						delete scope.formData.playSource; 
 						delete scope.formData.royaltySequence; 
 						delete scope.formData.status; 
@@ -147,10 +222,15 @@
 		            var reqDate2 = dateFilter(scope.formData.endDate,'dd MMMM yyyy');
 		            this.formData.endDate = reqDate2;
 		            
-		            
+		            for( var i in scope.agreementCategoryDatas){
+		        		if(scope.agreementCategoryDatas[i].id == scope.formData.agreementCategory &&  scope.agreementCategoryDatas[i].mCodeValue == "Regular"){
+		        		delete scope.formData.mgAmount; 
+		        		}
+				  	} 
 		            
 		            http.uploadFile({
-		              url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
+		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
+		            //	url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/'+routeParams.id+'/document',		             
 		              data: scope.formData,
 		              file: scope.file
 		            }).then(function(data) {
@@ -160,10 +240,7 @@
 		              }
 		              location.path('/game');
 		            });
-		            
-		            
-		            
-		            
+		       
 		          
 		            webStorage.add("currentTab", {tab: "agreement" });
 		          };
@@ -177,7 +254,8 @@
 			              	resolve:{}
 			          	});
 				  };
-				   var Approve= function($scope, $modalInstance){
+				
+				  var Approve= function($scope, $modalInstance){
 				   $scope.approve = function () {
 					   //$modalInstance.close('delete');
 		                  resourceFactory.deletepartnerAgreementResource.delete({documentId: routeParams.id} , {} , function(data) {

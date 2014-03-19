@@ -45,14 +45,13 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerName}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerTypeStr}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.partnerAddress}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.contactNum}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.emailId}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.currencyCode}}</a></td>
-                <td class="pointer"><a href="#/editmapgamedetails/{{pd.id}}">{{pd.externalId}}</a></td>
-              </tr>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
+                <td class="pointer"><a href="#viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>
+                </tr>
             </tbody>
           </table>
       </tab>
@@ -65,9 +64,8 @@
         <thead>
             <tr class="graybg">
                 <th>{{'table.heading.partnername' | translate}}</th>
-                 <th>{{'table.heading.partnertype' | translate}}</th>
+                <th>{{'table.heading.agreement.category' | translate}}</th>
                 <th>{{'table.heading.agreementtype' | translate}}</th>
-                <th>{{'table.heading.agreement.status' | translate}}</th>
                 <th>{{'table.heading.royalty.type' | translate}}</th>
                 <th>{{'table.heading.settlement.source' | translate}}</th>
                 <th>{{'table.heading.startdate' | translate}}</th>
@@ -94,7 +92,7 @@
         </tbody>
     </table>
       </tab>
-      <tab heading="{{'tab.partner.addgame' | translate}}" select="setGameScreen()" active="game">
+<!--       <tab heading="{{'tab.partner.addgame' | translate}}" select="setGameScreen()" active="game">
         <div class="pull-right btn-group">
           <a href="#/partnergame" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
@@ -117,7 +115,7 @@
               </tr>
             </tbody>
           </table>
-      </tab>
+      </tab> -->
       
       <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
       <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">

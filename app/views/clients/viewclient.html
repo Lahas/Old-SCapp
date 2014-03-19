@@ -476,13 +476,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-show="financialtransaction.transactionType=='INVOICE'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
+            <tr class="pointer-main"  ng-show="financialtransaction.transactionType=='INVOICE'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
                 
-                <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionId}}</a></td>
-                <td><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transDate | DateFormat}}</a></td>
-                <td>{{financialtransaction.transactionType}}</td>
-                <td>{{financialtransaction.creditAmount}}</td>
-                <td>{{financialtransaction.amount}}</td>
+                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionId}}</a></td>
+                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transDate | DateFormat}}</a></td>
+                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionType}}</a></td>
+                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.creditAmount}}</a></td>
+                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.amount}}</a></td>
 
             </tr>
               <tr ng-show="financialtransaction.transactionType=='PAYMENT'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >

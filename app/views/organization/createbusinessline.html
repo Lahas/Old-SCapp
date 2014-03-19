@@ -69,7 +69,7 @@
 							<label class="control-label"> {{ 'label.availablecategory'| translate }}</label>
 								 <select multiple ng-model="allowed">
 								<option ng-repeat="availableService in availableServices"
-									value="{{availableService.mediaId}}">{{availableService.mediaTitle}}</option>
+									value="{{availableService.id}}">{{availableService.mCodeValue}}</option>
 							</select>
 						</div>
 						<div class="paddedtop10 span1 paddedleft0">
@@ -87,7 +87,7 @@
 							<label class="control-label"> {{ 'label.selectedcategory' |translate }}</label>
 							 <select multiple ng-model="restricted" id="category">
 								<option ng-repeat="selectedService in selectedServices"
-									value="{{selectedService.id}}">{{selectedService.name}}</option>
+									value="{{selectedService.id}}">{{selectedService.mCodeValue}}</option>
 							</select>
 						</div>
 

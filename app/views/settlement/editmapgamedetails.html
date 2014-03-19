@@ -3,6 +3,7 @@
       <div>
         <ul class="breadcrumb">
               <li><a href="#/game">{{'label.partner' | translate}}</a> <span class="divider">/</span></li>
+           	<li><a href="#/viewpartneraccount/{{resouresId}}">{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.partner.account' | translate}}</li>
           </ul>
       </div>
@@ -75,6 +76,19 @@
 												<input type="text" ng-model="formData.partnerName" id="partnerName"/>
 											</div>
 									    </div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<div class="control-group">
+										<label class="control-label" for="partnerType">{{'label.partner.type' | translate }}&nbsp;<span class="required">*</span></label>
+										<div class="controls">
+											<select ng-model="formData.partnerType" id="partnerType"
+												ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerTypeData"
+												value="{{partnerType.mCodeValue}}">
+											</select>
+										</div>
+									</div>
 									</td>
 								</tr>
 								<tr>
@@ -183,7 +197,7 @@
                   </table>
            </fieldset> -->
 	          <div class="offset3">
-	            <a href="#/game"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
+	            <a  href="#/viewpartneraccount/{{resouresId}}"><button type="reset" class="btn">{{'button.cancel' | translate}}</button></a>
 	            <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
 	          </div>
 	        
