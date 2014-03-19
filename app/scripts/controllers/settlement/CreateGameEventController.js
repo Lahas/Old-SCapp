@@ -55,7 +55,6 @@
 	        	                 	serviceName:scope.interactiveDetailDatas.serviceName,
 	        	                 	endUserPrice:scope.interactiveDetailDatas.endUserPrice,
 	        	                 	grossRevenue:scope.interactiveDetailDatas.grossRevenue,
-	        	                 	activityMonth: scope.interactiveDetailDatas.activityMonth=new Date(),
 	        	                 	downloads:scope.interactiveDetailDatas.downloads,
 	        	});
 	        	                 scope.interactiveDetailDatas.contentName = undefined; 
@@ -65,8 +64,6 @@
 	        	                 scope.interactiveDetailDatas.channelName = undefined;
 	        	                 scope.interactiveDetailDatas.serviceName = undefined;
 	        	                 scope.interactiveDetailDatas.endUserPrice = undefined; 
-	        	                 
-	        	                 scope.interactiveDetailDatas.activityMonth = undefined;
 	        	                 scope.interactiveDetailDatas.grossRevenue = undefined;
 	        	                 	
 	        	
@@ -94,7 +91,6 @@
 	      	                 	serviceName:scope.interactiveData[i].serviceName,
 	      	                 	endUserPrice:scope.interactiveData[i].endUserPrice,
 	      	                 	grossRevenue:scope.interactiveData[i].grossRevenue,
-	      	                 	activityMonth: dateFilter(scope.interactiveData[i].activityMonth,"MMM yyyy"),
 	      	                 	downloads:scope.interactiveData[i].downloads,
 	      	                 	locale: 'en'
 		        			});
@@ -106,7 +102,7 @@
 	        	scope.formData.dateFormat = "dd MMMM yyyy";
 	        	scope.formData.locale = "en"
 	        	scope.formData.dataUploadedDate = dateFilter(scope.upload.date,"dd MMMM yyyy");
-	        	/*scope.formData.activityMonth = dateFilter(scope.activity.date,"MMM yyyy");*/
+	        	scope.formData.activityMonth = dateFilter(scope.activity.date,"MMM yyyy");
 		        resourceFactory.createGameEventResource.save(scope.formData.cId,scope.formData,function(data) {
 		        	location.path('gameevent/'+scope.formData.cId);
 		        	console.info("submit-success");

@@ -51,18 +51,17 @@
 				</td>
 			</tr> -->
 			
-		<!-- 	<tr>
+			<tr>
 				<td width="50%">
 					<div class="control-group">
 						<label class="control-label" for="activityMonth">{{ 'label.eventgame.activitymonth' | translate }}</label>
 						<div class="controls">
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
-							<select ng-model="formData.activityMonth" ng-options="pn.id as pn.mon for pn in months" value="{{pn.id}}" id="activityMonth"></select>
+							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/> -->
 							<input type="text" datepicker-pop="MMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/>
 						</div>
 					</div>
 				</td>
-			</tr> -->
+			</tr>
 			
 			<tr>
 				<td width="50%">
@@ -125,7 +124,6 @@
                          <th>{{ 'label.source' | translate }}</th>
                          <th>{{ 'label.contentname' | translate }}</th>
                          <th>{{ 'label.eventgame.mediacategory' | translate }}</th>
-                         <th>{{ 'label.eventgame.activitymonth' | translate }}</th>
                          <th>{{ 'label.contentprovider' | translate }}</th>
                          <th>{{ 'label.channelname' | translate }}</th>
                          <th>{{ 'label.servicename' | translate }}</th>
@@ -142,7 +140,6 @@
 							  	<td><select class="input-small" ng-model="ad.playSource" id="playSource" ng-options="playSource.id as playSource.mCodeValue for playSource in playSources" value="{{playSource.id}}"></select></td>
 							 	<td><input class="input-small" type="text" id="contentName" ng-model="ad.contentName"></td>
 							 	<td><select class="input-small" ng-model="ad.mediaCategory" id="mediaCategory" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}"></select></td>
-							 	<td><input type="text" class="input-small" datepicker-pop="MMM yyyy" ng-model="ad.activityMonth" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/></td>
 							 	<!-- <td><select class="input-small" ng-model="ad.contentName" id="contentName" ng-options="mediaData.mediaId as mediaData.mediaTitle for mediaData in mediaDatas"  value="{{mediaData.mediaId}}"></select></td> -->
 								<td><select class="input-small" ng-model="ad.contentProvider" id="contentProvider" ng-options="contentData.id as contentData.partnerName for contentData in contentDatas"  value="{{contentDatas.id}}"></select></td>
 								<td><select  class="input-small" ng-model="ad.channelName" id="channelName" ng-options="channelData.id as channelData.partnerName for channelData in channelDatas"  value="{{channelDatas.id}}"></select></td>
