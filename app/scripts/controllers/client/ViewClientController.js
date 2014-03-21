@@ -1,4 +1,4 @@
-(function(module) {
+(function(module) 
   mifosX.controllers = _.extend(module, {
     ViewClientController: function(scope,webStorage, routeParams , route, location, resourceFactory,paginatorService, http,$modal,dateFilter) {
     	 scope.client = [];
@@ -43,13 +43,16 @@
  			  scope.StatementsTab =  true;
  			  webStorage.remove('callingTab');
  		  }else if(scope.displayTab == "operator"){
+ 			  scope.OperatorTab =  true;
+ 			  webStorage.remove('callingTab'); 
+ 		  }else if(scope.displayTab == "revenueShare"){
+ 			  scope.royaltyTab =  true;
+ 			  webStorage.remove('callingTab'); 
+ 		  }else{
  			  scope.operatorTab =  true;
  			  webStorage.remove('callingTab');
  		  }
- 		  else
- 		  {
- 			  webStorage.remove('callingTab');
- 		  };
+
  		 
          }
         

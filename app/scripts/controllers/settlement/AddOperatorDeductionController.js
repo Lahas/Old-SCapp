@@ -70,9 +70,9 @@
 	        	scope.deductionData.splice(index,1);	
 	        };
 		  
-	        scope.reset123 = function(){
-	  	    	   webStorage.add("callingTab", {someString: "operator" });
-	  	       };
+	        scope.tabStatus=function(){
+				  webStorage.add("callingTab", {someString: "operator" });
+	};
 	        
 		  scope.submit = function(){
 			  
@@ -94,6 +94,7 @@
 			  console.log(scope.formData.deductionData);
 			  resourceFactory.saveOperatorDeductionData.save(scope.formData,function(data){
 				  location.path("/viewclient/"+data.resourceId);
+				  webStorage.add("callingTab", {someString: "operator" });
 			  });
 		  };
 		  

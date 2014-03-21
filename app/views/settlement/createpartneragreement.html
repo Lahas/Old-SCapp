@@ -16,13 +16,18 @@
 	 <fieldset>
 	 <legend>{{'label.partneragreement'| translate}}</legend>
 	 <div>
-	 <table>
-	 <tr><td>
+	 <table>		 
+	 <tr>
+	 <td>
           <div class="control-group">
 			<label class="control-label" for="partnerName">{{'label.partner.partnername' | translate }}&nbsp;<span class="required">*</span></label>
 				<div class="controls">
-				<select ng-model="formData.partnerAccountId" id="partnerName" ng-change="getCategory(formData.partnerAccountId)" ng-options="pn.id as pn.partnerName for pn in mediaSettlementPartnerNameDatas" value="{{pn.partnerName}}">
-					</select>
+				<!-- <select ng-model="formData.partnerAccountId" id="partnerName" ng-change="getCategory(formData.partnerAccountId)" ng-options="pn.id as pn.partnerName for pn in mediaSettlementPartnerNameDatas" value="{{pn.partnerName}}">
+					</select> -->
+				<input type="text" data-ng-model="formData.partnerAccountName"
+           placeholder="Enter Partner Name"  typeahead-on-select="getPartnerType(formData.partnerAccountName)" ng-change="getPartnerType(formData.partnerAccountName)" 
+           ng-autofocus="true"  typeahead="param.partnerName as param.partnerName for param in mediaSettlementPartnerNameDatas | filter:$viewValue | limitTo:8"  
+           typeahead-editable="false"  class="form-control"/>	
 				</div>
 			</div> 
 			</td>
