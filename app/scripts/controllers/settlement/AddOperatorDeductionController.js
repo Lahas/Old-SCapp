@@ -70,7 +70,7 @@
 	        	scope.deductionData.splice(index,1);	
 	        };
 		  
-	        scope.tabStatus=function(){
+	        scope.reset123=function(){
 				  webStorage.add("callingTab", {someString: "operator" });
 	};
 	        
