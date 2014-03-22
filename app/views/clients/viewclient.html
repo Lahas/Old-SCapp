@@ -180,7 +180,7 @@
             <thead>
               <tr class="graybg">
                 <th>Id</th>
-                <th>BusinessLine</th>
+                <th>RevenueShareCode</th>
                 <th>MediaCategory</th>
                 <th>RevenueShareType</th>
               </tr>
@@ -188,12 +188,18 @@
             <tbody>
               <tr ng-repeat="royal in royaltyTypes | filter:filterText">
                 <td><a href="#/editrevenushare/{{royal.id}}">{{royal.id}}</a></td>
-                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.businessLineStr}}</a></td>
+                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.revenueShareCodeStr}}</a></td>
                 <td><a href="#/editrevenushare/{{royal.id}}">{{royal.mediaCategoryStr}}</a></td>
                 <td><a href="#/editrevenushare/{{royal.id}}">{{royal.revenueShareTypeStr}}</a></td>
               </tr>
             </tbody>
           </table>
+          <ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
+          
+          
       </tab>
       
 

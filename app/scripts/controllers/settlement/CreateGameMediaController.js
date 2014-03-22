@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage) {
+	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService) {
 		  
 		  
 		scope.partnerAgreements = [];
@@ -127,32 +127,56 @@
 	            	        	});
 	            	        };
 	        
-	        
-		  scope.getPartnerAccount = function(){
-			  resourceFactory.mediaSettlement.get(function(data) {
-				  scope.partnerAccountData = data.partnerAccountDatas;
-				  /*console.log(JSON.stringify(data));*/
-				  /*scope.formData = data;
-				  scope.partnerType = data.partnerTypeData;
-				  scope.mediaCategory = data.mediaCategoryData;*/
-				  
-			  }); 
-		  };
+	            	        
+	            	        
+	          scope.getPartnerAccountDataFetchFunction = function(offset, limit, callback) {
+	            	  	resourceFactory.mediaSettlement.get({offset: offset, limit: limit} ,callback);
+	           	};  
+	            	  			
+	          scope.getPartnerAccount = function(){
+			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
+		        };
 		  
+		     scope.searchPartnerHistory123 = function(offset, limit, callback) {
+	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback); 
+	            };
+	  		
+		     scope.searchPartnerHistory = function(filterText) {
+	  			  scope.partnerAccountData = PaginatorService.paginate(scope.searchPartnerHistory123, 14);
+	  	    	}; 
 		  
-		  
-		  scope.getPartnerAgreementScreen = function(){
-			  resourceFactory.partnerAgreementResource.getAllfiles(function(data) {
-				  scope.partnerAgreements= data.partnerAgreementDatas;
-				  scope.fileName=data.partnerAgreementDatas.fileName;
-					 
-				  if(scope.fileName == null){
+	  		 scope.getPartnerAgreementDataFetchFunction = function(offset, limit, callback){
+	  			    resourceFactory.partnerAgreementResource.getAllfiles({offset: offset, limit: limit} , callback);
+	  			/* scope.fileName=fileName;
+	  			if(scope.fileName == null){
 					  scope.fileName= false;
 			  		}
 		        	else{
 		        		scope.fileName= true;
-		        	}
-	         });};
+		        	}*/
+	  		   };
+	  		
+		  
+		    scope.getPartnerAgreementScreen = function(){
+			        scope.partnerAgreements = PaginatorService.paginate(scope.getPartnerAgreementDataFetchFunction, 14);
+			        /*
+			        scope.fileName=scope.partnerAgreements.pageItems[i].partnerAgreementDatas.fileName;
+		  			if(scope.fileName == null){
+						  scope.fileName= false;
+				  		}
+			        	else{
+			        		scope.fileName= true;
+			        	}*/
+			       // console.log(scope.partnerAgreements);
+	           };
+	         
+	       scope.searchPartnerAgreementHistory123 = function(offset, limit, callback) {
+		    	  resourceFactory.partnerAgreementResource.getAllfiles({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback); 
+		       };
+
+	   	    scope.searchPartnerAgreementHistory = function(filterText) {
+	  			scope.partnerAgreements = PaginatorService.paginate(scope.searchPartnerAgreementHistory123, 14);
+	  		   }; 
 		 
 		  
 		  scope.setGameScreen = function(){
@@ -292,9 +316,6 @@
 			  
 		  };
 		  
-		  
-		 
-     
       	 scope.routeTo = function(id){
               location.path('/viewpartneragreement/'+ id);
                
@@ -305,7 +326,7 @@
       	  };
 	  }
   });
-  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage', mifosX.controllers.CreateGameMediaController]).run(function($log) {
+  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService', mifosX.controllers.CreateGameMediaController]).run(function($log) {
     $log.info("CreateGameMediaController initialized");
   });
 }(mifosX.controllers || {}));

@@ -16,7 +16,8 @@
 	        
 	        resourceFactory.revenueResourceTemplate.get(function(data) {
 				
-				  scope.businessLineDatas = data.businessLineData;
+				  //scope.businessLineDatas = data.businessLineData;
+	        	  scope.deductionMasterDatas = data.deductionMasterData;
 				  scope.mediaCategoryDatas = data.mediaCategoryData;
 				  scope.royaltyTypeDatas = data.royatyTypeData;
 			  });
