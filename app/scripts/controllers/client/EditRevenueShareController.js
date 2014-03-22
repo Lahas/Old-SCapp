@@ -15,7 +15,8 @@
 	        resourceFactory.revenueResourceEdit.get({id : routeParams.id},function(data) {
 				
 	        	  scope.formData = data;
-				  scope.businessLineDatas=data.businessLineData;
+				//  scope.businessLineDatas=data.businessLineData;
+	        	  scope.deductionMasterDatas = data.deductionMasterData;
 				  scope.mediaCategoryDatas=data.mediaCategoryData;
 				  scope.royaltyTypeDatas = data.royaltyTypeData;
 				  scope.revenueData=data.percentageDatas;
@@ -99,7 +100,7 @@
 	        	delete scope.formData.id;
 	        	/*delete scope.formData.clientId;*/
 	        	delete scope.formData.mediaCategoryData;
-	        	delete scope.formData.businessLineData;
+	        	delete scope.formData.deductionMasterData;
 	        	delete scope.formData.royaltyTypeData;
 	        	delete scope.formData.percentageDatas;
 	        	

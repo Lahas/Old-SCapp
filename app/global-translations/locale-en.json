@@ -2326,6 +2326,7 @@
   "button.distribution" : "Distribute",
   "dialog.masterdeduction.title.message":"Delete Master Deduction",
   "settlement.label.business.line":"Business Line",
+  "settlement.label.deduction.code":"Revenue Code",
   "settlement.label.media.category":"Media Category",
   "settlement.label.revenueshare":"Revenue Share",
   "table.heading.revenueshare.startvalue":"Start Value",
