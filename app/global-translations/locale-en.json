@@ -2440,6 +2440,8 @@
 	"error.msg.settlement.duplicate.operatordeduction.code.assignment":"Duplicate entry, Operator Deduction already exist",
 	
 	"label.partneraccount":"Partner account",
+	"label.addpartneraccount":"Add Partner account",
+	"label.editpartneraccount":"Edit Partner account",
 	"label.viewpartneraccount":"View Partner Account",
 	"label.contactnum":"Contact Number",
 	"label.currencyname":"Currency",

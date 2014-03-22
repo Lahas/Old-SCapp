@@ -168,14 +168,13 @@
 		  };
 		  
 		  scope.unlockIt=function(value){
-			  
 			  $("."+value).removeAttr("disabled");
-			  
-			  };
+		  };
+			 
 			  
 		  scope.lockIt=function(value){
 			  $("."+value).attr("disabled","disabled");
-			  };
+			};
 			  scope.emptyDataActivate;
 		  scope.getSettlementSeqRule = function(category){
 			  resourceFactory.revenueSettlement.get({categoryId: category},function(data){
@@ -236,6 +235,14 @@
 	        	}
 //			  console.log(JSON.stringify(scope.formData));
 			  resourceFactory.editsettlementSequenceDataDetails.update(scope.formData,function(data){
+				  
+				  scope.alertMessage="Successfully Saved.. !! ";
+				  scope.showSuccessAlert=true;
+				  
+				  window.setTimeout(function() {
+					  scope.showSuccessAlert=false;
+				  }, 2000);
+			  
 			  });
 		  };
 		  

@@ -54,9 +54,16 @@
 		       	}
 			  };
 		        
-		       scope.getCategory=function(pName){
+		       scope.getPartnerType=function(pName){
 					  console.log(pName);
-					  resourceFactory.getPartnerType.get({partnerName: pName},function(data) {
+					  
+					  for( var i in scope.mediaSettlementPartnerNameDatas){
+			        		if(pName == scope.mediaSettlementPartnerNameDatas[i].partnerName){
+			        			scope.partnerNameId=scope.mediaSettlementPartnerNameDatas[i].id;
+			        		}
+					  		}
+					  
+					  resourceFactory.getPartnerType.get({partnerName: scope.partnerNameId},function(data) {
 //				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
 				  			scope.formData.partnerType = data.partnerType;
 				  			/*
@@ -100,7 +107,13 @@
 			      };
 		  
 		        scope.submit = function () {
-		        	console.log("asassas");
+		        	
+		        	 for( var i in scope.mediaSettlementPartnerNameDatas){
+			        		if(this.formData.partnerAccountName == scope.mediaSettlementPartnerNameDatas[i].partnerName){
+			        			this.formData.partnerAccountId=scope.mediaSettlementPartnerNameDatas[i].id;
+			        		}
+					  		}
+		        	delete scope.formData.partnerAccountName;
 		        	this.formData.locale = 'en';
 		        	var reqDate1 = dateFilter(scope.formData.startDate,'dd MMMM yyyy');
 		            this.formData.dateFormat = 'dd MMMM yyyy';
