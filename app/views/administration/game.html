@@ -191,14 +191,16 @@
              		</td>
              		<td></td><td></td>
              		<td>
-             		<a ng-click="unlockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
+             		<a  ng-click="unlockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
              		</td>
             	</tr>
             </table>
-        </fieldset>		
           
-           <div class="center">
-            <a href="#/game"><button type="reset" class="btn">Cancel</button></a>
+        </fieldset>		
+           <div class="pull-right">
+            <!-- <a href="#/game"><button type="reset" class="btn">Cancel</button></a> -->
+           
+            <span ng-show="showSuccessAlert"  ng-style="{color: 'green'}">{{alertMessage}}</span>
             <button type="submit" class="btn btn-primary"  ng-disabled="disableSubmit">Save</button>
           </div>			
 			</div>
