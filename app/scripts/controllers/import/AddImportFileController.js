@@ -25,7 +25,7 @@
           
           scope.submit = function () {
               http.uploadFile({/*41.75.85.206:8080*/
-                url: 'https://+document.location.host/obsplatform/api/v1/uploadstatus/documents', 
+                url: 'https://'+document.location.host+'/obsplatform/api/v1/uploadstatus/documents', 
                 data: scope.formData,
                 file: scope.file
               }).then(function(data) {
