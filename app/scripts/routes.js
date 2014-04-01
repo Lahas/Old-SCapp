@@ -628,6 +628,10 @@
 			templateUrl : 'views/settlement/editoperatordeduction.html'
 		}).when('/viewpartneraccount/:id',{
 			templateUrl : 'views/settlement/viewpartneraccount.html'
+		}).when('/viewinteractivedetails/:id',{
+			templateUrl: 'views/settlement/viewinteractivedetails.html'
+		}).when('/editinteractiveheader/:id',{
+			templateUrl: 'views/settlement/editinteractiveheader.html'
 		});
 		$locationProvider.html5Mode(false);
 	};

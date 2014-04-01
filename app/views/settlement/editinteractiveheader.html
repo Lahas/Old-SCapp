@@ -1,0 +1,106 @@
+<div ng-controller="EditInteractiveHeaderController">
+ <div>
+        <ul class="breadcrumb">
+	          <li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			  <li><a href='#/viewclient/{{cId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href="#/gameevent/{{cId}}">{{'label.gameevent' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href="#/viewinteractivedetails/{{eventId}}">{{'label.viewgameevent' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.editgameevent' | translate}}</li>
+          </ul>
+ </div>
+<form class="form-horizontal well" ng-submit="submit()">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.viewgameevent' | translate}}</legend>
+		<table width="100%">
+		
+		    <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="clientId">{{ 'label.eventgame.clientid' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="clientId" ng-model="formData.clientId" readonly>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			    <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="externalId">{{ 'label.eventgame.externalid' | translate }}</label>
+						<div class="controls">
+						<input type="text" id="externalId" ng-model="formData.externalId">	
+						</div>
+					</div>
+				</td>
+			</tr>
+		    
+		  <!--   <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="circle">{{ 'label.eventgame.circle' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.circle"
+								ng-options="cD.id as cD.stateName for cD in circleDatas"
+								value="{{cD.stateName}}" id="circle">
+							</select>
+						</div>
+					</div>
+				</td>
+			</tr> -->
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="activityMonth">{{ 'label.eventgame.activitymonth' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/> -->
+							<input type="text" datepicker-pop="MMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="dataUploadedDate">{{ 'label.eventgame.datauploaddate' | translate }}</label>
+						<div class="controls">
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="upload.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="dataUploadedDate" readonly/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="businessLine">{{ 'label.eventgame.businessLine' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.businessLine"
+								ng-options="bD.id as bD.mCodeValue for bD in businessLineDatas"
+								value="{{bD.mCodeValue}}" id="businessLine">
+							</select>	
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+		
+						
+			
+		    
+		</table>
+		<div class="offset3">
+			<a href="#/viewinteractivedetails/{{eventId}}"><button type="reset" class="btn">Back</button></a>
+			<button type="submit" class="btn btn-primary">Update</button>
+		</div>
+	</fieldset>
+</form>
+
+</div>

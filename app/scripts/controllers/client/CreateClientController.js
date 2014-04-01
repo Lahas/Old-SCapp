@@ -11,6 +11,7 @@
         
         resourceFactory.clientTemplateResource.get(function(data) {
             scope.offices = data.officeOptions;
+            scope.circleDatas = data.circleData;
             scope.staffs = data.staffOptions;
             scope.formData.officeId = scope.offices[0].id;
             scope.clientCategoryDatas=data.clientCategoryDatas;

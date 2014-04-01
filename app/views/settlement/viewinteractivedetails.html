@@ -1,0 +1,143 @@
+<div ng-controller="ViewInteractiveDetailController">
+ <div>
+        <ul class="breadcrumb">
+	          <li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			  <li><a href='#/viewclient/{{cId}}'>{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href="#/gameevent/{{cId}}">{{'label.gameevent' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.viewgameevent' | translate}}</li>
+          </ul>
+ </div>
+<form class="form-horizontal well">
+ <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	<fieldset>
+		<legend>{{'label.viewgameevent' | translate}}</legend>
+		<table width="100%">
+			
+		    <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="clientId">{{ 'label.eventgame.clientid' | translate }}</label>
+						<div class="controls">
+							<input type="text" id="clientId" ng-model="formData.clientId" readonly>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="control-group">
+						<div class="pull-right btn-group ng-scope">
+	          				<a href="#/editinteractiveheader/{{formData.id}}" class="btn btn-primary ng-binding"><i class="icon-edit icon-white"></i>Edit</a>
+	    				</div>
+	    			</div>
+				</td>
+			</tr>
+			
+			    <tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="externalId">{{ 'label.eventgame.externalid' | translate }}</label>
+						<div class="controls">
+						<input type="text" id="externalId" ng-model="formData.externalId" readonly>	
+						</div>
+					</div>
+				</td>
+			</tr>
+		    
+		  
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="activityMonth">{{ 'label.eventgame.activitymonth' | translate }}</label>
+						<div class="controls">
+							<!-- <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="activity.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/> -->
+							<!-- <select ng-model="formData.activityMonth" ng-options="pn.id as pn.mon for pn in months" value="{{pn.id}}" id="activityMonth"></select> -->
+							<input type="text" ng-model="activity.date" id="activityMonth" readonly/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="dataUploadedDate">{{ 'label.eventgame.datauploaddate' | translate }}</label>
+						<div class="controls">
+							<input type="text" ng-model="upload.date" id="dataUploadedDate" readonly/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="businessLine">{{ 'label.eventgame.businessLine' | translate }}</label>
+						<div class="controls">
+							<input type="text" ng-model="formData.businessLine" readonly></input>	
+						</div>
+					</div>
+				</td>
+			</tr>
+		
+		<!-- 	<tr>
+				<td width="50%">
+					<div class="control-group">
+						<label class="control-label" for="chargeCode">{{ 'label.eventgame.chargecode' | translate }}</label>
+						<div class="controls">
+							<select ng-model="formData.chargeCode"
+								ng-options="Cc.id as Cc.chargeDescription for Cc in chargeCodeDatas"
+								value="{{Cc.chargeDescription}}" id="chargeCode">
+							</select>	
+						</div>
+					</div>
+				</td>
+			</tr> -->
+						
+			
+		    
+		</table>
+		<fieldset>
+          <legend>View Interactive Details</legend>
+		
+          
+					<table class ="table" width="100%" ng-show="interactiveData.length>0">
+						<tr class="graybg">
+                         <th>{{ 'label.source' | translate }}</th>
+                         <th>{{ 'label.contentname' | translate }}</th>
+                         <th>{{ 'label.eventgame.mediacategory' | translate }}</th>
+                         <th>{{ 'label.contentprovider' | translate }}</th>
+                         <th>{{ 'label.channelname' | translate }}</th>
+                         <th>{{ 'label.servicename' | translate }}</th>
+                         <th>{{ 'label.endUserPrice' | translate }}</th>
+                         <th>{{'label.download' | translate}}</th>
+                         <th>{{ 'label.grossRevenue' | translate }}</th>
+                         <th>Edit</th>
+                         </tr>  
+                         <tr ng-repeat= "ad in  interactiveData">
+			<td><input class="input-small" type="text" ng-model="ad.playSourceStr" id="playSourceStr" readonly></input></td>
+			<td><input  class="input-mini" type="text" id="contentName" ng-model="ad.contentName" readonly></td>
+			<td><input class="input-small" type="text" ng-model="ad.mediaCategoryStr" id="mediaCategoryStr"  readonly></input></td>
+			<td><input class="input-small" type="text" ng-model="ad.conentProviderStr" id="contentProviderStr" readonly></input></td>
+			<td><input  class="input-small" type="text" ng-model="ad.channelNameStr" id="channelNameStr" readonly></input></td>
+	        <td><input  class="input-small" type="text" ng-model="ad.serviceNameStr" id="serviceNameStr" readonly></input></td>
+		    <td><input class="input-mini" type="text" id="endUserPrice" ng-model="ad.endUserPrice" readonly></td>
+			<td><input class="input-mini" type="text" id="downloads" ng-model="ad.downloadsL" readonly></td>
+			<td><input  class="input-mini" type="text" id="grossRevenue" ng-model="ad.grossRevenue" readonly></td>
+			
+			<td><a href="#/editinteractivedetail/{{ad.id}}" ng-click="addHeaderId()"><i class="icon-edit icon-white"></i></a></td>
+							</tr>
+						
+					</table>
+					</fieldset>
+		<div class="offset3">
+			<a href="#/gameevent/{{cId}}"><button type="reset" class="btn">Back</button></a>
+		</div>
+	</fieldset>
+</form>
+
+
+</div>
