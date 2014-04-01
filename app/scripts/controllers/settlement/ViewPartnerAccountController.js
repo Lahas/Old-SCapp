@@ -11,7 +11,7 @@
 					scope.emailId=data.emailId;
 					scope.externalId=data.externalId;
 					scope.currencyName=data.currencyName;
-					scope.royaltySequence=data.royaltySequence;
+					scope.partnerAddress=data.partnerAddress;
 			  });
 			  
 		  }
