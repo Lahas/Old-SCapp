@@ -7,7 +7,10 @@
         <div class="pull-right btn-group">
           <a href="#/mapgamedetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
-        <br>
+         <form ng-submit="searchPartnerHistory(filterText)">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/partnerType/contactNum">
+	 </form>
+        
         <!-- <table class="table">
             <thead>
               <tr class="graybg">
@@ -44,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="pd in partnerAccountData">
+              <tr class="pointer-main" ng-repeat="pd in partnerAccountData.currentPageItems  | filter:filterText">
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
@@ -55,12 +58,18 @@
               </tr>
             </tbody>
           </table>
+          <ul class="pager">
+        			<li class="previous"><a ng-click="partnerAccountData.previous()" href="" ng-disabled="!partnerAccountData.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="partnerAccountData.next()" href="" ng-disabled="!partnerAccountData.hasNext()">Next &rarr;</a></li>
+    			</ul>
       </tab>
       <tab heading="{{'tab.partner.agreement' | translate}}" select="getPartnerAgreementScreen()" active="agreement123">
         <div class="pull-right btn-group">
           <a href="#/createpartneragreement" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
-        </div>
-        <br>          
+        </div> 
+         <form ng-submit="searchPartnerAgreementHistory(filterText)">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/partnerType/category/status">
+	   </form>    
           <table class="table">
         <thead>
             <tr class="graybg">
@@ -77,7 +86,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">       
+            <tr ng-repeat="partnerAgreement in partnerAgreements.currentPageItems  | filter:filterText">       
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>   
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerType}}</td>         
                 <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementCategory}}</td>
@@ -93,6 +102,10 @@
             </tr>
         </tbody>
     </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="partnerAgreements.previous()" href="" ng-disabled="!partnerAgreements.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="partnerAgreements.next()" href="" ng-disabled="!partnerAgreements.hasNext()">Next &rarr;</a></li>
+    			</ul>
       </tab>
 <!--       <tab heading="{{'tab.partner.addgame' | translate}}" select="setGameScreen()" active="game">
         <div class="pull-right btn-group">
@@ -422,6 +435,10 @@
             </tr> 
         </tbody>
     </table>
+    <ul class="pager">
+        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
+    			</ul>
       </tab>
     
     </tabset>

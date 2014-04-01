@@ -23,6 +23,7 @@
               lastname : data.lastname,
               middlename : data.middlename,
               active : data.active,
+              externalId: data.externalId,
               accountNo : data.accountNo, 
               staffId : data.staffId,
               email:data.email,

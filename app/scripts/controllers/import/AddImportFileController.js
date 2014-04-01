@@ -15,7 +15,7 @@
            };*/
            
            scope.downloadFile = function (value){
-           	if(value == "MediaAssets"){
+           	if(value == "MediaAssets"|| value == "Advertisement"){
            		window.open("Xls/"+value+".xlsx");
                 }else
                 {	 
