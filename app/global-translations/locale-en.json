@@ -2205,7 +2205,7 @@
 "error.msg.settlement.duplicate.games.assignment":"Duplicate allocation",
 
 
-"link.disbursements.month":"Month",
+"link.disbursements.month":"Activity Month",
   "link.disbursements.patnertype":"Partner Type",
   "link.disbursements.patnername":"Partner Name",
   "link.disbursements.mediacategory":"Media Category",
@@ -2445,7 +2445,7 @@
 	"label.viewpartneraccount":"View Partner Account",
 	"label.contactnum":"Contact Number",
 	"label.currencyname":"Currency",
-	"label.royaltysequence":"Royalty Sequence",
+	"label.partnerAddress":"Partner Address",
 	
 	"validation.msg.partnerAgreement.agreementType.cannot.be.blank":"Agreement Status cannot be blank",
 	"validation.msg.partnerAgreement.agreementCategory.cannot.be.blank":"Agreement Category cannot be blank",
@@ -2458,6 +2458,8 @@
 	"validation.msg.partnerAgreement.royaltySequence.cannot.be.blank":"Royalty Sequence cannot be blank",
 	"validation.msg.partnerAgreement.status.cannot.be.blank":"Status cannot be blank",	
 	"validation.msg.partnerAgreement.royaltyShare.cannot.be.blank":"Royalty Share cannot be blank",
-	"error.msg.settlement.create.unknown.data.integrity.issue":"Duplicate entry"						     
+	"error.msg.settlement.create.unknown.data.integrity.issue":"Duplicate entry",
+	
+	"table.heading.royalityshare":"Royalty Share"						     
 
 }

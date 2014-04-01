@@ -311,9 +311,19 @@
       
       <body>
 	<legend>{{'label.disbursementstopartners' | translate}}</legend>
-		<button ng-click="refresh()" type="button" class="btn btn-primary">Refresh</button>
+		<button ng-click="refresh()" type="button" class="btn btn-primary pull-right">Refresh</button>
             <table>
             	<tr>
+            		
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}"></select>
+              				</div>
+            				</div>
+            		</td>
             		
             		<td>
             				<div class="control-group">
@@ -324,14 +334,6 @@
             				</div>
             		</td>
             		
-            		<td>
-            				<div class="control-group">
-              				<label class="control-label">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
-              				<div class="controls">
-                			<select ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}"></select>
-              				</div>
-            				</div>
-            		</td>
             		<td>
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.patnername' | translate }}<span class="required">*</span></label>
@@ -363,16 +365,13 @@
 				<th>{{ 'table.heading.InvoiceId' | translate }}</th>
 				<th>{{ 'table.heading.Invoiceamt' | translate }}</th>
 				<th>{{ 'table.heading.date' | translate }}</th>
-				<th>{{ 'table.heading.video/game' | translate }}</th>
-				<th>{{ 'table.heading.partnertype' | translate }}</th>
-				<th>{{ 'table.heading.amounthareable' | translate }}</th>
-				<th>{{ 'table.heading.sequence' | translate }}</th>
+				<th>{{ 'table.heading.mediacategory' | translate }}</th>
 				<th>{{ 'table.heading.playsource' | translate }}</th>
-				<th>{{ 'table.heading.partnername' | translate }}</th>
-				<th>{{ 'table.heading.royalitytype' | translate }}</th>
-				<th>{{ 'table.heading.royalityvalue' | translate }}</th>
+				<th>{{ 'table.heading.partnertype' | translate }}</th>
+				<th>{{ 'table.heading.sequence' | translate }}</th>
+				<th>{{ 'table.heading.royalityshare' | translate }}</th>
 				<th>{{ 'table.heading.rayolityamt' | translate }}</th>
-				<th>{{ 'table.heading.netamount' | translate }}</th>			
+				<th>{{ 'table.heading.netamount' | translate }}</th>	
 				</tr>
 			</thead>
 				<tbody>
@@ -384,14 +383,11 @@
 			              	<td>{{distributionData.invoiceId}}</td>
 			              	<td>{{distributionData.invoiceAmount}}</td>
 			              	<td>{{distributionData.invoiceDate  | DateFormat}}</td>
-			              	<td>{{distributionData.videoGame}}</td>
-			              	<td>{{distributionData.partnerType}}</td>
-			              	<td>{{distributionData.amountSharable}}</td>
-			              	<td>{{distributionData.sequence}}</td>
+			              	<td>{{distributionData.mediaCategory}}</td>
 			              	<td>{{distributionData.playSource}}</td>
-			              	<td>{{distributionData.partnerName}}</td>
-			              	<td>{{distributionData.royaltyType}}</td>
-			              	<td>{{distributionData.commPercent}}</td>
+			              	<td>{{distributionData.partnerType}}</td>
+			              	<td>{{distributionData.sequence}}</td>
+			              	<td>{{distributionData.royaltyShare}}</td>
 			              	<td>{{distributionData.royaltyAmount}}</td>
 			              	<td>{{distributionData.netAmount}}</td>
 			              </tr>
