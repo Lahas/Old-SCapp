@@ -59,12 +59,12 @@
 	            					 
 	            				 }else if(scope.mediaCategory == "" || scope.mediaCategory==null ){
 	            					 
-	            				 }else if(scope.monthId != null && scope.partnerName != null && scope.mediaCategory != null){
+	            				 }/*else if(scope.monthId != null && scope.partnerName != null && scope.mediaCategory != null){
 	            					 resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType },function(data) {
 	            						  scope.distributionDatas=data.distributionData;
 	            				      });
 	            					 
-	            				 }else{
+	            				 }*/else{
 	            					 
 	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory },function(data) {
 	            					  scope.partnerNames=data;
