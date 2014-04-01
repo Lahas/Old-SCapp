@@ -2465,6 +2465,7 @@
 	"validation.msg.partnerAgreement.royaltyShare.cannot.be.blank":"Royalty Share cannot be blank",
 	"error.msg.settlement.create.unknown.data.integrity.issue":"Duplicate entry",
 	
-	"table.heading.royalityshare":"Royalty Share"						     
+	"table.heading.royalityshare":"Royalty Share",
+	"table.heading.currency":"Currency"						     
 
 }
