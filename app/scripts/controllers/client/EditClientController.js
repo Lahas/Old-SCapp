@@ -3,6 +3,7 @@
     EditClientController: function(scope,webStorage, routeParams, resourceFactory, location, http,dateFilter) {
         scope.offices = [];
         scope.date = {};
+        
         scope.clientId = routeParams.id;
         var clientData = webStorage.get('clientData');
         scope.displayName=clientData.displayName;
@@ -12,10 +13,12 @@
         scope.balanceAmount=clientData.balanceAmount;
         scope.currency=clientData.currency;
         scope.imagePresent=clientData.imagePresent;
+        
         resourceFactory.clientResource.get({clientId: routeParams.id, template: 'true'} , function(data) {
             scope.offices = data.officeOptions;
             scope.staffs = data.staffOptions; 
             scope.officeId = data.officeId;
+            scope.circleDatas = data.circleData;
 		    scope.clientCategory=data.categoryType;
 		    scope.clientCategoryDatas=data.clientCategoryDatas;
             scope.formData = {

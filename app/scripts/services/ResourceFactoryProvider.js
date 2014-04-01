@@ -896,10 +896,22 @@
                 getTemplate: {method: 'GET', params: {}},
                 update: { method: 'PUT' }
              }),
-             interactiveResource: defineResource(apiVer + "/mediasettlements/interactive/:eventId", {eventId: '@eventId'}, {
+             /*interactiveResource: defineResource(apiVer + "/mediasettlements/interactive/:eventId", {eventId: '@eventId'}, {
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT' }
-             }),
+             }),*/
+             viewInteractiveResource: defineResource(apiVer + "/mediasettlements/viewinteractive/:eventId", {eventId: '@eventId'}, {
+                 get: {method: 'GET', params: {}},
+                 update: { method: 'PUT' }
+              }),
+              editInteractiveHeaderResource: defineResource(apiVer + "/mediasettlements/editinteractiveheader/:eventId", {eventId: '@eventId'}, {
+                  get: {method: 'GET', params: {}},
+                  update: { method: 'PUT' }
+               }),
+              editInteractiveDetailResource: defineResource(apiVer + "/mediasettlements/editinteractivedetail/:eventId", {eventId: '@eventId'}, {
+                   get: {method: 'GET', params: {}},
+                   update: { method: 'PUT' }
+                }),
              creditDistributionTemplateResource: defineResource(apiVer + "/creditdistributions/template/:clientId",{clientId:'@clientId'},  {
            	    get: { method: 'GET', params: {}}
              }),

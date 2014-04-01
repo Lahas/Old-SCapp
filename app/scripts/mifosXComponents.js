@@ -239,7 +239,9 @@ define(['underscore', 'mifosX'], function() {
       'organization/BusinessLineController',
       'organization/ViewBusinessLineController',
       'organization/CreateBusinessLineController',
-      'organization/EditBusinessLineController'
+      'organization/EditBusinessLineController',
+      'settlement/ViewInteractiveDetailController',
+      'settlement/EditInteractiveHeaderController'
       
     ],
     filters: [

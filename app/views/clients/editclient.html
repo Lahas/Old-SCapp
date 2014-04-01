@@ -55,7 +55,7 @@
               </td>
             </tr>
             
-             <tr>
+             <!-- <tr>
               <td>
               <div class="control-group">
                 <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
@@ -65,12 +65,12 @@
                 </div>
               </div>
               </td>
-            </tr>
+            </tr> -->
             
             <tr>
               <td>
                 <div class="control-group">
-                  <label class="control-label">{{ 'label.firstname' | translate }}<span class="required">*</span></label>
+                  <label class="control-label">{{ 'label.clientname' | translate }}<span class="required">*</span></label>
                   <div class="controls">
                     <input type="text" name="firstname" ng-model="formData.firstname" required ng-minlength=3 late-Validate/>
                     <span  ng-show="editclientform.firstname.$invalid">
@@ -81,16 +81,16 @@
                     </span>
                   </div>
                 </div>
-                <div class="control-group">
+                <!-- <div class="control-group">
                   <label class="control-label">{{ 'label.middlename' | translate }}</label>
                   <div class="controls">
                     <input type="text" ng-model="formData.middlename">
                   </div>
-                </div>
+                </div> -->
                 <div class="control-group">
-                  <label class="control-label">{{ 'label.lastname' | translate }}<span class="required">*</span></label>
+                  <label class="control-label">{{ 'label.circle' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                    <input type="text" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/>
+                    <select ng-model="formData.lastname"  ng-options="circle.stateName as circle.stateName for circle in circleDatas" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select><!-- <input type="text" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/> -->
                     <span  ng-show="editclientform.lastname.$invalid">
                       <small class="error" ng-show="editclientform.lastname.$error.req">
                           Required Field
