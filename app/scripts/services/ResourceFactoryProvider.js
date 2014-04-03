@@ -980,7 +980,10 @@
             viewpartnerAccountResource: defineResource(apiVer+"/mediasettlements/:id/partnerAccountView", {id:'@id'}, {
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
-            })
+            }),
+            getActivityMonth: defineResource(apiVer+ "/mediasettlements/activityMonth",{partnertype: '@partnertype',partnerName:'@partnerName'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             })
         };
       }];
     }

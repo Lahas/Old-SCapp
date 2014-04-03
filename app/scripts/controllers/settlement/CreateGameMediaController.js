@@ -43,14 +43,16 @@
 	        } 
 		  
 	        
-	        scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
+	       /* scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
 	            		  {id:5,mon:"May"},{id:6,mon:"June"},{id:7,mon:"July"},{id:8,mon:"August"},{id:9,mon:"September"},
 	            		  {id:10,mon:"October"},{id:11,mon:"November"},{id:12,mon:"December"}];
-	            		  
+	            */		  
 	            		 
 	        
 	        scope.refresh=function(){
+	        	 scope.loading = true;
 				 resourceFactory.getRefreshProcedure.get(function(data) {
+					 scope.loading = false;
 			    });
 			 };
 	            	        scope.getPartnerTypeCategory=function(value){
@@ -68,6 +70,11 @@
 	            					 
 	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory },function(data) {
 	            					  scope.partnerNames=data;
+	            					  if(scope.partnerNames == null || scope.partnerNames == ""){
+   	            						  $("#partnerN").attr("disabled","disabled"); 
+   	            					  }else{
+   	            						$("#partnerN").removeAttr("disabled");
+   	            					  }
 	            			      });
 	            				 }
 	            	        	
@@ -83,6 +90,11 @@
 	            					 
 	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory },function(data) {
 	            					  scope.partnerNames=data;
+	            					  if(scope.partnerNames == null || scope.partnerNames == ""){
+   	            						  $("#partnerN").attr("disabled","disabled"); 
+   	            					  }else{
+   	            						$("#partnerN").removeAttr("disabled");
+   	            					  }
 	            			      });
 	            				 }
 	            			  };
@@ -93,17 +105,22 @@
 	            						 
 	            					 }else if( scope.partnerName=="" || scope.partnerName==null ){
 	            						 
-	            					 }else if( scope.monthId=="" || scope.monthId==null ){
-	            						 
 	            					 }else{
 	            						 
-	            					  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType },function(data) {
-	            						  scope.distributionDatas=data.distributionData;
-	            				      });
+	            						 resourceFactory.getActivityMonth.get({partnertype: scope.partnerType,partnerName: scope.partnerName },function(data) {
+	   	            					  scope.activityMonths=data;
+	   	            					  
+	   	            					  if(scope.activityMonths == null || scope.activityMonths == ""){
+	   	            						  $("#activityM").attr("disabled","disabled"); 
+	   	            					  }else{
+	   	            						$("#activityM").removeAttr("disabled");
+	   	            					  }
+	   	            			      });
 	            					 }
-	            				}  
+	            				};  
 	            			scope.getTableData=function(value){
 	            				scope.monthId=value;
+	            				
 	            				
 	            				if(scope.partnerType == "" || scope.partnerType==null ){
 	            					 
@@ -216,6 +233,7 @@
 		 				 scope.defaultDataName="Default";
 				  }
 				 
+				
 				  
 				 for (var i in scope.settlementSequenceDatas){
 				  		if(	scope.settlementSequenceDatas[i].partnerType4 == 0){
@@ -228,11 +246,12 @@
 				  			scope.settlementSequenceDatas[i].partnerType6=null;
 				  		};
 				  	};
-				  
-				  
+			  	  
+				  console.log(scope.settlementSequenceDatas);
 			  });
 		  };
 		  
+		 
 		  
 		 
  		  scope.submitRevenueSettlement = function(){
