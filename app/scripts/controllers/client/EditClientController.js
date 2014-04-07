@@ -24,7 +24,7 @@
             scope.formData = {
               firstname : data.firstname,
               lastname : data.lastname,
-              clientCategory: data.clientCategory,
+              clientCategory: data.categoryType,
               middlename : data.middlename,
               active : data.active,
               externalId: data.externalId,

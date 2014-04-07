@@ -60,7 +60,7 @@
               <div class="control-group">
                 <label class="control-label">{{'label.clientcategeory' | translate}}<span class="required">*</span></label>
                 <div class="controls">
-                  <select ng-model="clientCategory"  ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" value="{{clientCategoryData.id}}">
+                  <select ng-model="formData.clientCategory"  ng-options="clientCategoryData.id as clientCategoryData.categoryType for clientCategoryData in clientCategoryDatas" value="{{clientCategoryData.id}}">
                 </select>
                 </div>
               </div>
