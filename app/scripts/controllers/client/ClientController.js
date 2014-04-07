@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-    ClientController: function(scope, resourceFactory , paginatorService) {
+    ClientController: function(scope, resourceFactory , paginatorService,$notification) {
         
       scope.clients = [];
       
@@ -21,7 +21,7 @@
        }
     }
   });
-  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService', mifosX.controllers.ClientController]).run(function($log) {
+  mifosX.ng.application.controller('ClientController', ['$scope', 'ResourceFactory', 'PaginatorService','$notification', mifosX.controllers.ClientController]).run(function($log) {
     $log.info("ClientController initialized");
   });
 }(mifosX.controllers || {}));

@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService) {
+	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification) {
 		  
 		  
 		scope.partnerAgreements = [];
@@ -10,8 +10,7 @@
 		scope.distributionDatas=[];
 		scope.disableSubmit = false;
 		scope.settlementSequenceDatas=[];
-		
-		
+				
 		var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
 	        	callingTab="";
@@ -50,7 +49,9 @@
 	            		 
 	        
 	        scope.refresh=function(){
+	        	 scope.loading = true;
 				 resourceFactory.getRefreshProcedure.get(function(data) {
+					 scope.loading = false;
 			    });
 			 };
 	            	        scope.getPartnerTypeCategory=function(value){
@@ -135,10 +136,11 @@
 	            	  			
 	          scope.getPartnerAccount = function(){
 			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
+			         
 		        };
 		  
 		     scope.searchPartnerHistory123 = function(offset, limit, callback) {
-	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback); 
+	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback);
 	            };
 	  		
 		     scope.searchPartnerHistory = function(filterText) {
@@ -257,17 +259,21 @@
 	        			});
 	        		}
 	        	}
+			  
+			  console.log("submiting revenusettlement");
+			  
 //			  console.log(JSON.stringify(scope.formData));
 			  resourceFactory.editsettlementSequenceDataDetails.update(scope.formData,function(data){
-				  
+				  $notification.success("Royalty Sequence","Sequence saved","User data");
+				  /*  
 				  scope.alertMessage="Successfully Saved.. !! ";
 				  scope.showSuccessAlert=true;
 				  
 				  window.setTimeout(function() {
 					  scope.showSuccessAlert=false;
-				  }, 2000);
-			  
-			  });
+				  }, 2000);*/
+				  
+				});
 		  };
 		  
 		/*  scope.getSettlementSeqRule = function(category){
@@ -333,7 +339,7 @@
       	  };
 	  }
   });
-  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService', mifosX.controllers.CreateGameMediaController]).run(function($log) {
+  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService','$notification', mifosX.controllers.CreateGameMediaController]).run(function($log) {
     $log.info("CreateGameMediaController initialized");
   });
 }(mifosX.controllers || {}));

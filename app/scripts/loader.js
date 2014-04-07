@@ -28,7 +28,8 @@
             'ngSanitize':       '../bower_components/angular-sanitize/angular-sanitize',
             'bootstraptimepicker':	'../bower_components/bootstrap-timepicker/js/bootstrap-timepicker',
             'ckEditor':         '../bower_components/ckeditor/ckeditor',
-            'configurations':'../scripts/modules/configurations'
+            'configurations':'../scripts/modules/configurations',
+            'notification':'../bower_components/angular-notifications/notification'
         },
         shim: {
             'angular': { exports: 'angular' },
@@ -50,6 +51,7 @@
             'bootstraptimepicker':{deps:['jquery']},
             'ckEditor':{deps:['jquery']},
             'configurations':{deps: ['angular']},
+            'notification':{deps: ['angular']},
             'mifosX': {
                 deps: [
                     'angular',
@@ -70,7 +72,8 @@
                     'ngSanitize',
                     'bootstraptimepicker',
                     'ckEditor',
-                    'configurations'
+                    'configurations',
+                    'notification'
                 ],
                 exports: 'mifosX'
             }
