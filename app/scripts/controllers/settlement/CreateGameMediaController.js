@@ -10,7 +10,7 @@
 		scope.distributionDatas=[];
 		scope.disableSubmit = false;
 		scope.settlementSequenceDatas=[];
-				
+		scope.clientNames=[];
 		var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
 	        	callingTab="";
@@ -42,10 +42,10 @@
 	        } 
 		  
 	        
-	        scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
+	       /* scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
 	            		  {id:5,mon:"May"},{id:6,mon:"June"},{id:7,mon:"July"},{id:8,mon:"August"},{id:9,mon:"September"},
 	            		  {id:10,mon:"October"},{id:11,mon:"November"},{id:12,mon:"December"}];
-	            		  
+	            */		  
 	            		 
 	        
 	        scope.refresh=function(){
@@ -56,6 +56,7 @@
 			 };
 	            	        scope.getPartnerTypeCategory=function(value){
 	            	        	scope.partnerType=value;
+	            	        	scope.formData.partnerName=null;
 	            	        	if(scope.partnerType == "" || scope.partnerType==null ){
 	            					 
 	            				 }else if(scope.mediaCategory == "" || scope.mediaCategory==null ){
@@ -67,44 +68,80 @@
 	            					 
 	            				 }*/else{
 	            					 
-	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory },function(data) {
+	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName },function(data) {
 	            					  scope.partnerNames=data;
+	            					  if(scope.partnerNames == null || scope.partnerNames == ""){
+   	            						  $("#partnerN").attr("disabled","disabled"); 
+   	            						scope.activityMonths=null;
+   	            						$("#activityM").attr("disabled","disabled"); 
+   	            					  }else{
+   	            						$("#partnerN").removeAttr("disabled");
+   	            					  }
 	            			      });
 	            				 }
 	            	        	
 	            	        };
-	            	              
+	            	        
+	            	        
+	            	        scope.getClientNames=function(value){
+	            	        	scope.ClientName=value;	            	        	
+	            	        	scope.partnerNames=null;
+	            	        	scope.activityMonths=null;
+	            	        	scope.formData.mediaCategory=null;
+	            	        	scope.distributionDatas=[];
+	            	        	 $("#partnerN").attr("disabled","disabled"); 
+	            	        	 $("#activityM").attr("disabled","disabled"); 
+	            	        	 resourceFactory.getmediaCategoryData.get({client: scope.ClientName},function(data) {
+	            					  scope.mediaCategoryDatass=data;
+	            					  
+	            			      });
+	            	        	
+	            			  };
+	            	        
 	            	        scope.getMediaCategory=function(value){
 	            	        	scope.mediaCategory=value;
+	            	        	scope.formData.partnerName=null;
 	            				 if(scope.partnerType == "" || scope.partnerType==null ){
 	            					 
 	            				 }else if(scope.mediaCategory == "" || scope.mediaCategory==null ){
 	            					 
 	            				 }else{
 	            					 
-	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory },function(data) {
+	            				  resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName },function(data) {
 	            					  scope.partnerNames=data;
+	            					  if(scope.partnerNames == null || scope.partnerNames == ""){
+   	            						  $("#partnerN").attr("disabled","disabled"); 
+   	            						scope.activityMonths=null;
+   	            						$("#activityM").attr("disabled","disabled"); 
+   	            					  }else{
+   	            						$("#partnerN").removeAttr("disabled");
+   	            					  }
 	            			      });
 	            				 }
 	            			  };
 	            			  scope.getpartnerName=function(value){
 	            					scope.partnerName=value;
-	            					
+	            					scope.formData.activityDate=null;
 	            					if(scope.partnerType == "" || scope.partnerType==null ){
 	            						 
 	            					 }else if( scope.partnerName=="" || scope.partnerName==null ){
 	            						 
-	            					 }else if( scope.monthId=="" || scope.monthId==null ){
-	            						 
 	            					 }else{
 	            						 
-	            					  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType },function(data) {
-	            						  scope.distributionDatas=data.distributionData;
-	            				      });
+	            						 resourceFactory.getActivityMonth.get({partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName },function(data) {
+	   	            					  scope.activityMonths=data;
+	   	            					  
+	   	            					  if(scope.activityMonths == null || scope.activityMonths == ""){
+	   	            						  $("#activityM").attr("disabled","disabled"); 
+	   	            					  }else{
+	   	            						$("#activityM").removeAttr("disabled");
+	   	            					  }
+	   	            			      });
 	            					 }
-	            				}  
+	            				};  
 	            			scope.getTableData=function(value){
 	            				scope.monthId=value;
+	            				
 	            				
 	            				if(scope.partnerType == "" || scope.partnerType==null ){
 	            					 
@@ -112,7 +149,7 @@
 	            					 
 	            				 }else{
 	            					 
-	            				  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType },function(data) {
+	            				  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName },function(data) {
 	            					  scope.distributionDatas=data.distributionData;
 	            			      });
 	            				 }
@@ -124,7 +161,9 @@
 	            	        scope.setDisbursementsScreen =function(){
 	            	        	resourceFactory.mediaSettlementTemplateResource.get({},function(data){
 	            	        		  scope.partnerTypeDatas = data.partnerTypeData;
-	            			            scope.mediaCategoryDatas = data.mediaCategoryData;	
+//	            			            scope.mediaCategoryDatas = data.mediaCategoryData;	
+	            			            scope.clientNames = data.clients;
+	            			            
 	            	        	});
 	            	        };
 	        
@@ -218,6 +257,7 @@
 		 				 scope.defaultDataName="Default";
 				  }
 				 
+				
 				  
 				 for (var i in scope.settlementSequenceDatas){
 				  		if(	scope.settlementSequenceDatas[i].partnerType4 == 0){
@@ -230,11 +270,12 @@
 				  			scope.settlementSequenceDatas[i].partnerType6=null;
 				  		};
 				  	};
-				  
-				  
+			  	  
+				  console.log(scope.settlementSequenceDatas);
 			  });
 		  };
 		  
+		 
 		  
 		 
  		  scope.submitRevenueSettlement = function(){
@@ -245,7 +286,7 @@
 		  			scope.value4null=scope.settlementSequenceDatas[i].partnerAccountId;
 		  			scope.unlockIt(scope.value4null);
 		  		}
-		  	} 	 
+		  	} 	
 			  scope.formData.settlementSequenceData = new Array();
 			  if(scope.settlementSequenceDatas.length>0){
 	        		for(var i in scope.settlementSequenceDatas){

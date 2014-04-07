@@ -860,10 +860,10 @@
            	    getAllfiles: {method: 'GET', params: {documentId:'@documentId'}},
            	    update: {method: 'PUT', params: {}}
              }),
-             getPartnerName: defineResource(apiVer+ "/mediasettlements/partnername",{partnertype: '@partnertype',mediaCategory:'@mediaCategory'},{
+             getPartnerName: defineResource(apiVer+ "/mediasettlements/partnername",{partnertype: '@partnertype',mediaCategory:'@mediaCategory',client: '@client'},{
             	get: {method: 'GET', params: {}, isArray: true }
              }),
-             getDisbursementsData: defineResource(apiVer+ "/mediasettlements/disbursements",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId'},{
+             getDisbursementsData: defineResource(apiVer+ "/mediasettlements/disbursements",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',mediaCategory:'mediaCategory',client:'@client'},{
             	get: {method: 'GET', params: {}  }
              }),
              getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall",{},{
@@ -980,7 +980,13 @@
             viewpartnerAccountResource: defineResource(apiVer+"/mediasettlements/:id/partnerAccountView", {id:'@id'}, {
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
-            })
+            }),
+            getActivityMonth: defineResource(apiVer+ "/mediasettlements/activityMonth",{partnertype: '@partnertype',partnerName:'@partnerName',client:'@client'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }),
+            getmediaCategoryData: defineResource(apiVer+ "/mediasettlements/mediacategory",{client: '@client'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }) 
         };
       }];
     }
