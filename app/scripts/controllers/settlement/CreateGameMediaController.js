@@ -11,6 +11,8 @@
 		scope.disableSubmit = false;
 		scope.settlementSequenceDatas=[];
 		scope.clientNames=[];
+		scope.formData={};
+
 		var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
 	        	callingTab="";
@@ -287,7 +289,8 @@
 		  			scope.unlockIt(scope.value4null);
 		  		}
 		  	} 	
-			  scope.formData.settlementSequenceData = new Array();
+ 			scope.formData.settlementSequenceData = new Array(); 				
+
 			  if(scope.settlementSequenceDatas.length>0){
 	        		for(var i in scope.settlementSequenceDatas){
 	        			//console.log("i: "+i);

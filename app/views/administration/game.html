@@ -136,7 +136,8 @@
       <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
         
         <br><br>
-        	<div class="control-group center">
+        	<div class="control-group ">
+        	<label class="control-label ">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
 					<div class="controls">
 						<select ng-model="formData.mediaCategory"
 							ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas"
