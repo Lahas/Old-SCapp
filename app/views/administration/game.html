@@ -136,11 +136,12 @@
       <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
         
         <br><br>
-        	<div class="control-group center">
+        	<div class="control-group ">
+        	<label class="control-label ">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
 					<div class="controls">
 						<select ng-model="formData.mediaCategory"
 							ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas"
-							value="{{mc.mCodeValue}}" ng-change="getSettlementSeqRule(formData.mediaCategory)">
+							value="{{mc.mCodeValue}}" ng-change="getSettlementSeqRule(formData.mediaCategory)" required>
 						</select>
 					</div>
 			</div>
@@ -330,13 +331,20 @@
 		</div>
             <table>
             	<tr>
-            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.client' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-medium" ng-model="formData.clientName" ng-change="getClientNames(formData.clientName)" ng-options="clientName.client as clientName.client for clientName in clientNames" value="{{clientName.client}}"></select>
+              				</div>
+            				</div>
+            		</td>
             		
             		<td>
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}"></select>
+                			<select class="input-medium" ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.mediaCategoryId as mediaCategoryData.mediaCategory for mediaCategoryData in mediaCategoryDatass" value="{{mediaCategoryData.mediaCategory}}"></select>
               				</div>
             				</div>
             		</td>
@@ -345,7 +353,7 @@
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.patnertype' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
+                			<select class="input-medium" ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
               				</div>
             				</div>
             		</td>
@@ -355,7 +363,7 @@
               				<label class="control-label">{{ 'link.disbursements.patnername' | translate }}<span class="required">*</span></label>
               				<div class="controls">
               				
-                			<select id="partnerN" ng-model="formData.partnerName" ng-change="getpartnerName(formData.partnerName)" ng-options="pn.partnerName as pn.partnerName for pn in partnerNames" value="{{pn.partnerName}}" disabled></select>
+                			<select class="input-medium" id="partnerN" ng-model="formData.partnerName" ng-change="getpartnerName(formData.partnerName)" ng-options="pn.partnerName as pn.partnerName for pn in partnerNames" value="{{pn.partnerName}}" disabled></select>
               				</div>
             				</div>
             		</td>
@@ -363,7 +371,7 @@
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.month' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select id="activityM" ng-model="formData.activityDate" ng-change="getTableData(formData.activityDate)" ng-options="pn.activityMonth as pn.activityMonth for pn in activityMonths" value="{{pn.activityMonth}}" disabled></select>
+                			<select class="input-medium" id="activityM" ng-model="formData.activityDate" ng-change="getTableData(formData.activityDate)" ng-options="pn.activityMonth as pn.activityMonth for pn in activityMonths" value="{{pn.activityMonth}}" disabled></select>
               				</div>
             				</div>
             		</td>

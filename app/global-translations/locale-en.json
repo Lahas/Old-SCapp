@@ -2466,6 +2466,7 @@
 	"error.msg.settlement.create.unknown.data.integrity.issue":"Duplicate entry",
 	
 	"table.heading.royalityshare":"Royalty Share",
-	"table.heading.currency":"Currency"						     
+	"table.heading.currency":"Currency",
+	"link.disbursements.client":"Client"						     
 
 }
