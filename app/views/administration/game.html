@@ -47,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="pd in partnerAccountData.currentPageItems  | filter:filterText">
+              <tr class="pointer-main" ng-repeat="pd in partnerAccountData.currentPageItems  | filter:filterText" >
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
                 <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
@@ -448,6 +448,7 @@
             </tr> 
         </tbody>
     </table>
+    
     <ul class="pager">
         			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
@@ -455,6 +456,8 @@
       </tab>
     
     </tabset>
+    
     </div>
+    <div notifications="bottom right"></div>
     
   

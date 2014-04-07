@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.services = _.extend(module, {
-    PaginatorService: function(scope, httpService) {
+    PaginatorService: function(scope, httpService,$notification) {
       
       this.paginate = function(fetchFunction, pageSize) {
               var paginator = {
@@ -15,6 +15,9 @@
                   var self = this;
                   fetchFunction(this.currentOffset, pageSize + 1, function(items) {
                   self.currentPageItems = items.pageItems;
+                  if(self.currentPageItems.length<=0){
+                	  $notification.warning("Empty Result set", "Records not found", "");
+                  }
                   self.hasNextVar = items.pageItems.length === pageSize + 1;;
               });
               },
@@ -40,7 +43,7 @@
 
     }
   });
-  mifosX.ng.services.service('PaginatorService', ['$rootScope', 'HttpService', mifosX.services.PaginatorService]).run(function($log) {
+  mifosX.ng.services.service('PaginatorService', ['$rootScope', 'HttpService','$notification', mifosX.services.PaginatorService]).run(function($log) {
     $log.info("PaginatorService initialized");
   });
 }(mifosX.services || {}));

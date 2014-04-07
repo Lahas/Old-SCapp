@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService) {
+	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification) {
 		  
 		  
 		scope.partnerAgreements = [];
@@ -12,7 +12,7 @@
 		scope.settlementSequenceDatas=[];
 		scope.clientNames=[];
 		scope.formData={};
-		
+
 		var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
 	        	callingTab="";
@@ -177,10 +177,11 @@
 	            	  			
 	          scope.getPartnerAccount = function(){
 			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
+			         
 		        };
 		  
 		     scope.searchPartnerHistory123 = function(offset, limit, callback) {
-	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback); 
+	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback);
 	            };
 	  		
 		     scope.searchPartnerHistory = function(filterText) {
@@ -234,7 +235,7 @@
 		  };
 		  
 		  scope.unlockIt=function(value){
-			  ("."+value).removeAttr("disabled");
+			  $("."+value).removeAttr("disabled");
 		  };
 			 
 			  
@@ -288,8 +289,7 @@
 		  			scope.unlockIt(scope.value4null);
 		  		}
 		  	} 	
- 	
- 				scope.formData.settlementSequenceData = new Array(); 				
+ 			scope.formData.settlementSequenceData = new Array(); 				
 
 			  if(scope.settlementSequenceDatas.length>0){
 	        		for(var i in scope.settlementSequenceDatas){
@@ -303,17 +303,21 @@
 	        			});
 	        		}
 	        	}
+			  
+			  console.log("submiting revenusettlement");
+			  
 //			  console.log(JSON.stringify(scope.formData));
 			  resourceFactory.editsettlementSequenceDataDetails.update(scope.formData,function(data){
-				  
+				  $notification.success("Royalty Sequence","Sequence saved","User data");
+				  /*  
 				  scope.alertMessage="Successfully Saved.. !! ";
 				  scope.showSuccessAlert=true;
 				  
 				  window.setTimeout(function() {
 					  scope.showSuccessAlert=false;
-				  }, 2000);
-			  
-			  });
+				  }, 2000);*/
+				  
+				});
 		  };
 		  
 		/*  scope.getSettlementSeqRule = function(category){
@@ -379,7 +383,7 @@
       	  };
 	  }
   });
-  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService', mifosX.controllers.CreateGameMediaController]).run(function($log) {
+  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService','$notification', mifosX.controllers.CreateGameMediaController]).run(function($log) {
     $log.info("CreateGameMediaController initialized");
   });
 }(mifosX.controllers || {}));

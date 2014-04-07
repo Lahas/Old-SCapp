@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMapDetailsController: function(scope, resourceFactory, location,dateFilter,webStorage) {
+	  CreateGameMapDetailsController: function(scope, resourceFactory, location,dateFilter,webStorage,$notification) {
 		  
 		  
 		  scope.gameData = [];
@@ -72,8 +72,10 @@
 		  
 		  
 		  scope.submitPartnerAccount = function(){
+			  		  
+			  $notification.info("title", "content", "userData");
 			  
-			  
+			  return 0;
 			  
 			  /*delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;*/
@@ -102,6 +104,7 @@
 			  
 			  resourceFactory.mediaSettlement.save(scope.formData,function(data){
 	            	location.path('/viewpartneraccount/'+data.resourceId);
+	            	
 				  
 	          });
 			  
@@ -109,7 +112,7 @@
 		  };
 	  }
   });
-  mifosX.ng.application.controller('CreateGameMapDetailsController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage', mifosX.controllers.CreateGameMapDetailsController]).run(function($log) {
+  mifosX.ng.application.controller('CreateGameMapDetailsController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','$notification', mifosX.controllers.CreateGameMapDetailsController]).run(function($log) {
     $log.info("CreateGameMapDetailsController initialized");
   });
 }(mifosX.controllers || {}));
