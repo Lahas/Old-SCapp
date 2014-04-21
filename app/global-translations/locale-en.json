@@ -2468,6 +2468,34 @@
 	
 	"table.heading.royalityshare":"Royalty Share",
 	"table.heading.currency":"Currency",
-	"link.disbursements.client":"Client"						     
+	"link.disbursements.client":"Client",
+	"tab.purchase.order":"Purchase Order",
+	"select.activity.month":"Select Activity Month",
+	
+	"##purchaseorder":"",
+	"label.purchaseorder.address":"Select Address",
+	"label.purchaseorder.invoiceto":"Invoice To",
+	"label.purchaseorder.deliverto":"Deliver To",
+	"label.purchaseorder.partner":"Select Partner",
+	"label.serial":"Sr.",
+	"label.perticulars":"Perticulars",
+	"label.month":"Month",
+	"label.currency":"Currency",
+	"label.currencyamount":"Royalty Amount",
+	"label.deductionamount":"Deduction Amount",
+	"label.netrevenue":"Net Revenue",
+	"label.operatorrevenue":"Operator Revenue",
+	"label.platformrevenue":"Platform Revenue",
+	"label.igrevenue":"IG Revenue",
+	"label.royaltyshare":"Royalty Share",
+	"label.royaltyamount":"Royalty Amount",
+	"label.purchaseorder.number":"Purchase Order:",
+	"label.purchaseorder.date":"Purchase Order Date",
+	"label.purchaseorder.vendor.number":"Vendor Number",
+	"label.purchaseorder":"Purchase Order",
+	
+	"error.msg.currency.code.not.found":"Invalid combination",
+	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank"
+									     
 
 }
