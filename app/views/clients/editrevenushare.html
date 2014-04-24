@@ -1,4 +1,4 @@
- <div ng-controller="AddRevenueShareController">
+ <div ng-controller="EditRevenueShareController">
 	<div><ul class="breadcrumb">
   <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
      <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
@@ -27,7 +27,7 @@
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
 			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">{{'label.revenueshare.create' | translate}}</li>
+			<li class="active">{{'label.revenueshare.edit' | translate}}</li>
 		</ul>
 	</div>
  <form class="form-horizontal well" ng-submit="submit()">
