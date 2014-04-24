@@ -1,19 +1,83 @@
  <div ng-controller="ViewPartnerAccountController">
-	<div class="paddedbottom10">
 	<ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneraccount' | translate}}</a> <span class="divider">/</span></li>
-              <li class="active">{{'label.viewpartneraccount' | translate}}</li>
+	<li>
+          <h3>
+            &nbsp;
+            {{partner.partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{partner.partnerTypeName}}"</small>
+        </li>
           </ul>
           
-       <div class="pull-right">
+<!-- 	<ul class="breadcrumb">
+              <li><a href="#/game">{{'label.partneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.viewpartneraccount' | translate}}</li>
+          </ul> -->
+          
+    <!--    <div class="pull-right">
 	      <div class="btn-group">
 	          <a href="#/editmapgamedetails/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
 	   	    
 	      </div>
 	    </div>    
-   </div>       
+   </div>     -->   
+   <div>
+   <tabset  style="margin-bottom: 0px;">
+      <tab heading="{{'tab.general' | translate}}">
+      <div class="row-fluid">
+                  <div class="row-fluid primarydiv">
+                      <div class="btn-group pull-left">
+                        <span ng-repeat="button in buttons">
+                          <a href="" class="btn btn-primary" ng-click="getMe(button.href,partner.id,button.subhref)"><i class="{{button.icon}} icon-white" ></i>{{button.name | translate}}</a>
+                        </span>
+              </div>
+              </div>
+      <br/>  
+    <div class="row-fluid">
+                      <div class="span7">
+                        <table  width="100%" >
+                            <tr>
+                              <td width="35%">{{ 'label.partner.emailid' | translate }}</td>
+                              <td width="65%">{{partner.emailId}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{'label.partner.contactnum' | translate }}</td>
+                              <td>{{contactNum}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{ 'label.partner.externalId' | translate }}</td>
+                              <td>{{externalId}}</td>
+                              <!-- <td valign="top">{{client.activationDate | DateFormat}}</td> -->
+                            </tr>
+                            <tr>
+                               <td>{{ 'label.partner.currencyname' | translate }}</td>
+                               <td>{{currencyName}}</td>
+                            </tr>
+                          </table>
+                      </div>
+                      <div class="span5">
+                        <table  width="100%" >
+                            <tr>
+                             <td width="35%">{{ 'label.Address' | translate }}</td>
+                              <td width="65%">{{partnerAddress}}</td>
+                              <!-- <td > {{client.addressNo}}<strong>,</strong>{{client.street}}</td> -->
+                            </tr>
+                            <!-- <tr>
+                            <td colspan="2"><a href="#/editAddress/{{client.id}}">Edit Address</a><span class="divider">|</span>
+                             <a href="#/editAddress/{{client.id}}">Add Other Address</a></td>
+                            </tr> -->
+                          </table>
+                      </div>
+                 </div>
+   
           
-<form class="form-horizontal well"  >
+<!-- <form class="form-horizontal well"  >
 <fieldset>
 	 <legend>{{'label.viewpartneraccount' | translate}}</legend>
 	 	 
@@ -29,8 +93,7 @@
                               <td>{{partnerTypeName}}</td>
                             </tr>
                             <tr>
-                              <td>{{ 'label.partnerAddress' | translate }}</td>
-                              <td>{{partnerAddress}}</td>
+                              
                             </tr>
                             <tr>
                               <td>{{ 'label.contactnum' | translate }}</td>
@@ -55,5 +118,100 @@
                      
 	 </fieldset>
 	 
-</form>	
+</form>	 -->
+</div>
+</tab>
+
+
+<tab heading="{{'tab.identities' | translate}}" select="getPartnerIdentityDocuments()" active="identitiesTab">
+        <div class="pull-right btn-group">
+          <a href="#/addpartneridentifier/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+        </div>
+        <br>
+        <table class="table" ng-show="identitydocuments.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.uniqueidentification' | translate}}</th>
+                <th>{{'table.heading.description' | translate}}</th>
+                <th>{{'table.heading.type' | translate}}</th>
+                <th>{{'table.heading.identitydocuments' | translate}}</th>
+                <th>{{'table.heading.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="document in identitydocuments">
+                <td>{{document.documentKey}}</td>
+                <td>{{document.description}}</td>
+                <td>{{document.documentType.name}}</td>
+                <td>
+                  <span ng-repeat="file in document.documents">
+                    <a ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp;
+                  </span>
+                </td>
+                <td>
+                  <a href="#/addclientidentifierdocument/{{client.id}}/{{document.id}}"><i class="icon-cloud-upload"></i></a>&nbsp;
+                  <a ng-click="deleteClientIdentifierDocument(client.id,document.id,$index)"><i class="icon-remove"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+
+     <tab heading="{{'tab.heading.client.documents' | translate}}" select="getClientDocuments()" active="documentsTab">
+        <div class="pull-right">
+          <a href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
+        </div>
+        <br>
+        <table class="table" ng-show="clientdocuments.length > 0">
+            <thead>
+              <tr class="graybg">
+                <th>{{'table.heading.name' | translate}}</th>
+                <th>{{'table.heading.description' | translate}}</th>
+                <th>{{'table.heading.filename' | translate}}</th>
+                <th>{{'table.heading.actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="clientdocument in clientdocuments">
+                <td>{{clientdocument.name}}</td>
+                <td>{{clientdocument.description}}</td>
+                <td>{{clientdocument.fileName}}</td>
+                <td>
+                  <a ng-click="downloadDocument(clientdocument.id)"><i class="icon-cloud-download"></i></a>&nbsp;
+                  <a ng-click="deleteDocument(clientdocument.id,$index)"><i class="icon-remove"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </tab>
+       <tab heading="Notes">
+        <br/>
+        <form>
+            <div class="control-group">
+              <div class="controls">
+                     <textarea rows="1" class="field span marginbottom0px" id="textarea" placeholder="Enter note" ng-model="formData.note"></textarea>
+                     <div class="notewrapper row-fluid">
+                        <span class="pull-right noteaddbuttonwrapper">
+                            <button class="btn btn-primary" type="submit" ng-click="saveNote()">Add Note</button>
+                        </span>
+                     </div>
+              </div>
+            </div>  
+        </form>
+        <div ng-repeat="clientNote in clientNotes | orderBy:predicate:reverse">
+          <div>
+            <blockquote>
+              <p>{{clientNote.note}}</p>
+              {{clientNote.id}}
+              <small>Created by :&nbsp;{{clientNote.createdByUsername}}</small>
+              <small>Created on :&nbsp;{{clientNote.createdOn  | DateFormat}}</small>
+            </blockquote>
+          </div>
+        </div>
+        </tab>
+
+</tabset>
+</div>
+
   </div>   	          
+  

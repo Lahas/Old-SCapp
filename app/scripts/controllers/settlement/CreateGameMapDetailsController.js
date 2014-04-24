@@ -72,7 +72,8 @@
 		  
 		  
 		  scope.submitPartnerAccount = function(){
-			  		  
+			  
+			  
 			  /*delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;*/
 			  scope.formData.locale = "en";

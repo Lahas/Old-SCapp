@@ -27,9 +27,9 @@
         </li>
   </ul>
     <div>
-      <tabset  style="margin-bottom: 0px;">
+     <tabset  style="margin-bottom: 0px;">
       <tab heading="{{'tab.general' | translate}}">
-              <div class="row-fluid">
+                  <div class="row-fluid">
                   <div class="row-fluid primarydiv">
                       <div class="btn-group pull-right">
                         <span ng-repeat="button in buttons">
@@ -62,11 +62,11 @@
                       <div class="span7">
                         <table  width="100%" >
                             <tr>
-                              <td width="35%">{{'label.firstname' | translate}}</td>
+                              <td width="35%">{{'label.client.firstname' | translate}}</td>
                               <td width="65%">{{client.firstname}}</td>
                             </tr>
                             <tr>
-                              <td>{{'label.lastname' | translate}}</td>
+                              <td>{{'label.circle' | translate}}</td>
                               <td>{{client.lastname}}</td>
                             </tr>
                             <tr>
@@ -94,7 +94,7 @@
                               <td>{{client.city}}<strong>,</strong>{{client.state}}</td>
                             </tr>
                             <tr>
-                              <td>{{ 'label.country' | translate }}</td>
+                              <td>{{ 'label.client.country' | translate }}</td>
                               <td valign="top">{{client.country}}<strong>,</strong>{{client.zip}}</td>
                             </tr>
                             <tr>
@@ -186,11 +186,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="royal in royaltyTypes | filter:filterText">
-                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.id}}</a></td>
-                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.revenueShareCodeStr}}</a></td>
-                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.mediaCategoryStr}}</a></td>
-                <td><a href="#/editrevenushare/{{royal.id}}">{{royal.revenueShareTypeStr}}</a></td>
+              <tr class="pointer-main" ng-repeat="royal in royaltyTypes | filter:filterText">
+                <td class="pointer" data-ng-click="routeToRevenue(royal.id)">{{royal.id}}</td>
+                <td class="pointer" data-ng-click="routeToRevenue(royal.id)">{{royal.revenueShareCodeStr}}</td>
+                <td class="pointer" data-ng-click="routeToRevenue(royal.id)">{{royal.mediaCategoryStr}}</td>
+                <td class="pointer" data-ng-click="routeToRevenue(royal.id)">{{royal.revenueShareTypeStr}}</td>
               </tr>
             </tbody>
           </table>
@@ -218,9 +218,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="od in operatorDeductionDatas  | filter:filterText">
-					<td><a href="#/editoperatordeduction/{{od.id}}">{{od.deductionCode}}</a></td>  
-					<td><a href="#/editoperatordeduction/{{od.id}}">{{od.deductionValue}}</a></td>
+				<tr class="pointer-main" ng-repeat="od in operatorDeductionDatas  | filter:filterText">
+					<td class="pointer" data-ng-click="routeTo(od.id)">{{od.deductionCode}}</td>  
+					<td class="pointer" data-ng-click="routeTo(od.id)">{{od.deductionValue}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -630,7 +630,7 @@
 
 
 
-<tab heading="EventOrders" select="getGameEventOrderData()">
+<!-- <tab heading="EventOrders" select="getGameEventOrderData()">
 	
 	<div>
 		<table class="table">
@@ -664,7 +664,7 @@
 	</div>
 
 </tab>
-
+ -->
    <!-- ************************ start of InVenture code ************************ -->
     <!--      <tab class="inventureTabTitle" heading="InVenture Score" select="fetchInventureScore()">
 

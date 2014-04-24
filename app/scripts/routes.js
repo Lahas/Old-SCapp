@@ -632,7 +632,13 @@
 			templateUrl: 'views/settlement/viewinteractivedetails.html'
 		}).when('/editinteractiveheader/:id',{
 			templateUrl: 'views/settlement/editinteractiveheader.html'
-		});
+		}).when('/royalty', {
+			templateUrl : 'views/administration/royalty.html'
+		}).when('/agreement/:id', {
+			templateUrl : 'views/settlement/agreement.html'
+	   }).when('/addpartneridentifier/:id', {
+			templateUrl : 'views/settlement/addpartneridentifier.html'
+	   });
 		$locationProvider.html5Mode(false);
 	};
 	mifosX.ng.application.config(defineRoutes).run(function($log) {

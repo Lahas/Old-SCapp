@@ -2,6 +2,15 @@
   mifosX.controllers = _.extend(module, {
 	  AddOperatorDeductionController: function(scope,webStorage, resourceFactory, location,dateFilter,routeParams) {
 		  
+	   var clientData = webStorage.get('clientData');
+		  scope.displayName=clientData.displayName;
+		  scope.statusActive=clientData.statusActive;
+		  scope.accountNo=clientData.accountNo;
+		  scope.officeName=clientData.officeName;
+		  scope.balanceAmount=clientData.balanceAmount;
+		  scope.currency=clientData.currency;
+		  scope.imagePresent=clientData.imagePresent;
+
 		  scope.clientId = routeParams.id; 
 		  scope.dataFor2 = new Array();
 		  scope.deductionData = new Array();
@@ -91,15 +100,25 @@
 			  
 			  scope.formData.clientId = scope.clientId;
 			  scope.formData.locale = 'en';
-			  console.log(scope.formData.deductionData);
+			 // console.log(scope.formData.deductionData);
+			  //delete scope.formData.deductionCodes;
 			  resourceFactory.saveOperatorDeductionData.save(scope.formData,function(data){
 				  location.path("/viewclient/"+data.resourceId);
 				  webStorage.add("callingTab", {someString: "operator" });
+			  },function(errorData){
+				  for(var i in scope.deductionData){
+					  var dv = $("#deductionValue"+scope.deductionData[i].sequence).val();
+					  var dc = $("#deductionCode"+scope.deductionData[i].sequence).val();
+					 if(dc == "?"){
+						  $("#deductionCode"+scope.deductionData[i].sequence).addClass("validationerror");
+					  }
+					 console.log(typeof(dv));
+					 if(!dv || dv>100 ||typeof(dv)=="String"){
+						 $("#deductionValue"+scope.deductionData[i].sequence).addClass("validationerror");
+					 }
+				  }
 			  });
 		  };
-		  
-		  
-		  
 		 
 	  }
   });

@@ -1,6 +1,22 @@
 <div ng-controller="CreatePartnerAgreementController">
-	<ul class="breadcrumb">
-              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement'| translate}}</a> <span class="divider">/</span></li>
+<ul class="breadcrumb">
+	<li> <h3>
+            &nbsp;
+            {{partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{formData.partnerType}}"</small>
+        </li>
+        </ul>
+        <ul class="breadcrumb">
+              <li><a  href="#/game">Partners</a> <span class="divider">/</span></li>
+              <li><a href='#/viewpartneraccount/{{formData.partnerAccountId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href='#/agreement/{{formData.partnerAccountId}}'>Agreement</a><span class="divider">/</span></li>
               <li class="active">{{'label.addpartneragreement' | translate}}</li>
           </ul>
 
@@ -17,13 +33,13 @@
 	 <legend>{{'label.partneragreement'| translate}}</legend>
 	 <div>
 	 <table>		 
-	 <tr>
+	 <!-- <tr>
 	 <td>
           <div class="control-group">
 			<label class="control-label" for="partnerName">{{'label.partner.partnername' | translate }}&nbsp;<span class="required">*</span></label>
 				<div class="controls">
-				<!-- <select ng-model="formData.partnerAccountId" id="partnerName" ng-change="getCategory(formData.partnerAccountId)" ng-options="pn.id as pn.partnerName for pn in mediaSettlementPartnerNameDatas" value="{{pn.partnerName}}">
-					</select> -->
+				<select ng-model="formData.partnerAccountId" id="partnerName" ng-change="getCategory(formData.partnerAccountId)" ng-options="pn.id as pn.partnerName for pn in mediaSettlementPartnerNameDatas" value="{{pn.partnerName}}">
+					</select>
 				<input type="text" data-ng-model="formData.partnerAccountName"
            placeholder="Enter Partner Name"  typeahead-on-select="getPartnerType(formData.partnerAccountName)" ng-change="getPartnerType(formData.partnerAccountName)" 
            ng-autofocus="true"  typeahead="param.partnerName as param.partnerName for param in mediaSettlementPartnerNameDatas | filter:$viewValue | limitTo:8"  
@@ -35,14 +51,14 @@
 	 	   <div class="control-group">
 	            <label class="control-label" for="partnerType">{{'label.partnertype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <!-- <select ng-model="formData.partnerType"  ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}" >
-	              </select> -->
+	              <select ng-model="formData.partnerType"  ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}" >
+	              </select>
 	              <input type="text"  ng-model="formData.partnerType"   value="{{partnerTypeName}}" readonly>
 	            </div>
 	       </div>
 	       </td>
 		</tr>
-	 	     
+	 --> 	     
 		<tr><td>	
           <div class="control-group">
 	            <label class="control-label" for="agreementType">{{'label.agreementtype' | translate}}&nbsp;<span class="required">*</span></label>
@@ -236,7 +252,7 @@
 	    </td> -->
           
            <div class="offset3">
-            <a href="#/game" ><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel'| translate}}</button></a>
+            <a href="#/viewpartneraccount/{{formData.partnerAccountId}}" ><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
           </div>
 	 </fieldset>

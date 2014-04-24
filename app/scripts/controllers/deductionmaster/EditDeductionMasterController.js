@@ -22,7 +22,7 @@
 		  
 		  scope.cancel = function(){
 	        	
-			  webStorage.add("currentTab", {tab: "master" });
+			  webStorage.add("callingTab", {tab: "master" });
 	      };
 
 		  
@@ -38,7 +38,9 @@
 		//  scope.approveData = {};
 			   //$modalInstance.close('delete');
                   resourceFactory.mastersResource.delete({id: routeParams.id} , {} , function(data) {
-                       location.path('/game');
+                       location.path('/clients');
+                       
+                       webStorage.add("callingTab", {tab: "master"});
                        
                   });
                   $modalInstance.close('delete');

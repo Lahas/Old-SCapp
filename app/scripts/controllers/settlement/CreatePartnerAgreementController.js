@@ -1,14 +1,20 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  CreatePartnerAgreementController: function(scope, resourceFactory, location,dateFilter,validator,http,webStorage) {
-		  
+		  CreatePartnerAgreementController: function(scope, resourceFactory, location,dateFilter,validator,http,webStorage,routeParams) {
+		     
+			  scope.formData = {};
+			  
+			  var partnerData=webStorage.get('partnerData');
+			  scope.partnerName=partnerData.partnerName;
+			  scope.formData.partnerType=partnerData.partnerTypeName;
+			  scope.formData.partnerAccountId=partnerData.partnerId;
+			  
 			  scope.partnerTypeDatas = [];
 			  scope.mediaCategoryDatas = [];
 			  scope.agreementTypeDatas = [];
 			  scope.agreementCategoryDatas = [];
 			  scope.royaltyTypeDatas = [];
 			  scope.settlementSourceDatas = [];
-			  scope.formData = {};
 			  scope.formData.startDate = new Date();
 			  scope.formData.endDate = new Date();
 			  scope.minDate=new Date();
@@ -54,7 +60,7 @@
 		       	}
 			  };
 		        
-		       scope.getPartnerType=function(pName){
+/*		       scope.getPartnerType=function(pName){
 					  console.log(pName);
 					  
 					  for( var i in scope.mediaSettlementPartnerNameDatas){
@@ -66,16 +72,16 @@
 					  resourceFactory.getPartnerType.get({partnerName: scope.partnerNameId},function(data) {
 //				  			scope.formData.mediaCategory = data.mediaCategoryData.mediaCategoryId;
 				  			scope.formData.partnerType = data.partnerType;
-				  			/*
+				  			
 				  			for( var i in scope.partnerTypeDatas){
 				        		if(scope.formData.partnerType == scope.partnerTypeDatas[i].id){
 				        			scope.partnerTypeName=scope.partnerTypeDatas[i].mCodeValue;
 				        		}
-						  		}*/
+						  		}
 				  			
 				      });
 				  };
-		       
+*/		       
 		
 				  
 				  scope.addmediaCategories = function(){
@@ -101,10 +107,6 @@
 			        	scope.mediaPartnerData.splice(index,1);
 			        		
 			        };  
-			
-				  scope.tabStatus = function(){
-			    	   webStorage.add("currentTab", {tab: "agreement" });
-			      };
 		  
 		        scope.submit = function () {
 		        	
@@ -180,7 +182,7 @@
 		  
 		  }
 	  });
-	  mifosX.ng.application.controller('CreatePartnerAgreementController', ['$scope', 'ResourceFactory', '$location','dateFilter','HTValidationService','$http','webStorage', mifosX.controllers.CreatePartnerAgreementController]).run(function($log) {
+	  mifosX.ng.application.controller('CreatePartnerAgreementController', ['$scope', 'ResourceFactory', '$location','dateFilter','HTValidationService','$http','webStorage','$routeParams', mifosX.controllers.CreatePartnerAgreementController]).run(function($log) {
 	    $log.info("CreatePartnerAgreementController initialized");
 	  });
 	}(mifosX.controllers || {}));

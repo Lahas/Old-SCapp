@@ -1,3 +1,10 @@
+
+	<div><ul class="breadcrumb">
+              <li><a href="#/clients">Clients</a> <span class="divider">/</span></li>
+              <li class="active">Create Client</li>
+          </ul>
+          </div>
+
       <form name="createclientform" novalidate="" class="form-horizontal well" ng-controller="CreateClientController" ng-submit="submit()">
        
         <div class="error" ng-show="errorStatus || errorDetails">
@@ -28,11 +35,10 @@
   		      <div class="control-group">
               <label class="control-label" for="firstname">{{'label.clientname' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" required ng-minlength=3 late-Validate/>
+                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
                 <span  ng-show="createclientform.firstname.$invalid">
-                    <small class="error" ng-show="createclientform.firstname.$error.req">
-                        Required Field
-                    </small>
+                  <small class="error" ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
+                    <small class="error" ng-show="createclientform.firstname.$error.req">Required Field</small>
                     <small class="error" ng-show="createclientform.firstname.$error.minlength && !createclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
                 </span>
               </div>
@@ -116,15 +122,15 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="state">{{'label.state' | translate}}</label>
+              <label class="control-label" for="state">{{'label.state' | translate}} </label>
               <div class="controls">
-                <input type="text" id="state" ng-model="formData.state"/>
+                <input type="text" id="state" ng-model="formData.state" readonly/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="country">{{'label.country' | translate}}<span class="required">*</span></label></label>
               <div class="controls">
-                <input type="text" id="country" name="country" ng-model="formData.country" required/>
+                <input type="text" id="country" name="country" ng-model="formData.country" required readonly/>
               
               </div>
             </div>

@@ -1,6 +1,16 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
 		  AddRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage) {
+			  
+		 var clientData = webStorage.get('clientData');
+	     scope.displayName=clientData.displayName;
+	     scope.statusActive=clientData.statusActive;
+	     scope.accountNo=clientData.accountNo;
+	     scope.officeName=clientData.officeName;
+	     scope.balanceAmount=clientData.balanceAmount;
+	     scope.currency=clientData.currency;
+	     scope.imagePresent=clientData.imagePresent;
+			  
 	        scope.discountTypeDatas = [];
 	        scope.statuses = [];
 	        scope.start = {};
@@ -45,12 +55,14 @@
 	        			scope.showPercentage = true;
 	        			scope.showFlat = false;
 	        			scope.revenueData = [];
+	        			scope.revenueShareTypeStr='Percentage';
 	        			delete scope.formData.flat;
-	        		}else if(scope.royaltyTypeDatas[i].id == data && 'Flat Rate' == scope.royaltyTypeDatas[i].mCodeValue){
+	        		}else if(scope.royaltyTypeDatas[i].id == data && 'Flat' == scope.royaltyTypeDatas[i].mCodeValue){
 	        			scope.showPercentage = false;
 	        			scope.showFlat = true;
 	        			scope.revenueData=[];
 	        			scope.formData.flat = undefined;
+	        			scope.revenueShareTypeStr='Flat';
 	        		}
 	        	}
 	        };
@@ -81,6 +93,7 @@
 		        	}
 				  scope.formData.clientId = scope.clientId;
 				  scope.formData.locale = 'en';
+				  scope.formData.revenueShareTypeStr=scope.revenueShareTypeStr;
 				  resourceFactory.revenueResource.save({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+routeParams.id);
 					  webStorage.add("callingTab", {someString: "revenueShare" });
