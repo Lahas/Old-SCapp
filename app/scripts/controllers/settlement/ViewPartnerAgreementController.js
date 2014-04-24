@@ -59,7 +59,7 @@
 	      
 	      
 	      scope.downloadFile = function (){ 
-        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/print?tenantIdentifier=default');
+        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/print?tenantIdentifier=default');
       	  };
 			
 		  scope.tabStatus = function(){
@@ -68,7 +68,7 @@
 	      };
   
 	      scope.routeTo = function(id){
-              location.path('/  editPartnerAgreement/'+ id);
+              location.path('editPartnerAgreement/'+ id);
                
          };
 		        
