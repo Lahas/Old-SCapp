@@ -998,7 +998,26 @@
               }),
             partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerId:'@partnerIdentityId'}, {
                    get: {method: 'GET', params: {}, isArray:true}
-           })      
+           }),      
+
+            getPurchaseOrderTemplate: defineResource(apiVer+ "/purchaseorder/template",{},{
+            	get: {method: 'GET', params: {}, isArray: false}
+            }),
+            getPurchaseOrderAddressDetails: defineResource(apiVer+ "/purchaseorder/:purchaseOrderId",{},{
+            	get: {method: 'GET', params: {}, isArray: true}
+            }),
+            getPartnerAddressDetails: defineResource(apiVer+ "/purchaseorder/partneraddress/:partnerId",{},{
+            	get: {method: 'GET', params: {}, isArray: false}
+            }),
+            getActivityMonthDetails: defineResource(apiVer+ "/purchaseorder/activitymonth/:perticularsId",{},{
+            	get: {method: 'GET', params: {}, isArray: true}
+            }),
+            getRoyaltyAmountDetails: defineResource(apiVer+ "/purchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
+            	get: {method: 'GET', params: {}, isArray: false}
+            }),
+            createPurchaseOrder: defineResource(apiVer+ "/purchaseorder/createpurchaseorder/",{},{
+            	post: {method: 'POST', params: {}}
+            })
         };
       }];
     }

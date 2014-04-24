@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification) {
+	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification,dateFilter) {
 		  
 		  
 		scope.partnerAgreements = [];
@@ -12,6 +12,15 @@
 		scope.settlementSequenceDatas=[];
 		scope.clientNames=[];
 		scope.formData={};
+		scope.formData.invoiceTo;
+		scope.formData.deliverTo;
+		scope.activity = {};
+		scope.purchaseOrderDate = {};
+		scope.partnerAddressDetail = {};
+		scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/Business/Month/Sequence";
+		scope.purchaseOrderDate.date= new Date();
+		scope.activity.date = new Date();
+		
 
 		var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
@@ -35,6 +44,10 @@
 				  scope.master =  true;
 				  webStorage.remove('currentTab');
 				 
+			  }else if(scope.displayTab == "purchaseorder"){
+				  scope.master =  true;
+				  webStorage.remove('currentTab');
+				 
 			  }
 			  else
 			  {
@@ -44,17 +57,118 @@
 	        } 
 		  
 	        
-	       /* scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
-	            		  {id:5,mon:"May"},{id:6,mon:"June"},{id:7,mon:"July"},{id:8,mon:"August"},{id:9,mon:"September"},
-	            		  {id:10,mon:"October"},{id:11,mon:"November"},{id:12,mon:"December"}];
-	            */		  
+	       scope.months=[{id:1,mon:"Jan"},{id:2,mon:"Feb"},{id:3,mon:"Mar"},{id:4,mon:"Apr"},
+	            		  {id:5,mon:"May"},{id:6,mon:"Jun"},{id:7,mon:"Jul"},{id:8,mon:"Aug"},{id:9,mon:"Sep"},
+	            		  {id:10,mon:"Oct"},{id:11,mon:"Nov"},{id:12,mon:"Dec"}];
+	            		  
 	            		 
-	        
+	       /*scope.generatePurchaseOrder = function(){
+	    	   scope.ac = scope.formData.activityMonth.toString().substring(0,3)+" "+(new Date().getFullYear());//.toString().substring(2,5);
+	    	   console.log(scope.ac);
+	       }; */
+	       
+	       scope.getPartnerAddressDetails = function(){
+	    	   resourceFactory.getPartnerAddressDetails.get({partnerId:scope.formData.partnerAddress},function(data){
+	    		   scope.partnerAddressDetail.partnerAddressDetails = data;
+	    		   scope.perticularsData = data.perticulars;
+	    		   //console.log(data);
+	    	   });
+	       };
+	       
+	       scope.getDeliverToDetails = function(){
+	    	   
+	    	   resourceFactory.getPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.deliverTo},function(data){
+	    		   scope.deliverToData = data[0];
+	    	   });
+	       };
+	       
+	       scope.getInvoiceToDetails = function(){
+	    	   
+	    	   resourceFactory.getPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.invoiceTo},function(data){
+	    		   scope.invoiceToData = data[0];
+	    	   });
+	       };
+	       
+	       
+	       scope.getRoyaltyAmount = function(){
+	    	   resourceFactory.getRoyaltyAmountDetails.get({partnerAddress:scope.formData.partnerAddress,month:dateFilter(scope.month.date,"MMM yyyy"),perticulars:scope.formData.perticulars},function(data){
+	    		   
+	    		   scope.formData.royaltyAmount = data.royaltyAmount;
+	    		   scope.royaltyAmountsData = data.royaltyAmountData;
+	    		   scope.formData.currencyCode = data.currencyCode;
+	    		   scope.formData.purchaseOrderNumber = data.nextPurchaseOrderTableId;
+	    		   scope.formData.businessLine = data.businessLineData[0];
+	    		   scope.formData.activityMonthInNumericData = getMonthInNumeric(data.activityMonthInNumericData[0].toString());
+	    		   scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/"+scope.formData.businessLine+"/"+scope.formData.activityMonthInNumericData+"/"+scope.formData.purchaseOrderNumber+"";
+	    		   scope.formData.purchaseOrderNumber = scope.partnerAddressDetail.purchaseOrderNumber;
+	    		   
+	    	   },function(errorData){
+	    		   
+	    		   scope.royaltyAmountsData = undefined;
+	    		   scope.formData.currencyCode = undefined;
+	    		   scope.formData.royaltyAmount = undefined;
+	    		   scope.formData.purchaseOrderNumber = undefined;
+	    		   scope.formData.businessLine = undefined;
+	    		   scope.formData.activityMonthInNumericData = undefined;
+	    		   scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/Business/Month/Sequence";
+	    		   
+	    	   });
+	       };
+	       
+	       var getMonthInNumeric = function(acm){
+	    	   var res = acm.split(" ");
+	    	   for (var i in scope.months){
+	    		   if(scope.months[i].mon == res[0]){
+	    			   var monthStr = (scope.months[i].id>9?scope.months[i].id:0+""+scope.months[i].id).toString();
+	    			   return monthStr+""+res[1].slice(-2);
+	    		   }
+	    	   }
+	       };
+	       
+	      
+	       scope.submitPurchaseOrder = function(){
+	    	   scope.formData.clientId = scope.royaltyAmountsData[0].clientId;
+	    	   scope.formData.purchaseOrderDate = dateFilter(scope.purchaseOrderDate.date,"dd MMMM yyyy");
+	    	   scope.formData.month = dateFilter(scope.month.date,"MMM yyyy");
+	    	   scope.formData.locale = "en";
+	    	   scope.formData.dateFormat = "dd MMMM yyyy"
+	    	   resourceFactory.createPurchaseOrder.save(scope.formData,function(data){
+	    		   $notification.success("Successfully Saved","Purchase Order","User data");
+	    		   scope.royaltyAmountsData = undefined;
+	    		   scope.formData.currencyCode = undefined;
+	    		   scope.formData.royaltyAmount = undefined;
+	    		   scope.formData.purchaseOrderNumber = undefined;
+	    		   scope.formData.businessLine = undefined;
+	    		   scope.formData.activityMonthInNumericData = undefined;
+	    		   scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/Business/Month/Sequence";
+	    	   },function(errorData){
+	    		   
+	    	   });
+	       };
+	       
+	      /* scope.getActivityMonths = function(){
+	    	   resourceFactory.getActivityMonthDetails.get({perticularsId:scope.formData.perticulars},function(data){
+	    		   scope.activityMonthData = data;
+	    	   });
+	       };*/
+	       
+	       scope.getPurchaseOrderTemplate = function(){
+	    	   resourceFactory.getPurchaseOrderTemplate.get(function(data){
+	    		   scope.addressData = data.purchaseOrderData;
+	    		   scope.partnerData = data.partnerNames;
+	    		   scope.currencyCodesData = data.currencyCodes;
+	    	   });
+	       };
+	       
+	       
+	       
 	        scope.refresh=function(){
 	        	 scope.loading = true;
 				 resourceFactory.getRefreshProcedure.get(function(data) {
 					 scope.loading = false;
-			    });
+			     },function(errorData){
+	        	     scope.loading = false;
+				 });
 			 };
 	            	        scope.getPartnerTypeCategory=function(value){
 	            	        	scope.partnerType=value;
@@ -385,11 +499,11 @@
          };
       	
           scope.downloadFile = function (id){ 
-        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
       	  };
 	  }
   });
-  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService','$notification', mifosX.controllers.CreateGameMediaController]).run(function($log) {
+  mifosX.ng.application.controller('CreateGameMediaController', ['$scope', 'ResourceFactory', '$location','dateFilter','webStorage','PaginatorService','$notification','dateFilter', mifosX.controllers.CreateGameMediaController]).run(function($log) {
     $log.info("CreateGameMediaController initialized");
   });
 }(mifosX.controllers || {}));
