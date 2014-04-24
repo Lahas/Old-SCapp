@@ -229,6 +229,7 @@
       };
       
       scope.routeToRevenue=function(id){
+   
     	  location.path('/editrevenushare/'+id);
       };
         

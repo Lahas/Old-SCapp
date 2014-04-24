@@ -1,35 +1,28 @@
- <div ng-controller="AddRevenueShareController">
-	<div><ul class="breadcrumb">
-  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
-     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
-     <li>
-          <h3>
-            &nbsp;
-            {{displayName}}
-            &nbsp;
-            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
-            &nbsp;
-          </h3>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-barcode"></i>
-          <small>Uniquely identified with {{accountNo}}&nbsp;</small>
-        </li>
-        <li><span class="divider">|</span>
-          <i class="icon-building"></i>
-          <small>Belongs to "{{officeName}}" office</small>
-        </li>
-         <li><span class="divider">|</span>
-          <i></i>
-          <small>Balance:{{balanceAmount}} &nbsp;{{currency}}</small>
-        </li>
-       </ul>
+ <div ng-controller="EditRevenueShareController">
 		<ul class="breadcrumb">
 			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
-			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">{{'label.revenueshare.create' | translate}}</li>
+			<li><a href="#/viewclient/{{formData.clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.revenueshare.edit' | translate}}</li>
 		</ul>
-	</div>
+	
+	 <div class="pull-right">
+	      <div class="btn-group">        
+	          <a ng-click="deleteRevenue()" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
+	      </div>
+	    </div>
+	  <script type="text/ng-template" id="approve.html">
+                    <div class="modal-header silver">
+                        <h3 class="bolder">{{'dialog.revenuemaster.title.message' | translate}}</h3>
+                    </div>
+                    <div class="modal-body" style="height:60px;">
+                       <h4>Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" ng-click="cancel()">{{'button.cancel' | translate}}</button>
+                        <button class="btn btn-primary" ng-click="approve()">{{'label.confirm' | translate}}</button>
+                    </div>
+      </script>
+	
  <form class="form-horizontal well" ng-submit="submit()">
  
   <div class="error" ng-show="errorStatus || errorDetails">
@@ -127,7 +120,7 @@
     
              
           <div class="offset3">
-            <a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel' | translate}}</button></a>
+            <a href="#/viewclient/{{formData.clientId}}"><button type="reset" class="btn" ng-click="cancel()">{{'button.cancel' | translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
 </fieldset>
