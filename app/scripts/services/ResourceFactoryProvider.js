@@ -852,8 +852,8 @@
                 getTemplate: {method: 'GET', params: {}},
                 update: {method: 'PUT', params: {}}
              }),
-             partnerAgreementResource: defineResource(apiVer + "/mediasettlements/partneragreement", {}, {
-           	    getAllfiles: {method: 'GET', params: {}},
+             partnerAgreementResource: defineResource(apiVer + "/mediasettlements/partneragreement/:partnerId", {partnerId:'@partnerId'}, {
+           	    getAllfiles: {method: 'GET', params: {}, isArray:true},
            	    update: {method: 'PUT', params: {}}
              }),
              editpartnerAgreementResource: defineResource(apiVer+"/mediasettlements/:documentId/attachment", {documentId:'@documentId'}, {
@@ -977,7 +977,7 @@
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
             }),
-            viewpartnerAccountResource: defineResource(apiVer+"/mediasettlements/:id/partnerAccountView", {id:'@id'}, {
+            viewpartnerAccountResource: defineResource(apiVer+"/mediasettlements/:partnerId/partnerAccountView", {partnerId:'@partnerId'}, {
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
             }),
@@ -986,7 +986,19 @@
              }),
             getmediaCategoryData: defineResource(apiVer+ "/mediasettlements/mediacategory",{client: '@client'},{
             	get: {method: 'GET', params: {}, isArray: true }
-             }) 
+             }),
+            partnerIdenfierTemplateResource: defineResource(apiVer + "/partners/:partnerId/identifiers/template", {partnerId:'@partnerId'}, {
+                 get: {method: 'GET', params: {}}
+             }),
+            partnerResource: defineResource(apiVer + "/partners/:clientId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
+                   getAllClients: {method: 'GET', params: {}},
+                   getClientClosureReasons: {method: 'GET', params: {}},
+                   getAllClientDocuments: {method: 'GET', params: {}, isArray: true},
+                   update: { method: 'PUT'}
+              }),
+            partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerId:'@partnerIdentityId'}, {
+                   get: {method: 'GET', params: {}, isArray:true}
+           })      
         };
       }];
     }

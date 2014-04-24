@@ -92,41 +92,22 @@
                       }
 
                     if (data.status.value == "Active") {
-                      scope.buttons = [
-                                      	/*{
-                                        name:"button.neworder",
-                                        href:"#/neworder",
-                                        icon :"icon-plus-sign"
-                                        },*/
-                                        {
-                                      	  name:"button.eventgame",
+                      scope.buttons = [{
+                                          name:"button.eventgame",
                                       	  href:"#/gameevent",
                                       	  icon:"icon-play"
-                                         	},
-                                      	{
-                                      	  name:"button.eventorder",
-                                      	  href:"#/eventorder",
-                                      	  icon:"icon-barcode"
-                                         	},
-                                        /*{
-                                            name:"button.newTicket",
-                                            href:"#/newTicket",
-                                            icon :"icon-flag"
-                                          },*/
-                                        
-                                        {
+                                         },
+                                          {
                                             name:"button.payments",
                                             href:"#/payments",
                                             icon :"icon-money"
                                          },
                                          {
-
                                              name:"button.payInvoice",
                                              href:"#/payinvoice",
                                              icon :"icon-usd"
                                           },
                                           {
-
                                               name:"button.distribution",
                                               href:"#/creditDistribution",
                                               icon :"icon-usd"
@@ -231,6 +212,10 @@
 		};
 		
 		
+		 scope.routeTo = function(id){
+	          location.path('/editoperatordeduction/'+ id);
+	       
+		 };
         
         
       scope.cancel = function(){
@@ -241,6 +226,10 @@
           resourceFactory.revenueDetails.get({clientId: routeParams.id} , function(data) {
              scope.royaltyTypes = data;                        
           });
+      };
+      
+      scope.routeToRevenue=function(id){
+    	  location.path('/editrevenushare/'+id);
       };
         
      scope.getMe = function(href,cId,subHref){

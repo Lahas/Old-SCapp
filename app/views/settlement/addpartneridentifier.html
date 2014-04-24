@@ -1,0 +1,65 @@
+<div ng-controller="PartnerIdentifierController">
+	<div><ul class="breadcrumb">
+     <li>
+        <h3>
+            &nbsp;
+            {{partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{partnerTypeName}}"</small>
+        </li>
+ </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/partners">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewpartneraccount/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'link.add.partneridentifier' | translate}}</li>
+		</ul>
+	</div>
+	<form name="partneridentifierform" novalidate="" class="form-horizontal well" ng-submit="submit()">
+	 <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+		<fieldset>
+			<legend>{{'label.add.partner.identifier' | translate}}</legend>
+
+			<div class="control-group">
+				<label class="control-label" for="documentTypeId">{{'label.document.type' | translate}}<span class="required">*</span></label>
+				<div class="controls">
+					<select ng-model="formData.documentTypeId" ng-options="documenttype.id as documenttype.name for documenttype in documenttypes" value="{{documenttype.id}}" required="required">
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="documentKey">{{'label.unique.identification' | translate}}<span class="required">*</span></label>
+				<div class="controls">
+					<input type="text" name="identification" ng-model="formData.documentKey" required="required" required late-Validate/>
+					<span  ng-show="partneridentifierform.identification.$invalid">
+	                    <small class="error" ng-show="partneridentifierform.identification.$error.req">
+	                        Required Field
+	                    </small>
+	                </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="description">{{'label.description' | translate}}</label>
+				<div class="controls">
+					<textarea rows="2" ng-model="formData.description"></textarea>
+				</div>
+			</div>
+
+			<div class="offset3">
+				<a href="#/viewpartneraccount/{{partnerId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+				<button type="submit" ng-disabled="!partneridentifierform.$valid" class="btn btn-primary">{{'button.save' | translate}}</button>
+			</div>
+		</fieldset>
+	</form>
+</div>

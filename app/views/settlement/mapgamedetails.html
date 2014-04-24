@@ -15,7 +15,7 @@
       	<!-- <tab heading="{{'tab.partner.account' | translate}}" select="setPartnerTypeScreen()" active="vodTab"> -->
       			
       		
-      		<form class="form-horizontal well" ng-submit="submitPartnerAccount()">
+      		<form name="createpartnerform" novalidate="" class="form-horizontal well" ng-submit="submitPartnerAccount()">
       		<fieldset>
       		<legend>{{'label.addpartneraccount' | translate}}</legend>
 				<table>
@@ -81,12 +81,27 @@
 									    </div>
 									</td>
 								</tr>
+									<tr>
+									<td>
+									<div class="control-group">
+								      <label class="control-label" for="emailId">Official email-id&nbsp;<span class="required">*</span></label>
+								      <div class="controls">
+								        <input type="text" id="emailId" ng-model="formData.emailId"/>
+								      </div>
+								    </div>
+									</td>
+								</tr>
+								
 								 <tr>
 									<td>	
 									<div class="control-group">
-									     <label class="control-label" for="contactNum">Contact Number</label>
+									     <label class="control-label" for="contactNum">Contact Number&nbsp;<span class="required">*</span></label>
 									     <div class="controls">
-									       <input type="text" id="contactNum" ng-model="formData.contactNum" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="phone"/>
+									       <input type="text" id="contactNum" ng-model="formData.contactNum" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="contactNum"/>
+									       <div ng-show="createpartnerform.contactNum.$dirty && createpartnerform.contactNum.$invalid">
+                                         <span class="error" ng-show="createpartnerform.contactNum.$error.pattern">digits only !</span>
+                                         <span class="error" ng-show="createpartnerform.contactNum.$error.maxlength">Exceeded max limit!</span>
+                                           </div> 
 									     </div>
 									   </div>
 									</td>
@@ -94,14 +109,16 @@
 								<tr>
 									<td>
 									<div class="control-group">
-								      <label class="control-label" for="emailId">Email ID</label>
-								      <div class="controls">
-								        <input type="text" id="emailId" ng-model="formData.emailId"/>
-								      </div>
-								    </div>
+										<label class="control-label" for="externalId">External Id :&nbsp;<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" ng-model="formData.externalId"  id="externalId" ng-pattern="/^(?!0+$)\d{1,19}$/" name="externalId"/>
+												 <div ng-show="createpartnerform.externalId.$dirty && createpartnerform.externalId.$invalid">
+                                              <span class="error" ng-show="createpartnerform.externalId.$error.pattern">digits only !</span>
+                                              </div>
+											</div>
+									</div>
 									</td>
 								</tr>
-									
 								<tr>
 									<td>
 							          	<div class="control-group">
@@ -115,16 +132,9 @@
 									    </div>
 									</td>
 								</tr>
-								<tr>
-									<td>
-									<div class="control-group">
-										<label class="control-label" for="externalId">External Id :&nbsp;<span class="required">*</span></label>
-											<div class="controls">
-												<input type="text" ng-model="formData.externalId" id="externalId"/>
-											</div>
-									</div>
-									</td>
-								</tr>
+								
+								
+								
 																							
 							</table>
 							

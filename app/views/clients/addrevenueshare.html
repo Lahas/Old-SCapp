@@ -1,11 +1,37 @@
- <form class="form-horizontal well" ng-controller="AddRevenueShareController" ng-submit="submit()">
-<div>
-        <ul class="breadcrumb">
-           <li><a href="#/viewclient/{{clientId}}">{{'link.view.client' |  translate}}</a> <span class="divider">/</span></li>
-          <li class="active">{{'label.revenueshare.create' | translate}}</li>
-        </ul>
- </div>
-
+ <div ng-controller="AddRevenueShareController">
+	<div><ul class="breadcrumb">
+  <img ng-hide="imagePresent" src="../app/images/blank_avatar.jpg" alt="Avatar" width="40">
+     <img ng-show="imagePresent" src="{{image}}" alt="Avatar" width="40">
+     <li>
+          <h3>
+            &nbsp;
+            {{displayName}}
+            &nbsp;
+            <i class="icon-circle {{statusActive | StatusLookup}}"></i>
+            &nbsp;
+          </h3>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-barcode"></i>
+          <small>Uniquely identified with {{accountNo}}&nbsp;</small>
+        </li>
+        <li><span class="divider">|</span>
+          <i class="icon-building"></i>
+          <small>Belongs to "{{officeName}}" office</small>
+        </li>
+         <li><span class="divider">|</span>
+          <i></i>
+          <small>Balance:{{balanceAmount}} &nbsp;{{currency}}</small>
+        </li>
+       </ul>
+		<ul class="breadcrumb">
+			<li><a href="#/clients">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href="#/viewclient/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.revenueshare.create' | translate}}</li>
+		</ul>
+	</div>
+ <form class="form-horizontal well" ng-submit="submit()">
+ 
   <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -68,7 +94,7 @@
 </table>
       
  		<fieldset ng-show="showPercentage">
-           <legend>Percentage</legend>
+           <legend>Slabs</legend>
           <table id="gameTable">
           <tr class="control-group">
                 <td>
@@ -104,9 +130,7 @@
             <a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="tabStatus()">{{'button.cancel' | translate}}</button></a>
             <button type="submit" class="btn btn-primary">{{'label.save' | translate}}</button>
           </div>
-
-
-
 </fieldset>
 </form>
+</div>
  

@@ -40,14 +40,14 @@
 				  
 		         scope.cancel = function(){
 			        	
-					  webStorage.add("currentTab", {tab: "master" });
+					  webStorage.add("callingTab", {tab: "master" });
 			      };
 		  
 		        scope.submit = function () {
 		        	  resourceFactory.mastersResource.save(scope.formData,function(data){
-		        		  location.path('/game');
+		        		  location.path('/clients');
 		        	  });
-		            webStorage.add("currentTab", {tab: "master" });
+		            webStorage.add("callingTab", {tab: "master" });
 		          };
 		        
 		  

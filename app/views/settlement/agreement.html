@@ -1,0 +1,67 @@
+ <div ng-controller="AgreementController">
+	<!-- <ul class="breadcrumb">
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.viewpartneragreement' | translate}}</li>
+          </ul> -->
+     <ul class="breadcrumb">
+	<li> <h3>
+            &nbsp;
+            {{partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{partnerTypeName}}"</small>
+        </li>
+          </ul>
+          <ul class="breadcrumb">
+			<li><a href="#/game">Partners</a> <span class="divider">/</span></li>
+			<li><a href='#/viewpartneraccount/{{resouresId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Agreement</li>
+		</ul>
+       <div class="pull-right">
+	      <div class="btn-group">
+	         <a href="#/createpartneragreement" class="btn btn-primary"><i class="icon-plus icon-white"></i>Add</a>
+	      <!--     <a href="#/editPartnerAgreement/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit</a> -->
+	   	    
+	      </div>
+	    </div>    
+	    
+	    <table class="table">
+        <thead>
+            <tr class="graybg">
+                <th>{{'table.heading.partnername' | translate}}</th>
+                <th>{{'table.heading.partnertype' | translate}}</th>
+                <th>{{'table.heading.partneragreement.category' | translate}}</th>
+                <th>{{'table.heading.agreement.status' | translate}}</th>
+                <th>{{'table.heading.royalty.type' | translate}}</th>
+                <th>{{'table.heading.settlement.source' | translate}}</th>
+                <th>{{'table.heading.startdate' | translate}}</th>
+                <th>{{'table.heading.enddate' | translate}}</th>
+                <!-- <th>{{'table.heading.uploaded.location' | translate}}</th> -->
+                <th>{{'table.heading.download' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+	            <tr class="pointer-main" ng-repeat="partnerAgreement in partnerAgreements | filter:filterText">       
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerName}}</td>   
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.partnerType}}</td>         
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementCategory}}</td>
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.agreementType}}</td>
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.royaltyType}}</td>      
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.settlementSource}}</td>     	             
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.startDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeTo(partnerAgreement.id)">{{partnerAgreement.endDate | DateFormat}}</td>         
+                <!-- <td>{{partnerAgreement.agmtLocation}}</td> -->
+                <td>
+              	<a ng-show="partnerAgreement.fileName"; ng-click="downloadFile(partnerAgreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
+              	</td>
+            </tr>
+        </tbody>
+    </table>
+	    
+	    
+   </div>       

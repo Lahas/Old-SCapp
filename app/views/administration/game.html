@@ -5,10 +5,10 @@
      
       <tab heading="{{'tab.partner.account' | translate}}" select="getPartnerAccount()" >
         <div class="pull-right btn-group">
-          <a href="#/mapgamedetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
+          <a href="#/mapgamedetails" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create</a>
         </div>
          <form ng-submit="searchPartnerHistory(filterText)">
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/partnerType/contactNum">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/partnerType">
 	 </form>
         
         <!-- <table class="table">
@@ -39,22 +39,22 @@
                <!--<th>{{'table.heading.gamemedia.partner.mediacategory' | translate}}</th> -->
                 <th>{{'table.heading.gamemedia.partner.partnername' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.type' | translate}}</th>
-                <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
+                 <th>{{'table.heading.gamemedia.partner.partneraddress' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.contactnum' | translate}}</th>
                 <th>{{'table.heading.gamemedia.partner.emailid' | translate}}</th>
-                <th>{{'table.heading.gamemedia.partner.currencyid' | translate}}</th>
-                <th>{{'table.heading.gamemedia.partner.externalid' | translate}}</th>
+                <!-- <th>{{'table.heading.gamemedia.partner.currencyid' | translate}}</th>
+                <th>{{'table.heading.gamemedia.partner.externalid' | translate}}</th> --> 
               </tr>
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData.currentPageItems  | filter:filterText" >
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerName}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerTypeName}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.partnerAddress}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.contactNum}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.emailId}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
-                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>
+                <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.partnerName}}</td>
+                <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.partnerTypeName}}</td>
+                <td class="pointer"data-ng-click="partnerTo(pd.id)">{{pd.partnerAddress}}</td>
+                <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.contactNum}}</td>
+                <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.emailId}}</td>
+               <!--  <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.currencyCode}}</a></td>
+                <td class="pointer"><a href="#/viewpartneraccount/{{pd.id}}">{{pd.externalId}}</a></td>  -->
               </tr>
             </tbody>
           </table>
@@ -63,12 +63,12 @@
         			<li class="next" ><a ng-click="partnerAccountData.next()" href="" ng-disabled="!partnerAccountData.hasNext()">Next &rarr;</a></li>
     			</ul>
       </tab>
-      <tab heading="{{'tab.partner.agreement' | translate}}" select="getPartnerAgreementScreen()" active="agreement123">
+     <!--  <tab heading="{{'tab.partner.agreement' | translate}}" select="getPartnerAgreementScreen()" active="agreement123">
         <div class="pull-right btn-group">
           <a href="#/createpartneragreement" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div> 
          <form ng-submit="searchPartnerAgreementHistory(filterText)">
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/partnerType/category/status">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/category/status">
 	   </form>    
           <table class="table">
         <thead>
@@ -81,7 +81,7 @@
                 <th>{{'table.heading.settlement.source' | translate}}</th>
                 <th>{{'table.heading.startdate' | translate}}</th>
                 <th>{{'table.heading.enddate' | translate}}</th>
-                <!-- <th>{{'table.heading.uploaded.location' | translate}}</th> -->
+                <th>{{'table.heading.uploaded.location' | translate}}</th>
                 <th>{{'table.heading.download' | translate}}</th>
             </tr>
         </thead>
@@ -95,7 +95,7 @@
                 <td>{{partnerAgreement.settlementSource}}</td>     	             
                 <td>{{partnerAgreement.startDate | DateFormat}}</td>
                 <td>{{partnerAgreement.endDate | DateFormat}}</td>         
-                <!-- <td>{{partnerAgreement.agmtLocation}}</td> -->
+                <td>{{partnerAgreement.agmtLocation}}</td>
                 <td>
               	<a ng-show="partnerAgreement.fileName"; ng-click="downloadFile(partnerAgreement.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
               	</td>
@@ -106,7 +106,7 @@
         			<li class="previous"><a ng-click="partnerAgreements.previous()" href="" ng-disabled="!partnerAgreements.hasPrevious()">&larr; Prev</a></li>
         			<li class="next" ><a ng-click="partnerAgreements.next()" href="" ng-disabled="!partnerAgreements.hasNext()">Next &rarr;</a></li>
     			</ul>
-      </tab>
+      </tab> -->
 <!--       <tab heading="{{'tab.partner.addgame' | translate}}" select="setGameScreen()" active="game">
         <div class="pull-right btn-group">
           <a href="#/partnergame" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
@@ -130,7 +130,7 @@
               </tr>
             </tbody>
           </table>
-      </tab> -->
+      </tab> 
       
       <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
       <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
@@ -212,14 +212,14 @@
           
         </fieldset>		
            <div class="pull-right">
-            <!-- <a href="#/game"><button type="reset" class="btn">Cancel</button></a> -->
+            <!-- <a href="#/game"><button type="reset" class="btn">Cancel</button></a> 
            
             <span ng-show="showSuccessAlert"  ng-style="{color: 'green'}">{{alertMessage}}</span>
             <button type="submit" class="btn btn-primary"  ng-disabled="disableSubmit">Save</button>
           </div>			
 			</div>
 			</form>		
-      </tab>
+      </tab>  -->
       
      <!--  
       <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
@@ -320,7 +320,7 @@
 			</form>		
       </tab> -->
       
-    <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
+<!--     <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
       
       
       <body>
@@ -424,37 +424,7 @@
 	</body>
 
       </tab>
-      <tab heading="{{'tab.master.master' | translate}}" select="getMasterScreen()" active="master">
-        <div class="pull-right btn-group">
-          <a href="#/createdeductionmaster" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
-        </div>
-        <br>          
-          <table class="table">
-        <thead>
-            <tr class="graybg">
-                <th>{{'table.heading.deductioncode' | translate}}</th>
-                <th>{{'table.heading.deductionName' | translate}}</th>
-                <th>{{'table.heading.deductioncategory' | translate}}</th>
-                <th>{{'table.heading.deductiontype' | translate}}</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-           <tr ng-repeat="master in masterData | filter:filterText">
-                <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionCode}}</a></td>
-                <td><a href="#/editdeductionmaster/{{master.id}}">{{master.deductionName}}</a></td>      
-                <td>{{master.businessStr}}</td> 
-                <td>{{master.deductionTypeStr}}</td>   	             
-            </tr> 
-        </tbody>
-    </table>
-    
-    <ul class="pager">
-        			<li class="previous"><a ng-click="transactionhistory.previous()" href="" ng-disabled="!transactionhistory.hasPrevious()">&larr; Prev</a></li>
-        			<li class="next" ><a ng-click="transactionhistory.next()" href="" ng-disabled="!transactionhistory.hasNext()">Next &rarr;</a></li>
-    			</ul>
-      </tab>
-    
+      -->
     </tabset>
     
     </div>

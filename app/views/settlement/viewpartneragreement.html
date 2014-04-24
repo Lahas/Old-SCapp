@@ -1,78 +1,87 @@
  <div ng-controller="ViewPartnerAgreementController">
-	<div class="paddedbottom10">
-	<ul class="breadcrumb">
+	 <!-- <ul class="breadcrumb">
               <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.viewpartneragreement' | translate}}</li>
+          </ul>  -->
+   <ul class="breadcrumb">
+	<li> <h3>
+            &nbsp;
+            {{partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{partnerType}}"</small>
+        </li>
+        </ul>
+        <ul class="breadcrumb">
+              <li><a href="#/game">Partners</a> <span class="divider">/</span></li>
+              <li><a href='#/viewpartneraccount/{{partnerAccountId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href='#/agreement/{{partnerAccountId}}'>Agreement</a><span class="divider">/</span></li>
+              <li class="active">{{'label.viewpartneragreement' | translate}}</li>
           </ul>
+
+        <div class="pull-right btn-group">
+          <a href="#/editPartnerAgreement/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit</a>
+        </div>
           
-       <div class="pull-right">
-	      <div class="btn-group">
-	          <a href="#/editPartnerAgreement/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	   	    
-	      </div>
-	    </div>    
-   </div>       
-          
-<form class="form-horizontal well"  >
-<fieldset>
-	 <legend>{{'label.viewpartneragreement' | translate}}</legend>
-	 
-          
-	 
-	 
-	  				 <div>
-            
+  <form class="form-horizontal well"  >
+   <fieldset>
+   <legend>View Partner Agreement</legend>
+	  <div class="row-fluid">	 
+	  				  <div class="span7">
                         <table  width="100%" >
                             <tr>
-                              <td width="35%">{{'label.partner.partnername' | translate}}</td>
-                              <td width="65%">{{partnerName}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{'label.partnertype' | translate}}</td>
-                              <td>{{partnerType}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.agreementcategory' | translate }}</td>
-                              <td>{{agreementCategory}}</td>
-                            </tr>
+                              <td width="35%">Agreement Status:</td>
+                              <td width="65%">{{agreementType}}</td>
+                            </tr><tr></tr>
                              <tr>
-                              <td>{{ 'label.mgamount' | translate }}</td>
+                              <td>Agreement Category:</td>
+                              <td>{{agreementCategory}}</td>
+                            </tr><tr></tr>
+                             <tr>
+                              <td>MG Amount:</td>
                               <td>{{mgAmount}}</td>
-                            </tr>
+                            </tr><tr></tr>
                             <tr>
-                              <td>{{ 'label.agreementtype' | translate }}</td>
-                              <td>{{agreementType}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.royaltytype' | translate }}</td>
-                              <td>{{royaltyType}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.settlementsource' | translate }}</td>
-                              <td>{{settlementSource}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.contreffectdate' | translate }}</td>
+                              <td>Contr Effect Date:</td>
                               <td>{{startDate}}</td>
                             </tr>
+                            </table>
+                            </div>
+                            
+                             <div class="span5">
+                           <table  width="100%">
                             <tr>
-                              <td>{{ 'label.contrenddate' | translate }}</td>
+                              <td width="50%">Royalty Share:</td>
+                              <td width="65%">{{royaltyType}}</td>
+                            </tr><tr></tr>
+                            <tr>
+                              <td>Settlement Source:</td>
+                              <td>{{settlementSource}}</td>
+                            </tr><tr></tr>
+                            <tr>
+                              <td>Contr End Date:</td>
                               <td>{{endDate}}</td>
                             </tr>
-                            <tr>
+                <!--             <tr>
                               <td>{{ 'label.agreementdoc' | translate }}</td>
                               <td>{{fileName}}{{" " }}
                               <a ng-show="fileName"; ng-click="downloadFile()" popover="Download File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
                               </td>
                             </tr>
-                            <tr></tr>
+     -->                        <tr></tr>
                             <tr></tr>
                           </table>
                      </div>
-                     
-                     <div>
+                   </div>  
+                     <br/>
+                     <div class="span9">
                           
-                           <table class="table">
+                           <table class="table" width="100%">
 				            <thead>
 				              <tr class="graybg">
 		                 		  <th>{{'table.heading.mediacategory' | translate}}</th>

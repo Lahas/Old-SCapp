@@ -100,6 +100,12 @@
 	            	        	
 	            			  };
 	            	        
+	            			  
+	            			  scope.partnerTo=function(id){
+	            				  location.path('/viewpartneraccount/'+id);
+	            			  };
+	            			  
+	            			  
 	            	        scope.getMediaCategory=function(value){
 	            	        	scope.mediaCategory=value;
 	            	        	scope.formData.partnerName=null;

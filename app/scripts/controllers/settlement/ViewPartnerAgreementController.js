@@ -1,9 +1,7 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
 		  ViewPartnerAgreementController: function(scope,routeParams, resourceFactory, location,dateFilter,validator,http,webStorage,$modal) {
-			  
-			  
-
+			 
 			  scope.partnerTypeDatas = [];
 			  scope.mediaCategoryDatas = [];
 			  scope.agreementTypeDatas = [];
@@ -16,7 +14,6 @@
 			  scope.formData.endDate = new Date();
 			  scope.minDate=new Date();
 			  scope.resouresId=routeParams.id;
-			  
 			  
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
 			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];

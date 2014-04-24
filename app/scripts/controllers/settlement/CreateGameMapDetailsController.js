@@ -75,7 +75,7 @@
 			  		  
 			  $notification.info("title", "content", "userData");
 			  
-			  return 0;
+			  //return 0;
 			  
 			  /*delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;*/
@@ -83,6 +83,7 @@
 			  delete scope.formData.currencyCodes;
 			  delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;
+			  delete scope.formData.clients;
 			  webStorage.add("currentTab", {tab: "partner" });
 			  /*if(scope.hideIfNotContentProvider == true){
 				scope.formData.chData = scope.gameData;  

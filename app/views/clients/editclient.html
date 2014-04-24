@@ -35,11 +35,6 @@
 		<label ng-show="errorStatus">{{errorStatus}}</label>
 		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 	</div>
-	 <div class="error" ng-show="errorStatus || errorDetails">
-		<label>{{'label.contract.error' | translate}}</label>
-		<label ng-show="errorStatus">{{errorStatus}}</label>
-		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
-	    </div>
         <fieldset>
           <legend>{{'label.editclient' | translate}}</legend>
           <table width="100%">
@@ -72,21 +67,15 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.clientname' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                    <input type="text" name="firstname" ng-model="formData.firstname" required ng-minlength=3 late-Validate/>
+                    <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
                     <span  ng-show="editclientform.firstname.$invalid">
-                      <small class="error" ng-show="editclientform.firstname.$error.req">
-                          Required Field
-                      </small>
+                      <small class="error" ng-show="editclientform.firstname.$error.req">Required Field</small>
+                      <small class="error" ng-show="editclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
                       <small class="error" ng-show="editclientform.firstname.$error.minlength && !editclientform.firstname.$error.req">Your name is required to be at least 3 characters</small>
                     </span>
                   </div>
                 </div>
-                <!-- <div class="control-group">
-                  <label class="control-label">{{ 'label.middlename' | translate }}</label>
-                  <div class="controls">
-                    <input type="text" ng-model="formData.middlename">
-                  </div>
-                </div> -->
+
                 <div class="control-group">
                   <label class="control-label">{{ 'label.circle' | translate }}<span class="required">*</span></label>
                   <div class="controls">

@@ -1,6 +1,6 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  EditRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage) {
+		  EditRevenueShareController: function(scope, resourceFactory, location,dateFilter,routeParams,webStorage,$modal) {
 	        scope.discountTypeDatas = [];
 	        scope.statuses = [];
 	        scope.start={};
@@ -25,9 +25,12 @@
 						  scope.showFlat = true;
 						  scope.formData.flat = scope.revenueData[0].flat;
 						  scope.showPercentage = false;
+						  scope.revenueData=[];
+						  scope.formData.revenueShareTypeStr='Flat';
 					  }else{
 						  scope.showPercentage = true;
 						  scope.showFlat = false;
+						  scope.formData.revenueShareTypeStr='Percentage';
 					  }
 				  }
 				  /*scope.formData.businessLine = data.businessLine;
@@ -45,11 +48,13 @@
 	        		if(scope.royaltyTypeDatas[i].id == data && 'Percentage' == scope.royaltyTypeDatas[i].mCodeValue){
 	        			scope.showPercentage = true;
 	        			scope.showFlat = false;
+	        			scope.formData.revenueShareTypeStr='Percentage';
 	        			/*scope.revenueData = [];
 	        			delete scope.formData.flat;*/
-	        		}else if(scope.royaltyTypeDatas[i].id == data && 'Flat Rate' == scope.royaltyTypeDatas[i].mCodeValue){
-	        			scope.showPercentage = false;
+	        		}else if(scope.royaltyTypeDatas[i].id == data && 'Flat' == scope.royaltyTypeDatas[i].mCodeValue){
 	        			scope.showFlat = true;
+	        			scope.showPercentage = false;
+	        			scope.formData.revenueShareTypeStr='Flat';
 	        			/*scope.revenueData=[];
 	        			scope.formData.flat = undefined;*/
 	        		}
@@ -91,19 +96,19 @@
 	        	//console.log("Remove Game Media: "+scope.counter);	
 	        };
 	        
-	        scope.tabStatus=function(){
+	        scope.cancel=function(){
 				  webStorage.add("callingTab", {someString: "revenueShare" });
 			  };
 	  
 	        scope.submit = function(){
-	        	
+	        	console.log(scope.revenueData.length);
 	        	delete scope.formData.id;
 	        	/*delete scope.formData.clientId;*/
 	        	delete scope.formData.mediaCategoryData;
 	        	delete scope.formData.deductionMasterData;
 	        	delete scope.formData.royaltyTypeData;
 	        	delete scope.formData.percentageDatas;
-	        	
+	          
 				  scope.formData.percentageParams = new Array();
 				  if(scope.revenueData.length>0){
 		        		for(var i in scope.revenueData){
@@ -117,11 +122,35 @@
 		        		}
 		        	}
 				  scope.formData.locale = 'en';
+				 // scope.formData.revenueShareTypeStr=scope.revenueShareTypeStr;
 				  resourceFactory.revenueResource.update({clientId : routeParams.id}, this.formData, function(data){
 					  location.path('/viewclient/'+scope.formData.clientId);
-					  webStorage.add("callingTab", {someString: "revenueShare" });
 		            });
+				  webStorage.add("callingTab", {someString: "revenueShare" });
 	        }; 
+	        
+	        scope.deleteRevenue = function(){
+	    	    $modal.open({
+	    		  	templateUrl: 'approve.html',
+	              	controller: Approve,
+	              	resolve:{}
+	          	});
+		  };
+	       
+	        var Approve= function($scope, $modalInstance){
+	 		   $scope.approve = function () {
+	 		//  scope.approveData = {};
+	 			   //$modalInstance.close('delete');
+	                   resourceFactory.revenueResource.delete({clientId: routeParams.id} , {} , function(data) {
+	                        location.path('/viewclient/' +scope.formData.clientId);
+	                        
+	                   });
+	                   $modalInstance.close('delete');
+	                           };
+	            $scope.cancel = function () {
+	                $modalInstance.dismiss('cancel');
+	            };
+	        }
 	        /*scope.submitPercentageData = function(){
 				  scope.formData.percentageParams = new Array();
 				  if(scope.revenueData.length>0){
@@ -155,7 +184,7 @@
 	      
 	    }
 	  });
-	  mifosX.ng.application.controller('EditRevenueShareController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage', mifosX.controllers.EditRevenueShareController]).run(function($log) {
+	  mifosX.ng.application.controller('EditRevenueShareController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage','$modal', mifosX.controllers.EditRevenueShareController]).run(function($log) {
 	    $log.info("EditRevenueShareController initialized");
 	  });
 	}(mifosX.controllers || {}));

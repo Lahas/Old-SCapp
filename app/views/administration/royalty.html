@@ -1,0 +1,198 @@
+    <div ng-controller="CreateGameRoyaltyController">
+      <tabset  style="margin-bottom: 0px;">
+      
+       <tab heading="{{'tab.partner.revenue' | translate}}" select="setRevenueSettlementScreen()">
+      <form class="form-horizontal well" ng-submit="submitRevenueSettlement()">
+        
+        <br><br>
+        	<div class="control-group ">
+        	<label class="control-label ">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
+					<div class="controls">
+						<select ng-model="formData.mediaCategory"
+							ng-options="mc.id as mc.mCodeValue for mc in mediaCategoryDatas"
+							value="{{mc.mCodeValue}}" ng-change="getSettlementSeqRule(formData.mediaCategory)" required>
+						</select>
+					</div>
+			</div>
+			<div class="tab-content">
+		<fieldset>
+		
+		<div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	</div>
+        <legend>{{'label.defaultrule' | translate}}</legend>  
+				                     
+             <table >
+            	<tr>
+            		 <td>
+            		 <input type="text" class="input-medium" ng-model="formData.defaultData"   value="{{defaultDataName}}" readonly>
+            		 </td>
+                     
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType1"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType2"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium {{formData.defaultData}}" ng-model="formData.partnerType3"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}"  disabled ></select>
+             		</td>
+             		<td>
+             		<a ng-click="lockIt(formData.defaultData)" class="btn btn-primary"><i class="icon-lock icon-white"></i></a>
+             		</td>
+             		<td></td><td></td>
+             		<td>
+             		<a ng-click="unlockIt(formData.defaultData)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
+             		</td>         		
+    
+            	</tr>
+            </table>
+      </fieldset>		
+
+      <fieldset>
+           <legend>{{'label.specificrule' | translate}}</legend>
+           
+           <table >
+            	<tr ng-repeat="ss in settlementSequenceDatas">
+            		 <td>
+            		 <input type="text" class="input-medium " ng-model="ss.partnerAccountId"  value="{{ss.partnerName}}" readonly>
+            		 </td>
+                     
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType4"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required disabled ></select>
+             		</td>
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType5"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required  disabled></select>
+             		</td>
+            		<td>
+               			<select class="input-medium  {{ss.partnerAccountId}}" ng-model="ss.partnerType6"  ng-options="pt.id as pt.mCodeValue for pt in partnerTypeDatas" value="{{pt.id}}" required disabled></select>
+             		</td>
+             		<td>
+             		<a ng-click="lockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-lock icon-white"></i></a>
+             		</td>
+             		<td></td><td></td>
+             		<td>
+             		<a ng-click="unlockIt(ss.partnerAccountId)" class="btn btn-primary"><i class="icon-unlock icon-white"></i></a>
+             		</td>
+            	</tr>
+            </table>
+          
+        </fieldset>		
+           <div class="pull-right">
+            <!-- <a href="#/game"><button type="reset" class="btn">Cancel</button></a> -->
+           
+            <span ng-show="showSuccessAlert"  ng-style="{color: 'green'}">{{alertMessage}}</span>
+            <button type="submit" class="btn btn-primary"  ng-disabled="disableSubmit">Save</button>
+          </div>			
+			</div>
+			</form>		
+      </tab>
+      
+        <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
+      <body>
+	<legend>{{'label.disbursementstopartners' | translate}}</legend>
+	<div class="pull-right">
+	<img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">
+		<button ng-click="refresh()" type="button" class="btn btn-primary pull-right">Refresh</button>
+		</div>
+            <table>
+            	<tr>
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.client' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-medium" ng-model="formData.clientName" ng-change="getClientNames(formData.clientName)" ng-options="clientName.client as clientName.client for clientName in clientNames" value="{{clientName.client}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.mediacategory' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-medium" ng-model="formData.mediaCategory" ng-change="getMediaCategory(formData.mediaCategory)" ng-options="mediaCategoryData.mediaCategoryId as mediaCategoryData.mediaCategory for mediaCategoryData in mediaCategoryDatass" value="{{mediaCategoryData.mediaCategory}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.patnertype' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-medium" ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
+              				</div>
+            				</div>
+            		</td>
+            		
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.patnername' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+              				
+                			<select class="input-medium" id="partnerN" ng-model="formData.partnerName" ng-change="getpartnerName(formData.partnerName)" ng-options="pn.partnerName as pn.partnerName for pn in partnerNames" value="{{pn.partnerName}}" disabled></select>
+              				</div>
+            				</div>
+            		</td>
+            		<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.month' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-medium" id="activityM" ng-model="formData.activityDate" ng-change="getTableData(formData.activityDate)" ng-options="pn.activityMonth as pn.activityMonth for pn in activityMonths" value="{{pn.activityMonth}}" disabled></select>
+              				</div>
+            				</div>
+            		</td>
+            	</tr>
+            </table>
+           
+            <table border="2">
+	    
+			<thead>
+				<tr class="graybg">
+				<th>{{ 'table.heading.branch' | translate }}</th>
+				<th>{{ 'table.heading.city' | translate }}</th>
+				<th>{{ 'table.heading.state' | translate }}</th>
+				<th>{{ 'table.heading.client' | translate }}</th>
+				<th>{{ 'table.heading.InvoiceId' | translate }}</th>
+				<th>{{ 'table.heading.Invoiceamt' | translate }}</th>
+				<th>{{ 'table.heading.date' | translate }}</th>
+				<th>{{ 'table.heading.mediacategory' | translate }}</th>
+				<th>{{ 'table.heading.playsource' | translate }}</th>
+				<th>{{ 'table.heading.partnertype' | translate }}</th>
+				<th>{{ 'table.heading.sequence' | translate }}</th>
+				<th>{{ 'table.heading.royalityshare' | translate }}</th>
+				<th>{{ 'table.heading.rayolityamt' | translate }}</th>
+				<th>{{ 'table.heading.currency' | translate }}</th>	
+				<th>{{ 'table.heading.status' | translate }}</th>	
+				</tr>
+			</thead>
+				<tbody>
+						<tr ng-repeat="distributionData in distributionDatas">
+			              	<td>{{distributionData.branch}}</td>
+			              	<td>{{distributionData.city}}</td>
+			              	<td>{{distributionData.state}}</td>
+			              	<td>{{distributionData.client}}</td>
+			              	<td>{{distributionData.invoiceId}}</td>
+			              	<td>{{distributionData.invoiceAmount}}</td>
+			              	<td>{{distributionData.invoiceDate  | DateFormat}}</td>
+			              	<td>{{distributionData.mediaCategory}}</td>
+			              	<td>{{distributionData.playSource}}</td>
+			              	<td>{{distributionData.partnerType}}</td>
+			              	<td>{{distributionData.sequence}}</td>
+			              	<td>{{distributionData.royaltyShare}}</td>
+			              	<td>{{distributionData.royaltyAmount}}</td>
+			              	<td>{{distributionData.currency}}</td>
+			              	<td>{{distributionData.status}}</td>
+			              </tr>
+			
+			
+				</tbody>
+		</table>
+	</body>
+
+      </tab>
+      
+      </tabset>
+      
+      </div>
