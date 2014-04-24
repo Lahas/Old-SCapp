@@ -133,9 +133,16 @@
 	    	   scope.formData.locale = "en";
 	    	   scope.formData.dateFormat = "dd MMMM yyyy"
 	    	   resourceFactory.createPurchaseOrder.save(scope.formData,function(data){
-	    		   console.log("success: "+data);
+	    		   $notification.success("Successfully Saved","Purchase Order","User data");
+	    		   scope.royaltyAmountsData = undefined;
+	    		   scope.formData.currencyCode = undefined;
+	    		   scope.formData.royaltyAmount = undefined;
+	    		   scope.formData.purchaseOrderNumber = undefined;
+	    		   scope.formData.businessLine = undefined;
+	    		   scope.formData.activityMonthInNumericData = undefined;
+	    		   scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/Business/Month/Sequence";
 	    	   },function(errorData){
-	    		   console.log("Error: "+errorData);
+	    		   
 	    	   });
 	       };
 	       
