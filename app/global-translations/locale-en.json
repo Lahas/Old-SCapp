@@ -2487,7 +2487,7 @@
     "validation.msg.currency.deductionValue.cannot.be.blank":"Deduction Value cannot be blank",
     "button.editPartner":"Edit",
     "button.agreement":"Agreement",
-    
+    "label.add.partner.identifier":"Add Partner Identifier",    
 	"link.disbursements.client":"Client",
 	"tab.purchase.order":"Purchase Order",
 	"select.activity.month":"Select Activity Month",

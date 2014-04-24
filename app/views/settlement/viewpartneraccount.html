@@ -157,9 +157,9 @@
           </table>
       </tab>
 
-     <tab heading="{{'tab.heading.client.documents' | translate}}" select="getClientDocuments()" active="documentsTab">
+     <tab heading="{{'tab.heading.client.documents' | translate}}" select="getPartnerDocuments()" active="documentsTab">
         <div class="pull-right">
-          <a href="#/addclientdocument/{{client.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
+          <a href="#/addpartnerdocument/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
         </div>
         <br>
         <table class="table" ng-show="clientdocuments.length > 0">

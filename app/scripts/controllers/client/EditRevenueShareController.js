@@ -6,14 +6,12 @@
 	        scope.start={};
 	        scope.percentageData = {};
 			scope.revenueData=[];
-			//scope.clientId=routeParams.id;
 			scope.formData={};
 			scope.showFlat = false;
 			scope.showPercentage = false;
 	        scope.start.date = new Date();
 	        
 	        resourceFactory.revenueResourceEdit.get({id : routeParams.id},function(data) {
-				
 	        	  scope.formData = data;
 				//  scope.businessLineDatas=data.businessLineData;
 	        	  scope.deductionMasterDatas = data.deductionMasterData;

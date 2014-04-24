@@ -987,19 +987,18 @@
             getmediaCategoryData: defineResource(apiVer+ "/mediasettlements/mediacategory",{client: '@client'},{
             	get: {method: 'GET', params: {}, isArray: true }
              }),
-            partnerIdenfierTemplateResource: defineResource(apiVer + "/partners/:partnerId/identifiers/template", {partnerId:'@partnerId'}, {
+            partnerIdenfierTemplateResource: defineResource(apiVer + "/partners/:partnerId/identifiers/template", {partnerId: '@partnerId'}, {
                  get: {method: 'GET', params: {}}
              }),
-            partnerResource: defineResource(apiVer + "/partners/:clientId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
+            partnerResource: defineResource(apiVer + "/partners/:partnerId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
                    getAllClients: {method: 'GET', params: {}},
                    getClientClosureReasons: {method: 'GET', params: {}},
                    getAllClientDocuments: {method: 'GET', params: {}, isArray: true},
                    update: { method: 'PUT'}
-              }),
-            partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerId:'@partnerIdentityId'}, {
+             }),
+            partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerIdentityId: '@partnerIdentityId'}, {
                    get: {method: 'GET', params: {}, isArray:true}
            }),      
-
             getPurchaseOrderTemplate: defineResource(apiVer+ "/purchaseorder/template",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),

@@ -15,9 +15,10 @@
         </li>
  </ul>
 		<ul class="breadcrumb">
-			<li><a href="#/partners">{{'link.clients' | translate}}</a> <span class="divider">/</span></li>
-			<li><a href="#/viewpartneraccount/{{clientId}}">{{'link.view.client' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">{{'link.add.partneridentifier' | translate}}</li>
+			  <li><a  href="#/game">Partners</a> <span class="divider">/</span></li>
+              <li><a href='#/viewpartneraccount/{{partnerId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">Add Partner Identifiers</li>
+			
 		</ul>
 	</div>
 	<form name="partneridentifierform" novalidate="" class="form-horizontal well" ng-submit="submit()">
