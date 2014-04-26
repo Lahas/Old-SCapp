@@ -999,22 +999,22 @@
             partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerIdentityId: '@partnerIdentityId'}, {
                    get: {method: 'GET', params: {}, isArray:true}
            }),      
-            getPurchaseOrderTemplate: defineResource(apiVer+ "/purchaseorder/template",{},{
+            getPurchaseOrderTemplate: defineResource(apiVer+ "/propurchaseorder/template",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            getPurchaseOrderAddressDetails: defineResource(apiVer+ "/purchaseorder/:purchaseOrderId",{},{
+            getPurchaseOrderAddressDetails: defineResource(apiVer+ "/propurchaseorder/:purchaseOrderId",{},{
             	get: {method: 'GET', params: {}, isArray: true}
             }),
-            getPartnerAddressDetails: defineResource(apiVer+ "/purchaseorder/partneraddress/:partnerId",{},{
+            getPartnerAddressDetails: defineResource(apiVer+ "/propurchaseorder/partneraddress/:partnerId",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            getActivityMonthDetails: defineResource(apiVer+ "/purchaseorder/activitymonth/:perticularsId",{},{
+            getActivityMonthDetails: defineResource(apiVer+ "/propurchaseorder/activitymonth/:perticularsId",{},{
             	get: {method: 'GET', params: {}, isArray: true}
             }),
-            getRoyaltyAmountDetails: defineResource(apiVer+ "/purchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
+            getRoyaltyAmountDetails: defineResource(apiVer+ "/propurchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            createPurchaseOrder: defineResource(apiVer+ "/purchaseorder/createpurchaseorder/",{},{
+            createPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/createpropurchaseorder/",{},{
             	post: {method: 'POST', params: {}}
             })
         };

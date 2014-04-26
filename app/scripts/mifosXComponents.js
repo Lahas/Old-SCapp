@@ -244,7 +244,8 @@ define(['underscore', 'mifosX'], function() {
       'settlement/EditInteractiveHeaderController',
       'settlement/CreateGameRoyaltyController',
       'settlement/AgreementController',
-      'settlement/PartnerIdentifierController'
+      'settlement/PartnerIdentifierController',
+      'purchaseorder/PurchaseOrderController'
       
     ],
     filters: [

@@ -1,0 +1,84 @@
+<div ng-controller="PurchaseOrderController">
+ <div>
+		<ul class="breadcrumb">
+			<li><a href="#/game">Partners</a> <span class="divider">/</span></li>
+			<li><a href='#/viewpartneraccount/{{resouresId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Agreement</li>
+		</ul>
+	</div>
+	 <form name="purchaseorder" class="form-horizontal well" ng-submit = "submit()">
+	  
+	    <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>  
+	    
+        <fieldset>
+          <legend>{{'label.purchaseorder' | translate}}</legend>
+          <br>
+          
+       <div> 
+		 <table class="table">
+			  <thead>
+            	<tr class="graybg">
+            		<th>{{'label.select' | translate}}</th>
+               		<th>{{'label.provponumber' | translate}}</th>
+              	    <th>{{'label.activitymonth' | translate}}</th>
+                    <th>{{'lable.provpodate' | translate}}</th>
+                	<th>{{'label.royaltyamount' | translate}}</th>
+                	<th>{{'label.disburse.status' | translate}}</th>
+            	</tr>
+       		</thead>
+        	<tbody>
+            	 <tr ng-repeat="i in [a,s,d,f,g,h,j,j,r,d]">
+            		<td> <input  type="radio" name ="select" ng-click=""/></td>
+            		<td>{{paymentData.id}}</td>
+                	<td>{{paymentData.paymentDate | DateFormat}}</td>
+                	<td>{{paymentData.receiptNo}}</td>
+                	<td>{{paymentData.amountPaid}}</td>
+                    <td>{{paymentData.availAmount}}</td>
+             	</tr>
+        	</tbody>
+		</table>
+		<br>
+		<div class="controls">
+     		<a class="btn btn-primary">{{'label.payout.royalty' | translate}}</a>
+   		</div>
+			
+	</div>
+	 <br>
+
+       <div> 
+		 <table class="table">
+			  <thead>
+            	<tr class="graybg">
+            		<th>{{'label.ponumber' | translate}}</th>
+               		<th>{{'label.activitymonth' | translate}}</th>
+              	    <th>{{'label.podate' | translate}}</th>
+                    <th>{{'lable.amount' | translate}}</th>
+                	<th>{{'label.outstanding' | translate}}</th>
+                	<th>{{'label.disburse.status' | translate}}</th>
+                	<th>{{'label.add.delete' | translate}}</th>
+            	</tr>
+       		</thead>
+        	<tbody>
+            	 <tr ng-repeat="paymentData in ['a','sb','b','a','b','a','b','a','b','a','b']">
+            		<td><input  type="radio" name="select"/></td>
+            		<td>{{paymentData}}</td>
+                	<td>{{paymentData}}</td>
+                	<td>{{paymentData}}</td>
+                	<td>{{paymentData}}</td>
+                    <td>{{paymentData}}</td>
+             	</tr>
+        	</tbody>
+		</table>
+		<br>
+		<div class="offset3">
+            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
+          <button id="submit" type="submit" class="btn btn-primary">Distribute</button>
+          </div>	
+	</div>
+		</fieldset>
+	</form>
+</div>

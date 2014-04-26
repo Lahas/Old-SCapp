@@ -33,6 +33,11 @@
                              name:"button.agreement",
                              href:"#/agreement",
                              icon :"icon-file"
+                         },
+                         {
+                             name:"button.purchaseorder",
+                             href:"#/purchaseorder",
+                             icon :"icon-file"
                          }
 		             
 		               ];

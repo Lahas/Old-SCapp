@@ -638,7 +638,9 @@
 			templateUrl : 'views/settlement/agreement.html'
 	   }).when('/addpartneridentifier/:id', {
 			templateUrl : 'views/settlement/addpartneridentifier.html'
-	   });
+	   }).when('/purchaseorder/:id', {
+			templateUrl : 'views/purchaseorder/purchaseorder.html'
+	   });;
 		$locationProvider.html5Mode(false);
 	};
 	mifosX.ng.application.config(defineRoutes).run(function($log) {
