@@ -50,9 +50,9 @@
 	            */		  
 	            		 
 	        
-	        scope.refresh=function(){
+	        scope.refresh=function(fileId){
 	        	 scope.loading = true;
-				 resourceFactory.getRefreshProcedure.get(function(data) {
+				 resourceFactory.getRefreshProcedure.get({fileId: fileId},function(data) {
 					 scope.loading = false;
 			    });
 			 };
@@ -165,6 +165,7 @@
 	            	        		  scope.partnerTypeDatas = data.partnerTypeData;
 //	            			            scope.mediaCategoryDatas = data.mediaCategoryData;	
 	            			            scope.clientNames = data.clients;
+	            			            scope.fileIds = data.fileIds;
 	            			            
 	            	        	});
 	            	        };
@@ -198,31 +199,7 @@
 		        		scope.fileName= true;
 		        	}*/
 	  		   };
-	  		
-		  
-		    scope.getPartnerAgreementScreen = function(){
-			        scope.partnerAgreements = PaginatorService.paginate(scope.getPartnerAgreementDataFetchFunction, 14);
-			        /*
-			        scope.fileName=scope.partnerAgreements.pageItems[i].partnerAgreementDatas.fileName;
-		  			if(scope.fileName == null){
-						  scope.fileName= false;
-				  		}
-			        	else{
-			        		scope.fileName= true;
-			        	}*/
-			       // console.log(scope.partnerAgreements);
-	           };
-	         
-	       scope.searchPartnerAgreementHistory123 = function(offset, limit, callback) {
-		    	  resourceFactory.partnerAgreementResource.getAllfiles({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback); 
-		       };
-
-	   	    scope.searchPartnerAgreementHistory = function(filterText) {
-	  			scope.partnerAgreements = PaginatorService.paginate(scope.searchPartnerAgreementHistory123, 14);
-	  		   }; 
-		 
-		  
-		  scope.setGameScreen = function(){
+	  		  scope.setGameScreen = function(){
 			  resourceFactory.partnerGameDetails.get(function(data){
 				  scope.gameDetails = data;
 			  });

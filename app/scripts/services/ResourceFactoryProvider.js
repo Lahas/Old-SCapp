@@ -866,7 +866,7 @@
              getDisbursementsData: defineResource(apiVer+ "/mediasettlements/disbursements",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',mediaCategory:'mediaCategory',client:'@client'},{
             	get: {method: 'GET', params: {}  }
              }),
-             getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall",{},{
+             getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall/:fileId",{fileId:'@fileId'},{
             	get: {method: 'GET', params: {}  }
              }),
              mastersTemplateResource: defineResource(apiVer + "/deductionmaster/template", {}, {

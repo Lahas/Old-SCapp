@@ -2216,6 +2216,7 @@
   "link.disbursements.patnertype":"Partner Type",
   "link.disbursements.patnername":"Partner Name",
   "link.disbursements.mediacategory":"Media Category",
+  "link.disbursements.fileId":"File ID",
   "table.heading.branch":"Branch",
   "table.heading.city":"City",
   "table.heading.state":"State",
