@@ -55,6 +55,11 @@
                              name:"button.agreement",
                              href:"#/agreement",
                              icon :"icon-file"
+                         },
+                         {
+                             name:"button.purchaseorder",
+                             href:"#/purchaseorder",
+                             icon :"icon-file"
                          }
 		             
 		               ];
@@ -123,6 +128,13 @@
 		          scope.getPartnerDocuments = function () {
 		              resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id} , function(data) {
 		                scope.clientdocuments = data;
+		                for(var i in scope.clientdocuments){
+		                	if(scope.clientdocuments[i].fileName != undefined){
+		                		scope.filename = true;
+		                		break;
+		                	}
+		                }
+		                
 		              });
 		            };
 		            

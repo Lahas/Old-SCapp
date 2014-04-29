@@ -66,7 +66,7 @@
 	      };
   
 	      scope.routeTo = function(id){
-              location.path('/  editPartnerAgreement/'+ id);
+              location.path('editPartnerAgreement/'+ id);
                
          };
 		        

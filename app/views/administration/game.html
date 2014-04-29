@@ -425,8 +425,8 @@
 
       </tab>
       -->
-       <tab heading="{{'tab.purchase.order' | translate}}" select="getPurchaseOrderTemplate()" active="purchaseorder">
-      	<form class="form-horizontal well" ng-submit="submitPurchaseOrder()">
+       <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
+      	<form class="form-horizontal well" ng-submit="submitProPurchaseOrder()">
         
         <div class="error" ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
@@ -434,13 +434,13 @@
 			<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
 		</div>		
 			<fieldset>
-	 			<legend>{{'label.purchaseorder'| translate}}</legend>
+	 			<legend>{{'label.ppurchaseorder'| translate}}</legend>
 	 				<div>
 					<table>
 						<tr>
 							<td style="padding-left: 1px;">
 								<div class="control-group">
-									<label class="control-label">{{ 'label.purchaseorder.partner' | translate }}<span class="required">*</span></label>
+									<label class="control-label">{{ 'label.ppurchaseorder.partner' | translate }}<span class="required">*</span></label>
 									<div class="controls">
 										<select class="input-large" ng-model="formData.partnerAddress" ng-change="getPartnerAddressDetails()" ng-options="partner.id as partner.partnerName for partner in partnerData" value="{{partner.partnerName}}"></select>
 									</div>
@@ -457,19 +457,19 @@
 							</td>
 							<td>
 								<div class="control-group">
-									<label class="control-label">{{ 'label.purchaseorder.number' | translate }}<span class="required">*</span></label>
+									<label class="control-label">{{ 'label.ppurchaseorder.number' | translate }}<span class="required">*</span></label>
 									<div class="controls">
 									<label class="control-label">{{partnerAddressDetail.purchaseOrderNumber}}</label>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">{{ 'label.purchaseorder.date' | translate }}<span class="required">*</span></label>
+									<label class="control-label">{{ 'label.ppurchaseorder.date' | translate }}<span class="required">*</span></label>
 									<div class="controls">
 										<input type="text" class="input-medium" datepicker-pop="dd MMM yyyy" ng-model="purchaseOrderDate.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">{{ 'label.purchaseorder.vendor.number' | translate }}<span class="required">*</span></label>
+									<label class="control-label">{{ 'label.ppurchaseorder.vendor.number' | translate }}<span class="required">*</span></label>
 									<div class="controls">
 										<input type="text" class="input-medium" ng-model="formData.vendorNumber" id="vendorNumber"/>
 									</div>
@@ -481,7 +481,7 @@
 					</div>
 					</fieldset>
 		        	<div class="control-group">
-						<label class="control-label">{{ 'label.purchaseorder.deliverto' | translate }}<span class="required">*</span></label>
+						<label class="control-label">{{ 'label.ppurchaseorder.deliverto' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select class="input-large" ng-model="formData.deliverTo" ng-change="getDeliverToDetails()" ng-options="address.id as address.addressName for address in addressData" value="{{address.addressName}}"></select>
 						</div>
@@ -496,7 +496,7 @@
 						</div>
 					</div>				
 					<div class="control-group">
-						<label class="control-label">{{ 'label.purchaseorder.invoiceto' | translate }}<span class="required">*</span></label>
+						<label class="control-label">{{ 'label.ppurchaseorder.invoiceto' | translate }}<span class="required">*</span></label>
 						<div class="controls">
 							<select class="input-large" ng-model="formData.invoiceTo" ng-change="getInvoiceToDetails()" ng-options="address.id as address.addressName for address in addressData" value="{{address.addressName}}"></select>
 						</div>
@@ -567,7 +567,7 @@
 						</tbody>
 					</table>
 					<div class="offset3">
-			<a href="#/gameevent/{{formData.cId}}"><button type="reset" class="btn">Cancel</button></a>
+			
 			<button type="submit" class="btn btn-primary">Save</button>
 		</div>	
 			</form>		

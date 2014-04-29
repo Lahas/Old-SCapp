@@ -77,7 +77,7 @@
 	       
 	       scope.getDeliverToDetails = function(){
 	    	   
-	    	   resourceFactory.getPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.deliverTo},function(data){
+	    	   resourceFactory.getProPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.deliverTo},function(data){
 	    		   scope.deliverToData = data[0];
 	    	   });
 	       };
@@ -126,13 +126,13 @@
 	       };
 	       
 	      
-	       scope.submitPurchaseOrder = function(){
+	       scope.submitProPurchaseOrder = function(){
 	    	   scope.formData.clientId = scope.royaltyAmountsData[0].clientId;
 	    	   scope.formData.purchaseOrderDate = dateFilter(scope.purchaseOrderDate.date,"dd MMMM yyyy");
 	    	   scope.formData.month = dateFilter(scope.month.date,"MMM yyyy");
 	    	   scope.formData.locale = "en";
-	    	   scope.formData.dateFormat = "dd MMMM yyyy"
-	    	   resourceFactory.createPurchaseOrder.save(scope.formData,function(data){
+	    	   scope.formData.dateFormat = "dd MMMM yyyy";
+	    	   resourceFactory.createProPurchaseOrder.save(scope.formData,function(data){
 	    		   $notification.success("Successfully Saved","Purchase Order","User data");
 	    		   scope.royaltyAmountsData = undefined;
 	    		   scope.formData.currencyCode = undefined;
@@ -152,8 +152,8 @@
 	    	   });
 	       };*/
 	       
-	       scope.getPurchaseOrderTemplate = function(){
-	    	   resourceFactory.getPurchaseOrderTemplate.get(function(data){
+	       scope.getProPurchaseOrderTemplate = function(){
+	    	   resourceFactory.getProPurchaseOrderTemplate.get(function(data){
 	    		   scope.addressData = data.purchaseOrderData;
 	    		   scope.partnerData = data.partnerNames;
 	    		   scope.currencyCodesData = data.currencyCodes;

@@ -1008,28 +1008,34 @@
                  getAllPartnerDocuments: {method: 'GET', params: {}},
                  update: { method: 'PUT'}
               }),  
-            getPurchaseOrderTemplate: defineResource(apiVer+ "/purchaseorder/template",{},{
+              partnerNotesResource: defineResource(apiVer + "/partners/:partnerId/notes", {partnerId:'@partnerId'}, {
+                  getAllNotes: {method: 'GET', params: {}, isArray:true}
+                }),
+            getProPurchaseOrderTemplate: defineResource(apiVer+ "/propurchaseorder/template",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            getPurchaseOrderAddressDetails: defineResource(apiVer+ "/purchaseorder/:purchaseOrderId",{},{
+            getProPurchaseOrderAddressDetails: defineResource(apiVer+ "/propurchaseorder/:purchaseOrderId",{},{
             	get: {method: 'GET', params: {}, isArray: true}
             }),
-            getPartnerAddressDetails: defineResource(apiVer+ "/purchaseorder/partneraddress/:partnerId",{},{
+            getPartnerAddressDetails: defineResource(apiVer+ "/propurchaseorder/partneraddress/:partnerId",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            getActivityMonthDetails: defineResource(apiVer+ "/purchaseorder/activitymonth/:perticularsId",{},{
+            getActivityMonthDetails: defineResource(apiVer+ "/propurchaseorder/activitymonth/:perticularsId",{},{
             	get: {method: 'GET', params: {}, isArray: true}
             }),
-            getRoyaltyAmountDetails: defineResource(apiVer+ "/purchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
+            getRoyaltyAmountDetails: defineResource(apiVer+ "/propurchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            createPurchaseOrder: defineResource(apiVer+ "/purchaseorder/createpurchaseorder/",{},{
+            createProPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/createpropurchaseorder/",{},{
             	post: {method: 'POST', params: {}}
             }),
-            partnerNotesResource: defineResource(apiVer + "/partners/:partnerId/notes", {partnerId:'@partnerId'}, {
-                getAllNotes: {method: 'GET', params: {}, isArray:true}
-              }),
-
+            createPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/purchaseorder/:partnerId",{},{
+            	get: {method: 'GET', params: {}, isArray: true},
+            	post: {method: 'POST', params: {}}
+            }),
+            retrivePurchaseOrder: defineResource(apiVer+ "/purchaseorder/:provPoId",{},{
+            	get: {method: 'GET', params: {}, isArray: false}
+            })
         };
       }];
     }

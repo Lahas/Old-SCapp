@@ -2487,18 +2487,16 @@
     "validation.msg.currency.deductionValue.cannot.be.blank":"Deduction Value cannot be blank",
     "button.editPartner":"Edit",
     "button.agreement":"Agreement",
-    "label.add.partner.identifier":"Add Partner Identifier",
-    
-    
+    "label.add.partner.identifier":"Add Partner Identifier",    
 	"link.disbursements.client":"Client",
-	"tab.purchase.order":"Purchase Order",
+	"tab.ppurchase.order":"Provisional Purchase Order",
 	"select.activity.month":"Select Activity Month",
 	
-	"##purchaseorder":"",
-	"label.purchaseorder.address":"Select Address",
-	"label.purchaseorder.invoiceto":"Invoice To",
-	"label.purchaseorder.deliverto":"Deliver To",
-	"label.purchaseorder.partner":"Select Partner",
+	"##ppurchaseorder":"",
+	"label.ppurchaseorder.address":"Select Address",
+	"label.ppurchaseorder.invoiceto":"Invoice To",
+	"label.ppurchaseorder.deliverto":"Deliver To",
+	"label.ppurchaseorder.partner":"Select Partner",
 	"label.serial":"Sr.",
 	"label.perticulars":"Perticulars",
 	"label.month":"Month",
@@ -2511,14 +2509,29 @@
 	"label.igrevenue":"IG Revenue",
 	"label.royaltyshare":"Royalty Share",
 	"label.royaltyamount":"Royalty Amount",
-	"label.purchaseorder.number":"Purchase Order:",
-	"label.purchaseorder.date":"Purchase Order Date",
-	"label.purchaseorder.vendor.number":"Vendor Number",
-	"label.purchaseorder":"Purchase Order",
+	"label.ppurchaseorder.number":"Provisional Purchase Order:",
+	"label.ppurchaseorder.date":"P-Purchase Order Date",
+	"label.ppurchaseorder.vendor.number":"Vendor Number",
+	"label.ppurchaseorder":"Provisional Purchase Order",
 	
 	"error.msg.currency.code.not.found":"Invalid combination",
-	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank"
+	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank",
 									     
-
+	"button.purchaseorder":"Purchase Order",
+	"label.purchaseorder":"Purchase Order",
+	
+	"label.select":"Select",
+	"label.provponumber":"Prov PO #",
+	"label.activitymonth":"Activity Month",
+	"lable.provpodate":"Prov PO Date",
+	"label.royaltyamount":"Royalty Amount",
+	"label.disburse.status":"Disburse Status",
+	"label.payout.royalty":"Payout Royalty",
+	"label.ponumber":"PO #",
+	"label.podate":"PO Date",
+	"lable.amount":"Amount",
+	"label.outstanding":"Outstanding Amount",
+	"label.add.delete":"Add/Delete"
+	
 
 }
