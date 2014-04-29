@@ -14,10 +14,18 @@
 			  scope.routeTo=function(id){
 		    	   location.path('/viewpartneragreement/'+id);  
 		       };
+		       
+		       
+		       scope.downloadFile = function (id){ 
+		        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+		      	  };
+		       
+		       
+		       
 			  resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id},function(data){
 				  
 				  scope.partnerAgreements=data;
-				  //console.log(scope.partnerAgreements);
+				 // console.log(scope.partnerAgreements);
 			  });
 			  
 		  }

@@ -20,9 +20,31 @@
 						externalId: data.externalId, emailId: data.emailId,
 	                     partnerAddress: data.partnerAddress, currencyName: data.currencyName,partnerId:data.id });
 	                    
-	    
-					
-								
+					 
+					   var callingTab = webStorage.get('callingTab',null);
+				         if(callingTab == null){
+				         	callingTab="";
+				         }else{
+				 		  scope.displayTab=callingTab.someString;
+				 		 
+				 		  if( scope.displayTab == "identities"){
+				 			 
+				 			  scope.identitiesTab = true;
+				 			  webStorage.remove('callingTab');
+				 		  }
+				 		  else if(scope.displayTab == "documents"){
+				 			  
+				  			  scope.documentsTab = true;
+				 			  webStorage.remove('callingTab');
+				 		  }
+				 		  else{
+				 			  scope.operatorTab =  true;
+				 			  webStorage.remove('callingTab');
+				 		  }
+
+				 		 
+				         }
+							
 					scope.buttons = [{
 						
 		                  name:"button.editPartner",
@@ -62,12 +84,17 @@
 		        	}
 		        };
 			  
+		        resourceFactory.partnerNotesResource.getAllNotes({partnerId: routeParams.id} , function(data) {
+		            scope.partnerNotes = data;
+		        });
 		        
-		        scope.getpartnerIdentityDocuments = function () {
+		        
+		        scope.getPartnerIdentityDocuments = function () {
+		       
 		            resourceFactory.partnerResource.getAllPartnerDocuments({partnerId: routeParams.id, anotherresource: 'identifiers'} , function(data) {
-		                scope.identitydocuments = data;
+		                scope.identitydocuments = data.identifierData;
 		                for(var i = 0; i<scope.identitydocuments.length; i++) {
-		                  resourceFactory.partnerIdentifierResource.get({clientIdentityId: scope.identitydocuments[i].id} , function(data) {
+		                  resourceFactory.partnerIdentifierResource.get({partnerIdentityId: scope.identitydocuments[i].id} , function(data) {
 		                    for(var j = 0; j<scope.identitydocuments.length; j++) {
 		                       if(data.length > 0 && scope.identitydocuments[j].id == data[0].parentEntityId)
 		                        {
@@ -78,6 +105,44 @@
 		                }
 		            });
 		          };        
+		          
+		          scope.deletePartnerIdentifierDocument = function (partnerId, entityId, index){
+		              resourceFactory.partnerIdenfierResource.delete({partnerId: partnerId, id: entityId}, '', function(data) {
+		                scope.identitydocuments.splice(index,1);
+		              });
+		            };
+
+		            scope.downloadPartnerIdentifierDocument=function (identifierId, documentId){
+		              console.log(identifierId,documentId);
+		            };
+
+		            scope.downloadDocument = function (id){ 
+			        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+			      	  };
+		          
+		          scope.getPartnerDocuments = function () {
+		              resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id} , function(data) {
+		                scope.clientdocuments = data;
+		              });
+		            };
+		            
+		            
+		            scope.deleteDocument = function (documentId, index) {
+		            	resourceFactory.deletepartnerAgreementResource.delete({documentId: documentId} , {} , function(data) {
+		                  scope.clientdocuments.splice(index,1);
+		                });
+		              };
+		          
+		            scope.saveNote = function() {   
+		                resourceFactory.partnerNoteResource.save({partnerId: routeParams.id, anotherresource: 'notes'}, this.formData , function(data){
+		                var today = new Date();
+		                temp = { id: data.resourceId , note : scope.formData.note , createdByUsername : scope.userName , createdOn : today } ;
+		                scope.partnerNotes.push(temp);
+		                scope.formData.note = "";
+		                scope.predicate = '-id';
+		              });
+		            };          
+		          
 		        
 		  }
 	  });

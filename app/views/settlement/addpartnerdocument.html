@@ -31,11 +31,11 @@
 		<legend>Add Partner Document</legend>
 
 		<div class="control-group">
-			<label class="control-label" for="name">{{'label.name' | translate}}<span class="required">*</span></label>
+			<label class="control-label" for="status">{{'label.name' | translate}}<span class="required">*</span></label>
 			<div class="controls">
-				<input type="text" name="name" ng-model="formData.name" required late-Validate/>
-				<span  ng-show="partnerdocument.name.$invalid">
-                    <small class="error" ng-show="partnerdocument.name.$error.req">
+				<input type="text" name="status" ng-model="formData.status" required late-Validate/>
+				<span  ng-show="partnerdocument.status.$invalid">
+                    <small class="error" ng-show="partnerdocument.status.$error.req">
                         Required Field
                     </small>
                 </span>
@@ -57,7 +57,7 @@
 		</div>
 
 		<div class="offset3">
-			<a href="#/viewclient/{{clientId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
+			<a href="#/viewpartneraccount/{{partnerId}}"><button type="reset" class="btn" ng-click="reset123()">{{'button.cancel' | translate}}</button></a>
 			<button type="submit" ng-disabled="!partnerdocument.$valid" class="btn btn-primary">{{'button.save' | translate}}</button>
 		</div>
 	</fieldset>

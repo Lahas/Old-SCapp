@@ -159,7 +159,7 @@
 						  delete scope.formData.royaltySequence; 
 						  delete scope.formData.status; 
 						  delete scope.formData.partnerAgreementData; 
-						  
+						  /*
 						  http.uploadFile({
 							  url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/document', 
 							  //url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/document',		              
@@ -171,7 +171,7 @@
 								  scope.$apply();
 							  }
 //							  location.path('/game');
-						  });
+						  });*/
 						  location.path('/viewpartneragreement/'+data.resourceId);
 					  });
 

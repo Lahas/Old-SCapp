@@ -638,7 +638,11 @@
 			templateUrl : 'views/settlement/agreement.html'
 	   }).when('/addpartneridentifier/:id', {
 			templateUrl : 'views/settlement/addpartneridentifier.html'
-	   });
+	   }).when('/addpartnerdocument/:id', {
+			templateUrl : 'views/settlement/addpartnerdocument.html'
+	   }).when('/addpartneridentifierdocument/:id/:resourceId', {
+			templateUrl : 'views/settlement/addpartneridentifierdocument.html'
+	   }) ;
 		$locationProvider.html5Mode(false);
 	};
 	mifosX.ng.application.config(defineRoutes).run(function($log) {

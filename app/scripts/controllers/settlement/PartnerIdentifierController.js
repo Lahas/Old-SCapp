@@ -2,7 +2,7 @@
     mifosX.controllers = _.extend(module, {
     	PartnerIdentifierController: function(scope,webStorage, routeParams , location, resourceFactory) {
             scope.partnerId = routeParams.id;
-           // console.log(partnerId);
+          // console.log(scope.partnerId);
             var partnerData = webStorage.get('partnerData');
             scope.partnerName=partnerData.partnerName;
         	scope.partnerTypeName=partnerData.partnerTypeName;
@@ -10,17 +10,17 @@
             
             scope.formData = {};
             scope.documenttypes = [];
-            resourceFactory.partnerIdenfierTemplateResource.get({partnerId: routeParams.id}, function(data) {
-                scope.documenttypes = data.allowedDocumentTypes;
-                scope.formData.documentTypeId = data.allowedDocumentTypes[0].id;
+            resourceFactory.partnerIdenfierTemplateResource.get( function(data) {
+                scope.documenttypes = data.partnerIdentifierData;
+                scope.formData.documentTypeId = data.partnerIdentifierData[0].id;
             });
 
             scope.reset123 = function(){
   	    	   webStorage.add("callingTab", {someString: "identities" });
   	       };
             scope.submit = function () {
-                resourceFactory.partnerIdentifierResource.save({partnerId: scope.partnerId},this.formData,function(data){
-                    location.path('/viewpartneraccount/' + data.partnerId);
+                resourceFactory.partnerIdenfierResource.save({partnerId: scope.partnerId},this.formData,function(data){
+                    location.path('/viewpartneraccount/' +scope.partnerId);
                 });
                 webStorage.add("callingTab", {someString: "identities" });
             };

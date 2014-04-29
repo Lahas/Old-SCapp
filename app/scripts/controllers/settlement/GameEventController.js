@@ -21,9 +21,9 @@
 	        scope.formData.cId = clientData.clientId;
 	        scope.gameEventData = [];
 	        
-	       /* scope.getMonth = function(m){
-	        	return scope.months[parseInt(m)-1].mon;
-	        };*/
+	        scope.routeTo = function(id){
+	        	location.path('/editinteractivedetail/'+id);
+	        };
 	        
 	        resourceFactory.createGameEventResource.get({cId:routeParams.id},function(data) {
 	            scope.formData = data;
