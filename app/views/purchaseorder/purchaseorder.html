@@ -2,8 +2,8 @@
  <div>
 		<ul class="breadcrumb">
 			<li><a href="#/game">Partners</a> <span class="divider">/</span></li>
-			<li><a href='#/viewpartneraccount/{{resouresId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
-			<li class="active">Agreement</li>
+			<li><a href='#/viewpartneraccount/{{resourceId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">Purchase Order</li>
 		</ul>
 	</div>
 	 <form name="purchaseorder" class="form-horizontal well" ng-submit = "submit()">
@@ -32,7 +32,7 @@
        		</thead>
         	<tbody>
             	 <tr ng-repeat="provData in provPurchaseOrderData">
-            		<td> <input  type="radio" name ="select" ng-click="getPoDetails(provData.id)"/></td>
+            		<td> <input  type="radio" name ="select" ng-click="getPoDetails(provData.id,$index)"/></td>
             		<td>{{provData.purchaseOrderNumber}}</td>
                 	<td>{{provData.activityMonth}}</td>
                 	<td>{{provData.purchaseOrderDate | DateFormat}}</td>
@@ -64,13 +64,14 @@
        		</thead>
         	<tbody>
             	 <tr ng-repeat="pData in purchaseOrderData">
-            		<td>{{pData.purchaseOrderNumber}}</td>
-            		<td>{{pData.activityMonth}}</td>
-                	<td></td>
-                	<td></td>
-                	<td>{{paymentData}}</td>
-                    <td>{{paymentData}}</td>
-                    <td></td>
+            		<td><input class="input-small" type="text" ng-model="pData.purchaseOrderNo" /></td>
+            		<td><input class="input-small" type="text" ng-model="pData.activityMonth" /></td>
+                	<td><input  class="input-small" type="text" id="startDate" datepicker-pop="dd MMMM yyyy" ng-model="pData.purchasrOrderDate" is-open="opened"  
+              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/></td>
+                	<td><input class="input-small" type="text" ng-model="pData.royaltyAmount"/></td>
+                	<td><input class="input-small" type="text" ng-model="pData.outStandingAmount" /></td>
+                    <td><input class="input-small" type="text" ng-model="pData.status" /></td>
+                    <td><button class="btn btn-primary">Add</button></td>
              	</tr>
         	</tbody>
 		</table>
