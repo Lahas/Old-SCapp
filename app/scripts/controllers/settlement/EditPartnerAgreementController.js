@@ -189,7 +189,7 @@
 		        		}
 				  	}
 		        
-					  console.log(scope.mediaPartnerData.length);
+					  //console.log(scope.mediaPartnerData.length);
 					  scope.formData.partnerAgreementData = new Array();
 					  if(scope.mediaPartnerData.length>0){
 			        		for(var i in scope.mediaPartnerData){
@@ -207,7 +207,7 @@
 			        		}
 			        	}
 					  
-					  console.log(JSON.stringify(scope.formData.partnerAgreementData));
+					  //console.log(JSON.stringify(scope.formData.partnerAgreementData));
 		  	resourceFactory.editpartnerAgreementDatasDetails.update({clientId: routeParams.id},this.formData,function(data){
 						delete scope.formData.royaltyShare; 
 						delete scope.formData.mediaCategory; 
@@ -217,7 +217,7 @@
 						delete scope.formData.partnerAgreementData; 
 
 		            
-		            http.uploadFile({
+		            /*http.uploadFile({
 		            	url: 'https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/document', 
 		            //	url: 'https://localhost:8443/mifosng-provider/api/v1/mediasettlements/'+routeParams.id+'/document',		             
 		              data: scope.formData,
@@ -227,9 +227,9 @@
 		              if (!scope.$$phase) {
 		                scope.$apply();
 		              }
-		              location.path('/viewpartneragreement/'+routeParams.id);
-		            });
-		       
+		             
+		            });*/
+						 location.path('/viewpartneragreement/'+routeParams.id);
 
 			  });
 
@@ -251,7 +251,7 @@
 				   $scope.approve = function () {
 					   //$modalInstance.close('delete');
 		                  resourceFactory.deletepartnerAgreementResource.delete({documentId: routeParams.id} , {} , function(data) {
-		                       location.path('/viewpartneragreement/'+routeParams.id);
+		                       location.path('/viewpartneraccount/'+scope.formData.partnerAccountId);
 		                       
 		                  });
 		                  $modalInstance.close('delete');

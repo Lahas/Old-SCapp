@@ -6,6 +6,7 @@
 
       scope.$on("UserAuthenticationSuccessEvent", function(event, data) {
         scope.currentSession = sessionManager.get(data);
+        scope.userName = scope.currentSession.user.name;
         location.path('/home').replace();
       });
 

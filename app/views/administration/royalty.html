@@ -95,7 +95,7 @@
 	<legend>{{'label.disbursementstopartners' | translate}}</legend>
 	<div class="pull-right">
 	<img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">
-		<button ng-click="refresh()" type="button" class="btn btn-primary pull-right">Refresh</button>
+		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-right">Refresh</button>
 		</div>
             <table>
             	<tr>
@@ -143,6 +143,16 @@
               				</div>
             				</div>
             		</td>
+            		
+            				<td>
+            				<div class="control-group">
+              				<label class="control-label">{{ 'link.disbursements.fileId' | translate }}<span class="required">*</span></label>
+              				<div class="controls">
+                			<select class="input-small" ng-model="formData.fileId"  ng-options="fileId as fileId for fileId in fileIds" ></select>
+              				</div>
+            				</div>
+            		</td>
+            		
             	</tr>
             </table>
            

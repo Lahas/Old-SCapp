@@ -866,7 +866,7 @@
              getDisbursementsData: defineResource(apiVer+ "/mediasettlements/disbursements",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',mediaCategory:'mediaCategory',client:'@client'},{
             	get: {method: 'GET', params: {}  }
              }),
-             getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall",{},{
+             getRefreshProcedure: defineResource(apiVer+ "/mediasettlements/procedureCall/:fileId",{fileId:'@fileId'},{
             	get: {method: 'GET', params: {}  }
              }),
              mastersTemplateResource: defineResource(apiVer + "/deductionmaster/template", {}, {
@@ -987,18 +987,30 @@
             getmediaCategoryData: defineResource(apiVer+ "/mediasettlements/mediacategory",{client: '@client'},{
             	get: {method: 'GET', params: {}, isArray: true }
              }),
-            partnerIdenfierTemplateResource: defineResource(apiVer + "/partners/:partnerId/identifiers/template", {partnerId: '@partnerId'}, {
+            partnerIdenfierTemplateResource: defineResource(apiVer + "/mediasettlements/partners/template", {}, {
                  get: {method: 'GET', params: {}}
              }),
-            partnerResource: defineResource(apiVer + "/partners/:partnerId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
+            partnerResource: defineResource(apiVer + "/mediasettlements/partners/:partnerId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
                    getAllClients: {method: 'GET', params: {}},
                    getClientClosureReasons: {method: 'GET', params: {}},
-                   getAllClientDocuments: {method: 'GET', params: {}, isArray: true},
+                   getAllPartnerDocuments: {method: 'GET', params: {}},
                    update: { method: 'PUT'}
              }),
-            partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerIdentityId: '@partnerIdentityId'}, {
+            partnerIdentifierResource: defineResource(apiVer + "/partner_identifiers/:partnerIdentityId/documents", {partnerIdentityId: '@partnerIdentityId'}, {
                    get: {method: 'GET', params: {}, isArray:true}
-           }),      
+             }),    
+             partnerIdenfierResource: defineResource(apiVer + "/mediasettlements/partners/:partnerId/identifiers/:id", {partnerId:'@partnerId', id: '@id'}, {
+               get: {method: 'GET', params: {}}
+             }),
+             partnerNoteResource: defineResource(apiVer + "/partners/:partnerId/:anotherresource", {partnerId:'@partnerId',anotherresource:'@anotherresource'}, {
+                 getAllClients: {method: 'GET', params: {}},
+                 getClientClosureReasons: {method: 'GET', params: {}},
+                 getAllPartnerDocuments: {method: 'GET', params: {}},
+                 update: { method: 'PUT'}
+              }),  
+              partnerNotesResource: defineResource(apiVer + "/partners/:partnerId/notes", {partnerId:'@partnerId'}, {
+                  getAllNotes: {method: 'GET', params: {}, isArray:true}
+                }),
             getProPurchaseOrderTemplate: defineResource(apiVer+ "/propurchaseorder/template",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),

@@ -14,20 +14,7 @@
           <small>PartnerType "{{partner.partnerTypeName}}"</small>
         </li>
           </ul>
-          
-<!-- 	<ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneraccount' | translate}}</a> <span class="divider">/</span></li>
-              <li class="active">{{'label.viewpartneraccount' | translate}}</li>
-          </ul> -->
-          
-    <!--    <div class="pull-right">
-	      <div class="btn-group">
-	          <a href="#/editmapgamedetails/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
-	   	    
-	      </div>
-	    </div>    
-   </div>     -->   
-   <div>
+    <div>
    <tabset  style="margin-bottom: 0px;">
       <tab heading="{{'tab.general' | translate}}">
       <div class="row-fluid">
@@ -68,62 +55,17 @@
                               <td width="65%">{{partnerAddress}}</td>
                               <!-- <td > {{client.addressNo}}<strong>,</strong>{{client.street}}</td> -->
                             </tr>
-                            <!-- <tr>
-                            <td colspan="2"><a href="#/editAddress/{{client.id}}">Edit Address</a><span class="divider">|</span>
-                             <a href="#/editAddress/{{client.id}}">Add Other Address</a></td>
-                            </tr> -->
+                            <tr>
+<!--                             <td colspan="2"><a href="#/editAddress/{{partner.id}}">Edit Address</a><span class="divider">|</span>
+                            <a href="#/editAddress/{{client.id}}">Add Other Address</a></td> -->
+                            </tr> 
                           </table>
                       </div>
                  </div>
-   
-          
-<!-- <form class="form-horizontal well"  >
-<fieldset>
-	 <legend>{{'label.viewpartneraccount' | translate}}</legend>
-	 	 
-	  				 <div>
-            
-                        <table  width="100%" >
-                            <tr>
-                              <td width="35%">{{'label.partner.partnername' | translate}}</td>
-                              <td width="65%">{{partnerName}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{'label.partnertype' | translate}}</td>
-                              <td>{{partnerTypeName}}</td>
-                            </tr>
-                            <tr>
-                              
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.contactnum' | translate }}</td>
-                              <td>{{contactNum}}</td>
-                            </tr>
-                             <tr>
-                              <td>{{ 'label.emailid' | translate }}</td>
-                              <td>{{emailId}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.currencyname' | translate }}</td>
-                              <td>{{currencyName}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{ 'label.externalId' | translate }}</td>
-                              <td>{{externalId}}</td>
-                            </tr>
-                           
-                          </table>
-                     </div>
-                     
-                     
-	 </fieldset>
-	 
-</form>	 -->
-</div>
-</tab>
+           </div>
+       </tab>
 
-
-<tab heading="{{'tab.identities' | translate}}" select="getPartnerIdentityDocuments()" active="identitiesTab">
+    <tab heading="{{'tab.identities' | translate}}" select="getPartnerIdentityDocuments()" active="identitiesTab">
         <div class="pull-right btn-group">
           <a href="#/addpartneridentifier/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div>
@@ -145,12 +87,12 @@
                 <td>{{document.documentType.name}}</td>
                 <td>
                   <span ng-repeat="file in document.documents">
-                    <a ng-click="downloadClientIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp;
+                    <a ng-click="downloadPartnerIdentifierDocument(document.id, file.id)">{{file.fileName}}</a>&nbsp;&nbsp;
                   </span>
                 </td>
                 <td>
-                  <a href="#/addclientidentifierdocument/{{client.id}}/{{document.id}}"><i class="icon-cloud-upload"></i></a>&nbsp;
-                  <a ng-click="deleteClientIdentifierDocument(client.id,document.id,$index)"><i class="icon-remove"></i></a>
+                  <a href="#/addpartneridentifierdocument/{{partner.id}}/{{document.id}}"><i class="icon-cloud-upload"></i></a>&nbsp;
+                  <a ng-click="deletePartnerIdentifierDocument(partner.id,document.id,$index)"><i class="icon-remove"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -162,7 +104,7 @@
           <a href="#/addpartnerdocument/{{partner.id}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{'button.upload' | translate}}</a>
         </div>
         <br>
-        <table class="table" ng-show="clientdocuments.length > 0">
+        <table class="table" ng-show="filename==true">
             <thead>
               <tr class="graybg">
                 <th>{{'table.heading.name' | translate}}</th>
@@ -189,22 +131,22 @@
         <form>
             <div class="control-group">
               <div class="controls">
-                     <textarea rows="1" class="field span marginbottom0px" id="textarea" placeholder="Enter note" ng-model="formData.note"></textarea>
-                     <div class="notewrapper row-fluid">
+                 <div class="notewrapper row-fluid">
                         <span class="pull-right noteaddbuttonwrapper">
                             <button class="btn btn-primary" type="submit" ng-click="saveNote()">Add Note</button>
                         </span>
                      </div>
+                     <textarea rows="1" class="field span marginbottom0px" id="textarea" placeholder="Enter note" ng-model="formData.note"></textarea>
               </div>
             </div>  
         </form>
-        <div ng-repeat="clientNote in clientNotes | orderBy:predicate:reverse">
+        <div ng-repeat="partnerNote in partnerNotes | orderBy:predicate:reverse">
           <div>
             <blockquote>
-              <p>{{clientNote.note}}</p>
-              {{clientNote.id}}
-              <small>Created by :&nbsp;{{clientNote.createdByUsername}}</small>
-              <small>Created on :&nbsp;{{clientNote.createdOn  | DateFormat}}</small>
+              <p>{{partnerNote.note}}</p>
+                  {{partnerNote.id}}
+              <small>Created by :&nbsp;{{partnerNote.createdByUsername}}</small>
+              <small>Created on :&nbsp;{{partnerNote.createdOn  | DateFormat}}</small>
             </blockquote>
           </div>
         </div>
@@ -212,6 +154,5 @@
 
 </tabset>
 </div>
-
   </div>   	          
   

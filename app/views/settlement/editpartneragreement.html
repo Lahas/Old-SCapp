@@ -79,8 +79,19 @@
 	              </select>
 	            </div>
 	       </div>
-	   </td>
-	   <td>
+	   </td><td>
+	       <div class="control-group">
+	            <label class="control-label" for="royaltyType">{{'label.royaltytype' | translate}}&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+	              </select>
+	            </div>
+	       </div>
+	     </td>
+	   </tr>	
+		
+	     <tr>
+	     <td>
 	       
 	       <div class="control-group">
 	            <label class="control-label" for="agreementCategory">{{'label.agreementcategory' | translate}}&nbsp;<span class="required">*</span></label>
@@ -90,29 +101,7 @@
 	            </div>
 	       </div>
 	     </td>
-	   
-	   </tr>	
-		
-	     <tr><td></td>
-	     <td>
-	     <div ng-show="mgAmount" class="control-group">
-            <label class="control-label"  for="requiredValue">{{'label.mgamount' | translate}}&nbsp;<span class="required">*</span></label>
-					<div class="controls">
-					<input type="text" class="requiredValue" ng-model="formData.mgAmount" >
-					</div>
-			</div>			              
-	     </td>
-	     </tr>	
-		<tr><td>
-	       
-	       <div class="control-group">
-	            <label class="control-label" for="royaltyType">{{'label.royaltytype' | translate}}&nbsp;<span class="required">*</span></label>
-	            <div class="controls">
-	              <select ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
-	              </select>
-	            </div>
-	       </div>
-	     </td>
+	     
 	    <td>
 	       
 	       <div class="control-group">
@@ -123,6 +112,17 @@
 	            </div>
 	       </div>
 	     </td></tr>
+	     
+	     <tr>
+	     <td>
+	     <div ng-show="mgAmount" class="control-group">
+            <label class="control-label"  for="requiredValue">{{'label.mgamount' | translate}}&nbsp;<span class="required">*</span></label>
+					<div class="controls">
+					<input type="text" class="requiredValue" ng-model="formData.mgAmount" >
+					</div>
+			</div>			              
+	     </td>
+	     </tr>	
 	     
 		<tr><td>
 	       
@@ -145,7 +145,7 @@
           </div>
       
       </td></tr>	
-		<tr><td></td><td>
+		<!-- <tr><td></td><td>
       				  
       		<div class="control-group">
               <label class="control-label" for="file">{{'label.agreementdoc' | translate}}</label>
@@ -155,7 +155,7 @@
              </div> 
              
       </td></tr>	
-     </table>
+ -->     </table>
      </div> 
       
                	<!-- <div class="control-group">

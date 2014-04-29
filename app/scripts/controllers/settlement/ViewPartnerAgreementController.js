@@ -55,9 +55,10 @@
 	       });		
 	      
 	      
-	      scope.downloadFile = function (){ 
-        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/print?tenantIdentifier=default');
-      	  };
+	      /*scope.downloadFile = function (){ 
+	    	  console.log("download");
+        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+routeParams.id+'/print?tenantIdentifier=default');
+      	  };*/
 			
 		  scope.tabStatus = function(){
 	        	
