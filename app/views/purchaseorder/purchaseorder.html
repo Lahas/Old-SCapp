@@ -31,13 +31,13 @@
             	</tr>
        		</thead>
         	<tbody>
-            	 <tr ng-repeat="i in [a,s,d,f,g,h,j,j,r,d]">
-            		<td> <input  type="radio" name ="select" ng-click=""/></td>
-            		<td>{{paymentData.id}}</td>
-                	<td>{{paymentData.paymentDate | DateFormat}}</td>
-                	<td>{{paymentData.receiptNo}}</td>
-                	<td>{{paymentData.amountPaid}}</td>
-                    <td>{{paymentData.availAmount}}</td>
+            	 <tr ng-repeat="provData in provPurchaseOrderData">
+            		<td> <input  type="radio" name ="select" ng-click="getPoDetails(provData.id)"/></td>
+            		<td>{{provData.purchaseOrderNumber}}</td>
+                	<td>{{provData.activityMonth}}</td>
+                	<td>{{provData.purchaseOrderDate | DateFormat}}</td>
+                	<td>{{provData.royaltyAmount}}</td>
+                    <td>{{provData.disburseStatus}}</td>
              	</tr>
         	</tbody>
 		</table>
@@ -63,13 +63,14 @@
             	</tr>
        		</thead>
         	<tbody>
-            	 <tr ng-repeat="paymentData in ['a','sb','b','a','b','a','b','a','b','a','b']">
-            		<td><input  type="radio" name="select"/></td>
-            		<td>{{paymentData}}</td>
-                	<td>{{paymentData}}</td>
-                	<td>{{paymentData}}</td>
+            	 <tr ng-repeat="pData in purchaseOrderData">
+            		<td>{{pData.purchaseOrderNumber}}</td>
+            		<td>{{pData.activityMonth}}</td>
+                	<td></td>
+                	<td></td>
                 	<td>{{paymentData}}</td>
                     <td>{{paymentData}}</td>
+                    <td></td>
              	</tr>
         	</tbody>
 		</table>

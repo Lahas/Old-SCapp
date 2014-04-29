@@ -999,10 +999,10 @@
             partnerIdentifierResource: defineResource(apiVer + "/partneridentifier/:partnerIdentityId/documents", {partnerIdentityId: '@partnerIdentityId'}, {
                    get: {method: 'GET', params: {}, isArray:true}
            }),      
-            getPurchaseOrderTemplate: defineResource(apiVer+ "/propurchaseorder/template",{},{
+            getProPurchaseOrderTemplate: defineResource(apiVer+ "/propurchaseorder/template",{},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            getPurchaseOrderAddressDetails: defineResource(apiVer+ "/propurchaseorder/:purchaseOrderId",{},{
+            getProPurchaseOrderAddressDetails: defineResource(apiVer+ "/propurchaseorder/:purchaseOrderId",{},{
             	get: {method: 'GET', params: {}, isArray: true}
             }),
             getPartnerAddressDetails: defineResource(apiVer+ "/propurchaseorder/partneraddress/:partnerId",{},{
@@ -1014,8 +1014,15 @@
             getRoyaltyAmountDetails: defineResource(apiVer+ "/propurchaseorder/royaltyamount/",{partnerAddress:'@partnerAddress',perticulars:'@perticulars',month:'@month'},{
             	get: {method: 'GET', params: {}, isArray: false}
             }),
-            createPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/createpropurchaseorder/",{},{
+            createProPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/createpropurchaseorder/",{},{
             	post: {method: 'POST', params: {}}
+            }),
+            createPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/purchaseorder/:partnerId",{},{
+            	get: {method: 'GET', params: {}, isArray: true},
+            	post: {method: 'POST', params: {}}
+            }),
+            retrivePurchaseOrder: defineResource(apiVer+ "/purchaseorder/:provPoId",{},{
+            	get: {method: 'GET', params: {}, isArray: false}
             })
         };
       }];

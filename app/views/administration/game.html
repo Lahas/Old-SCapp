@@ -425,8 +425,8 @@
 
       </tab>
       -->
-       <tab heading="{{'tab.ppurchase.order' | translate}}" select="getPurchaseOrderTemplate()" active="purchaseorder">
-      	<form class="form-horizontal well" ng-submit="submitPurchaseOrder()">
+       <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
+      	<form class="form-horizontal well" ng-submit="submitProPurchaseOrder()">
         
         <div class="error" ng-show="errorStatus || errorDetails">
 			<label>{{'label.contract.error' | translate}}</label>
