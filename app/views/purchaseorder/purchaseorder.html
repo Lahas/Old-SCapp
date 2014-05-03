@@ -6,7 +6,7 @@
 			<li class="active">Purchase Order</li>
 		</ul>
 	</div>
-	 <form name="purchaseorder" class="form-horizontal well" ng-submit = "submit()">
+	 <form name="purchaseorder" class="form-horizontal well">
 	  
 	    <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
@@ -42,10 +42,6 @@
         	</tbody>
 		</table>
 		<br>
-		<div class="controls">
-     		<a class="btn btn-primary">{{'label.payout.royalty' | translate}}</a>
-   		</div>
-			
 	</div>
 	 <br>
 
@@ -59,26 +55,28 @@
                     <th>{{'lable.amount' | translate}}</th>
                 	<th>{{'label.outstanding' | translate}}</th>
                 	<th>{{'label.disburse.status' | translate}}</th>
-                	<th>{{'label.add.delete' | translate}}</th>
+                	<th>{{'label.add' | translate}}</th>
+                	<th>{{'label.delete' | translate}}</th>
             	</tr>
        		</thead>
         	<tbody>
             	 <tr ng-repeat="pData in purchaseOrderData">
-            		<td><input class="input-small" type="text" ng-model="pData.purchaseOrderNo" /></td>
-            		<td><input class="input-small" type="text" ng-model="pData.activityMonth" /></td>
+            		<td><input class="input-medium" type="text" ng-model="pData.purchaseOrderNo" readonly/></td>
+            		<td><input class="input-small" type="text" ng-model="pData.activityMonth" readonly/></td>
                 	<td><input  class="input-small" type="text" id="startDate" datepicker-pop="dd MMMM yyyy" ng-model="pData.purchasrOrderDate" is-open="opened"  
               date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/></td>
-                	<td><input class="input-small" type="text" ng-model="pData.royaltyAmount"/></td>
-                	<td><input class="input-small" type="text" ng-model="pData.outStandingAmount" /></td>
+                	<td><input class="input-small" type="text" ng-model="pData.royaltyAmount" ng-change="calculate()"/></td>
+                	<td><input class="input-small" type="text" ng-model="pData.outStandingAmount" readonly/></td>
                     <td><input class="input-small" type="text" ng-model="pData.status" /></td>
-                    <td><button class="btn btn-primary">Add</button></td>
+                    <td><button class="btn btn-primary" ng-click="addRow($index)">Add</button></td>
+                    <td><button class="btn" ng-click="removeRow($index)">Delete</button></td>
              	</tr>
         	</tbody>
 		</table>
 		<br>
 		<div class="offset3">
-            <a href='#/viewclient/{{clientId}}' class="btn">Cancel</a>
-          <button id="submit" type="submit" class="btn btn-primary">Distribute</button>
+            <a href='#/viewpartneraccount/{{resourceId}}' class="btn">{{'button.cancel' | translate}}</a>
+          <button class="btn btn-primary" ng-click="submit()">{{'button.save' | translate}}</button>
           </div>	
 	</div>
 		</fieldset>

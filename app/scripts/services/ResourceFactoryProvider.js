@@ -1034,8 +1034,21 @@
             	post: {method: 'POST', params: {}}
             }),
             retrivePurchaseOrder: defineResource(apiVer+ "/purchaseorder/:provPoId",{},{
-            	get: {method: 'GET', params: {}, isArray: false}
+            	get: {method: 'GET', params: {}, isArray: false},
+            }),
+            refreshPurchaseOrder: defineResource(apiVer+ "/purchaseorder/refresh/:provPoId",{},{
+            	get: {method: 'GET', params: {}, isArray: false},
+            }),
+            retrivePurchaseOrderId: defineResource(apiVer+ "/purchaseorder",{},{
+            	get: {method: 'GET', params: {provPoId:'@provPoId'},isArray:false}
+            }),
+            savePurchaseOrder: defineResource(apiVer+ "/purchaseorder",{},{
+            	get: {method:'GET',params:{},isArray:false}
+            }),
+            retriveProvisionalPo: defineResource(apiVer+ "/propurchaseorder",{},{
+            	get: {method: 'GET', params:{partnerId: '@partnerId'}, isArray:true}
             })
+            
         };
       }];
     }
