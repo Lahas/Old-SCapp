@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  GameEventController: function(scope, resourceFactory,webStorage,routeParams) {
+	  GameEventController: function(scope, resourceFactory,webStorage,routeParams,location) {
 		  
 		  scope.formData = {};
 		  
@@ -32,7 +32,7 @@
 	        });
 	    }
   });
-  mifosX.ng.application.controller('GameEventController', ['$scope', 'ResourceFactory','webStorage','$routeParams', mifosX.controllers.GameEventController]).run(function($log) {
+  mifosX.ng.application.controller('GameEventController', ['$scope', 'ResourceFactory','webStorage','$routeParams','$location', mifosX.controllers.GameEventController]).run(function($log) {
     $log.info("GameEventController initialized");
   });
 }(mifosX.controllers || {}));
