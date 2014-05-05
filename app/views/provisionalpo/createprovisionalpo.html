@@ -1,0 +1,200 @@
+<div ng-controller="CreateProvisionalPoController">
+
+        <ul class="breadcrumb">
+              <li><a href='#/viewpartneraccount/{{partnerId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href='#/provisionalpo/{{partnerId}}'>Provisional PO</a><span class="divider">/</span></li>
+              <li class="active">{{'label.createprovisionalpo' | translate}}</li>
+          </ul>
+
+	<form class="form-horizontal well" ng-submit="submitProPurchaseOrder()">
+
+		<div class="error" ng-show="errorStatus || errorDetails">
+			<label>{{'label.contract.error' | translate}}</label> <label
+				ng-show="errorStatus">{{errorStatus}}</label> <label
+				ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code
+				| translate}}</label>
+		</div>
+		<fieldset>
+			<legend>{{'label.ppurchaseorder'| translate}}</legend>
+			<div>
+				<table>
+					<tr>
+						<td style="padding-left: 1px;">
+							<div class="control-group">
+								<label class="control-label">{{'label.ppurchaseorder.partner' | translate }}
+								</label>
+								<div class="controls">
+									<!-- <select class="input-large" ng-model="formData.partnerAddress"
+										ng-change="getPartnerAddressDetails()"
+										ng-options="partner.id as partner.partnerName for partner in partnerData"
+										value="{{partner.partnerName}}"></select> -->
+								</div>
+								<br />
+								<div class="controls">
+									<address ng-show="partnerAddressDetail.partnerAddressDetails">
+										<strong>{{partnerAddressDetail.partnerAddressDetails.partnerName}}</strong><br>
+										{{partnerAddressDetail.partnerAddressDetails.partnerAddress}}<br>
+										{{partnerAddressDetail.partnerAddressDetails.emailId}}<br>
+										<abbr title="Phone">P:</abbr>
+										{{partnerAddressDetail.partnerAddressDetails.contactNum}}
+									</address>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="control-group">
+								<label class="control-label">{{
+									'label.ppurchaseorder.number' | translate }}<span
+									class="required">*</span>
+								</label>
+								<div class="controls">
+									<label class="control-label">{{partnerAddressDetail.purchaseOrderNumber}}</label>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{
+									'label.ppurchaseorder.date' | translate }}<span
+									class="required">*</span>
+								</label>
+								<div class="controls">
+									<input type="text" class="input-medium"
+										datepicker-pop="dd MMM yyyy" ng-model="purchaseOrderDate.date"
+										is-open="opened" min="minDate" max="maxDate"
+										date-disabled="disabled(date, mode)" required late-Validate
+										style="background-color: #FFFFFF;" id="activityMonth" readonly />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{
+									'label.ppurchaseorder.vendor.number' | translate }}<span
+									class="required">*</span>
+								</label>
+								<div class="controls">
+									<input type="text" class="input-medium"
+										ng-model="formData.vendorNumber" id="vendorNumber" />
+								</div>
+							</div>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</fieldset>
+		<div class="control-group">
+			<label class="control-label">{{
+				'label.ppurchaseorder.deliverto' | translate }}<span
+				class="required">*</span>
+			</label>
+			<div class="controls">
+				<select class="input-large" ng-model="formData.deliverTo"
+					ng-change="getDeliverToDetails()"
+					ng-options="address.id as address.addressName for address in addressData"
+					value="{{address.addressName}}"></select>
+			</div>
+			<br />
+			<div class="controls">
+				<address ng-show="deliverToData">
+					<strong>{{deliverToData.addressName}}</strong><br>
+					{{deliverToData.lineOne}}<br> {{deliverToData.lineTwo}}
+					{{deliverToData.city}} {{deliverToData.state}}
+					{{deliverToData.zip}} {{deliverToData.country}}<br> <abbr
+						title="Phone">P:</abbr> {{deliverToData.phoneNumber}}
+				</address>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">{{
+				'label.ppurchaseorder.invoiceto' | translate }}<span
+				class="required">*</span>
+			</label>
+			<div class="controls">
+				<select class="input-large" ng-model="formData.invoiceTo"
+					ng-change="getInvoiceToDetails()"
+					ng-options="address.id as address.addressName for address in addressData"
+					value="{{address.addressName}}"></select>
+			</div>
+			<br />
+			<div class="controls">
+				<address ng-show="invoiceToData">
+					<strong>{{invoiceToData.addressName}}</strong><br>
+					{{invoiceToData.lineOne}}<br> {{invoiceToData.lineTwo}}
+					{{invoiceToData.city}} {{invoiceToData.state}}
+					{{invoiceToData.zip}} {{invoiceToData.country}}<br> <abbr
+						title="Phone">P:</abbr> {{invoiceToData.phoneNumber}} <br> <b>VAT:</b>
+					{{invoiceToData.vatTin}}<br> <b>CST TIN:</b>
+					{{invoiceToData.cstTin}}<br> <b>PAN:</b> {{invoiceToData.pan}}<br>
+					<b>Service Tax No:</b> {{invoiceToData.serviceTaxNumber}}
+				</address>
+			</div>
+		</div>
+		<table class="table" width="100%" border="1">
+			<tr class="graybg">
+				<th>{{ 'label.serial' | translate }}</th>
+				<th>{{ 'label.perticulars' | translate }}</th>
+				<th>{{ 'label.month' | translate }}</th>
+				<th>{{ 'label.currencyamount' | translate }}</th>
+				<th>{{ 'label.currency' | translate }}</th>
+
+			</tr>
+			<tr>
+				<td></td>
+				<td><select class="input-medium"
+					ng-model="formData.perticulars" id="perticulars"
+					ng-options="perticular.id as perticular.mCodeValue for perticular in perticularsData"
+					value="{{perticular.mCodeValue}}"></select></td>
+				<td><input type="text" class="input-medium"
+					datepicker-pop="MMM yyyy" ng-model="month.date" is-open="opened"
+					min="minDate" max="maxDate" date-disabled="disabled(date, mode)"
+					required late-Validate style="background-color: #FFFFFF;"
+					id="activityMonth" readonly />&nbsp;&nbsp;&nbsp;<input
+					type="button" value="Get details" ng-click="getRoyaltyAmount()"
+					class="btn btn-primary" /></td>
+				<td><input type="text" class="input-small"
+					ng-model="formData.royaltyAmount" id="currencyamount" readonly /></td>
+				<td><input type="text" ng-model="formData.currencyCode"
+					class="input-mini" id="currencyCode" readonly></td>
+				<!--  <td><select  class="input-small" ng-model="formData.currency" id="currency" ng-options="currencyCodes.code as currencyCodes.code for currencyCodes in currencyCodesData"  value="{{currencyCodes.code}}"></select></td> -->
+
+			</tr>
+		</table>
+
+		<table class="table" width="100%" border="1"
+			ng-show="royaltyAmountsData">
+			<thead>
+				<tr class="graybg">
+					<th>{{ 'label.client' | translate }}</th>
+					<th>{{ 'label.settlementsource' | translate }}</th>
+					<th>{{ 'label.grossRevenue' | translate }}</th>
+					<th>{{ 'label.deductionamount' | translate }}</th>
+					<th>{{ 'label.netrevenue' | translate }}</th>
+					<th>{{ 'label.operatorrevenue' | translate }}</th>
+					<th>{{ 'label.platformrevenue' | translate }}</th>
+					<th>{{ 'label.igrevenue' | translate }}</th>
+					<th>{{ 'label.royaltyshare' | translate }}</th>
+					<th>{{ 'label.royaltyamount' | translate }}</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="ra in royaltyAmountsData">
+					<td>{{ra.client}}</td>
+					<td>{{ ra.settlementSource}}</td>
+					<td>{{ ra.grossRevenue}}</td>
+					<td>{{ ra.deductionAmount}}</td>
+					<td>{{ ra.netRevenue}}</td>
+					<td>{{ ra.operatorRevenue}}</td>
+					<td>{{ ra.platformRevenue}}</td>
+					<td>{{ ra.igRevenue}}</td>
+					<td>{{ ra.royaltyShare}}</td>
+					<td>{{ ra.royaltyAmount}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="offset3">
+
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</form>
+
+</div>
+<div notifications="bottom right"></div>

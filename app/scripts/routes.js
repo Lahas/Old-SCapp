@@ -644,6 +644,10 @@
 			templateUrl : 'views/settlement/addpartneridentifierdocument.html'
 	   }).when('/purchaseorder/:id', {
 			templateUrl : 'views/purchaseorder/purchaseorder.html'
+	   }).when('/provisionalpo/:id',{
+		    templateUrl : 'views/provisionalpo/provisionalpo.html'
+	   }).when('/createprovisionalpo/:id',{
+		    templateUrl : 'views/provisionalpo/createprovisionalpo.html'
 	   });
 		$locationProvider.html5Mode(false);
 	};

@@ -57,9 +57,19 @@
                              icon :"icon-file"
                          },
                          {
+                        	 name:"button.provisionalpo",
+                        	 href:"#/provisionalpo",
+                        	 icon:"icon-file"
+                         },
+                         {
                              name:"button.purchaseorder",
                              href:"#/purchaseorder",
                              icon :"icon-file"
+                         },
+                         {
+                        	 name: "button.trackinvoice",
+                        	 href: "#/trackinvoice",
+                        	 icon: "icon-file"
                          }
 		             
 		               ];

@@ -247,7 +247,9 @@ define(['underscore', 'mifosX'], function() {
       'settlement/PartnerIdentifierController',
       'settlement/PartnerDocumentController',
       'settlement/UploadPartnerIdentifierDocumentController',
-      'purchaseorder/PurchaseOrderController'
+      'purchaseorder/PurchaseOrderController',
+      'provisionalpo/ProvisionalPoController',
+      'provisionalpo/CreateProvisionalPoController'
       
     ],
     filters: [

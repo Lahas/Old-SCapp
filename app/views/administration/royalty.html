@@ -93,27 +93,26 @@
         <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
       <body>
 	<legend>{{'label.disbursementstopartners' | translate}}</legend>
-	<div class="pull-right">
-<!-- 	<img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">
- -->		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-right">Refresh</button>
-		</div>
-            <table>
-            	<tr>
-            	
-            	<td>
-            				<div class="control-group">
-              				<label class="control-label">{{ 'link.disbursements.fileId' | translate }}<span class="required">*</span></label>
-              				<div class="controls">
+	
+	        <div class="control-group">
+      				<label class="control-label">{{ 'link.disbursements.fileId' | translate }}<span class="required">*</span></label>
+             				<div class="controls">
                 			<select class="input-small" ng-model="formData.fileId"  ng-options="fileId as fileId for fileId in fileIds" ></select>
               				</div>
             				</div>
-            		</td>
-            	
+	
+	
+	<div class="pull-left">
+	<!-- <img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading"> -->
+		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-right">Calculate Settlement</button>
+		</div>
+            <table>
+            	<tr>
             		<td>
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.client' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select class="input-medium" ng-model="formData.clientName" ng-change="getClientNames(formData.clientName)" ng-options="clientName.client as clientName.client for clientName in clientNames" value="{{clientName.client}}"></select>
+                			<select class="input-medium" ng-model="formData.clientName" ng-change="getClientNames(formData.clientName,formData.fileId)" ng-options="clientName.client as clientName.client for clientName in clientNames" value="{{clientName.client}}"></select>
               				</div>
             				</div>
             		</td>
@@ -153,6 +152,15 @@
               				</div>
             				</div>
             		</td>
+            		<td>
+            		     <div class="control-group">
+              				<label class="control-label">Total Royalty Amount<span class="required">*</span></label>
+              				<div class="controls">
+                			<input type="text" class="input-medium"  ng-model="formData.totalRA"  value="{{totalRA}}" readonly>
+              				</div>
+            				</div>
+            		
+            		</td>
             		
             	</tr>
             </table>
@@ -171,6 +179,7 @@
 				<th>{{ 'table.heading.mediacategory' | translate }}</th>
 				<th>{{ 'table.heading.playsource' | translate }}</th>
 				<th>{{ 'table.heading.partnertype' | translate }}</th>
+				<th>{{ 'table.heading.partnername' | translate }}</th>
 				<th>{{ 'table.heading.sequence' | translate }}</th>
 				<th>{{ 'table.heading.royalityshare' | translate }}</th>
 				<th>{{ 'table.heading.rayolityamt' | translate }}</th>
@@ -190,6 +199,7 @@
 			              	<td>{{distributionData.mediaCategory}}</td>
 			              	<td>{{distributionData.playSource}}</td>
 			              	<td>{{distributionData.partnerType}}</td>
+			                <td>{{distributionData.partnerName}}</td>
 			              	<td>{{distributionData.sequence}}</td>
 			              	<td>{{distributionData.royaltyShare}}</td>
 			              	<td>{{distributionData.royaltyAmount}}</td>

@@ -2497,7 +2497,7 @@
 	"label.ppurchaseorder.address":"Select Address",
 	"label.ppurchaseorder.invoiceto":"Invoice To",
 	"label.ppurchaseorder.deliverto":"Deliver To",
-	"label.ppurchaseorder.partner":"Select Partner",
+	"label.ppurchaseorder.partner":"Partner address detail's",
 	"label.serial":"Sr.",
 	"label.perticulars":"Perticulars",
 	"label.month":"Month",
@@ -2515,10 +2515,11 @@
 	"label.ppurchaseorder.vendor.number":"Vendor Number",
 	"label.ppurchaseorder":"Provisional Purchase Order",
 	
-	"error.msg.currency.code.not.found":"Invalid combination",
+	"error.msg.currency.code.not.found":"Data does not exist.",
 	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank",
 									     
 	"button.purchaseorder":"Purchase Order",
+	"button.provisionalpo":"Provisional PO",
 	"label.purchaseorder":"Purchase Order",
 	
 	"label.select":"Select",
@@ -2532,7 +2533,16 @@
 	"label.podate":"PO Date",
 	"lable.amount":"Amount",
 	"label.outstanding":"Outstanding Amount",
-	"label.add.delete":"Add/Delete"
+	"label.add.delete":"Add/Delete",
+	"label.provisionalpo":"Provisional PO",
+	"table.heading.select":"Select",
+	"table.heading.provpono":"Prov Po No",
+	"table.heading.activitymonth":"Activity Month",
+	"table.heading.provpodate":"Prov Po Date",
+	"table.heading.royaltyamount":"Royalty Amount",
+	"label.createprovisionalpo":"Create Provisional PO",
+	"button.trackinvoice":"Track Invoice"
+	
 	
 
 }

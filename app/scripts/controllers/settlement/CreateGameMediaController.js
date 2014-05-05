@@ -67,27 +67,28 @@
 	    	   console.log(scope.ac);
 	       }; */
 	       
-	       scope.getPartnerAddressDetails = function(){
+	       /*scope.getPartnerAddressDetails = function(){
 	    	   resourceFactory.getPartnerAddressDetails.get({partnerId:scope.formData.partnerAddress},function(data){
 	    		   scope.partnerAddressDetail.partnerAddressDetails = data;
 	    		   scope.perticularsData = data.perticulars;
 	    		   //console.log(data);
 	    	   });
-	       };
+	       };*/
 	       
-	       scope.getDeliverToDetails = function(){
+	       
+/*	       scope.getDeliverToDetails = function(){
 	    	   
 	    	   resourceFactory.getProPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.deliverTo},function(data){
 	    		   scope.deliverToData = data[0];
 	    	   });
-	       };
+	       };*/
 	       
-	       scope.getInvoiceToDetails = function(){
+	       /*scope.getInvoiceToDetails = function(){
 	    	   
 	    	   resourceFactory.getPurchaseOrderAddressDetails.get({purchaseOrderId:scope.formData.invoiceTo},function(data){
 	    		   scope.invoiceToData = data[0];
 	    	   });
-	       };
+	       };*/
 	       
 	       
 	       scope.getRoyaltyAmount = function(){
@@ -126,7 +127,7 @@
 	       };
 	       
 	      
-	       scope.submitProPurchaseOrder = function(){
+	       /*scope.submitProPurchaseOrder = function(){
 	    	   scope.formData.clientId = scope.royaltyAmountsData[0].clientId;
 	    	   scope.formData.purchaseOrderDate = dateFilter(scope.purchaseOrderDate.date,"dd MMMM yyyy");
 	    	   scope.formData.month = dateFilter(scope.month.date,"MMM yyyy");
@@ -144,7 +145,7 @@
 	    	   },function(errorData){
 	    		   
 	    	   });
-	       };
+	       };*/
 	       
 	      /* scope.getActivityMonths = function(){
 	    	   resourceFactory.getActivityMonthDetails.get({perticularsId:scope.formData.perticulars},function(data){
@@ -152,13 +153,13 @@
 	    	   });
 	       };*/
 	       
-	       scope.getProPurchaseOrderTemplate = function(){
+	       /*scope.getProPurchaseOrderTemplate = function(){
 	    	   resourceFactory.getProPurchaseOrderTemplate.get(function(data){
 	    		   scope.addressData = data.purchaseOrderData;
 	    		   scope.partnerData = data.partnerNames;
 	    		   scope.currencyCodesData = data.currencyCodes;
 	    	   });
-	       };
+	       };*/
 	       
 	       
 	       
