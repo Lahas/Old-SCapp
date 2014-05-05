@@ -2540,7 +2540,9 @@
 	"table.heading.activitymonth":"Activity Month",
 	"table.heading.provpodate":"Prov Po Date",
 	"table.heading.royaltyamount":"Royalty Amount",
-	"label.createprovisionalpo":"Create Provisional PO"
+	"label.createprovisionalpo":"Create Provisional PO",
+	"button.trackinvoice":"Track Invoice"
+	
 	
 
 }

@@ -65,6 +65,11 @@
                              name:"button.purchaseorder",
                              href:"#/purchaseorder",
                              icon :"icon-file"
+                         },
+                         {
+                        	 name: "button.trackinvoice",
+                        	 href: "#/trackinvoice",
+                        	 icon: "icon-file"
                          }
 		             
 		               ];

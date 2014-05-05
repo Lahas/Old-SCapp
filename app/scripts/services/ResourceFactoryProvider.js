@@ -1047,7 +1047,31 @@
             }),
             retriveProvisionalPo: defineResource(apiVer+ "/propurchaseorder",{},{
             	get: {method: 'GET', params:{partnerId: '@partnerId'}, isArray:true}
-            })
+            }),
+            getActivityMonth: defineResource(apiVer+ "/mediasettlements/activityMonth",{mediaCategory:'@mediaCategory',partnertype: '@partnertype',partnerName:'@partnerName',client:'@client'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }),
+            getmediaCategoryData: defineResource(apiVer+ "/mediasettlements/mediacategory",{client: '@client'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }), 
+            getmediaCategoriesData: defineResource(apiVer+ "/mediasettlements/mediacategories",{},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }),             
+	        getPartnerNames: defineResource(apiVer+ "/mediasettlements/partnernames",{partnertype: '@partnertype',mediaCategory:'@mediaCategory'},{
+	         	get: {method: 'GET', params: {}, isArray: true }
+	        }),
+	        getActivityMonths: defineResource(apiVer+ "/mediasettlements/activityMonths",{mediaCategory:'@mediaCategory',partnertype: '@partnertype',partnerName:'@partnerName'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+            }),
+	        getDisbursementsDatas: defineResource(apiVer+ "/mediasettlements/disbursementsData",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',mediaCategory:'mediaCategory'},{
+	         	get: {method: 'GET', params: {}  }
+	        }),
+	        getActivityMonthWithFileId: defineResource(apiVer+ "/mediasettlements/activeMonth/",{client:'@client',fileId: '@fileId'},{
+            	get: {method: 'GET', params: {}, isArray: true }
+             }),
+             getDisbursements: defineResource(apiVer+ "/mediasettlements/disbursementsdatas",{month:'@month',client:'@client',fileId: '@fileId'},{
+             	get: {method: 'GET', params: {}  }
+              }) 
             
         };
       }];
