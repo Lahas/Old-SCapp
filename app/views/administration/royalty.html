@@ -103,10 +103,10 @@
 	
 	
 	<div class="pull-left">
-	<img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">
+	<!-- <img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading"> -->
 		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-right">Calculate Settlement</button>
 		</div>
-            <table>
+            <table >
             	<tr>
             		<td>
             				<div class="control-group">
@@ -130,7 +130,7 @@
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.patnertype' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select class="input-medium" ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
+                			<select class="input-small" ng-model="formData.patnerType" ng-change="getPartnerTypeCategory(formData.patnerType)" ng-options="partnerTypeData.id as partnerTypeData.mCodeValue for partnerTypeData in partnerTypeDatas" value="{{partnerTypeData.id}}"></select>
               				</div>
             				</div>
             		</td>
