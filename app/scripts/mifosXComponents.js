@@ -249,7 +249,9 @@ define(['underscore', 'mifosX'], function() {
       'settlement/UploadPartnerIdentifierDocumentController',
       'purchaseorder/PurchaseOrderController',
       'provisionalpo/ProvisionalPoController',
-      'provisionalpo/CreateProvisionalPoController'
+      'provisionalpo/CreateProvisionalPoController',
+      'provisionalpo/EditProvisionalPoController',,
+      'trackinvoice/TrackInvoiceController'
       
     ],
     filters: [

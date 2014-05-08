@@ -648,6 +648,10 @@
 		    templateUrl : 'views/provisionalpo/provisionalpo.html'
 	   }).when('/createprovisionalpo/:id',{
 		    templateUrl : 'views/provisionalpo/createprovisionalpo.html'
+	   }).when('/editprovisionalpo/:id',{
+		    templateUrl : 'views/provisionalpo/editprovisionalpo.html'
+	   }).when('/trackinvoice/:id',{
+		    templateUrl : 'views/trackinvoice/trackinvoice.html'
 	   });
 		$locationProvider.html5Mode(false);
 	};

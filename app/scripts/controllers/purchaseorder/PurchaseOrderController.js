@@ -23,6 +23,7 @@
         	resourceFactory.retrivePurchaseOrder.get({provPoId: provPoId},function(data){
         		
         		scope.purchaseOrderData = data.purchaseOrderData;
+        		scope.disbursmentStatusData = data.disbursmentStatusData;
         		var rAmount = scope.provPurchaseOrderData[index].royaltyAmount;
         		scope.nexPurchaseOrderId = data.nexPurchaseOrderId;
         		

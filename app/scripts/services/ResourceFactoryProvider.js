@@ -1029,12 +1029,21 @@
             createProPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/createpropurchaseorder/",{},{
             	post: {method: 'POST', params: {}}
             }),
+            editProvisionalPo: defineResource(apiVer+ "/propurchaseorder/editstatus/:provisionaPoId",{},{
+            	get: {method: 'GET', params: {}, isArray: false},
+            	update: {method: 'PUT'}
+            }),
             createPurchaseOrder: defineResource(apiVer+ "/propurchaseorder/purchaseorder/:partnerId",{},{
             	get: {method: 'GET', params: {}, isArray: true},
             	post: {method: 'POST', params: {}}
             }),
             retrivePurchaseOrder: defineResource(apiVer+ "/purchaseorder/:provPoId",{},{
             	get: {method: 'GET', params: {}, isArray: false},
+            }),
+
+            retrivePurchaseOrderTrackInvoice: defineResource(apiVer+ "/purchaseorder/trackinvoice/:provPoId",{},{
+            	get: {method: 'GET', params: {}, isArray: false},
+            	update: {method: 'PUT'}
             }),
             refreshPurchaseOrder: defineResource(apiVer+ "/purchaseorder/refresh/:provPoId",{},{
             	get: {method: 'GET', params: {}, isArray: false},

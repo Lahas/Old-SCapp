@@ -7,15 +7,24 @@
 			<li><a href="#/game">Partners</a> <span class="divider">/</span></li>
 			<li><a href='#/viewpartneraccount/{{partnerId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
 			<li class="active">{{'label.provisionalpo' | translate}}</li>
+			
 		</ul>
-       <div class="pull-right">
+         
+	    
+	    <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>   
+	    <fieldset>
+	              <legend>{{'label.purchaseorder' | translate}}</legend>
+	    <div class="pull-right">
 	      <div class="btn-group">
 	         <a href="#/createprovisionalpo/{{partnerId}}" class="btn btn-primary"><i class="icon-plus icon-white"></i>Create Prov PO</a>
 	      <!--     <a href="#/editPartnerAgreement/{{resouresId}}" class="btn btn-primary"><i class="icon-edit icon-white"></i>Edit</a> -->
 	   	    
 	      </div>
-	    </div>    
-	    
+	    </div>
 	    <table class="table">
         <thead>
             <tr class="graybg">
@@ -30,14 +39,14 @@
             </tr>
         </thead>
         <tbody>
-	            <tr class="pointer-main" ng-repeat="provData in provPoData">       
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.id}}</td>   
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.pan}}</td>         
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.mediaCategory}}</td>
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.activityMonth}}</td>
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.provPoDate | DateFormat}}</td>      
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.royaltyAmount}}</td>     	             
-                <td class="pointer" data-ng-click="routeTo(provData.id)">{{provData.disburcestatus}}</td>
+	            <tr class="pointer-main" ng-repeat="provData in provPoData" ng-click="routeTo(provData.id)">       
+                <td class="pointer">{{provData.id}}</td>   
+                <td class="pointer">{{provData.pan}}</td>         
+                <td class="pointer">{{provData.mediaCategory}}</td>
+                <td class="pointer">{{provData.activityMonth}}</td>
+                <td class="pointer">{{provData.provPoDate | DateFormat}}</td>      
+                <td class="pointer">{{provData.royaltyAmount}}</td>     	             
+                <td class="pointer">{{provData.disburcestatus}}</td>
                 
                 <!-- <td>
               	<a ng-show="pd.fileName"; ng-click="downloadFile(pd.id)" popover="Download Uploaded File" popover-trigger="mouseenter"><i class="icon-download-alt icon-white"></i></a>
@@ -45,6 +54,8 @@
             </tr>
         </tbody>
     </table>
+    
+    </fieldset>
 	    
 	    
    </div>       
