@@ -61,7 +61,6 @@
 	        			scope.partnerAccountName=scope.mediaSettlementPartnerNameDatas[i].partnerName;
 	        		}
 			  		}	  
-					  
 			  for( var i in scope.partnerTypeDatas){
 	        		if(scope.formData.partnerType == scope.partnerTypeDatas[i].id){
 	        			scope.partnerTypeName=scope.partnerTypeDatas[i].mCodeValue;

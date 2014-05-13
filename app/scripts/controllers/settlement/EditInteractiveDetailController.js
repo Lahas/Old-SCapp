@@ -6,8 +6,8 @@
 		        scope.show = false;
 		        /*scope.upload = {};*/
 		        /*scope.activity = {};*/
-		        scope.headerId = webStorage.get('headerId');
-		        console.log("Web storage:"+webStorage.get('headerId'));
+		       var headerData = webStorage.get('headerId');
+		        scope.headerId=headerData.hId;
 		        var clientData = webStorage.get('clientData');
 			    scope.displayName=clientData.displayName;
 			    scope.statusActive=clientData.statusActive;

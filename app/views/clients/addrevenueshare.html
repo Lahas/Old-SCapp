@@ -48,7 +48,7 @@
                       		<div class="control-group">
 								<label class="control-label" for="revenueShareCode">{{'settlement.label.deduction.code' | translate}} &nbsp;<span class="required">*</span></label>
 									<div class="controls">
-									<select ng-model="formData.revenueShareCode" id="deductionCode"  ng-options="pn.id as pn.deductionCode for pn in deductionMasterDatas" value="{{pn.deductionCode}}">
+									<select ng-model="formData.revenueShareCode" id="revenueShareCode"  ng-options="pn.id as pn.deductionCode for pn in deductionMasterDatas" value="{{pn.deductionCode}}">
 										</select>
 									</div>
 							</div> 
@@ -60,7 +60,7 @@
 					    <div class="control-group">
 							 <label class="control-label" for="mediaCategory">{{'settlement.label.media.category' | translate}}&nbsp;<span class="required">*</span></label>
 								<div class="controls">
-									<select ng-model="formData.mediaCategory" id="gamePlaySource" ng-options="ps.id as ps.mCodeValue for ps in mediaCategoryDatas" value="{{ps.mCodeValue}}">
+									<select ng-model="formData.mediaCategory" id="mediaCategory" ng-options="ps.id as ps.mCodeValue for ps in mediaCategoryDatas" value="{{ps.mCodeValue}}">
 									</select>
 								</div>
 								</div>
@@ -71,7 +71,7 @@
                    				<div class="control-group">
                      			<label class="control-label" for="revenueShareType">{{ 'settlement.label.revenueshare' | translate }}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
-                    			<select  ng-model="formData.revenueShareType" ng-change="setView(formData.revenueShareType)" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+                    			<select  ng-model="formData.revenueShareType" id="revenueShareType" ng-change="setView(formData.revenueShareType)" ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
                     			</select>
                   				</div>
                  				</div>
@@ -83,7 +83,7 @@
                    				<div  class="control-group">
                      			<label class="control-label" for="flat">{{'settlement.label.flat' | translate}}&nbsp;<span class="required">*</span></label>
                     			<div class="controls">
-                    			<input type="text"  ng-model="formData.flat" value=""/>
+                    			<input type="text"  ng-model="formData.flat" id="flat" value=""/>
                     			</div>
                  				</div>
                    		</td>

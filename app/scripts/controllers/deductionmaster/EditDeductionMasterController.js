@@ -59,10 +59,10 @@
 			  delete scope.formData.businessCategory;
 			  delete scope.formData.stateDatas;
 			  resourceFactory.mastersResource.update({id: routeParams.id},scope.formData,function(data){
-	            	location.path('/game');
+	            	location.path('/clients');
 	          });
 			  
-	            webStorage.add("currentTab", {tab: "master"});
+	            webStorage.add("callingTab", {tab: "master"});
 
 		  };
 /*			  scope.deleteaccount = function (){
