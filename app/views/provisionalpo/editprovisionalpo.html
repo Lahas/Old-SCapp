@@ -1,0 +1,36 @@
+ <div ng-controller="EditProvisionalPoController">
+	<!-- <ul class="breadcrumb">
+              <li><a ng-click="tabStatus()" href="#/game">{{'label.partneragreement' | translate}}</a> <span class="divider">/</span></li>
+              <li class="active">{{'label.viewpartneragreement' | translate}}</li>
+          </ul> -->
+          <ul class="breadcrumb">
+			<li><a href="#/game">Partners</a> <span class="divider">/</span></li>
+			<li><a href='#/viewpartneraccount/{{partnerId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
+			<li><a href='#/provisionalpo/{{partnerId}}'>{{'label.provisionalpo' | translate}}</a> <span class="divider">/</span></li>
+			<li class="active">{{'label.editprovisionalpo' | translate}}</li>
+		  </ul>
+         
+	    
+	    <div class="error" ng-show="errorStatus || errorDetails">
+		<label>{{'label.contract.error' | translate}}</label>
+		<label ng-show="errorStatus">{{errorStatus}}</label>
+		<label ng-hide="errorStatus" ng-repeat="error in errorDetails">{{error.code | translate}}</label>
+	    </div>
+	    <form name="partneragreement"  class="form-horizontal well"   ng-submit="submit()">   
+	    <fieldset>
+	        <legend>{{'label.editdisbursestatus' | translate}}</legend>
+		    <div class="control-group">
+	            <label class="control-label" for="disburseStatus">{{'label.disbursestatus' | translate}}&nbsp;<span class="required">*</span></label>
+	            <div class="controls">
+	              <select id="disburseStatus"ng-model="formData.disburseStatus" ng-options="dSD.id as dSD.mCodeValue for dSD in disbursStatusData" value="{{dSD.id}}" >
+	              </select>
+	            </div>
+	       </div>
+	       <div class="offset3">
+            <a href="#/viewpartneraccount/{{formData.partnerAccountId}}" ><button type="reset" class="btn">{{'button.cancel'| translate}}</button></a>
+            <button type="submit" class="btn btn-primary">{{'button.save'| translate}}</button>
+          </div>
+    	</fieldset>
+    	</form>
+	    
+   </div>       

@@ -10,7 +10,7 @@
 		  });
 		  
 		  scope.routeTo = function(provPoId){
-			  console.log("Prov Po Id: "+provPoId);
+			  location.path('editprovisionalpo/'+provPoId);
 		  };
 		  
 	  }

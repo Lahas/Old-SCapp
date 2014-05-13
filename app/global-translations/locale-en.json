@@ -2543,7 +2543,14 @@
 	"table.heading.provpodate":"Prov Po Date",
 	"table.heading.royaltyamount":"Royalty Amount",
 	"label.createprovisionalpo":"Create Provisional PO",
-	"button.trackinvoice":"Track Invoice"
+	"button.trackinvoice":"Track Invoice",
+	"label.update":"Update",
+	"label.invoice.number":"Invoice #",
+	"label.invoice.date":"Invoice Date",
+	"label.trackinvoice":"Track Invoice",
+	"label.disbursestatus":"Disburse Status",
+	"label.editprovisionalpo":"Edit Disburse Status",
+	"label.editdisbursestatus":"Edit Disburse Status"
 	
 	
 
