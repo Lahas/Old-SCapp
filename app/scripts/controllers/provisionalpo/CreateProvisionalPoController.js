@@ -21,7 +21,7 @@
 		  
 		  
 		  resourceFactory.getProPurchaseOrderTemplate.get(function(data){
-			  scope.addressData = data.purchaseOrderData;
+			  /*scope.addressData = data.purchaseOrderData;*/
 			  scope.partnerData = data.partnerNames;
 			  scope.currencyCodesData = data.currencyCodes;
 		  });
