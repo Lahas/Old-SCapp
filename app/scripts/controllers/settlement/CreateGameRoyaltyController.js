@@ -204,7 +204,7 @@
 					 }
 	     				
 					 else{
-						 resourceFactory.getActivityMonth.get({mediaCategory: scope.mediaCategory,partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName },function(data) {
+						 resourceFactory.getActivityMonth.get({mediaCategory: scope.mediaCategory,partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName,fileId:scope.fileId },function(data) {
     					  scope.activityMonths=data;
     					  if(scope.activityMonths.length>0){
     						  $("#activityM").removeAttr("disabled");

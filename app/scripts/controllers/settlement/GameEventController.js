@@ -22,7 +22,7 @@
 	        scope.gameEventData = [];
 	        
 	        scope.routeTo = function(id){
-	        	location.path('/editinteractivedetail/'+id);
+	        	location.path('/viewinteractivedetails/'+id);
 	        };
 	        
 	        resourceFactory.createGameEventResource.get({cId:routeParams.id},function(data) {

@@ -1,12 +1,21 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  EditGameMapDetailsController: function(scope, resourceFactory, location,dateFilter,routeParams,$modal) {
+	  EditGameMapDetailsController: function(scope, resourceFactory, location,dateFilter,routeParams,$modal,webStorage) {
 		  
 		  scope.hideIfNotContentProvider = false;
 		  scope.gameData = [];
 		  scope.partnerGameAttributes = {};
 		  scope.resouresId=routeParams.id;
 		  
+		  
+		  scope.formData = {};
+
+		  
+		  var partnerData=webStorage.get('partnerData');
+		  scope.partnerName=partnerData.partnerName;
+		  scope.formData.partnerTypeName=partnerData.partnerTypeName;
+		  scope.formData.partnerAccountId=partnerData.partnerId;
+		 
 		  resourceFactory.mediaSettlement.get({mediaSettlementId:routeParams.id},function(data) {
 			  scope.formData = data;
 //			  scope.formData.currencyCode = parseInt(data.currencyCode);
@@ -141,7 +150,7 @@
 		}
 	  }
   });
-  mifosX.ng.application.controller('EditGameMapDetailsController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','$modal', mifosX.controllers.EditGameMapDetailsController]).run(function($log) {
+  mifosX.ng.application.controller('EditGameMapDetailsController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','$modal','webStorage', mifosX.controllers.EditGameMapDetailsController]).run(function($log) {
     $log.info("EditGameMapDetailsController initialized");
   });
 }(mifosX.controllers || {}));

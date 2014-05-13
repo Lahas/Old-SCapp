@@ -1,8 +1,22 @@
       
       <div ng-controller="EditGameMapDetailsController">
       <div>
+      <ul class="breadcrumb">
+	<li> <h3>
+            &nbsp;
+            {{partnerName}}
+            <!-- &nbsp;
+            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
+            &nbsp; -->
+          </h3>
+          </li>
+            <li><span class="divider">|</span>
+          <!-- <i class="icon-building"></i> -->
+          <small>PartnerType "{{formData.partnerTypeName}}"</small>
+        </li>
+        </ul>     
         <ul class="breadcrumb">
-              <li><a href="#/game">{{'label.partneraccount' | translate}}</a> <span class="divider">/</span></li>
+              <li><a href="#/game">Partners</a> <span class="divider">/</span></li>
            	<li><a href="#/viewpartneraccount/{{resouresId}}">{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>
               <li class="active">{{'label.editpartneraccount' | translate}}</li>
           </ul>

@@ -99,7 +99,6 @@
 			  };
 	  
 	        scope.submit = function(){
-	        	console.log(scope.revenueData.length);
 	        	delete scope.formData.id;
 	        	/*delete scope.formData.clientId;*/
 	        	delete scope.formData.mediaCategoryData;
