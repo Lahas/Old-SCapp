@@ -975,7 +975,7 @@
         	    getAll: {method: 'GET', params: {}},
         	    update: {method: 'PUT', params: {}}
             }),
-            getActivityMonth: defineResource(apiVer+ "/mediasettlements/activityMonth",{partnertype: '@partnertype',partnerName:'@partnerName',client:'@client'},{
+            getActivityMonth: defineResource(apiVer+ "/mediasettlements/activityMonth",{partnertype: '@partnertype',partnerName:'@partnerName',client:'@client',fileId:'@fileId'},{
             	get: {method: 'GET', params: {}, isArray: true }
              }),
             partnerIdenfierTemplateResource: defineResource(apiVer + "/mediasettlements/partners/template", {}, {
