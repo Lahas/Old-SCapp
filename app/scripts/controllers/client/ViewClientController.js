@@ -399,7 +399,7 @@
                
 
          scope.downloadFile = function (statementId){
-              window.open('https://localhost:9554/obsplatform/api/v1/billmaster/'+statementId+'/print?tenantIdentifier=default');
+              window.open('https://'+document.location.host+'/obsplatform/api/v1/billmaster/'+statementId+'/print?tenantIdentifier=default');
          };
          scope.getAllTickets=function(){      
                resourceFactory.ticketResource.getAll({clientId: routeParams.id},function(data) {	        
@@ -536,6 +536,8 @@
 
         scope.downloadClientIdentifierDocument=function (identifierId, documentId){
           console.log(identifierId,documentId);
+          window.open('https://'+document.location.host+'/obsplatform/api/v1/client_identifiers/'+identifierId+'/documents/'+documentId+'/attachment?tenantIdentifier=default');  
+          
         };
 
 		// *********************** InVenture controller ***********************

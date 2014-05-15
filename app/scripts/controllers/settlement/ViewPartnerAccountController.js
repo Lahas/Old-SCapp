@@ -129,17 +129,19 @@
 
 		            scope.downloadPartnerIdentifierDocument=function (identifierId, documentId){
 		              console.log(identifierId,documentId);
+		          window.open('https://'+document.location.host+'/obsplatform/api/v1/partner_identifiers/'+identifierId+'/documents/'+documentId+'/attachment?tenantIdentifier=default');
+
 		            };
 
 		            scope.downloadDocument = function (id){ 
-			        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+			        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
 			      	  };
 		          
 		          scope.getPartnerDocuments = function () {
 		              resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id} , function(data) {
-		                scope.clientdocuments = data;
-		                for(var i in scope.clientdocuments){
-		                	if(scope.clientdocuments[i].fileName != undefined){
+		                scope.partnerdocuments = data;
+		                for(var i in scope.partnerdocuments){
+		                	if(scope.partnerdocuments[i].fileName != undefined){
 		                		scope.filename = true;
 		                		break;
 		                	}

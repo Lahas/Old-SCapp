@@ -39,7 +39,6 @@
 		        
 				  
 		         scope.cancel = function(){
-			        	
 					  webStorage.add("callingTab", {tab: "master" });
 			      };
 		  

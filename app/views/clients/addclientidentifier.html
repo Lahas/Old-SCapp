@@ -42,7 +42,7 @@
 			<div class="control-group">
 				<label class="control-label" for="documentTypeId">{{'label.document.type' | translate}}<span class="required">*</span></label>
 				<div class="controls">
-					<select ng-model="formData.documentTypeId" ng-options="documenttype.id as documenttype.name for documenttype in documenttypes" value="{{documenttype.id}}" required="required">
+					<select ng-model="formData.documentTypeId" id="id" ng-options="documenttype.id as documenttype.name for documenttype in documenttypes" value="{{documenttype.id}}" required="required">
 					</select>
 				</div>
 			</div>
