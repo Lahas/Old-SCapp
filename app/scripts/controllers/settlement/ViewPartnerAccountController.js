@@ -153,7 +153,7 @@
 		            
 		            scope.deleteDocument = function (documentId, index) {
 		            	resourceFactory.deletepartnerAgreementResource.delete({documentId: documentId} , {} , function(data) {
-		                  scope.clientdocuments.splice(index,1);
+		                  scope.partnerdocuments.splice(index,1);
 		                });
 		              };
 		          

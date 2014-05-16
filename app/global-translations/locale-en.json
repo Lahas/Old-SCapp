@@ -2517,6 +2517,8 @@
 	"label.ppurchaseorder.date":"P-Purchase Order Date",
 	"label.ppurchaseorder.vendor.number":"Vendor Number",
 	"label.ppurchaseorder":"Provisional Purchase Order",
+	"validation.msg.purchaseorder.vendorNumber.cannot.be.blank":"Vendor Number cann't be blank",
+	"validation.msg.purchaseorder.currencyCode.cannot.be.blank":"Currency Code cann't be blank",
 	
 	"error.msg.currency.code.not.found":"Data does not exist.",
 	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank",
@@ -2551,8 +2553,9 @@
 	"label.trackinvoice":"Track Invoice",
 	"label.disbursestatus":"Disburse Status",
 	"label.editprovisionalpo":"Edit Disburse Status",
-	"label.editdisbursestatus":"Edit Disburse Status"
-	
+	"label.editdisbursestatus":"Edit Disburse Status",
+	"error.msg.exceeding.royalty.amount":"please give amount below royalty Amount",
+	"validation.msg.invalid.date.format":"Invalid date format"
 	
 
 }

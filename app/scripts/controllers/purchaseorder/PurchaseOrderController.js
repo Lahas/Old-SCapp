@@ -35,7 +35,8 @@
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
             			purchasrOrderDate : dateFilter(new Date(),'dd MMMM yyyy'),
             			royaltyAmount : scope.purchaseOrderPostData.royaltyAmount,
-            			status : scope.purchaseOrderPostData.status=1
+            		//	status : scope.purchaseOrderPostData.status=1
+            			status : scope.disbursmentStatusData[0].id
             		});
             	}else{        		
 	        		for(var i=0; i<scope.purchaseOrderData.length; i++){
@@ -50,7 +51,7 @@
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
             			purchasrOrderDate : dateFilter(new Date(),'dd MMMM yyyy'),
             			royaltyAmount : scope.purchaseOrderPostData.royaltyAmount,
-            			status : scope.purchaseOrderPostData.status=1
+            			status : scope.disbursmentStatusData[0].id
             		});
             	}
             	
@@ -113,8 +114,9 @@
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
             			purchasrOrderDate : dateFilter(new Date(),'dd MMMM yyyy'),
             			royaltyAmount : scope.purchaseOrderPostData.royaltyAmount,
-            			status : scope.purchaseOrderPostData.status=1
-            		});
+            			//status : scope.purchaseOrderPostData.status=1
+            			status : scope.disbursmentStatusData[0].id
+           		});
             	}else{        		
 	        		for(var i=0; i<scope.purchaseOrderData.length; i++){
 	        			scope.purchaseOrderData[i].purchasrOrderDate = dateFilter(new Date(data.purchaseOrderData[i].purchasrOrderDate),'dd MMMM yyyy');
@@ -128,7 +130,8 @@
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
             			purchasrOrderDate : dateFilter(new Date(),'dd MMMM yyyy'),
             			royaltyAmount : scope.purchaseOrderPostData.royaltyAmount,
-            			status : scope.purchaseOrderPostData.status=1
+            			//status : scope.purchaseOrderPostData.status=1
+            			status : scope.disbursmentStatusData[0].id
             		});
             	}
             	

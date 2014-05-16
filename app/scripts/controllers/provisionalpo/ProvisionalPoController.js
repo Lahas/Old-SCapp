@@ -6,7 +6,7 @@
 		  scope.partnerId = routeParams.id;
 		  resourceFactory.retriveProvisionalPo.get({partnerId:routeParams.id},function(data){
 			  scope.provPoData = data;
-			  console.log("This is data: "+scope.provPoData[0].id);
+			  //console.log("This is data: "+scope.provPoData[0].id);
 		  });
 		  
 		  scope.routeTo = function(provPoId){

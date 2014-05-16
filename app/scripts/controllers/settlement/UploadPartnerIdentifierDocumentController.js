@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  UploadPartnerIdentifierDocumentController: function(scope, location, http, routeParams) {
+	  UploadPartnerIdentifierDocumentController: function(scope, location, http, routeParams,webStorage) {
       scope.partnerId = routeParams.id;
       //console.log(routeParams);
       scope.resourceId = routeParams.resourceId;
@@ -20,10 +20,11 @@
           }
           location.path('/viewpartneraccount/'+scope.partnerId);
         });
+        webStorage.add("callingTab", {someString: "identities" });
       };
     }
   });
-  mifosX.ng.application.controller('UploadPartnerIdentifierDocumentController', ['$scope', '$location', '$http', '$routeParams', mifosX.controllers.UploadPartnerIdentifierDocumentController]).run(function($log) {
+  mifosX.ng.application.controller('UploadPartnerIdentifierDocumentController', ['$scope', '$location', '$http', '$routeParams','webStorage', mifosX.controllers.UploadPartnerIdentifierDocumentController]).run(function($log) {
     $log.info("UploadPartnerIdentifierDocumentController initialized"); 
   });
 }(mifosX.controllers || {}));

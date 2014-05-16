@@ -17,7 +17,7 @@
 		       
 		       
 		       scope.downloadFile = function (id){ 
-		        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+		        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
 		      	  };
 		       
 		       
