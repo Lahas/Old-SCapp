@@ -52,7 +52,7 @@
             <div class="control-group">
               <label class="control-label" for="lastname">{{'label.circle' | translate}}<span class="required">*</span></label></label>
               <div class="controls">
-                <select ng-model="formData.lastname"  ng-options="circle.stateName as circle.stateName for circle in circleDatas" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select><!-- <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/> -->
+                <input type="text" id="lastname" ng-model="formData.lastname"/> <!--  ng-options="circle.stateName as circle.stateName for circle in circleDatas" value="{{office.id}}" ng-change="changeOffice(formData.officeId)" <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/> -->
                 <span  ng-show="createclientform.lastname.$invalid">
                     <small class="error" ng-show="createclientform.lastname.$error.req">
                         Required Field
@@ -117,20 +117,20 @@
   		      <div class="control-group">
               <label class="control-label" for="city">{{'label.city' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" ng-change="getStateAndCountry(formData.city)" required />
+                <input type="text" id="city" name="city" ng-model="formData.city" list ="citylist" required /> <!-- ng-change="getStateAndCountry(formData.city)" --> 
                
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="state">{{'label.state' | translate}} </label>
               <div class="controls">
-                <input type="text" id="state" ng-model="formData.state" readonly/>
+                <select id="state" ng-model="formData.state" ng-options="state.stateName as state.stateName for state in circleDatas" ></select>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="country">{{'label.country' | translate}}<span class="required">*</span></label></label>
               <div class="controls">
-                <input type="text" id="country" name="country" ng-model="formData.country" required readonly/>
+                <input type="text" id="country" name="country" ng-model="formData.country" required/>
               
               </div>
             </div>

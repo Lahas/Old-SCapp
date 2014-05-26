@@ -3,9 +3,15 @@
 	  UploadPartnerIdentifierDocumentController: function(scope, location, http, routeParams,webStorage) {
       scope.partnerId = routeParams.id;
       //console.log(routeParams);
+      
+      var partnerData = webStorage.get('partnerData');
+        scope.partnerName=partnerData.partnerName;
+        scope.partnerTypeName=partnerData.partnerTypeName;
+  	    scope.status=partnerData.status;
+  	    
       scope.resourceId = routeParams.resourceId;
       scope.onFileSelect = function($files) {
-        scope.file = $files[0];
+      scope.file = $files[0];
       };
 
       scope.submit = function () {

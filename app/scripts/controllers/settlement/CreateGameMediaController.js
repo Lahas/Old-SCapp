@@ -1,6 +1,6 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification,dateFilter) {
+	  CreateGameMediaController: function(scope, resourceFactory, location,dateFilter,webStorage,PaginatorService,$notification) {
 		  
 		  
 		scope.partnerAgreements = [];
@@ -20,9 +20,12 @@
 		scope.partnerAddressDetail.purchaseOrderNumber = "IGL/PROVPO/Business/Month/Sequence";
 		scope.purchaseOrderDate.date= new Date();
 		scope.activity.date = new Date();
-		
+		scope.pageItems=[];
+		scope.partnerAccountData = [];	
+		scope.result=[];
+	    scope.agmtStatus=[];
 
-		var callingTab = webStorage.get('currentTab',null);
+		/*var callingTab = webStorage.get('currentTab',null);
 	        if(callingTab == null){
 	        	callingTab="";
 	        }else{
@@ -55,7 +58,7 @@
 			  };
 			 
 	        } 
-		  
+		*/  
 	        
 	       scope.months=[{id:1,mon:"Jan"},{id:2,mon:"Feb"},{id:3,mon:"Mar"},{id:4,mon:"Apr"},
 	            		  {id:5,mon:"May"},{id:6,mon:"Jun"},{id:7,mon:"Jul"},{id:8,mon:"Aug"},{id:9,mon:"Sep"},
@@ -293,22 +296,80 @@
 	            	        
 	            	        
 	          scope.getPartnerAccountDataFetchFunction = function(offset, limit, callback) {
-	            	  	resourceFactory.mediaSettlement.get({offset: offset, limit: limit} ,callback);
+	            	  	resourceFactory.mediaSettlement.get({offset: offset, limit: limit} ,function(data){
+	            	  		scope.result = data.pageItems;
+	            	  		
+	            	  		for(var i in scope.result  ){
+	            	  		scope.agreementStatus= scope.result[i].agreementStatus;
+	            	  		 scope.result[i].statusName=true;
+	            	  		var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+	                    	var endDate = dateFilter(new Date( scope.result[i].endDate),'dd MMMM yyyy');
+	                    	var startDate = dateFilter(new Date( scope.result[i].startDate),'dd MMMM yyyy');
+	                    
+	                    	if(scope.agreementStatus=="Signed"){
+	                    		if(new Date(endDate) >= new Date(toDayDate)){
+	                    			scope.status ="Active";
+	                        	}else{
+	                        		scope.status ="delete";
+	                        	}
+	                    	}
+	                    	if(scope.agreementStatus=="Pending"){
+	                    		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
+	                    			scope.status ="clientStatusType.pending";
+	                        	}else{
+	                        		scope.status ="delete";
+	                        		
+	                       	}           		
+	                    	}
+	                    	 scope.result[i].statusName=scope.status; 
+	                    	}
+	            	  	  	 /*for(var i in  scope.result){
+	            	  			 scope.agmtStatus=  scope.result[i].statusName;
+	            	  			 
+	            	  		}*/
+	            	  		callback(data);
+	            		});
+	            	  	
 	           	};  
-	            	  			
 	          scope.getPartnerAccount = function(){
 			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
-			         
 		        };
 		  
 		     scope.searchPartnerHistory123 = function(offset, limit, callback) {
-	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback);
-	            };
-	  		
+	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , function(data){
+	    	          scope.result = data.pageItems;
+          	  		
+          	  		for(var i in scope.result  ){
+          	  		scope.agreementStatus= scope.result[i].agreementStatus;
+          	  		 scope.result[i].statusName=true;
+          	  		var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+                  	var endDate = dateFilter(new Date( scope.result[i].endDate),'dd MMMM yyyy');
+                  	var startDate = dateFilter(new Date( scope.result[i].startDate),'dd MMMM yyyy');
+                  
+                  	if(scope.agreementStatus=="Signed"){
+                  		if(new Date(endDate) >= new Date(toDayDate)){
+                  			scope.status ="Active";
+                      	}else{
+                      		scope.status ="delete";
+                      	}
+                  	}
+                  	if(scope.agreementStatus=="Pending"){
+                  		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
+                  			scope.status ="clientStatusType.pending";
+                      	}else{
+                      		scope.status ="delete";
+                      		
+                     	}           		
+                  	}
+                  	 scope.result[i].statusName=scope.status; 
+                  	}
+          	  		callback(data);
+	            });
+		     };
 		     scope.searchPartnerHistory = function(filterText) {
 	  			  scope.partnerAccountData = PaginatorService.paginate(scope.searchPartnerHistory123, 14);
 	  	    	}; 
-		  
+	  	    	
 	  		 scope.getPartnerAgreementDataFetchFunction = function(offset, limit, callback){
 	  			    resourceFactory.partnerAgreementResource.getAllfiles({offset: offset, limit: limit} , callback);
 	  			/* scope.fileName=fileName;

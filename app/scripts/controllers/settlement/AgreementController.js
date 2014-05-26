@@ -9,6 +9,7 @@
 			  var partnerData=webStorage.get('partnerData');
 			  scope.partnerName=partnerData.partnerName;
 			  scope.partnerTypeName=partnerData.partnerTypeName;
+			 // scope.status=partnerData.status;
 			  
 			  
 			  scope.routeTo=function(id){
@@ -25,7 +26,29 @@
 			  resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id},function(data){
 				  
 				  scope.partnerAgreements=data;
-				 // console.log(scope.partnerAgreements);
+				  for(var i in  scope.partnerAgreements){
+				  scope.agreementType=scope.partnerAgreements[i].agreementType;
+				  scope.startDate=dateFilter(new Date(scope.partnerAgreements[i].startDate),'dd MMMM yyyy');
+				  scope.endDate=dateFilter(new Date(scope.partnerAgreements[i].endDate),'dd MMMM yyyy');
+				  var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+				
+				  if( scope.agreementType=="Signed"){
+					  if(new Date(scope.endDate) >=new Date(toDayDate)){
+	          			scope.status ="Active";
+	              	}else{
+	              		scope.status ="delete";
+	              	}
+	          	}if(scope.agreementType=="Pending"){
+	        		if(new Date(scope.endDate).getTime() === new Date(scope.startDate).getTime()){
+	        			scope.status ="clientStatusType.pending";
+	            	}else{
+	            		scope.status ="delete";
+	           	}           		
+	        	}
+				}if(scope.partnerAgreements.length==0){
+					scope.status ="delete";
+				}
+			  
 			  });
 			  
 		  }

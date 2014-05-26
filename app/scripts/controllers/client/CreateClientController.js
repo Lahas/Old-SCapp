@@ -29,7 +29,7 @@
            
           });
         };
-
+/*
         $("#city").change(function(){
         	
         	resourceFactory.AddressTemplateResource.get({city : scope.formData.city}, function(data) {
@@ -37,7 +37,7 @@
         		scope.formData.country = data.country;
          
         });
-        });
+        });*/
         /*scope.getStateAndCountry=function(city){
         	alert(1);
         };*/

@@ -55,19 +55,19 @@
                 <th>{{'table.heading.gamemedia.gameHeader.activityMonth' | translate}}</th>
                 <th>{{'table.heading.gamemedia.gameHeader.dataUploadDate' | translate}}</th>
                 <th>{{'table.heading.gamemedia.gameHeader.businessLine' | translate}}</th>
-                <!-- <th>{{'table.heading.gamemedia.gameHeader.category' | translate}}</th> -->
+                 <th>{{'table.heading.gamemedia.gameHeader.totalDetails' | translate}}</th> 
                 <!-- <th>{{'table.heading.gamemedia.gameHeader.charegecode' | translate}}</th> -->
                 
               </tr>
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="fd in formData">
-                <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.id}}</td><!-- editinteractivedetail -->
+                <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.id}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.externalId}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.activityMonth}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.dataUploadedDate | DateFormat}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.businessLine}}</td>
-                <!-- <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.mediaCategory}}</a></td> -->
+                <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.totalDetails.totalDetail}}</td>
                 <!-- <td class="pointer"><a href="#/editinteractivedetail/{{fd.id}}">{{fd.chargeCode}}</a></td> -->
                 
               </tr>

@@ -4,9 +4,9 @@
 	<li> <h3>
             &nbsp;
             {{partnerAccountName}}
-            <!-- &nbsp;
-            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
-            &nbsp; -->
+            &nbsp;
+            <i class="icon-circle {{ status | StatusLookup}}"></i>
+            &nbsp; 
           </h3>
           </li>
             <li><span class="divider">|</span>
@@ -75,7 +75,7 @@
           <div class="control-group">
 	            <label class="control-label" for="agreementType">{{'label.agreementtype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.agreementType"  ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
+	              <select ng-model="formData.agreementType" ng-change=dateValues(formData.agreementType) ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
 	              </select>
 	            </div>
 	       </div>

@@ -2146,6 +2146,7 @@
 "table.heading.gamemedia.partner.mediacategory":"Media Category",
 "table.heading.gamemedia.partner.partnername":"Name",
 "table.heading.gamemedia.partner.partneraddress":"Address",
+"table.heading.gamemedia.partner.agreementStatus":"AgreementStatus",
 "table.heading.agreementtype":"Agreement Category",
 "table.heading.partnername":"Partner Name",
 "table.heading.partnertype":"Partner Type",
@@ -2289,6 +2290,7 @@
   "table.heading.gamemedia.gameHeader.contentName":"Content Name",
   "table.heading.gamemedia.gameHeader.charegecode":"Charge Code",
   "table.heading.gamemedia.partner.currencycode":"Currency Code",
+  "table.heading.gamemedia.gameHeader.totalDetails":"totalDetails",
   
   "label.gameevent":"Interactive Headers",
   "label.creategameevent":"Create Interactive Header",

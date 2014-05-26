@@ -22,7 +22,19 @@
 			  scope.onFileSelect = function($files) {
 			        scope.file = $files[0];
 			      };
-
+			      scope.dateValues=function(value){
+					  console.log(value);
+					  for(var i in scope.agreementTypeDatas){
+						 if(scope.agreementTypeDatas[i].id==value&&scope.agreementTypeDatas[i].mCodeValue == "Pending") {
+							  $("#startDate").attr("disabled","disabled");
+							  $("#endDate").attr("disabled","disabled");
+						 }else{
+							 $("#startDate").removeAttr("disabled");
+							  $("#endDate").removeAttr("disabled");
+						 }
+					  }
+				  };
+			      
 		  resourceFactory.editpartnerAgreementResource.getAllfiles({documentId: routeParams.id} ,function(data) {
 		            
 		        	scope.partnerTypeDatas = data.partnerAccountData.partnerTypeData;
@@ -49,12 +61,35 @@
 					  scope.formData.royaltyShare=data.mediaSettlementCommand.royaltyShare;
 					  scope.formData.royaltySequence=data.mediaSettlementCommand.royaltySequence;
 					  scope.formData.mgAmount = data.mediaSettlementCommand.mgAmount;
-		/*		
-			for(var i in scope.partnerAgreementDatas){
-				if(scope.partnerAgreementDatas[i].mediaCategory == 139 ){
-					 scope.formData.mediaCategory=data.partnerAgreementDatas[i].mediaCategory;
-				}
-			}	*/	  
+					  for(var i in scope.agreementTypeDatas){
+					if(scope.agreementTypeDatas[i].id==scope.formData.agreementType&&
+							scope.agreementTypeDatas[i].mCodeValue == "Pending") {
+			              $("#startDate").attr("disabled","disabled");
+			              $("#endDate").attr("disabled","disabled");
+		             }else{
+			            $("#startDate").removeAttr("disabled");
+			             $("#endDate").removeAttr("disabled");
+		             }
+		          }
+					  var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+					  for(var i in scope.agreementTypeDatas){
+				     if(scope.formData.agreementType == scope.agreementTypeDatas[i].id){
+					     scope.agreementType=scope.agreementTypeDatas[i].mCodeValue;
+				   }
+		      	}	if( scope.agreementType=="Signed"){
+					  if(new Date(scope.formData.endDate) >=new Date(toDayDate)){
+		          			scope.status ="Active";
+		              	}else{
+		              		scope.status ="delete";
+		              	}
+		          	}if(scope.agreementType=="Pending"){
+		        		if(new Date(scope.formData.endDate).getTime() === new Date(scope.formData.startDate).getTime()){
+		        			scope.status ="clientStatusType.pending";
+		            	}else{
+		            		scope.status ="delete";
+		           	}           		
+		        	}console.log(scope.status);
+
 				
 			  for( var i in scope.mediaSettlementPartnerNameDatas){
 	        		if(scope.formData.partnerAccountId == scope.mediaSettlementPartnerNameDatas[i].id){

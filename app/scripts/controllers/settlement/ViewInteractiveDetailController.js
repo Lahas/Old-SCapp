@@ -43,8 +43,7 @@
 		            scope.activity.date = dateFilter(new Date(year,month,1),'MMM yyyy');
 		            scope.formData.businessLine = data.businessLineStr;
 		            scope.interactiveData = data.interactiveDetailsData;
-		            
-		            
+		            scope.totalGrossAmount =data.totalGrossAmount.totalGrossAmount;
 		          
 		        });
 			    

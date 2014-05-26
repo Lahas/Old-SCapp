@@ -15,10 +15,31 @@
 					scope.externalId=data.externalId;
 					scope.currencyName=data.currencyName;
 					scope.partnerAddress=data.partnerAddress;
-					
+					var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+					if(data.partnerAgreement==undefined){
+						scope.status ="delete";
+					}else{
+					scope.agreementStatus=data.partnerAgreement.agreementStatus;
+                	var endDate = dateFilter(new Date(data.partnerAgreement.endDate),'dd MMMM yyyy');
+                	var startDate = dateFilter(new Date(data.partnerAgreement.startDate),'dd MMMM yyyy');
+                	if(scope.agreementStatus=="Signed"){
+                		if(new Date(endDate) >= new Date(toDayDate)){
+                			scope.status ="Active";
+                    	}else{
+                    		scope.status ="delete";
+                    	}
+                	}
+                	if(scope.agreementStatus=="Pending"){
+                		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
+                			scope.status ="clientStatusType.pending";
+                    	}else{
+                    		scope.status ="delete";
+                   	}           		
+                	} }
+
 					 webStorage.add("partnerData", {partnerName: data.partnerName, partnerTypeName: data.partnerTypeName,
-						externalId: data.externalId, emailId: data.emailId,
-	                     partnerAddress: data.partnerAddress, currencyName: data.currencyName,partnerId:data.id });
+						externalId: data.externalId, emailId: data.emailId,partnerAddress: data.partnerAddress, currencyName: data.currencyName,
+						partnerId:data.id,status:scope.status});
 	                    
 					 
 					   var callingTab = webStorage.get('callingTab',null);
