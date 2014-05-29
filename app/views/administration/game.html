@@ -425,7 +425,7 @@
 
       </tab>
       -->
-       <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
+       <!-- <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
       	<form class="form-horizontal well" ng-submit="submitProPurchaseOrder()">
         
         <div class="error" ng-show="errorStatus || errorDetails">
@@ -530,7 +530,7 @@
 							<td><input type="text" class="input-medium" datepicker-pop="MMM yyyy" ng-model="month.date" is-open="opened" min="minDate" max="maxDate" date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;" id="activityMonth" readonly/>&nbsp;&nbsp;&nbsp;<input type="button" value="Get details" ng-click="getRoyaltyAmount()" class="btn btn-primary"/></td>
 							<td><input type="text" class="input-small" ng-model="formData.royaltyAmount" id="currencyamount" readonly/></td>
 							<td><input type="text" ng-model="formData.currencyCode" class="input-mini" id="currencyCode" readonly></td>
-							<!--  <td><select  class="input-small" ng-model="formData.currency" id="currency" ng-options="currencyCodes.code as currencyCodes.code for currencyCodes in currencyCodesData"  value="{{currencyCodes.code}}"></select></td> -->
+							 <td><select  class="input-small" ng-model="formData.currency" id="currency" ng-options="currencyCodes.code as currencyCodes.code for currencyCodes in currencyCodesData"  value="{{currencyCodes.code}}"></select></td>
 					        
 						</tr>
 					</table>
@@ -538,7 +538,7 @@
 					<table class="table" width="100%" border="1" ng-show="royaltyAmountsData">
 						<thead>
 						<tr class="graybg">
-							 <th>{{ 'label.client' | translate }}</th>
+							 <th>{{ 'label.client' | translate }}</th>a
 	                         <th>{{ 'label.settlementsource' | translate }}</th>
 	                         <th>{{ 'label.grossRevenue' | translate }}</th>
 	                         <th>{{ 'label.deductionamount' | translate }}</th>
@@ -575,7 +575,7 @@
       	   			
       	   				    
       </tab>
- 
+  -->
     </tabset>
     
     </div>
