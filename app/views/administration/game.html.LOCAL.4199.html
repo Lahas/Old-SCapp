@@ -1,3 +1,5 @@
+
+ 	
     <div ng-controller="CreateGameMediaController">
       <tabset  style="margin-bottom: 0px;">
      
@@ -46,7 +48,7 @@
             </thead>
             <tbody>
               <tr class="pointer-main" ng-repeat="pd in partnerAccountData.currentPageItems  | filter:filterText" >
-                <td class="pointer" data-ng-click="partnerTo(pd.id)"><i class="icon-stop {{ pd.statusName | StatusLookup }}"></i>&nbsp;{{pd.partnerName}}</td>
+                <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.partnerName}}</td>
                 <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.partnerTypeName}}</td>
                 <td class="pointer"data-ng-click="partnerTo(pd.id)">{{pd.partnerAddress}}</td>
                 <td class="pointer" data-ng-click="partnerTo(pd.id)">{{pd.contactNum}}</td>
@@ -66,7 +68,7 @@
           <a href="#/createpartneragreement" class="btn btn-primary"><i class="icon-plus icon-white"></i>{{ 'button.add' | translate }}</a>
         </div> 
          <form ng-submit="searchPartnerAgreementHistory(filterText)">
-		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnDateFormaterName/category/status">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by partnerName/category/status">
 	   </form>    
           <table class="table">
         <thead>
@@ -423,7 +425,7 @@
 
       </tab>
       -->
-    <!--    <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
+       <!-- <tab heading="{{'tab.ppurchase.order' | translate}}" select="getProPurchaseOrderTemplate()" active="purchaseorder">
       	<form class="form-horizontal well" ng-submit="submitProPurchaseOrder()">
         
         <div class="error" ng-show="errorStatus || errorDetails">
@@ -572,7 +574,8 @@
       	   	
       	   			
       	   				    
-      </tab> -->
+      </tab>
+  -->
     </tabset>
     
     </div>
