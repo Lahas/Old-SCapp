@@ -6,13 +6,11 @@
 		  scope.gameData = [];
 		  scope.partnerGameAttributes = {};
 		  scope.resouresId=routeParams.id;
-		  
-		  
 		  scope.formData = {};
 
-		  
 		  var partnerData=webStorage.get('partnerData');
 		  scope.partnerName=partnerData.partnerName;
+		  scope.status=partnerData.status;
 		  scope.formData.partnerTypeName=partnerData.partnerTypeName;
 		  scope.formData.partnerAccountId=partnerData.partnerId;
 		 

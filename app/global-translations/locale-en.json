@@ -270,13 +270,14 @@
   "link.view.client":"View Client",
   "link.add.clientidentifier":"Add Client Identifier",
   "label.select.identitydocument.type":"Select Identity Doc Type",
-  "label.unique.identification":"Unique Identification #",
+  "label.unique.identification":"Unique Identification No:",
   "label.document.type":"Identity Document Type:",
   "label.upload.client.document":"Upload Client Document",
   "label.add.client.identifier":"Add Client Identifier",
   "tab.templates":"Templates",
   "tab.identities":"Identities",
   "tab.closedaccount":"Closed A/C",
+  "error.msg.clientIdentifier.type.duplicate":"Identity Document Type cann't be duplicate or already exists",
 
   "#edit client":"",
   "label.individual":"Individual",
@@ -2145,6 +2146,7 @@
 "table.heading.gamemedia.partner.mediacategory":"Media Category",
 "table.heading.gamemedia.partner.partnername":"Name",
 "table.heading.gamemedia.partner.partneraddress":"Address",
+"table.heading.gamemedia.partner.agreementStatus":"AgreementStatus",
 "table.heading.agreementtype":"Agreement Category",
 "table.heading.partnername":"Partner Name",
 "table.heading.partnertype":"Partner Type",
@@ -2288,6 +2290,7 @@
   "table.heading.gamemedia.gameHeader.contentName":"Content Name",
   "table.heading.gamemedia.gameHeader.charegecode":"Charge Code",
   "table.heading.gamemedia.partner.currencycode":"Currency Code",
+  "table.heading.gamemedia.gameHeader.totalDetails":"totalDetails",
   
   "label.gameevent":"Interactive Headers",
   "label.creategameevent":"Create Interactive Header",
@@ -2516,6 +2519,8 @@
 	"label.ppurchaseorder.date":"P-Purchase Order Date",
 	"label.ppurchaseorder.vendor.number":"Vendor Number",
 	"label.ppurchaseorder":"Provisional Purchase Order",
+	"validation.msg.purchaseorder.vendorNumber.cannot.be.blank":"Vendor Number cann't be blank",
+	"validation.msg.purchaseorder.currencyCode.cannot.be.blank":"Currency Code cann't be blank",
 	
 	"error.msg.currency.code.not.found":"Data does not exist.",
 	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Code cannot be blank",
@@ -2550,8 +2555,9 @@
 	"label.trackinvoice":"Track Invoice",
 	"label.disbursestatus":"Disburse Status",
 	"label.editprovisionalpo":"Edit Disburse Status",
-	"label.editdisbursestatus":"Edit Disburse Status"
-	
+	"label.editdisbursestatus":"Edit Disburse Status",
+	"error.msg.exceeding.royalty.amount":"please give amount below royalty Amount",
+	"validation.msg.invalid.date.format":"Invalid date format"
 	
 
 }

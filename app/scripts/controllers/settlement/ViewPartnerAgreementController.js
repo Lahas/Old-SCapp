@@ -15,6 +15,7 @@
 			  scope.minDate=new Date();
 			  scope.resouresId=routeParams.id;
 			  
+			 
 			  scope.royaltySequenceDatas=[{id:0, value:"Default"},{id:1, value:"Specific"} ];
 			  scope.statusDatas=[{id:1, value:"Active"},{id:0, value:"Deactive"} ];
 		
@@ -31,9 +32,22 @@
 			  scope.partnerAccountId = data.agreementDetails.partnerAccountId;
 			  scope.mgAmount = data.agreementDetails.mgAmount;
 			  scope.fileName = data.agreementDetails.fileName;
-			  
 			  scope.mediaCategoryDatas = data.mediaCategoryDetails;
-			  
+			  var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+			  if( scope.agreementType=="Signed"){
+				  if(new Date(scope.endDate) >=new Date(toDayDate)){
+          			scope.status ="Active";
+              	}else{
+              		scope.status ="delete";
+              	}
+          	}if(scope.agreementType=="Pending"){
+        		if(new Date(scope.endDate).getTime() === new Date(scope.startDate).getTime()){
+        			scope.status ="clientStatusType.pending";
+            	}else{
+            		scope.status ="delete";
+           	}           		
+        	}//console.log(scope.status);
+		   
 			  for( var i in scope.mediaCategoryDatas){
 					for( var j in scope.statusDatas){
 						if(scope.mediaCategoryDatas[i].status == scope.statusDatas[j].id){

@@ -1,10 +1,9 @@
-	<div><ul class="breadcrumb">
-              <li><a href="#/clients">Deduction Codes</a> <span class="divider">/</span></li>
-              <li class="active">Add Deduction Codes</li>
-          </ul>
-          </div>
-          
-        <div ng-controller="CreateDeductionMasterController">
+	<div ng-controller="CreateDeductionMasterController">
+	   <ul class="breadcrumb">
+         <li><a href="#/clients" ng-click="cancel()">Deduction Codes</a> <span class="divider">/</span></li>
+         <li class="active">Add Deduction Codes</li>
+          </ul>          
+        <div>
        <div class="error" ng-show="errorStatus || errorDetails">
 		<label>{{'label.contract.error' | translate}}</label>
 		<label ng-show="errorStatus">{{errorStatus}}</label>
@@ -112,4 +111,4 @@
           </div>
 	 </fieldset>
 </form>
-     		</div>
+     	</div>	</div>

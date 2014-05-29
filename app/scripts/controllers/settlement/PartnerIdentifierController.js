@@ -6,8 +6,7 @@
             var partnerData = webStorage.get('partnerData');
             scope.partnerName=partnerData.partnerName;
         	scope.partnerTypeName=partnerData.partnerTypeName;
-            
-            
+        	scope.status = partnerData.status;            
             scope.formData = {};
             scope.documenttypes = [];
             resourceFactory.partnerIdenfierTemplateResource.get( function(data) {

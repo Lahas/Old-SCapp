@@ -6,6 +6,7 @@
 			  
 			  var partnerData=webStorage.get('partnerData');
 			  scope.partnerName=partnerData.partnerName;
+			  scope.status=partnerData.status;
 			  scope.formData.partnerType=partnerData.partnerTypeName;
 			  scope.formData.partnerAccountId=partnerData.partnerId;
 			  
@@ -43,6 +44,22 @@
 			        scope.playSourceDatas=data.playSourceData;
 		          
 		      });
+			  
+			  scope.dateValues=function(value){
+				  for(var i in scope.agreementTypeDatas){
+					 if(scope.agreementTypeDatas[i].id==value&&scope.agreementTypeDatas[i].mCodeValue == "Pending") {
+						  $("#startDate").attr("disabled","disabled");
+						  $("#endDate").attr("disabled","disabled");
+					 }else{
+						 $("#startDate").removeAttr("disabled");
+						  $("#endDate").removeAttr("disabled");
+					 }
+				  }
+			  };
+			  
+			  
+			  
+			//  $("#startDate").attr("disabled","disabled"); 
 			  
 			  scope.minimumValue = function(value){
 		        	

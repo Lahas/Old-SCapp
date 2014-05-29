@@ -79,7 +79,8 @@
                 <div class="control-group">
                   <label class="control-label">{{ 'label.circle' | translate }}<span class="required">*</span></label>
                   <div class="controls">
-                    <select ng-model="formData.lastname"  ng-options="circle.stateName as circle.stateName for circle in circleDatas" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select><!-- <input type="text" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/> -->
+                  <!--   <select ng-model="formData.lastname"  ng-options="circle.stateName as circle.stateName for circle in circleDatas" value="{{office.id}}" ng-change="changeOffice(formData.officeId)"></select> --><!-- <input type="text" name="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/> -->
+                  <input type="text" id="lastname" ng-model="formData.lastname" required ng-minlength=3 late-Validate/>
                     <span  ng-show="editclientform.lastname.$invalid">
                       <small class="error" ng-show="editclientform.lastname.$error.req">
                           Required Field

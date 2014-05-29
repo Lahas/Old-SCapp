@@ -95,15 +95,18 @@
 						</div>
 					</div>
 				</td>
-			</tr> -->
-						
-			
+			</tr> -->					
 		    
 		</table>
 		<fieldset>
-          <legend>View Interactive Details</legend>
-		
-          
+		<div class="pull-right">
+              				<label class="control-label">Total GrossRevenue Amount</label>
+              				<div class="controls">
+                			<input type="text" class="input-small"  ng-model="formData.totalGrossAmount" value="{{totalGrossAmount}}" readonly>
+              				</div>
+            				</div>
+        	
+		  <legend>View Interactive Details</legend>
 					<table class ="table" width="100%" ng-show="interactiveData.length>0">
 						<tr class="graybg">
                          <th>{{ 'label.source' | translate }}</th>
@@ -130,9 +133,8 @@
 			
 			<td><a href="#/editinteractivedetail/{{ad.id}}" ng-click="addHeaderId()"><i class="icon-edit icon-white"></i></a></td>
 							</tr>
-						
 					</table>
-					</fieldset>
+						</fieldset>
 		<div class="offset3">
 			<a href="#/gameevent/{{cId}}"><button type="reset" class="btn">Back</button></a>
 		</div>

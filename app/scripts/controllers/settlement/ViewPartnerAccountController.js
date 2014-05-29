@@ -15,10 +15,31 @@
 					scope.externalId=data.externalId;
 					scope.currencyName=data.currencyName;
 					scope.partnerAddress=data.partnerAddress;
-					
+					var toDayDate = dateFilter(new Date(),'dd MMMM yyyy');
+					if(data.partnerAgreement==undefined){
+						scope.status ="delete";
+					}else{
+					scope.agreementStatus=data.partnerAgreement.agreementStatus;
+                	var endDate = dateFilter(new Date(data.partnerAgreement.endDate),'dd MMMM yyyy');
+                	var startDate = dateFilter(new Date(data.partnerAgreement.startDate),'dd MMMM yyyy');
+                	if(scope.agreementStatus=="Signed"){
+                		if(new Date(endDate) >= new Date(toDayDate)){
+                			scope.status ="Active";
+                    	}else{
+                    		scope.status ="delete";
+                    	}
+                	}
+                	if(scope.agreementStatus=="Pending"){
+                		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
+                			scope.status ="clientStatusType.pending";
+                    	}else{
+                    		scope.status ="delete";
+                   	}           		
+                	} }
+
 					 webStorage.add("partnerData", {partnerName: data.partnerName, partnerTypeName: data.partnerTypeName,
-						externalId: data.externalId, emailId: data.emailId,
-	                     partnerAddress: data.partnerAddress, currencyName: data.currencyName,partnerId:data.id });
+						externalId: data.externalId, emailId: data.emailId,partnerAddress: data.partnerAddress, currencyName: data.currencyName,
+						partnerId:data.id,status:scope.status});
 	                    
 					 
 					   var callingTab = webStorage.get('callingTab',null);
@@ -129,17 +150,19 @@
 
 		            scope.downloadPartnerIdentifierDocument=function (identifierId, documentId){
 		              console.log(identifierId,documentId);
+		          window.open('https://'+document.location.host+'/obsplatform/api/v1/partner_identifiers/'+identifierId+'/documents/'+documentId+'/attachment?tenantIdentifier=default');
+
 		            };
 
 		            scope.downloadDocument = function (id){ 
-			        	  window.open('https://localhost:9554/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
+			        	  window.open('https://'+document.location.host+'/obsplatform/api/v1/mediasettlements/'+id+'/print?tenantIdentifier=default');
 			      	  };
 		          
 		          scope.getPartnerDocuments = function () {
 		              resourceFactory.partnerAgreementResource.getAllfiles({partnerId: routeParams.id} , function(data) {
-		                scope.clientdocuments = data;
-		                for(var i in scope.clientdocuments){
-		                	if(scope.clientdocuments[i].fileName != undefined){
+		                scope.partnerdocuments = data;
+		                for(var i in scope.partnerdocuments){
+		                	if(scope.partnerdocuments[i].fileName != undefined){
 		                		scope.filename = true;
 		                		break;
 		                	}
@@ -151,7 +174,7 @@
 		            
 		            scope.deleteDocument = function (documentId, index) {
 		            	resourceFactory.deletepartnerAgreementResource.delete({documentId: documentId} , {} , function(data) {
-		                  scope.clientdocuments.splice(index,1);
+		                  scope.partnerdocuments.splice(index,1);
 		                });
 		              };
 		          

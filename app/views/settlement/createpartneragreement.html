@@ -3,9 +3,9 @@
 	<li> <h3>
             &nbsp;
             {{partnerName}}
-            <!-- &nbsp;
-            <i class="icon-circle {{client.status.code | StatusLookup}}"></i>
-            &nbsp; -->
+             &nbsp;
+            <i class="icon-circle {{status | StatusLookup}}"></i>
+            &nbsp; 
           </h3>
           </li>
             <li><span class="divider">|</span>
@@ -63,7 +63,7 @@
           <div class="control-group">
 	            <label class="control-label" for="agreementType">{{'label.agreementtype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.agreementType"  ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
+	              <select id= "agreementType" ng-model="formData.agreementType" ng-change="dateValues(formData.agreementType)"  ng-options="agreementTypeData.id as agreementTypeData.mCodeValue for agreementTypeData in agreementTypeDatas" value="{{agreementTypeData.id}}">
 	              </select>
 	            </div>
 	       </div>
@@ -72,7 +72,7 @@
 	       	       <div class="control-group">
 	            <label class="control-label" for="royaltyType">{{'label.royaltytype' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
+	              <select id="royaltyType" ng-model="formData.royaltyType"  ng-options="royaltyTypeData.id as royaltyTypeData.mCodeValue for royaltyTypeData in royaltyTypeDatas" value="{{royaltyTypeData.id}}">
 	              </select>
 	            </div>
 	       </div>
@@ -84,7 +84,7 @@
 	           <div class="control-group">
 	            <label class="control-label" for="agreementCategory">{{'label.agreementcategory' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.agreementCategory"  ng-change="minimumValue(formData.agreementCategory)" ng-options="agreementCategoryData.id as agreementCategoryData.mCodeValue for agreementCategoryData in agreementCategoryDatas" value="{{agreementCategoryData.id}}">
+	              <select id="agreementCategory" ng-model="formData.agreementCategory"  ng-change="minimumValue(formData.agreementCategory)" ng-options="agreementCategoryData.id as agreementCategoryData.mCodeValue for agreementCategoryData in agreementCategoryDatas" value="{{agreementCategoryData.id}}">
 	              </select>
 	            </div>
 	       </div>
@@ -94,7 +94,7 @@
 	       <div class="control-group">
 	            <label class="control-label" for="settlementSource">{{'label.settlementsource' | translate}}&nbsp;<span class="required">*</span></label>
 	            <div class="controls">
-	              <select ng-model="formData.settlementSource"  ng-options="settlementSourceData.id as settlementSourceData.mCodeValue for settlementSourceData in settlementSourceDatas" value="{{settlementSourceData.id}}">
+	              <select id="settlementSource" ng-model="formData.settlementSource"  ng-options="settlementSourceData.id as settlementSourceData.mCodeValue for settlementSourceData in settlementSourceDatas" value="{{settlementSourceData.id}}">
 	              </select>
 	            </div>
 	       </div>
@@ -117,7 +117,7 @@
             <label class="control-label" for="startDate">{{'label.contreffectdate' | translate}}&nbsp;<span class="required">*</span></label>
             <div class="controls">
               <input type="text" id="startDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.startDate" is-open="opened"  
-              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  disabled/>
             </div>	
           </div>
       
@@ -126,8 +126,8 @@
       		<div class="control-group">
             <label class="control-label" for="endDate">{{'label.contrenddate' | translate}}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" min="minDate"
-              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
+              <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" 
+              date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  disabled/>
             </div>	
           </div>
       

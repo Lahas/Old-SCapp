@@ -19,41 +19,12 @@
       		<fieldset>
       		<legend>{{'label.addpartneraccount' | translate}}</legend>
 				<table>
-					<tr>
-						<td>
-							<table>
-								<!-- <tr>
-									<td>
-									<div class="control-group">
-										<label class="control-label" for="partnerType">{{'label.partner.type' | translate }}&nbsp;<span class="required">*</span></label>
-										<div class="controls">
-											<select ng-model="formData.partnerType" id="partnerType"
-												ng-change="hideChannelPartner(formData.partnerType)" ng-options="partnerType.id as partnerType.mCodeValue for partnerType in partnerType"
-												value="{{partnerType.mCodeValue}}">
-											</select>
-										</div>
-									</div>
-									</td>
-								</tr> -->
-								<!-- <tr>
-									<td>
-							          	<div class="control-group">
-											<label class="control-label" for="mediaCategory">{{'label.partner.media.category' | translate }}&nbsp;<span class="required">*</span></label>
-											<div class="controls">
-												<select ng-model="formData.mediaCategory" id="mediaCategory"
-													ng-options="mediaCategory.id as mediaCategory.mCodeValue for mediaCategory in mediaCategory"
-													value="{{mediaCategory.mCodeValue}}">
-												</select>
-											</div>
-									    </div>
-									</td>
-								</tr> -->
-								<tr>
-									<td>
+						<tr>
+								<td>
 							          	<div class="control-group">
 											<label class="control-label" for="partnerName">{{'label.partner.name' | translate }}&nbsp;<span class="required">*</span></label>
 											<div class="controls">
-												<input type="text" ng-model="formData.partnerName" id="partnerName"/>
+												<input type="text" id="PartnerName" ng-model="formData.partnerName" />
 											</div>
 									    </div>
 									</td>
@@ -138,16 +109,12 @@
 																							
 							</table>
 							
-						</td>
-					</tr>
-				</table>
-				
 		<!-- <fieldset ng-show="hideIfNotContentProvider">
            <legend>Channel Partner mapping</legend>
           <table id="gameTable">
           <tr class="control-group">
                 <td>
-                    <form>
+                    <form>200
                       <button type="button" ng-click="addChannelPartner()" class="btn btn-primary"><i class="icon-plus icon-white"></i></button>
                     </form>
                 </td>

@@ -1,5 +1,14 @@
 <div ng-controller="UploadPartnerIdentifierDocumentController">
-	<div>
+	<div><ul class="breadcrumb">
+     <li><h3>
+            &nbsp;
+            {{partnerName}}
+            <i class="icon-circle {{status | StatusLookup }}"></i>
+            &nbsp;
+          </h3> </li>
+            <li><span class="divider">|</span>
+          <small>PartnerType "{{partnerTypeName}}"</small>
+        </li></ul>
 		<ul class="breadcrumb">
 			  <li><a  href="#/game">Partners</a> <span class="divider">/</span></li>
               <li><a href='#/viewpartneraccount/{{partnerId}}'>{{'label.viewpartneraccount' | translate}}</a> <span class="divider">/</span></li>			
