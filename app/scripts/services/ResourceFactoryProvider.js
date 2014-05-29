@@ -1070,7 +1070,8 @@
                                                                                   client:'@client',fileId:'@fileId'},{
                     get: {method: 'GET', params: {}  }
               }), 
-	        getDisbursementsDatas: defineResource(apiVer+ "/mediasettlements/disbursementsData",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',mediaCategory:'mediaCategory'},{
+	        getDisbursementsDatas: defineResource(apiVer+ "/mediasettlements/disbursementsData",{month:'@month', partnerName:'@partnerName' ,partnertypeId: '@partnertypeId',
+	        	                                                                   mediaCategory:'mediaCategory',fileId:'@fileId'},{
 	         	get: {method: 'GET', params: {}  }
 	        }),
             getDisbursements: defineResource(apiVer+ "/mediasettlements/disbursementsdatas",{month:'@month',client:'@client',fileId: '@fileId'},{
@@ -1079,6 +1080,11 @@
             getDisbursementsPartners: defineResource(apiVer+ "/mediasettlements/partnerdisbursements",{month:'@month',client:'@client',fileId: '@fileId',partnertypeId: '@partnertypeId',partnerName:'@partnerName'},{
                     	get: {method: 'GET', params: {}  }
               }),
+            deleteOperatorDeductionResource: defineResource(apiVer+ "/mediasettlements/deductionoperator/:codeId",{codeId:'@codeId'},{
+            	  get: {method: 'GET', params: {}},
+                  update: { method: 'PUT' }
+             }),
+              
         };
       }];
     }

@@ -21,7 +21,6 @@
           	<th>{{'table.operator.deduction.deduction.code' | translate}}</th>
           	<th>{{'table.operator.deduction.deduction.value' | translate}}</th>
           	<th></th>
-          	<th></th>
           	</tr>
           </thead>
           <tbody>
@@ -35,6 +34,9 @@
           </td>
           <td>
 	              	<input type="text" ng-model="formData.deductionValue" id="deductionValue" />
+          </td>
+          <td>
+                 <a ng-click="deleteDeduction(formData.id)"><i class="icon-remove"></i></a>
           </td>
 		</tr>
 		

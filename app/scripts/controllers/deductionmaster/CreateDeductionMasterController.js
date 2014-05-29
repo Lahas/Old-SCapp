@@ -48,8 +48,43 @@
 		        	  });
 		            webStorage.add("callingTab", {tab: "master" });
 		          };
+		    /*    scope.validation=function(value){
+		        	
+		        	//var x=value;
+		        	scope.number=value.toString();
+		        	var checkDigit=scope.number.charAt(scope.number.length-1);
+		          	var sum=0;
+		          	scope.char=[];
+		          	for(var i=0; i< scope.number.length-1;i++){
+		          		scope.number.charAt(i);
+		          		scope.char.push(scope.number.charAt(i));
+		          	}
+		          	
+		          	scope.revNumber=scope.char.reverse();
+		          
+		          for(var i=0;i<scope.revNumber.length;i++){
+		        	  if(i%2==0){
+		        		  scope.revNumber[i]=scope.revNumber[i]*2;
+		        		  if( scope.revNumber[i] > 9){ 
+		        			  scope.revNumber[i]=1+scope.revNumber[i]%10;
+		        		  }else{}
+		        	  }else if(i%2==1){
+		        		  scope.revNumber[i]=scope.revNumber[i]; 
+		        	  }
+		        	  sum=sum+parseInt(scope.revNumber[i]);
+		        	  
+		          }
+		          var module=sum%10;
 		        
-		  
+		          if(module==0){
+		        	  console.log("valid no");
+		          }else if(checkDigit==10-module){
+		        	  console.log("valid no");
+		          }else{
+		        	  console.log("not valid no");
+		          }
+		        };
+		  */
 		  }
 	  });
 	  mifosX.ng.application.controller('CreateDeductionMasterController', ['$scope', 'ResourceFactory', '$location','webStorage', mifosX.controllers.CreateDeductionMasterController]).run(function($log) {

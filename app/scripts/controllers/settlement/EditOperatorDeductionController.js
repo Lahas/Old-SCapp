@@ -7,8 +7,9 @@
 		  scope.sequence = 1;
 		  scope.formData = {};
 		  resourceFactory.editOperatorDeductionResource.get({id:routeParams.id},function(data) {
-			  
+			  scope.deductionData = data;
 			  scope.deductionCodes = data.deductionCodes;
+			  scope.formData.id=data.deductionCodeValues.id;
 			  scope.formData.deductionValue = data.deductionCodeValues.deductionValue;
 			  scope.formData.deductionCode = data.deductionCodeValues.deductionCode;
 			  scope.formData.clientId = data.deductionCodeValues.clientId;
@@ -29,7 +30,14 @@
 			  });
 			   
 		  }; 
-		 
+		  scope.deleteDeduction = function (codeId) {
+          	resourceFactory.deleteOperatorDeductionResource.delete({codeId: codeId} , {} , function(data) {
+          		 location.path('/viewclient/'+scope.formData.clientId);
+				  webStorage.add("callingTab", {someString: "operator" });
+                //scope.deductionData.splice(index,1);
+              });
+            };
+        
 	  }
   });
   mifosX.ng.application.controller('EditOperatorDeductionController', ['$scope', 'ResourceFactory', '$location','dateFilter','$routeParams','webStorage', mifosX.controllers.EditOperatorDeductionController]).run(function($log) {

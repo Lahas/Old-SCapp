@@ -11,7 +11,7 @@
 	    </div>
                
        
-  <form class="form-horizontal well"  ng-submit="submit()">
+  <form class="form-horizontal well" name="creatededuction" novalidate="" ng-submit="submit()">
 	 <fieldset>
 	 <legend>Deduction Codes</legend>
 	 <table>
@@ -102,6 +102,19 @@
                 </div>
               </td>
               </tr>
+              <!-- <tr><td>
+               	<div class="control-group">
+	            	<label class="control-label" for="creditCardNo">{{'label.master.deductionname' | translate }}&nbsp;<span class="required">*</span></label>
+	           		 <div class="controls">
+                    <input type="text" id="creditCardNo" ng-model="formData.creditCardNo" ng-change="validation(formData.creditCardNo)" ng-pattern="/^(?!0+$)\d{1,19}$/" ng-maxlength="16" name="creditCardNo">
+                      <div ng-show="creatededuction.creditCardNo.$dirty && creditCardNo.creditCardNo.$invalid">
+                                         <span class="error" ng-show="creatededuction.creditCardNo.$error.pattern">digits only !</span>
+                                         <span class="error" ng-show="creatededuction.creditCardNo.$error.maxlength">Exceeded max limit!</span>
+                  </div></div>
+	      		 </div>
+          </td></tr> -->
+          <tr><td>
+              
               
               
 </table>
