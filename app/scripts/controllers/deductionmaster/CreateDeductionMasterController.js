@@ -48,8 +48,6 @@
 		        	  });
 		            webStorage.add("callingTab", {tab: "master" });
 		          };
-		        
-		  
 		  }
 	  });
 	  mifosX.ng.application.controller('CreateDeductionMasterController', ['$scope', 'ResourceFactory', '$location','webStorage', mifosX.controllers.CreateDeductionMasterController]).run(function($log) {
