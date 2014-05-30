@@ -20,14 +20,17 @@
       		<legend>{{'label.addpartneraccount' | translate}}</legend>
 				<table>
 						<tr>
-								<td>
-							          	<div class="control-group">
-											<label class="control-label" for="partnerName">{{'label.partner.name' | translate }}&nbsp;<span class="required">*</span></label>
-											<div class="controls">
-												<input type="text" id="PartnerName" ng-model="formData.partnerName" />
-											</div>
-									    </div>
-									</td>
+							<td>
+							      <div class="control-group">
+								  <label class="control-label" for="partnerName">{{'label.partner.name' | translate }}&nbsp;<span class="required">*</span></label>
+								  <div class="controls">
+								  <input type="text" id="partnerName" ng-model="formData.partnerName" ng-pattern="/^[a-zA-Z0-9\s]+$/" name="partnerName"/>
+								  <span  ng-show="createpartnerform.partnerName.$dirty&&createpartnerform.partnerName.$invalid">
+                                          <small class="error" ng-show="createpartnerform.partnerName.$error.pattern">alphanumeric and spaces only!</small>
+                                    </span>
+									</div>
+								    </div>
+								  </td>
 								</tr>
 								<tr>
 									<td>
@@ -57,7 +60,10 @@
 									<div class="control-group">
 								      <label class="control-label" for="emailId">Official email-id&nbsp;<span class="required">*</span></label>
 								      <div class="controls">
-								        <input type="text" id="emailId" ng-model="formData.emailId"/>
+								        <input type="email" id="emailId" ng-model="formData.emailId" name="emailId"/>
+								        <span ng-show="createpartnerform.emailId.$dirty && createpartnerform.emailId.$invalid">
+                                        <small class="error" ng-show="createpartnerform.emailId.$error.email">Invalid Email</small>
+                                        </span>
 								      </div>
 								    </div>
 									</td>
@@ -70,8 +76,8 @@
 									     <div class="controls">
 									       <input type="text" id="contactNum" ng-model="formData.contactNum" ng-pattern="/^(?!0+$)\d{1,19}$/"  ng-maxlength="10" name="contactNum"/>
 									       <div ng-show="createpartnerform.contactNum.$dirty && createpartnerform.contactNum.$invalid">
-                                         <span class="error" ng-show="createpartnerform.contactNum.$error.pattern">digits only !</span>
-                                         <span class="error" ng-show="createpartnerform.contactNum.$error.maxlength">Exceeded max limit!</span>
+                                          <span class="error" ng-show="createpartnerform.contactNum.$error.pattern">digits only !</span>
+                                           <span class="error" ng-show="createpartnerform.contactNum.$error.maxlength">Exceeded max limit!</span>
                                            </div> 
 									     </div>
 									   </div>
@@ -103,9 +109,6 @@
 									    </div>
 									</td>
 								</tr>
-								
-								
-								
 																							
 							</table>
 							

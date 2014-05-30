@@ -81,6 +81,7 @@
 			  delete scope.formData.partnerTypeData;
 			  delete scope.formData.mediaCategoryData;
 			  delete scope.formData.clients;
+			  delete scope.formData.fileIds;
 			  webStorage.add("currentTab", {tab: "partner" });
 			  /*if(scope.hideIfNotContentProvider == true){
 				scope.formData.chData = scope.gameData;  

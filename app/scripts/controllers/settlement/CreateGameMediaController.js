@@ -183,8 +183,10 @@
 	            	        	});
 	            	        };
 	        
-	            	        
-	            	        
+	            	        scope.partnerTo=function(id){
+	            	            location.path('/viewpartneraccount/'+id);
+	            	        	    };
+
 	          scope.getPartnerAccountDataFetchFunction = function(offset, limit, callback) {
 	            	  	resourceFactory.mediaSettlement.get({offset: offset, limit: limit} ,function(data){
 	            	  		scope.result = data.pageItems;
