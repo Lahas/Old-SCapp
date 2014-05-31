@@ -139,7 +139,7 @@
       		<div class="control-group">
             <label class="control-label" for="endDate">{{'label.contrenddate' | translate}}&nbsp;<span class="required">*</span></label>
             <div class="controls">
-              <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" min="minDate"
+              <input type="text" id="endDate" datepicker-pop="dd MMMM yyyy" ng-model="formData.endDate" is-open="opened" 
               date-disabled="disabled(date, mode)" required late-Validate style="background-color:#FFFFFF;"  readonly/>
             </div>	
           </div>
@@ -196,7 +196,7 @@
                       <td><select ng-model="gd.mediaCategory"  class="input-medium" ng-options="mediaCategoryData.id as mediaCategoryData.mCodeValue for mediaCategoryData in mediaCategoryDatas" value="{{mediaCategoryData.id}}" required >
 					  </select></td>
 					  <td><select ng-model="gd.playSource"  class="input-medium" ng-options="playSourceData.id as playSourceData.mCodeValue for playSourceData in playSourceDatas" value="{{playSourceData.id}}" required >
-					  <td><input type="text" class="input-medium" ng-model="gd.royaltyShare" required > </td>
+					  <td><input type="text" class="input-medium" id="royaltyShare" ng-model="gd.royaltyShare" required > </td>
 					  </select></td>
                       <td><select ng-model="gd.royaltySequence"  class="input-medium" ng-options="rs.id as rs.value for rs in royaltySequenceDatas" value="{{rs.id}}" required >
 					  </select></td>

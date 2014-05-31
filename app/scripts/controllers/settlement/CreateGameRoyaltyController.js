@@ -153,7 +153,7 @@
  	 	        	scope.formData.totalRA=null;
  	 	        	scope.partnerNames=[];
  	 	        	$("#activityM").attr("disabled","disabled"); 	 				
- 	 	        	if(scope.ClientName == "All"){
+ 	 	        	/*if(scope.ClientName == "All"){
  	 					 resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName,fileId:scope.fileId },function(data) {
  	     					  scope.partnerNames=data;
  	     				
@@ -167,7 +167,7 @@
  	        						scope.totalRA="";
  	        					  }
  	     			      });
- 	 				 }else if(scope.partnerType==1){
+ 	 				 }*/ if(scope.partnerType==1){
  	 					scope.partnerNames.push({partnerName:"All"});
  	 					$("#partnerN").removeAttr("disabled");
  	 				 }else{ 
@@ -192,9 +192,9 @@
 					scope.distributionDatas=[];	
 					scope.totalRA="";
 	 	        	scope.formData.totalRA=null;
-					  if(scope.ClientName == "All"){
+					 /* if(scope.ClientName == "All"){
 						 
-						 resourceFactory.getActivityMonth.get({mediaCategory: scope.mediaCategory,partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName },function(data) {
+						 resourceFactory.getActivityMonth.get({mediaCategory: scope.mediaCategory,partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName,fileId:scope.fileId },function(data) {
         					  scope.activityMonths=data;
         					  scope.totalRA="";
         					  if(scope.activityMonths == null || scope.activityMonths == ""){
@@ -204,7 +204,7 @@
         					  }
         			      });
 					 
-					 }else if( scope.partnerName=="All"&& scope.partnerType!=null ){
+					 }*/ if( scope.partnerName=="All"&& scope.partnerType!=null ){
      	        	 resourceFactory.getActivityMonthWithFileId.get({client: scope.ClientName,fileId:scope.fileId},function(data){
      	        		 scope.activityMonths=data;
      	        		 $("#activityM").removeAttr("disabled");

@@ -28,14 +28,13 @@
                     	}else{
                     		scope.status ="delete";
                     	}
-                	}
-                	if(scope.agreementStatus=="Pending"){
+                	}else if(scope.agreementStatus=="Pending"){
                 		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
                 			scope.status ="clientStatusType.pending";
                     	}else{
                     		scope.status ="delete";
                    	}           		
-                	} }
+                	}else{scope.status ="delete";} }
 
 					 webStorage.add("partnerData", {partnerName: data.partnerName, partnerTypeName: data.partnerTypeName,
 						externalId: data.externalId, emailId: data.emailId,partnerAddress: data.partnerAddress, currencyName: data.currencyName,

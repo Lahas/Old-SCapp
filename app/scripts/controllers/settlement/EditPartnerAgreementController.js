@@ -9,7 +9,7 @@
 			  scope.royaltyTypeDatas = [];
 			  scope.settlementSourceDatas = [];
 			  scope.formData = {};
-			  scope.minDate=new Date();
+			  //scope.minDate=new Date();
 			  scope.categoryData=[];
 			  scope.mediaPartnerAttributes = {};
 			  scope.mediaPartnerData= [];
@@ -23,7 +23,7 @@
 			        scope.file = $files[0];
 			      };
 			      scope.dateValues=function(value){
-					  console.log(value);
+					 
 					  for(var i in scope.agreementTypeDatas){
 						 if(scope.agreementTypeDatas[i].id==value&&scope.agreementTypeDatas[i].mCodeValue == "Pending") {
 							  $("#startDate").attr("disabled","disabled");
@@ -88,7 +88,7 @@
 		            	}else{
 		            		scope.status ="delete";
 		           	}           		
-		        	}console.log(scope.status);
+		        	}
 
 				
 			  for( var i in scope.mediaSettlementPartnerNameDatas){
