@@ -6,7 +6,7 @@
             scope.events= data;         
         });
         scope.routeTo = function(id){
-            location.path('/editbusinessline/'+id);
+            location.path('/viewbusinessline/'+id);
         };
     }
   });

@@ -245,15 +245,15 @@
                       	}else{
                       		scope.status ="delete";
                       	}
-                  	}
-                  	if(scope.agreementStatus=="Pending"){
+                  	}else if(scope.agreementStatus=="Pending"){
                   		if(new Date(endDate).getTime() === new Date(startDate).getTime()){
                   			scope.status ="clientStatusType.pending";
                       	}else{
                       		scope.status ="delete";
-                      		
                      	}           		
-                  	}
+                  	}else{
+                  		scope.status ="delete";
+                   	}
                   	 scope.result[i].statusName=scope.status; 
                   	}
           	  		callback(data);

@@ -120,7 +120,9 @@
 									<div class="control-group">
 								      <label class="control-label" for="emailId">Official email-id&nbsp;<span class="required">*</span></label>
 								      <div class="controls">
-								        <input type="text" id="emailId" ng-model="formData.emailId"/>
+								        <input type="email" id="emailId" ng-model="formData.emailId"/>
+								           <div ng-show="editpartnerform.emailId.$dirty && editpartnerform.emailId.$invalid">
+								           <span class="error" ng-show="editpartnerform.emailId.$error.email">Invalid Email !</span>
 								      </div>
 								    </div>
 									</td>

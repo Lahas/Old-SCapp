@@ -10,13 +10,12 @@
            
         });
 
-       /* scope.deleteEvent = function (){
-            resourceFactory.eventEditResource.delete({eventId: routeParams.id} , {} , function(data) {
-                  location.path('/event');
-                  // added dummy request param because Content-Type header gets removed 
-                  // if the request does not contain any data (a request body)        
+        scope.deleteEvent = function (){
+            resourceFactory.businessLineEditResource.delete({eventId: routeParams.id} , {} , function(data) {
+                  location.path('/businessline');
+                      
             });
-          };*/
+          };
     
     }
   });
