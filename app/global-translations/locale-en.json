@@ -2557,7 +2557,8 @@
 	"label.editprovisionalpo":"Edit Disburse Status",
 	"label.editdisbursestatus":"Edit Disburse Status",
 	"error.msg.exceeding.royalty.amount":"please give amount below royalty Amount",
-	"validation.msg.invalid.date.format":"Invalid date format"
+	"validation.msg.invalid.date.format":"Invalid date format",
+	"error.msg.cund.unknown.data.integrity.issue":"File name is to long"
 	
 
 }

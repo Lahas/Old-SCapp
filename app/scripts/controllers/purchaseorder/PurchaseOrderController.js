@@ -29,7 +29,7 @@
         		
         		
         		if(data.purchaseOrderData.length < 1 ){
-            		console.log("working");
+            		//console.log("working");
             		scope.purchaseOrderData.push({
             			purchaseOrderNo : scope.getPurchaseOrder(scope.provPurchaseOrderData[scope.parentIndex].purchaseOrderNumber),
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
@@ -42,9 +42,9 @@
 	        		for(var i=0; i<scope.purchaseOrderData.length; i++){
 	        			scope.purchaseOrderData[i].purchasrOrderDate = dateFilter(new Date(data.purchaseOrderData[i].purchasrOrderDate),'dd MMMM yyyy');
 	        			scope.purchaseOrderData[i].outStandingAmount = (rAmount - scope.purchaseOrderData[i].royaltyAmount).toFixed(2);
-	        			console.log("scope.purchaseOrderData[i].outStandingAmount: "+scope.purchaseOrderData[i].outStandingAmount);
+	        			//console.log("scope.purchaseOrderData[i].outStandingAmount: "+scope.purchaseOrderData[i].outStandingAmount);
 	        			rAmount = scope.purchaseOrderData[i].outStandingAmount;
-	        			console.log("rAmount: "+rAmount);
+	        			//console.log("rAmount: "+rAmount);
 	        		}
 	        		scope.purchaseOrderData.push({
             			purchaseOrderNo : scope.getPurchaseOrder(scope.provPurchaseOrderData[scope.parentIndex].purchaseOrderNumber),
@@ -108,7 +108,7 @@
         		
         		
         		if(data.purchaseOrderData.length < 1 ){
-            		console.log("working");
+            		//console.log("working");
             		scope.purchaseOrderData.push({
             			purchaseOrderNo : scope.getPurchaseOrder(scope.provPurchaseOrderData[scope.parentIndex].purchaseOrderNumber),
             			activityMonth : scope.provPurchaseOrderData[scope.parentIndex].activityMonth,
@@ -121,9 +121,9 @@
 	        		for(var i=0; i<scope.purchaseOrderData.length; i++){
 	        			scope.purchaseOrderData[i].purchasrOrderDate = dateFilter(new Date(data.purchaseOrderData[i].purchasrOrderDate),'dd MMMM yyyy');
 	        			scope.purchaseOrderData[i].outStandingAmount = (rAmount - scope.purchaseOrderData[i].royaltyAmount).toFixed(2);
-	        			console.log("scope.purchaseOrderData[i].outStandingAmount: "+scope.purchaseOrderData[i].outStandingAmount);
+	        			//console.log("scope.purchaseOrderData[i].outStandingAmount: "+scope.purchaseOrderData[i].outStandingAmount);
 	        			rAmount = scope.purchaseOrderData[i].outStandingAmount;
-	        			console.log("rAmount: "+rAmount);
+	        			//console.log("rAmount: "+rAmount);
 	        		}
 	        		scope.purchaseOrderData.push({
             			purchaseOrderNo : scope.getPurchaseOrder(scope.provPurchaseOrderData[scope.parentIndex].purchaseOrderNumber),
@@ -158,7 +158,7 @@
         
         
         scope.calculate = function(){
-        	console.log("calculate is called ..!");
+        	//console.log("calculate is called ..!");
         };
         
        
