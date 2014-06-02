@@ -2410,8 +2410,8 @@
 	"label.availablecategory":"Available Categories",
 	"label.selectedcategory":"Selected Categories",
 	"label.createbusinessline":"Create Business Line",
-	"label.businessline":"Businessline",
-	"label.editbusinessline":"Edit BusinessLine",
+	"label.businessline":"Business Line",
+	"label.editbusinessline":"Edit Business Line",
 	"lable.viewbusinessline":"View Business Line",
 	
 	
@@ -2448,7 +2448,7 @@
 	"validation.msg.revenueShare.mediaCategory.cannot.be.blank":"Media Category cannot be blank",
 	"validation.msg.revenueShare.revenueShareType.cannot.be.blank":"Revenue Share Type cannot be blank",
 	"validation.msg.revenueShare.revenueShareCode.cannot.be.blank":"Revenue Share Code cannot be blank",
-	"validation.msg.revenueShare.null.not.greater.than.zero":"Please Add Slabs Details",
+	"validation.msg.revenueShare.percentageParamsDataArray.not.greater.than.zero":"Please Add Slabs Details",
 	"validation.msg.revenueShare.startValue.not.greater.than.zero":"StartValue must be greater than zero",
 	"validation.msg.revenueShare.endValue.not.greater.than.zero":"EndValue must be greater than Zero",
 

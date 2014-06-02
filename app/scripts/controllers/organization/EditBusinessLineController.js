@@ -9,6 +9,7 @@
 							scope.selectedServices = [];
 							scope.formData = {};							
 							scope.date = {};
+							scope.id=routeParams.id;
 							resourceFactory.businessLineEditResource.get({eventId: routeParams.id} , function(data) {								
                                 scope.formData=data;                            
 								scope.eventStatus = data.statusData;
@@ -62,7 +63,7 @@
 											temp.id = this.restricted[i];
 											temp.mCodeValue = scope.selectedServices[j].mCodeValue;									
 											scope.availableServices.push(temp);
-											scope.selectedServices.splice(j, 1);
+											scope.selectedServices.splice(j, 1);formData
 										}
 									}
 								}
@@ -87,9 +88,8 @@
 									temp[i] = scope.selectedServices[i].categoryId;
 								}
 								this.formData.categoryData = temp;
-								resourceFactory.businessLineEditResource.update({eventId: routeParams.id},
-										this.formData, function(data) {
-											location.path('/businessline');
+								resourceFactory.businessLineEditResource.update({eventId: routeParams.id},this.formData, function(data) {
+											location.path('/viewbusinessline/'+routeParams.id);
 										});
 							};
 						}
