@@ -484,11 +484,11 @@
         <tbody>
             <tr class="pointer-main"  ng-show="financialtransaction.transactionType=='INVOICE'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
                 
-                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionId}}</a></td>
-                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transDate | DateFormat}}</a></td>
-                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.transactionType}}</a></td>
-                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.creditAmount}}</a></td>
-                <td class="pointer-main"><a href="#/viewfinancialtran/{{financialtransaction.transactionId}}/{{client.id}}">{{financialtransaction.amount}}</a></td>
+                <td class="pointer" data-ng-click="routeToFinacial(financialtransaction.transactionId,client.id)">{{financialtransaction.transactionId}}</td>
+                <td class="pointer" data-ng-click="routeToFinacial(financialtransaction.transactionId,client.id)">{{financialtransaction.transDate | DateFormat}}</td>
+                <td class="pointer" data-ng-click="routeToFinacial(financialtransaction.transactionId,client.id)">{{financialtransaction.transactionType}}</td>
+                <td class="pointer" data-ng-click="routeToFinacial(financialtransaction.transactionId,client.id)">{{financialtransaction.creditAmount}}</td>
+                <td class="pointer" data-ng-click="routeToFinacial(financialtransaction.transactionId,client.id)">{{financialtransaction.amount}}</td>
 
             </tr>
               <tr ng-show="financialtransaction.transactionType=='PAYMENT'" ng-repeat="financialtransaction in financialtransactions.currentPageItems  | filter:filterText" >
