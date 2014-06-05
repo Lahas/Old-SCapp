@@ -35,7 +35,7 @@
   		      <div class="control-group">
               <label class="control-label" for="firstname">{{'label.clientname' | translate}}<span class="required">*</span></label>
               <div class="controls">
-                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z0-9\s]+$/" required ng-minlength=3 late-Validate/>
+                <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" ng-pattern="/^[a-zA-Z]+([a-zA-Z0-9\s]?)+$/" required ng-minlength=3 late-Validate/>
                 <span  ng-show="createclientform.firstname.$invalid">
                   <small class="error" ng-show="createclientform.firstname.$error.pattern">alphanumeric and spaces only!</small>
                     <small class="error" ng-show="createclientform.firstname.$error.req">Required Field</small>

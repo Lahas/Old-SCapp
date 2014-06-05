@@ -24,7 +24,7 @@
 							      <div class="control-group">
 								  <label class="control-label" for="partnerName">{{'label.partner.name' | translate }}&nbsp;<span class="required">*</span></label>
 								  <div class="controls">
-								  <input type="text" id="partnerName" ng-model="formData.partnerName" ng-pattern="/^[a-zA-Z0-9\s]+$/" name="partnerName"/>
+								  <input type="text" id="partnerName" ng-model="formData.partnerName" ng-pattern="/^[a-zA-Z\s]+([a-zA-Z0-9]?)+$/" name="partnerName"/>
 								  <span  ng-show="createpartnerform.partnerName.$dirty&&createpartnerform.partnerName.$invalid">
                                           <small class="error" ng-show="createpartnerform.partnerName.$error.pattern">alphanumeric and spaces only!</small>
                                     </span>

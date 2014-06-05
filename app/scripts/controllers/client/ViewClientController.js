@@ -498,6 +498,10 @@
                 
              });
             };*/
+        
+          scope.routeToFinacial=function(trId,clientId){
+        	  location.path('/viewfinancialtran/'+trId +'/' + clientId);
+          }
           
           scope.getFinancialTransactionsFetchFunction = function(offset, limit, callback) {
   			resourceFactory.FineTransactionResource.getAllFineTransactions({clientId: routeParams.id ,offset: offset, limit: limit} , callback);
