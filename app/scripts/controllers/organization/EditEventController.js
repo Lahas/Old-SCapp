@@ -11,9 +11,7 @@
 							scope.date = {};
 							resourceFactory.eventEditResource.get({eventId: routeParams.id} , function(data) {								
                                 scope.formData=data;   
-                                if(data.endDate){
-                                	scope.enddate = data.endDate;
-                                }
+                                scope.enddate = data.endDate;
                                 //scope.formData.allowCancellation=false;
 								scope.eventStatus = data.statusData;
 								scope.chargeData = data.chargeData;
