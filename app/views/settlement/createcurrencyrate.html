@@ -19,7 +19,7 @@
           <div class="control-group">
          <label class="control-label" for="sourceCurrency">{{ 'label.sourcecurrency' | translate }}&nbsp;<span class="required">*</span></label>
           <div class="controls">
-         <select ng-model="formData.sourceCurrency"  ng-options="currencydata.id as currencydata.code for currencydata in currencyCodesData" value="{{currencydata.id}}">
+         <select ng-model="formData.sourceCurrency" id="sourceCurrency"  ng-options="currencydata.id as currencydata.code for currencydata in currencyCodesData" value="{{currencydata.id}}">
            </select>
            </div>
         	</div></td></tr>
@@ -28,7 +28,7 @@
           <div class="control-group">
          <label class="control-label" for="targetCurrency">{{ 'label.targetcurrency' | translate }}&nbsp;<span class="required">*</span></label>
           <div class="controls">
-         <select ng-model="formData.targetCurrency"  ng-options="currencydata.id as currencydata.code for currencydata in currencyCodesData" value="{{currencydata.id}}">
+         <select ng-model="formData.targetCurrency"  id="targetCurrency" ng-options="currencydata.id as currencydata.code for currencydata in currencyCodesData" value="{{currencydata.id}}">
            </select>
            </div>
         	</div></td></tr>
@@ -45,16 +45,16 @@
 			<div class="control-group">
 		   <label class="control-label">{{ 'label.startdate' | translate }}&nbsp;<span class="required">*</span></label>
 		   <div class="controls">
-	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="start.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
-		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"/>
+	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.startDate" is-open="opened2"  
+		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;" id="startDate"/>
 		  </div></div>	
 		</td></tr>	
 			<tr><td>
 			<div class="control-group">
 		   <label class="control-label">{{ 'label.enddate' | translate }}&nbsp;<span class="required">*</span></label>
 		   <div class="controls">
-	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="end.date" is-open="opened2" min="minDate" max="'2020-06-22'" 
-		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;"/>
+	     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened2" 
+		 date-disabled="disabled(date, mode)"  style="background-color:#FFFFFF;" id="endDate"/>
 		  </div></div>	
 		</td></tr>
           </table>

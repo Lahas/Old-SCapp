@@ -45,7 +45,9 @@
     	</div>
 	</div>
 <div class="row-fluid">
-    <input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="">
+       <form ng-submit="searchHeaderDataHistory(filterText)">
+		<input ng-model="filterText" type="text" class="span marginbottom0px" placeholder="Filter by Id/External Id/Activity Month">
+	 </form>
 	<table class="table">
             <thead>
               <tr class="graybg">
@@ -61,7 +63,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="pointer-main" ng-repeat="fd in formData">
+              <tr class="pointer-main" ng-repeat="fd in formData.currentPageItems | filter:filterText ">
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.id}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.externalId}}</td>
                 <td class="pointer" data-ng-click="routeTo(fd.id)">{{fd.activityMonth}}</td>
@@ -73,6 +75,11 @@
               </tr>
             </tbody>
           </table>
+          	<ul class="pager">
+        			<li class="previous"><a ng-click="formData.previous()" href="" ng-disabled="!formData.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="formData.next()" href="" ng-disabled="!formData.hasNext()">Next &rarr;</a></li>
+    			</ul>
+	
 </div> 
 </div>
       

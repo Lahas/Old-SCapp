@@ -88,7 +88,7 @@
 									<div class="control-group">
 										<label class="control-label" for="externalId">External Id :&nbsp;<span class="required">*</span></label>
 											<div class="controls">
-												<input type="text" ng-model="formData.externalId"  id="externalId" ng-pattern="/^(?!0+$)\d{1,19}$/" name="externalId"/>
+												<input type="text" ng-model="formData.externalId"  id="externalId" ng-pattern="/^(?!0+$)\d{1,19}$/"  name="externalId"/>
 												 <div ng-show="createpartnerform.externalId.$dirty && createpartnerform.externalId.$invalid">
                                               <span class="error" ng-show="createpartnerform.externalId.$error.pattern">digits only !</span>
                                               </div>

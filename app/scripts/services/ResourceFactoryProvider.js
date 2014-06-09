@@ -884,7 +884,7 @@
              }),
              createGameEventResource: defineResource(apiVer +"/mediasettlements/creategameevent/:cId",{cId: '@cId'},{
             	getGameHeaderData: {method: 'GET', params:{},isArray: false},
-            	get: {method: 'GET', params:{},isArray: true}
+            	get: {method: 'GET', params:{}}
              }),
              interactivedetailTemplateResource: defineResource(apiVer + "/mediasettlements/interactive/:id",{id: '@id'}, {
                 getTemplate: {method: 'GET', params: {}},
@@ -939,7 +939,7 @@
                 getAllcurrency: {method: 'GET', params: {}},
                 update: { method: 'PUT' }
              }),
-             currencyTemplateResource: defineResource(apiVer + "/mediasettlements/currency/template", {}, {
+             currencyRateTemplateResource: defineResource(apiVer + "/mediasettlements/currency/template", {}, {
                 get: {method: 'GET', params: {}},
                 update: { method: 'PUT' }
              }),

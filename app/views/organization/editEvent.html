@@ -46,7 +46,7 @@
 						<label class="control-label" for="eventDescription">{{'label.event.eventdescription' | translate }}</label>
 						<div class="controls">
 							<input type="text" id="eventDescription"
-								ng-model="formData.eventDescription">
+								ng-model="formData.eventDescription" ng-blur="formData.eventDescription">
 						</div>
 					</div>
 				</td>								
@@ -75,7 +75,7 @@
 						<label class="control-label" for="eventEndDate"> {{'label.event.enddate' | translate }}</label>
 						<div class="controls">
 
-							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="date.endDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
+							<input type="text" datepicker-pop="dd MMMM yyyy" ng-model="endDate" is-open="opened" min="minDate" max="'2020-06-22'" date-disabled="disabled(date, mode)"/>
 						</div>
 					</div>
 				</td>

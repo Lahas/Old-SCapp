@@ -98,15 +98,16 @@
 			</tr> -->					
 		    
 		</table>
-		<fieldset>
+		   <fieldset>
 		<div class="pull-right">
               				<label class="control-label">Total GrossRevenue Amount</label>
               				<div class="controls">
                 			<input type="text" class="input-small"  ng-model="formData.totalGrossAmount" value="{{totalGrossAmount}}" readonly>
               				</div>
             				</div>
-        	
+
 		  <legend>View Interactive Details</legend>
+	          
 					<table class ="table" width="100%" ng-show="interactiveData.length>0">
 						<tr class="graybg">
                          <th>{{ 'label.source' | translate }}</th>
@@ -119,8 +120,9 @@
                          <th>{{'label.download' | translate}}</th>
                          <th>{{ 'label.grossRevenue' | translate }}</th>
                          <th>Edit</th>
-                         </tr>  
-                         <tr ng-repeat= "ad in  interactiveData">
+                         </tr>
+                     
+                         <tr ng-repeat= "ad in pageData.currentPageItems" >
 			<td><input class="input-small" type="text" ng-model="ad.playSourceStr" id="playSourceStr" readonly></input></td>
 			<td><input  class="input-mini" type="text" id="contentName" ng-model="ad.contentName" readonly></td>
 			<td><input class="input-small" type="text" ng-model="ad.mediaCategoryStr" id="mediaCategoryStr"  readonly></input></td>
@@ -132,14 +134,23 @@
 			<td><input  class="input-mini" type="text" id="grossRevenue" ng-model="ad.grossRevenue" readonly></td>
 			
 			<td><a href="#/editinteractivedetail/{{ad.id}}" ng-click="addHeaderId()"><i class="icon-edit icon-white"></i></a></td>
-							</tr>
+			</tr>
+				</tbody>
 					</table>
-						</fieldset>
+				 <ul class="pager">
+        			<li class="previous"><a ng-click="pageData.previous()" href="" ng-disabled="!pageData.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="pageData.next()" href="" ng-disabled="!pageData.hasNext()">Next &rarr;</a></li>
+    			</ul>
+     	
+					
+					
+				</fieldset>	
+						
 		<div class="offset3">
 			<a href="#/gameevent/{{cId}}"><button type="reset" class="btn">Back</button></a>
 		</div>
+		
 	</fieldset>
 </form>
-
 
 </div>
