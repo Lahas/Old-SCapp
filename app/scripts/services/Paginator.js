@@ -15,10 +15,12 @@
                   var self = this;
                   fetchFunction(this.currentOffset, pageSize + 1, function(items) {
                   self.currentPageItems = items.pageItems;
+                  self.totalFilteredRecords = items.totalFilteredRecords;
                   if(self.currentPageItems.length<=0){
                 	  $notification.warning("Empty Result set", "Records not found", "");
                   }
-                  self.hasNextVar = items.pageItems.length === pageSize + 1;;
+                  self.hasNextVar = (items.pageItems.length === pageSize + 1)&&
+                       (!(self.currentOffset == self.totalFilteredRecords-(pageSize + 1)));
               });
               },
               hasNext: function() {
@@ -34,7 +36,7 @@
               return this.currentOffset !== 0;
               },
               currentPageItems: [],
-              currentOffset: 0
+              currentOffset: 0,
               };
               // Load the first page
               paginator._load();
