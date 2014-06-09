@@ -2400,9 +2400,11 @@
     "dialog.currencyrate.title.message":"Currrency Rate",
     
     "#CurrencyRateErrors":".....", 
-    "validation.msg.currency.sourceCurrency.cannot.be.blank":"Source Currency cannot be balank",
-    "validation.msg.currency.targetCurrency.cannot.be.blank":"Target Currency cannot be balank",
-    "validation.msg.currency.exchangeRate.cannot.be.blank":"Exchange Rate cannot be balank",
+    "validation.msg.currency.sourceCurrency.cannot.be.blank":"Source Currency cannot be blank",
+    "validation.msg.currency.targetCurrency.cannot.be.blank":"Target Currency cannot be blank",
+    "validation.msg.currency.exchangeRate.cannot.be.blank":"Exchange Rate cannot be blank",
+    "validation.msg.currency.startDate.cannot.be.blank":"Please select  startDate",
+    "validation.msg.currency.endDate.cannot.be.blank":"Please select endDate",
     
     "#Business Line datas":"",
 	"label.event.chargecode":"ChargeCode",

@@ -2,8 +2,8 @@
   mifosX.controllers = _.extend(module, {
 	  EditCurrencyRateController: function(scope, resourceFactory, location, routeParams,dateFilter,$modal) {
 		  scope.currencyCodesData = [];
-        scope.start = {};
-        scope.end= {};
+          scope.start = {};
+          scope.end= {};
         resourceFactory.currencyRateResource.get({id : routeParams.id}, function(data) {
             scope.currencyCodesData = data.currencyCodes;
             scope.formData=data;
@@ -48,7 +48,7 @@
         	this.formData.locale = "en";
             this.formData.dateFormat = "dd MMMM yyyy";
             this.formData.startDate = dateFilter(scope.start.startDate,'dd MMMM yyyy');
-            this.formData.endDate = dateFilter(scope.start.startDate,'dd MMMM yyyy');
+            this.formData.endDate = dateFilter(scope.end.endDate,'dd MMMM yyyy');
            delete this.formData.id; 
            delete this.formData.currencyCodes;
           resourceFactory.currencyRateResource.update({id: routeParams.id}, this.formData,function(data){

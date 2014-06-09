@@ -6,9 +6,10 @@
 		  scope.start={};
 		  scope.end={};
 		  scope.formData = {};
-		  scope.start.date=new Date();	
-		  scope.end.date=new Date();
-        resourceFactory.currencyTemplateResource.get(function(data) {
+		 // scope.start.date=new Date();	
+		 // scope.end.date=new Date();
+		  scope.date={};
+        resourceFactory.currencyRateTemplateResource.get(function(data) {
         	scope.currencyCodesData = data.currencyCodes;
         	  
             
@@ -17,8 +18,8 @@
         scope.submit = function() {   
         	this.formData.locale = "en";
             this.formData.dateFormat = "dd MMMM yyyy";
-            var startDate = dateFilter(scope.start.date,'dd MMMM yyyy');
-            var endDate = dateFilter( scope.end.date,'dd MMMM yyyy');       
+            var startDate = dateFilter(scope.date.startDate,'dd MMMM yyyy');
+            var endDate = dateFilter( scope.date.endDate,'dd MMMM yyyy');       
            this.formData.startDate=startDate;
            this.formData.endDate=endDate;
             resourceFactory.currencyRateResource.save(this.formData,function(data){

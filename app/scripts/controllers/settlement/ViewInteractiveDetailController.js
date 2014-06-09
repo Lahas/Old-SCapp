@@ -1,12 +1,13 @@
 (function(module) {
 	  mifosX.controllers = _.extend(module, {
-		  ViewInteractiveDetailController: function(scope, resourceFactory, location,webStorage,routeParams,dateFilter,$modal) {
+		  ViewInteractiveDetailController: function(scope, resourceFactory, location,webStorage,routeParams,dateFilter,$modal,PaginatorService) {
 			    scope.formData = {};
 		        scope.eventId = routeParams.id;
 		        scope.show = false;
 		        scope.upload = {};
 		        scope.activity = {};
-		        
+		        scope.pageData=[];
+		     
 		        var clientData = webStorage.get('clientData');
 			    scope.displayName=clientData.displayName;
 			    scope.statusActive=clientData.statusActive;
@@ -28,9 +29,30 @@
 			    scope.interactiveData = [];
 			    scope.interactiveDetailDatas = [];
 			    
-			    resourceFactory.viewInteractiveResource.get({eventId : routeParams.id},function(data) {
+			   
+			    
+			    scope.getDataHistoryFetchFunction = function(offset, limit, callback) {
+		        	resourceFactory.viewInteractiveResource.get({eventId:routeParams.id,offset:offset,limit:limit},function(data){
+		        		
+		        		scope.formData.clientId = data.interactiveData.clientId;
+		        		scope.formData.id = data.interactiveData.id;
+		        		scope.formData.externalId = data.interactiveData.externalId;
+		        		scope.upload.date = dateFilter(new Date(data.interactiveData.dataUploadedDate),"dd MMMM yyyy");
+		        		var dateData = data.interactiveData.activityMonth.split(" ");
+		  	            var month = fetchMonth(dateData[0].toString());
+		  	            var year = fetchYear(dateData[1]);
+		  	            
+		  	            scope.activity.date = dateFilter(new Date(year,month,1),'MMM yyyy');
+		  	            scope.formData.businessLine = data.interactiveData.businessLineStr;
+		  	            scope.formData.totalGrossAmount =data.interactiveData.totalGrossAmount.totalGrossAmount;
+		  	            scope.interactiveData = data.pageItems;
+		        		callback(data);
+		        });
+			    };
+		        scope.pageData=PaginatorService.paginate(scope.getDataHistoryFetchFunction, 99);
 		        
-		        	
+	       /* resourceFactory.viewInteractiveResource.get({eventId : routeParams.id},function(data) {
+		        
 			    	scope.formData.clientId = data.clientId;
 			    	scope.formData.id = data.id;
 		            scope.formData.externalId = data.externalId;
@@ -46,7 +68,7 @@
 		            scope.totalGrossAmount =data.totalGrossAmount.totalGrossAmount;
 		          
 		        });
-			    
+			   */
 			    scope.addHeaderId = function(){
 			    	webStorage.add("headerId",{hId:scope.formData.id});
 			    };
@@ -104,7 +126,8 @@
 			    	console.log("Details Id: "+detailId);
 			    };
 			    
-
+			
+			    
 			    /*scope.editInteractiveDetails = function (detailId) {
 		            $modal.open({
 		                templateUrl: 'EditInteractiveDetails.html',
@@ -133,7 +156,7 @@
 		  
 		  }
 	  });
-	  mifosX.ng.application.controller('ViewInteractiveDetailController', ['$scope', 'ResourceFactory', '$location','webStorage','$routeParams','dateFilter','$modal', mifosX.controllers.ViewInteractiveDetailController]).run(function($log) {
+	  mifosX.ng.application.controller('ViewInteractiveDetailController', ['$scope', 'ResourceFactory', '$location','webStorage','$routeParams','dateFilter','$modal','PaginatorService', mifosX.controllers.ViewInteractiveDetailController]).run(function($log) {
 	    $log.info("ViewInteractiveDetailController initialized");
 	  });
 	}(mifosX.controllers || {}));

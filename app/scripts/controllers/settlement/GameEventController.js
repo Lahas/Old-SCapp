@@ -1,14 +1,11 @@
 (function(module) {
   mifosX.controllers = _.extend(module, {
-	  GameEventController: function(scope, resourceFactory,webStorage,routeParams,location) {
+	  GameEventController: function(scope, resourceFactory,webStorage,PaginatorService,routeParams,location) {
 		  
 		  scope.formData = {};
 		  
 		  scope.clientId = routeParams.id;
-		  /*scope.months=[{id:1,mon:"January"},{id:2,mon:"February"},{id:3,mon:"March"},{id:4,mon:"April"},
-	            		  {id:5,mon:"May"},{id:6,mon:"June"},{id:7,mon:"July"},{id:8,mon:"August"},{id:9,mon:"September"},
-	            		  {id:10,mon:"October"},{id:11,mon:"November"},{id:12,mon:"December"}];*/
-		  
+		 
 		  var clientData = webStorage.get('clientData');
 	        scope.displayName=clientData.displayName;
 	        scope.statusActive=clientData.statusActive;
@@ -25,14 +22,25 @@
 	        	location.path('/viewinteractivedetails/'+id);
 	        };
 	        
-	        resourceFactory.createGameEventResource.get({cId:routeParams.id},function(data) {
-	            scope.formData = data;
-	            
-	            
+	     
+	     
+	        scope.getHeaderDataHistoryFetchFunction = function(offset, limit, callback) {
+	        	resourceFactory.createGameEventResource.get({cId:routeParams.id,offset:offset,limit:limit},callback); 
+	        	
+	        };
+	        scope.formData = PaginatorService.paginate(scope.getHeaderDataHistoryFetchFunction, 14);
+	   
+	        
+	        scope.searchHeaderDataHistory123 = function(offset, limit, callback) {
+		    	  resourceFactory.createGameEventResource.get({ cId: routeParams.id ,offset: offset, limit: limit ,sqlSearch: scope.filterText } , callback); 
+		          };
+		  		
+		  		scope.searchHeaderDataHistory = function(filterText) {
+		  			scope.formData = PaginatorService.paginate(scope.searchHeaderDataHistory123, 14);
+		  		}; 
+	  }
 	        });
-	    }
-  });
-  mifosX.ng.application.controller('GameEventController', ['$scope', 'ResourceFactory','webStorage','$routeParams','$location', mifosX.controllers.GameEventController]).run(function($log) {
+    mifosX.ng.application.controller('GameEventController', ['$scope', 'ResourceFactory','webStorage','PaginatorService','$routeParams','$location', mifosX.controllers.GameEventController]).run(function($log) {
     $log.info("GameEventController initialized");
-  });
+    });
 }(mifosX.controllers || {}));
