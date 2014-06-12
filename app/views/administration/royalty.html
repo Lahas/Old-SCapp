@@ -93,21 +93,22 @@
         <tab  heading="Disbursements" select="setDisbursementsScreen()" active="disbursements">
       <body>
 	<legend>{{'label.disbursementstopartners' | translate}}</legend>
-	
-	        <div class="control-group">
+	 
+	<!-- <div class="pull-left">
+        <img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">	
+		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-left">Calculate Settlement</button>
+		</div> -->
+            <table >
+            	<tr>
+            	<td>
+            	 <div class="control-group">
       				<label class="control-label">{{ 'link.disbursements.fileId' | translate }}<span class="required">*</span></label>
              				<div class="controls">
                 			<select class="input-small" ng-model="formData.fileId"  ng-options="fileId as fileId for fileId in fileIds" ></select>
               				</div>
             				</div>
-	
-	
-	<div class="pull-left">
-        <img alt="Loading"  ng-src="./images/spinner.gif" width="30" height="30" ng-show="loading">	
-		<button ng-click="refresh(formData.fileId)" type="button" class="btn btn-primary pull-left">Calculate Settlement</button>
-		</div>
-            <table >
-            	<tr>
+            	</td>
+            	
             		<td>
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.client' | translate }}<span class="required">*</span></label>
@@ -148,7 +149,7 @@
             				<div class="control-group">
               				<label class="control-label">{{ 'link.disbursements.month' | translate }}<span class="required">*</span></label>
               				<div class="controls">
-                			<select class="input-medium" id="activityM" ng-model="formData.activityDate" ng-change="getTableData(formData.activityDate)" ng-options="pn.activityMonth as pn.activityMonth for pn in activityMonths" value="{{pn.activityMonth}}" disabled></select>
+                			<select class="input-small" id="activityM" ng-model="formData.activityDate" ng-change="getTableData(formData.activityDate)" ng-options="pn.activityMonth as pn.activityMonth for pn in activityMonths" value="{{pn.activityMonth}}" disabled></select>
               				</div>
             				</div>
             		</td>
