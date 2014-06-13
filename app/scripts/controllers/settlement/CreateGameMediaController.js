@@ -226,6 +226,7 @@
 	           	};  
 	          scope.getPartnerAccount = function(){
 			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
+			        
 		        };
 		  
 		     scope.searchPartnerHistory123 = function(offset, limit, callback) {

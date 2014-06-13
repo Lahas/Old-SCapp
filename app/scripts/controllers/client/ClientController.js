@@ -34,7 +34,7 @@
       
       scope.getClients = function(){
       scope.clients = paginatorService.paginate(fetchFunction, 14);
-      
+     
       };
       
       scope.search123 = function(offset, limit, callback) {

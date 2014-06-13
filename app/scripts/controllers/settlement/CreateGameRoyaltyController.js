@@ -12,6 +12,7 @@
 		scope.settlementSequenceDatas=[];
 		scope.clientNames=[];
 		scope.activityMonths=[];
+		scope.distribution=[];
 		scope.formData={};
 
 		var callingTab = webStorage.get('currentTab',null);
@@ -59,6 +60,7 @@
  	        	scope.activityMonths=null;
  	        	scope.totalRA="";
  	        	scope.distributionDatas=[];
+ 	        	scope.distribution=[];
  	        	scope.formData.totalRA=null;
  	        	scope.formData.activityDate=null;
  	        	scope.mediaCategory=null;
@@ -115,6 +117,7 @@
  	        	scope.formData.activityDate=null;
  	        	$("#activityM").attr("disabled","disabled");
  	        	scope.distributionDatas=[];
+ 	            scope.distribution=[];
  	        	scope.totalRA="";
  	        	scope.formData.totalRA=null;
  	        	if(scope.mediaCategory!=null&&(scope.partnerType==1||scope.partnerType==undefined)){
@@ -152,7 +155,10 @@
  	 	        	scope.totalRA="";
  	 	        	scope.formData.totalRA=null;
  	 	        	scope.partnerNames=[];
- 	 	        	$("#activityM").attr("disabled","disabled"); 	 				
+ 	 	        	scope.distributionDatas=[];
+					scope.distribution=[];
+ 	 	        	$("#activityM").attr("disabled","disabled"); 
+ 	 	        	$("#partnerN").attr("disabled","disabled");
  	 	        	/*if(scope.ClientName == "All"){
  	 					 resourceFactory.getPartnerName.get({partnertype: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName,fileId:scope.fileId },function(data) {
  	     					  scope.partnerNames=data;
@@ -189,9 +195,11 @@
  		   scope.getpartnerName=function(value){
 					scope.partnerName=value;
 					scope.formData.activityDate=null;
-					scope.distributionDatas=[];	
+					scope.distributionDatas=[];
+					scope.distribution=[];
 					scope.totalRA="";
 	 	        	scope.formData.totalRA=null;
+	 	        	$("#activityM").attr("disabled","disabled");
 					 /* if(scope.ClientName == "All"){
 						 
 						 resourceFactory.getActivityMonth.get({mediaCategory: scope.mediaCategory,partnertype: scope.partnerType,partnerName: scope.partnerName,client:scope.ClientName,fileId:scope.fileId },function(data) {
@@ -228,12 +236,17 @@
 				scope.monthId=value;
 				if(scope.mediaCategory>1&&scope.ClientName!="All"&&scope.partnerType!= undefined&&scope.partnerName!="All"){
 					scope.totalRA="";
- 				  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType,mediaCategory: scope.mediaCategory,client:scope.ClientName,fileId:scope.fileId },function(data) {
- 					  scope.distributionDatas=data.distributionData;
+				  scope.getDisbursementsData=function(offset, limit, callback){
+ 				  resourceFactory.getDisbursementsData.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType,mediaCategory: scope.mediaCategory,
+ 					                              client:scope.ClientName,fileId:scope.fileId,offset: offset, limit: limit},function(data) {
+ 					  scope.distribution=data.pageItems;
  					  scope.totalRA=data.totalRoyalty.totalRoyaltyAmount;
- 				  });
-				 }
-				 else if(scope.ClientName == "All"){
+ 					   callback(data);
+ 					      });
+				  };
+ 				 scope.distributionDatas=PaginatorService.paginate(scope.getDisbursementsData, 49);
+ 				  
+				}else if(scope.ClientName == "All"){
 					 if(scope.mediaCategory==null){
 						  scope.mediaCategory=1;
 					  }
@@ -244,30 +257,45 @@
 						 scope.partnerName="All";
 					 }
 					 scope.totalRA="";
-					 resourceFactory.getDisbursementsDatas.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType,mediaCategory: scope.mediaCategory,fileId:scope.fileId },function(data) {
- 					  scope.distributionDatas=data.distributionData;
+					 scope.getDisbursementsDatas=function(offset, limit, callback){
+					 resourceFactory.getDisbursementsDatas.get({month:scope.monthId, partnerName: scope.partnerName,partnertypeId: scope.partnerType,mediaCategory: scope.mediaCategory,
+						        fileId:scope.fileId ,offset: offset, limit: limit},function(data) {
+ 					  scope.distribution=data.pageItems;
  					  scope.totalRA=data.totalRoyalty.totalRoyaltyAmount;
- 			      }); 
-				 }
-				else if(scope.partnerName!=null&&scope.partnerType>1){
+ 					  callback(data);
+ 			         }); 
+					 };
+					 scope.distributionDatas=PaginatorService.paginate(scope.getDisbursementsDatas, 49);
+					 
+				 }else if(scope.partnerName!=null&&scope.partnerType>1){
 						 scope.totalRA="";
-						 resourceFactory.getDisbursementsPartners.get({month:scope.monthId, client:scope.ClientName,fileId:scope.fileId,partnertypeId: scope.partnerType,partnerName: scope.partnerName},function(data) {
-	     					  scope.distributionDatas=data.distributionData;
+						 scope.getDisbursementsPartners=function(offset, limit, callback){
+						 resourceFactory.getDisbursementsPartners.get({month:scope.monthId, client:scope.ClientName,fileId:scope.fileId,partnertypeId: scope.partnerType,
+							 partnerName: scope.partnerName,offset: offset, limit: limit},function(data) {
+	     					  scope.distribution=data.pageItems;
 	     					  scope.totalRA=data.totalRoyalty.totalRoyaltyAmount;
+								  callback(data);
 					 });
-					 }
-			  else {
+					};
+						 scope.distributionDatas=PaginatorService.paginate(scope.getDisbursementsPartners, 49);	
+
+					 }else {
 				  
 				  if(scope.mediaCategory==null){
 					  scope.mediaCategory=1;
 				  }else{}
 					 scope.totalRA="";
-				    resourceFactory.getDisbursements.get({month:scope.monthId, client:scope.ClientName,fileId:scope.fileId ,mediaCategory: scope.mediaCategory},function(data) {
- 					  scope.distributionDatas=data.distributionData;
- 					  scope.totalRA=data.totalRoyalty.totalRoyaltyAmount;
-			 
-			 });
-			 }				
+					 scope.getDisbursements=function(offset, limit, callback){
+				    resourceFactory.getDisbursements.get({month:scope.monthId, client:scope.ClientName,fileId:scope.fileId ,
+				    	mediaCategory: scope.mediaCategory,offset: offset, limit: limit},function(data) {
+ 					    scope.distribution=data.pageItems;
+ 					    scope.totalRA=data.totalRoyalty.totalRoyaltyAmount;
+				    		  callback(data);
+			        });
+			      };
+					 scope.distributionDatas=PaginatorService.paginate(scope.getDisbursements, 49);
+					
+			       }				
 				
 			};  
 			  
@@ -290,33 +318,7 @@
  			  
 	            	        
 	            	        
-	          scope.getPartnerAccountDataFetchFunction = function(offset, limit, callback) {
-	            	  	resourceFactory.mediaSettlement.get({offset: offset, limit: limit} ,callback);
-	           	};  
-	            	  			
-	          scope.getPartnerAccount = function(){
-			         scope.partnerAccountData = PaginatorService.paginate(scope.getPartnerAccountDataFetchFunction, 14);
-			         
-		        };
-		  
-		     scope.searchPartnerHistory123 = function(offset, limit, callback) {
-	    	          resourceFactory.mediaSettlement.get({offset: offset, limit: limit ,sqlSearch: scope.filterText} , callback);
-	            };
-	  		
-		     scope.searchPartnerHistory = function(filterText) {
-	  			  scope.partnerAccountData = PaginatorService.paginate(scope.searchPartnerHistory123, 14);
-	  	    	}; 
-		  
-	  		 scope.getPartnerAgreementDataFetchFunction = function(offset, limit, callback){
-	  			    resourceFactory.partnerAgreementResource.getAllfiles({offset: offset, limit: limit} , callback);
-	  			/* scope.fileName=fileName;
-	  			if(scope.fileName == null){
-					  scope.fileName= false;
-			  		}
-		        	else{
-		        		scope.fileName= true;
-		        	}*/
-	  		   };
+	    
 	  		  scope.setGameScreen = function(){
 			  resourceFactory.partnerGameDetails.get(function(data){
 				  scope.gameDetails = data;
