@@ -166,7 +166,7 @@
             	</tr>
             </table>
            
-            <table border="2">
+            <table class="table" border="2" width="100%" ng-show="distribution.length>0">
 	    
 			<thead>
 				<tr class="graybg">
@@ -189,7 +189,7 @@
 				</tr>
 			</thead>
 				<tbody>
-						<tr ng-repeat="distributionData in distributionDatas">
+						<tr ng-repeat="distributionData in distributionDatas.currentPageItems">
 			              	<td>{{distributionData.branch}}</td>
 			              	<td>{{distributionData.city}}</td>
 			              	<td>{{distributionData.state}}</td>
@@ -207,10 +207,14 @@
 			              	<td>{{distributionData.currency}}</td>
 			              	<td>{{distributionData.status}}</td>
 			              </tr>
-			
-			
-				</tbody>
+    			
 		</table>
+		<ul class="pager" ng-show="distribution.length>0">
+        			<li class="previous"><a ng-click="distributionDatas.previous()" href="" ng-disabled="!distributionDatas.hasPrevious()">&larr; Prev</a></li>
+        			<li class="next" ><a ng-click="distributionDatas.next()" href="" ng-disabled="!distributionDatas.hasNext()">Next &rarr;</a></li>
+    			</ul>
+		 
+     	
 	</body>
 
       </tab>
